@@ -1,0 +1,103 @@
+{
+	"ExpenseTypes": [{
+		"Name": "Mortgage",
+		"MonthlyBudget": 1545.01
+	},
+	{
+		"Name": "Electric",
+		"MonthlyBudget": 0.00
+	},
+	{
+		"Name": "Misc",
+		"MonthlyBudget": 300.00
+	}],
+	"InvestmentTypes": [{
+		"Name": "IRA",
+		"MonthlyTarget": 500.00
+	},
+	{
+		"Name": "Brokerage",
+		"MonthlyBudget": 500.00
+	}],
+	"Expenses": [{
+		"Type": "Electric",
+		"Description": "April Electric Bill",
+		"Date": "04/17/2020",
+		"Amount": 41.28
+	},
+	{
+		"Type": "Electric",
+		"Description": "Lowes",
+		"Date": "03/20/2020",
+		"Amount": 71.54
+	}],
+	"Investments": [{
+		"Type": "Brokerage",
+		"Date": "02/10/2020",
+		"Amount": 500.00
+	},
+	{
+		"Type": "IRA",
+		"Date": "03/20/2020",
+		"Amount": 450.00
+	}],
+	"SalaryPayments": [{
+		"Date": "02/10/2020",
+		"Amount": 2500.00,
+		"Overtime": 2
+	},
+	{
+		"Date": "03/10/2020",
+		"Amount": 1500.00,
+		"Overtime": 0
+	}],
+	"SupplementalIncome": [{
+		"Description": "Tax Refund",
+		"Date": "02/1/2020",
+		"Amount": 2200.00
+	},
+	{
+		"Description": "Birthday",
+		"Date": "04/17/2020",
+		"Amount": 25.50
+	}],
+	"Assets": [{
+		"Name": "Brokerage",
+		"Value": [1000.00,
+		1200.00,
+		5000.00]
+	},
+	{
+		"Name": "House",
+		"Value": [10000.00,
+		12000.00,
+		50000.00]
+	}],
+	"AutomaticMonthlyPayments": [{
+		"Name": "Mortgage",
+		"Bank": "First Commonwealth",
+		"Amount": 1545.00
+	},
+	{
+		"Name": "Donation",
+		"Bank": "Dollar Bank",
+		"Amount": 100.00
+	}],
+	"MortgageInformation": {
+		"TotalLoanAmount": 207900,
+		"RemainingBalance": 199000,
+		"PurchasePrice": 230900,
+		"Term": 30,
+		"Rate": 3.656,
+		"Payments": [{
+			"Date": "05/1/2020",
+			"Amount": 1545.00,
+			"AdditionalPrincipal": 100.00
+		},
+		{
+			"Date": "06/1/2020",
+			"Amount": 1545.00,
+			"AdditionalPrincipal": 500.00
+		}]
+	}
+}
