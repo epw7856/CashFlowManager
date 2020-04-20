@@ -26,12 +26,16 @@ CONFIG += c++14
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        systemdatasource.cpp
 
 HEADERS += \
+        Expense/expenseentry.h \
+        Expense/expenseinterface.h \
         Expense/expensetype.h \
         Investment/investmenttype.h \
-        mainwindow.h
+        mainwindow.h \
+        systemdatasource.h
 
 FORMS += \
         mainwindow.ui

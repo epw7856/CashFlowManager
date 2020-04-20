@@ -6,18 +6,21 @@
 class ExpenseType
 {
 public:
-    ExpenseType(std::string name, unsigned monthlyBudget)
+    ExpenseType
+    (
+        std::string name,
+        double monthlyBudget
+    )
     :
         expenseName(name),
-        expenseBudget(monthlyBudget){}
+        expenseBudget(monthlyBudget) {}
 
     std::string getName() const { return expenseName; }
-    unsigned getMonthlyBudget() const { return expenseBudget; }
+    double getMonthlyBudget() const { return expenseBudget; }
 
 private:
     std::string expenseName = "";
-    unsigned expenseBudget = 0U;
-
+    double expenseBudget = 0.00;
 };
 
 #endif // EXPENSETYPE_H
