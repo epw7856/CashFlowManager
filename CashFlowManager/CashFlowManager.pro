@@ -24,9 +24,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++14
 
+INCLUDEPATH += Expense/
+INCLUDEPATH += Investment/
+
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+        mainwindowcontroller.cpp \
         systemdatasource.cpp
 
 HEADERS += \
@@ -35,6 +39,7 @@ HEADERS += \
         Expense/expensetype.h \
         Investment/investmenttype.h \
         mainwindow.h \
+        mainwindowcontroller.h \
         systemdatasource.h
 
 FORMS += \

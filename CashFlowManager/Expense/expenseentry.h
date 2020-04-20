@@ -1,8 +1,7 @@
 #ifndef EXPENSEENTRY_H
 #define EXPENSEENTRY_H
 
-#include <QDateTime>
-#include <string>
+#include <QDate>
 
 class ExpenseEntry
 {
@@ -11,7 +10,7 @@ public:
     (
         std::string type,
         std::string description,
-        QDateTime date,
+        QDate date,
         double amount
     )
     :
@@ -22,7 +21,7 @@ public:
 
     std::string getEntryType() const { return entryType; }
     std::string getEntryDescription() const { return entryDescription; }
-    QDateTime getEntryDate() const { return entryDate; }
+    QDate getEntryDate() const { return entryDate; }
     double getEntryAmount() const { return entryAmount; }
 
     friend bool operator<(const ExpenseEntry& entry1, const ExpenseEntry& entry2)
@@ -48,7 +47,7 @@ public:
 private:
     std::string entryType = "";
     std::string entryDescription = "";
-    QDateTime entryDate;
+    QDate entryDate;
     double entryAmount = 0.00;
 };
 

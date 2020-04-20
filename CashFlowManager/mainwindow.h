@@ -1,7 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <memory>
 #include <QMainWindow>
+
+class MainWindowController;
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    std::shared_ptr<MainWindowController> controller = nullptr;
 };
 
 #endif // MAINWINDOW_H

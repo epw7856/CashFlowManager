@@ -12,7 +12,7 @@ class ExpenseInterface
 public:
     virtual std::vector<std::shared_ptr<ExpenseType>> getExpenseTypes() const = 0;
     virtual std::set<std::shared_ptr<ExpenseEntry>> getExpenseList() const = 0;
-    virtual std::set<std::shared_ptr<ExpenseEntry>> getExpenseListByTimePeriod(QDateTime period) const = 0;
+    virtual std::set<std::shared_ptr<ExpenseEntry>> getExpenseListByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
 
 };
 
