@@ -5,17 +5,17 @@
 #include "systemdatasource.h"
 #include <QDebug>
 
-std::vector<std::shared_ptr<ExpenseType> > SystemDataSource::getExpenseTypes() const
+std::vector<ExpenseType> SystemDataSource::getExpenseTypes() const
 {
     return expenseTypes;
 }
 
-std::set<std::shared_ptr<ExpenseEntry> > SystemDataSource::getExpenseList() const
+std::set<ExpenseTransaction> SystemDataSource::getExpenseTransactions() const
 {
-    return expenseList;
+    return expenseTransactionList;
 }
 
-std::set<std::shared_ptr<ExpenseEntry> > SystemDataSource::getExpenseListByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
+std::set<ExpenseTransaction> SystemDataSource::getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
 {
     return {};
 }
@@ -46,9 +46,18 @@ void SystemDataSource::parseExpenseTypes(const QJsonObject& obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        std::shared_ptr<ExpenseType> type = std::make_shared<ExpenseType>(QString(item.toObject().value("Name").toString()).toStdString(),
-                                                                          item.toObject().value("MonthlyBudget").toDouble());
+        ExpenseType type;
+
+        type.name = QString(item.toObject().value("Name").toString()).toStdString();
+        type.monthlyBudget = item.toObject().value("MonthlyBudget").toDouble();
+
         expenseTypes.push_back(type);
+    }
+
+    qDebug() << "Expense Types: ";
+    for(auto i:expenseTypes)
+    {
+        qDebug() << QString::fromStdString(i.name) << " " << i.monthlyBudget;
     }
 }
 
@@ -58,11 +67,20 @@ void SystemDataSource::parseExpenseList(const QJsonObject &obj)
     QJsonArray array = expList.toArray();
     for (const QJsonValue item : array)
     {
-        QDate date;
-        std::shared_ptr<ExpenseEntry> entry = std::make_shared<ExpenseEntry>(QString(item.toObject().value("Type").toString()).toStdString(),
-                                                                             QString(item.toObject().value("Description").toString()).toStdString(),
-                                                                             date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy"),
-                                                                             item.toObject().value("Amount").toDouble());
-        expenseList.insert(entry);
+        QDate tempDate;
+        ExpenseTransaction entry;
+
+        entry.type = QString(item.toObject().value("Type").toString()).toStdString();
+        entry.description = QString(item.toObject().value("Description").toString()).toStdString();
+        entry.date = tempDate.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+        entry.amount = item.toObject().value("Amount").toDouble();
+
+        expenseTransactionList.insert(entry);
+    }
+
+    qDebug() << "Expense Transaction List: ";
+    for(auto i:expenseTransactionList)
+    {
+        qDebug() << QString::fromStdString(i.type) << " " << i.date;
     }
 }

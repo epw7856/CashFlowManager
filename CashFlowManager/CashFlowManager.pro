@@ -34,9 +34,11 @@ SOURCES += \
         systemdatasource.cpp
 
 HEADERS += \
-        Expense/expenseentry.h \
         Expense/expenseinterface.h \
+        Expense/expensetransaction.h \
         Expense/expensetype.h \
+        Investment/investmentinterface.h \
+        Investment/investmenttransaction.h \
         Investment/investmenttype.h \
         mainwindow.h \
         mainwindowcontroller.h \

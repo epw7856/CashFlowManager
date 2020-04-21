@@ -1,18 +1,17 @@
 #ifndef EXPENSEINTERFACE_H
 #define EXPENSEINTERFACE_H
 
-#include "expenseentry.h"
+#include "expensetransaction.h"
 #include "expensetype.h"
-#include <memory>
 #include <set>
 #include <vector>
 
 class ExpenseInterface
 {
 public:
-    virtual std::vector<std::shared_ptr<ExpenseType>> getExpenseTypes() const = 0;
-    virtual std::set<std::shared_ptr<ExpenseEntry>> getExpenseList() const = 0;
-    virtual std::set<std::shared_ptr<ExpenseEntry>> getExpenseListByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
+    virtual std::vector<ExpenseType> getExpenseTypes() const = 0;
+    virtual std::set<ExpenseTransaction> getExpenseTransactions() const = 0;
+    virtual std::set<ExpenseTransaction> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
 
 };
 
