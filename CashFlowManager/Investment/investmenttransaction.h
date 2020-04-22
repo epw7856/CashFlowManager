@@ -5,7 +5,7 @@
 
 struct InvestmentTransaction : public BaseTransaction
 {
-    std::string type = "";
+    std::string Type = "";
 };
 
 #endif // INVESTMENTTRANSACTION_H

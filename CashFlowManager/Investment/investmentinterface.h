@@ -8,8 +8,8 @@
 class InvestmentInterface
 {
     virtual std::vector<InvestmentType> getInvestmentTypes() const = 0;
-    virtual std::set<InvestmentTransaction> getInvestmentTransactions() const = 0;
-    virtual std::set<InvestmentTransaction> getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
+    virtual std::multiset<InvestmentTransaction> getInvestmentTransactions() const = 0;
+    virtual std::multiset<InvestmentTransaction> getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
 };
 
 #endif // INVESTMENTINTERFACE_H

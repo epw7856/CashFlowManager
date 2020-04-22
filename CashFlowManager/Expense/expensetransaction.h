@@ -5,8 +5,8 @@
 
 struct ExpenseTransaction : public BaseTransaction
 {
-    std::string type = "";
-    std::string description = "";
+    std::string Type = "";
+    std::string Description = "";
 };
 
 #endif // EXPENSETRANSACTION_H

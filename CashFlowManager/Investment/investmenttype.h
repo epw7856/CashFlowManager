@@ -5,8 +5,8 @@
 
 struct InvestmentType
 {
-    std::string investmentName = "";
-    double investmentTarget = 0.00;
+    std::string Name = "";
+    double MonthlyTarget = 0.00;
 };
 
 #endif // INVESTMENTTYPE_H

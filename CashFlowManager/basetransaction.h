@@ -5,27 +5,27 @@
 
 struct BaseTransaction
 {
-    QDate date;
-    double amount = 0.0;
+    QDate Date;
+    double Amount = 0.0;
 
     friend bool operator<(const BaseTransaction& lhs, const BaseTransaction& rhs)
     {
-        return lhs.date < rhs.date;
+        return lhs.Date < rhs.Date;
     }
 
     friend bool operator<=(const BaseTransaction& lhs, const BaseTransaction& rhs)
     {
-        return lhs.date <= rhs.date;
+        return lhs.Date <= rhs.Date;
     }
 
     friend bool operator>(const BaseTransaction& lhs, const BaseTransaction& rhs)
     {
-        return lhs.date > rhs.date;
+        return lhs.Date > rhs.Date;
     }
 
     friend bool operator>=(const BaseTransaction& lhs, const BaseTransaction& rhs)
     {
-        return lhs.date >= rhs.date;
+        return lhs.Date >= rhs.Date;
     }
 };
 

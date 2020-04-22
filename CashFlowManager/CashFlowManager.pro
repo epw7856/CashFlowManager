@@ -34,12 +34,17 @@ SOURCES += \
         systemdatasource.cpp
 
 HEADERS += \
+        Asset/assetentry.h \
+        Expense/automaticmonthlypayment.h \
         Expense/expenseinterface.h \
         Expense/expensetransaction.h \
         Expense/expensetype.h \
+        Income/salaryincome.h \
+        Income/supplementalincome.h \
         Investment/investmentinterface.h \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
+        Mortgage/mortgagepayment.h \
         basetransaction.h \
         mainwindow.h \
         mainwindowcontroller.h \

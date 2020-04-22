@@ -15,25 +15,31 @@ public:
 
     // Expense Interface
     std::vector<ExpenseType> getExpenseTypes() const override;
-    std::set<ExpenseTransaction> getExpenseTransactions() const override;
-    std::set<ExpenseTransaction> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
+    std::multiset<ExpenseTransaction> getExpenseTransactions() const override;
+    std::multiset<ExpenseTransaction> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
+    std::vector<AutomaticMonthlyPayment> getAutomaticMonthlyPayments() const override;
 
     // Investment Interface
     std::vector<InvestmentType> getInvestmentTypes() const override;
-    std::set<InvestmentTransaction> getInvestmentTransactions() const override;
-    std::set<InvestmentTransaction> getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
+    std::multiset<InvestmentTransaction> getInvestmentTransactions() const override;
+    std::multiset<InvestmentTransaction> getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
 
     void loadSystemConfig(std::string filePath);
 
 private:
     std::vector<ExpenseType> expenseTypes = {};
-    std::set<ExpenseTransaction> expenseTransactionList = {};
+    std::multiset<ExpenseTransaction> expenseTransactionList = {};
 
     std::vector<InvestmentType> investmentTypes = {};
-    std::set<InvestmentTransaction> investmentTransactionList = {};
+    std::multiset<InvestmentTransaction> investmentTransactionList = {};
+
+    std::vector<AutomaticMonthlyPayment> automaticMonthlyPaymentList = {};
 
     void parseExpenseTypes(const QJsonObject& obj);
-    void parseExpenseList(const QJsonObject& obj);
+    void parseExpenseTransactionList(const QJsonObject& obj);
+    void parseInvestmentTypes(const QJsonObject& obj);
+    void parseInvestmentTransactionList(const QJsonObject& obj);
+    void parseAutomaticMonthlyPayments(const QJsonObject& obj);
 
 };
 

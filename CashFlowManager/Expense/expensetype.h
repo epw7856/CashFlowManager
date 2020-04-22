@@ -5,8 +5,8 @@
 
 struct ExpenseType
 {
-    std::string name = "";
-    double monthlyBudget = 0.00;
+    std::string Name = "";
+    double MonthlyBudget = 0.00;
 };
 
 #endif // EXPENSETYPE_H
