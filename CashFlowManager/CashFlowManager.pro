@@ -26,6 +26,9 @@ CONFIG += c++14
 
 INCLUDEPATH += Expense/
 INCLUDEPATH += Investment/
+INCLUDEPATH += Income/
+INCLUDEPATH += Asset/
+INCLUDEPATH += Mortgage/
 
 SOURCES += \
         main.cpp \
@@ -35,10 +38,12 @@ SOURCES += \
 
 HEADERS += \
         Asset/assetentry.h \
+        Asset/assetinterface.h \
         Expense/automaticmonthlypayment.h \
         Expense/expenseinterface.h \
         Expense/expensetransaction.h \
         Expense/expensetype.h \
+        Income/incomeinterface.h \
         Income/salaryincome.h \
         Income/supplementalincome.h \
         Investment/investmentinterface.h \

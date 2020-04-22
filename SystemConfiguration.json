@@ -54,7 +54,7 @@
 			"Amount": 450.00
 		}
 	],
-	"SalaryPayments": [
+	"SalaryIncome": [
 		{
 			"Date": "02/10/2020",
 			"Amount": 2500.00,
@@ -69,7 +69,7 @@
 	"SupplementalIncome": [
 		{
 			"Description": "Tax Refund",
-			"Date": "02/1/2020",
+			"Date": "02/01/2020",
 			"Amount": 2200.00
 		},
 		{
@@ -81,11 +81,31 @@
 	"Assets": [
 		{
 			"Name": "Brokerage",
-			"Value": [1000.00, 1200.00, 5000.00]
+			"Type": "Liquid",
+			"Value": [
+				{
+					"Date": "02/17/2020",
+					"Value": 1000.00
+				}, 
+				{
+					"Date": "03/17/2020",
+					"Value": 2000.00
+				}
+			]
 		},
 		{
 			"Name": "House",
-			"Value": [10000.00, 12000.00, 50000.00]
+			"Type": "Illiquid",
+			"Value": [
+				{
+					"Date": "04/17/2020",
+					"Value": 10000.00
+				}, 
+				{
+					"Date": "05/17/2020",
+					"Value": 15000.00
+				}
+			]
 		}
 	],
 	"AutomaticMonthlyPayments": [

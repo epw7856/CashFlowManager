@@ -1,7 +1,7 @@
 #ifndef AUTOMATICMONTHLYPAYMENT_H
 #define AUTOMATICMONTHLYPAYMENT_H
 
-#include "string"
+#include <string>
 
 struct AutomaticMonthlyPayment
 {
