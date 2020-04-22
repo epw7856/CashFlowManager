@@ -40,6 +40,7 @@ HEADERS += \
         Investment/investmentinterface.h \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
+        basetransaction.h \
         mainwindow.h \
         mainwindowcontroller.h \
         systemdatasource.h

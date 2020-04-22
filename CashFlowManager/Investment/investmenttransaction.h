@@ -1,33 +1,11 @@
 #ifndef INVESTMENTTRANSACTION_H
 #define INVESTMENTTRANSACTION_H
 
-#include <QDate>
+#include "basetransaction.h"
 
-struct InvestmentTransaction
+struct InvestmentTransaction : public BaseTransaction
 {
     std::string type = "";
-    QDate date;
-    double amount = 0.0;
-
-    friend bool operator<(const InvestmentTransaction& lhs, const InvestmentTransaction& rhs)
-    {
-        return lhs.date < rhs.date;
-    }
-
-    friend bool operator<=(const InvestmentTransaction& lhs, const InvestmentTransaction& rhs)
-    {
-        return lhs.date <= rhs.date;
-    }
-
-    friend bool operator>(const InvestmentTransaction& lhs, const InvestmentTransaction& rhs)
-    {
-        return lhs.date > rhs.date;
-    }
-
-    friend bool operator>=(const InvestmentTransaction& lhs, const InvestmentTransaction& rhs)
-    {
-        return lhs.date >= rhs.date;
-    }
 };
 
 #endif // INVESTMENTTRANSACTION_H

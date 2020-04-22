@@ -5,8 +5,6 @@
 #include "investmentinterface.h"
 #include <QJsonObject>
 
-class ExpenseType;
-
 class SystemDataSource
 :
     public ExpenseInterface,
@@ -21,13 +19,18 @@ public:
     std::set<ExpenseTransaction> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
 
     // Investment Interface
-
+    std::vector<InvestmentType> getInvestmentTypes() const override;
+    std::set<InvestmentTransaction> getInvestmentTransactions() const override;
+    std::set<InvestmentTransaction> getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
 
     void loadSystemConfig(std::string filePath);
 
 private:
     std::vector<ExpenseType> expenseTypes = {};
     std::set<ExpenseTransaction> expenseTransactionList = {};
+
+    std::vector<InvestmentType> investmentTypes = {};
+    std::set<InvestmentTransaction> investmentTransactionList = {};
 
     void parseExpenseTypes(const QJsonObject& obj);
     void parseExpenseList(const QJsonObject& obj);

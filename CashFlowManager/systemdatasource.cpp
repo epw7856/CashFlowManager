@@ -20,6 +20,21 @@ std::set<ExpenseTransaction> SystemDataSource::getExpenseTransactionsByTimePerio
     return {};
 }
 
+std::vector<InvestmentType> SystemDataSource::getInvestmentTypes() const
+{
+    return investmentTypes;
+}
+
+std::set<InvestmentTransaction> SystemDataSource::getInvestmentTransactions() const
+{
+    return investmentTransactionList;
+}
+
+std::set<InvestmentTransaction> SystemDataSource::getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
+{
+    return {};
+}
+
 void SystemDataSource::loadSystemConfig(std::string filePath)
 {
     QFile file(QString::fromStdString(filePath));
