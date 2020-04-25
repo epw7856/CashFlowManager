@@ -1,10 +1,18 @@
 #ifndef INCOMEINTERFACE_H
 #define INCOMEINTERFACE_H
 
-#include <QDate>
+#include <set>
+
+class QDate;
+class SalaryIncome;
+class SupplementalIncome;
 
 class IncomeInterface
 {
+public:
+    virtual ~IncomeInterface() = default;
+    virtual std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
+    virtual std::multiset<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
     virtual double getTotalIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
     virtual double getSalaryIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
 };

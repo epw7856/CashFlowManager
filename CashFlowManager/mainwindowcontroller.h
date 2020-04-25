@@ -10,9 +10,10 @@ class MainWindowController
 
 public:
     MainWindowController();
+    ~MainWindowController();
 
 private:
-    std::shared_ptr<SystemDataSource> sds = nullptr;
+    std::unique_ptr<SystemDataSource> sds;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

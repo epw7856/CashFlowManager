@@ -3,8 +3,8 @@
 
 #include <memory>
 #include <QMainWindow>
-
-class MainWindowController;
+#include "mainwindowcontroller.h"
+//class MainWindowController;
 
 namespace Ui {
 class MainWindow;
@@ -20,7 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    std::shared_ptr<MainWindowController> controller = nullptr;
+    MainWindowController controller;
 };
 
 #endif // MAINWINDOW_H

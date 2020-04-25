@@ -1,41 +1,65 @@
+#include "assetentry.h"
+#include "automaticmonthlypayment.h"
+#include "expensetransaction.h"
+#include "expensetype.h"
+#include "investmenttransaction.h"
+#include "investmenttype.h"
+#include "mortgageinformation.h"
 #include <QByteArray>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include "systemdatasource.h"
 #include <QDebug>
+#include <QDate>
+#include "salaryincome.h"
+#include "supplementalincome.h"
+#include "systemdatasource.h"
 
-std::vector<ExpenseType> SystemDataSource::getExpenseTypes() const
-{
-    return expenseTypes;
-}
+SystemDataSource::SystemDataSource() {}
 
-std::multiset<ExpenseTransaction> SystemDataSource::getExpenseTransactions() const
-{
-    return expenseTransactionList;
-}
+SystemDataSource::~SystemDataSource() = default;
 
-std::multiset<ExpenseTransaction> SystemDataSource::getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
+std::vector<ExpenseType*> SystemDataSource::getExpenseTypes() const
 {
     return {};
 }
 
-std::vector<AutomaticMonthlyPayment> SystemDataSource::getAutomaticMonthlyPayments() const
+std::multiset<ExpenseTransaction*> SystemDataSource::getExpenseTransactions() const
 {
-    return automaticMonthlyPaymentList;
+    return {};
 }
 
-std::vector<InvestmentType> SystemDataSource::getInvestmentTypes() const
+std::multiset<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
 {
-    return investmentTypes;
+    return {};
 }
 
-std::multiset<InvestmentTransaction> SystemDataSource::getInvestmentTransactions() const
+std::vector<AutomaticMonthlyPayment*> SystemDataSource::getAutomaticMonthlyPayments() const
 {
-    return investmentTransactionList;
+    return {};
 }
 
-std::multiset<InvestmentTransaction> SystemDataSource::getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
+std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
+{
+    return {};
+}
+
+std::multiset<InvestmentTransaction*> SystemDataSource::getInvestmentTransactions() const
+{
+    return {};
+}
+
+std::multiset<InvestmentTransaction*> SystemDataSource::getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
+{
+    return {};
+}
+
+std::multiset<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
+{
+    return {};
+}
+
+std::multiset<SupplementalIncome*> SystemDataSource::getSupplementalIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
 {
     return {};
 }
@@ -50,14 +74,14 @@ double SystemDataSource::getSalaryIncomeByTimePeriod(QDate startingPeriod, QDate
     return 0.0;
 }
 
-std::vector<AssetEntry> SystemDataSource::getAssetList() const
+std::vector<AssetEntry*> SystemDataSource::getAssetList() const
 {
-    return assetList;
+    return {};
 }
 
-std::vector<AssetEntry> SystemDataSource::getAssetListByType(AssetType type) const
+std::vector<AssetEntry*> SystemDataSource::getAssetListByType(AssetType type) const
 {
-    return assetList;
+    return {};
 }
 
 void SystemDataSource::loadSystemConfig(std::string filePath)
@@ -91,18 +115,16 @@ void SystemDataSource::parseExpenseTypes(const QJsonObject& obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        ExpenseType type;
+        const std::string& name = QString(item.toObject().value("Name").toString()).toStdString();
+        const double budget = item.toObject().value("MonthlyBudget").toDouble();
 
-        type.Name = QString(item.toObject().value("Name").toString()).toStdString();
-        type.MonthlyBudget = item.toObject().value("MonthlyBudget").toDouble();
-
-        expenseTypes.push_back(type);
+        expenseTypes.push_back(std::make_unique<ExpenseType>(name, budget));
     }
 
     qDebug() << "Expense Types: ";
-    for(auto i:expenseTypes)
+    for(const auto& i:expenseTypes)
     {
-        qDebug() << QString::fromStdString(i.Name) << " " << i.MonthlyBudget;
+        qDebug() << QString::fromStdString(i->getName()) << " " << i->getMonthlyBudget();
     }
 }
 
@@ -112,21 +134,19 @@ void SystemDataSource::parseExpenseTransactionList(const QJsonObject &obj)
     QJsonArray array = expList.toArray();
     for (const QJsonValue item : array)
     {
-        QDate tempDate;
-        ExpenseTransaction entry;
+        QDate date;
+        const std::string& type = QString(item.toObject().value("Type").toString()).toStdString();
+        const std::string& description = QString(item.toObject().value("Description").toString()).toStdString();
+        date = date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+        const double amount = item.toObject().value("Amount").toDouble();
 
-        entry.Type = QString(item.toObject().value("Type").toString()).toStdString();
-        entry.Description = QString(item.toObject().value("Description").toString()).toStdString();
-        entry.Date = tempDate.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
-        entry.Amount = item.toObject().value("Amount").toDouble();
-
-        expenseTransactionList.insert(entry);
+        expenseTransactionList.insert(std::make_unique<ExpenseTransaction>(date, amount, type, description));
     }
 
     qDebug() << "Expense Transaction List: ";
-    for(auto i:expenseTransactionList)
+    for(const auto& i:expenseTransactionList)
     {
-        qDebug() << QString::fromStdString(i.Type) << " " << i.Date;
+        qDebug() << QString::fromStdString(i->getType()) << " " << i->getDate();
     }
 }
 
@@ -136,18 +156,16 @@ void SystemDataSource::parseInvestmentTypes(const QJsonObject &obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        InvestmentType type;
+        const std::string& name = item.toObject().value("Name").toString().toStdString();
+        const double target = item.toObject().value("MonthlyTarget").toDouble();
 
-        type.Name = QString(item.toObject().value("Name").toString()).toStdString();
-        type.MonthlyTarget = item.toObject().value("MonthlyTarget").toDouble();
-
-        investmentTypes.push_back(type);
+        investmentTypes.push_back(std::make_unique<InvestmentType>(name, target));
     }
 
     qDebug() << "Investment Types: ";
-    for(auto i:investmentTypes)
+    for(const auto& i:investmentTypes)
     {
-        qDebug() << QString::fromStdString(i.Name) << " " << i.MonthlyTarget;
+        qDebug() << QString::fromStdString(i->getName()) << " " << i->getMonthlyTarget();
     }
 }
 
@@ -157,20 +175,18 @@ void SystemDataSource::parseInvestmentTransactionList(const QJsonObject &obj)
     QJsonArray array = expList.toArray();
     for (const QJsonValue item : array)
     {
-        QDate tempDate;
-        InvestmentTransaction entry;
+        QDate date;
+        const std::string type = QString(item.toObject().value("Type").toString()).toStdString();
+        date = date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+        const double amount = item.toObject().value("Amount").toDouble();
 
-        entry.Type = QString(item.toObject().value("Type").toString()).toStdString();
-        entry.Date = tempDate.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
-        entry.Amount = item.toObject().value("Amount").toDouble();
-
-        investmentTransactionList.insert(entry);
+        investmentTransactionList.insert(std::make_unique<InvestmentTransaction>(date, amount, type));
     }
 
     qDebug() << "Investment Transaction List: ";
-    for(auto i:investmentTransactionList)
+    for(const auto& i:investmentTransactionList)
     {
-        qDebug() << QString::fromStdString(i.Type) << " " << i.Date;
+        qDebug() << QString::fromStdString(i->getType()) << " " << i->getDate();
     }
 }
 
@@ -180,19 +196,17 @@ void SystemDataSource::parseAutomaticMonthlyPayments(const QJsonObject &obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        AutomaticMonthlyPayment entry;
+        const std::string name = QString(item.toObject().value("Name").toString()).toStdString();
+        const std::string account = QString(item.toObject().value("Account").toString()).toStdString();
+        const double amount = item.toObject().value("Amount").toDouble();
 
-        entry.Name = QString(item.toObject().value("Name").toString()).toStdString();
-        entry.Account = QString(item.toObject().value("Account").toString()).toStdString();
-        entry.Amount = item.toObject().value("Amount").toDouble();
-
-        automaticMonthlyPaymentList.push_back(entry);
+        automaticMonthlyPaymentList.push_back(std::make_unique<AutomaticMonthlyPayment>(name, account, amount));
     }
 
     qDebug() << "Automatic Monthly Payments: ";
-    for(auto i:automaticMonthlyPaymentList)
+    for(const auto& i:automaticMonthlyPaymentList)
     {
-        qDebug() << QString::fromStdString(i.Name) << " " << i.Amount;
+        qDebug() << QString::fromStdString(i->getName()) << " " << i->getAmount();
     }
 }
 
@@ -202,20 +216,18 @@ void SystemDataSource::parseSalaryIncome(const QJsonObject &obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        QDate tempDate;
-        SalaryIncome entry;
+        QDate date;
+        date = date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+        const double amount = item.toObject().value("Amount").toDouble();
+        const unsigned overtime = static_cast<unsigned>(item.toObject().value("Overtime").toInt());
 
-        entry.Date = tempDate.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
-        entry.Amount = item.toObject().value("Amount").toDouble();
-        entry.Overtime = static_cast<unsigned>(item.toObject().value("Overtime").toInt());
-
-        salaryIncomeList.insert(entry);
+        salaryIncomeList.insert(std::make_unique<SalaryIncome>(date, amount, overtime));
     }
 
     qDebug() << "Salary Income: ";
-    for(auto i:salaryIncomeList)
+    for(const auto& i:salaryIncomeList)
     {
-        qDebug() << i.Date.toString() << " " << i.Amount;
+        qDebug() << i->getDate().toString() << " " << i->getAmount();
     }
 }
 
@@ -225,20 +237,18 @@ void SystemDataSource::parseSupplementalIncome(const QJsonObject &obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        QDate tempDate;
-        SupplementalIncome entry;
+        QDate date;
+        date = date = date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+        const double amount = item.toObject().value("Amount").toDouble();
+        const std::string& description = QString(item.toObject().value("Description").toString()).toStdString();
 
-        entry.Description = QString(item.toObject().value("Description").toString()).toStdString();
-        entry.Date = tempDate.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
-        entry.Amount = item.toObject().value("Amount").toDouble();
-
-        supplementalIncomeList.insert(entry);
+        supplementalIncomeList.insert(std::make_unique<SupplementalIncome>(date, amount, description));
     }
 
     qDebug() << "Supplemental Income: ";
-    for(auto i:supplementalIncomeList)
+    for(const auto& i:supplementalIncomeList)
     {
-        qDebug() << i.Date.toString() << " " << i.Amount;
+        qDebug() << i->getDate().toString() << " " << i->getAmount();
     }
 }
 
@@ -248,34 +258,48 @@ void SystemDataSource::parseAssetList(const QJsonObject &obj)
     QJsonArray array = expTypes.toArray();
     for (const QJsonValue item : array)
     {
-        AssetEntry entry;
+        std::map<QDate, double> values;
 
-        entry.Name = QString(item.toObject().value("Name").toString()).toStdString();
-        entry.Type = stringToAssetType(QString(item.toObject().value("Name").toString().toLower()).toStdString());
+        const std::string name = QString(item.toObject().value("Name").toString()).toStdString();
+        const AssetType type = stringToAssetType(QString(item.toObject().value("Name").toString().toLower()).toStdString());
 
         QJsonArray valueArray = item.toObject().value("Value").toArray();
         for (const QJsonValue valueItem : valueArray)
         {
             QDate tempDate;
-            entry.NetValue.insert({tempDate.fromString(valueItem.toObject().value("Date").toString(), "MM/dd/yyyy"),
-                                   valueItem.toObject().value("Value").toDouble()});
+            tempDate = tempDate.fromString(valueItem.toObject().value("Date").toString(), "MM/dd/yyyy");
+            values.insert({tempDate, valueItem.toObject().value("Value").toDouble()});
         }
 
-        assetList.push_back(entry);
+        assetList.push_back(std::make_unique<AssetEntry>(type, name, values));
     }
 
     qDebug() << "Assets: ";
-    for(auto i:assetList)
+    for(const auto& i:assetList)
     {
-        qDebug() << QString::fromStdString(i.Name);
-        for(auto j:i.NetValue)
+        qDebug() << QString::fromStdString(i->getName());
+        for(auto j:i->getNetValue())
         {
             qDebug() << j.first.toString() << "  " << j.second;
         }
     }
 }
 
-AssetType SystemDataSource::stringToAssetType(const std::string& type)
+std::string SystemDataSource::assetTypeToString(AssetType type)
+{
+    if(type == AssetType::Liquid)
+    {
+        return "Liquid";
+    }
+    else if(type == AssetType::Illiquid)
+    {
+        return "Illiquid";
+    }
+
+    return "Unknown";
+}
+
+AssetType SystemDataSource::stringToAssetType(std::string type)
 {
     if(type == "liquid")
     {

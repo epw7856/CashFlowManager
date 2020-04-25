@@ -3,9 +3,28 @@
 
 #include "basetransaction.h"
 
-struct InvestmentTransaction : public BaseTransaction
+class InvestmentTransaction : public BaseTransaction
 {
-    std::string Type = "";
+public:
+    InvestmentTransaction
+    (
+        QDate inputDate,
+        double inputAmount,
+        std::string inputType
+    )
+    :
+        BaseTransaction(inputDate, inputAmount),
+        type(inputType){}
+
+    std::string getType() const;
+
+private:
+    std::string type = "";
 };
 
 #endif // INVESTMENTTRANSACTION_H
+
+std::string InvestmentTransaction::getType() const
+{
+    return type;
+}

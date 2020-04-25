@@ -3,9 +3,28 @@
 
 #include "basetransaction.h"
 
-struct SalaryIncome : public BaseTransaction
+class SalaryIncome : public BaseTransaction
 {
-    unsigned Overtime = 0U;
+public:
+    SalaryIncome
+    (
+        QDate inputDate,
+        double inputAmount,
+        unsigned inputOvertime
+    )
+    :
+        BaseTransaction(inputDate, inputAmount),
+        overtime(inputOvertime){}
+
+    unsigned getOvertime() const;
+
+private:
+    unsigned overtime = 0U;
 };
 
 #endif // SALARYINCOME_H
+
+unsigned SalaryIncome::getOvertime() const
+{
+    return overtime;
+}

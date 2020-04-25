@@ -3,7 +3,9 @@
 
 MainWindowController::MainWindowController()
 :
-    sds(std::make_shared<SystemDataSource>())
+    sds(std::make_unique<SystemDataSource>())
 {
     sds->loadSystemConfig("../CashFlowManager/SystemConfiguration.json");
 }
+
+MainWindowController::~MainWindowController() = default;

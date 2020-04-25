@@ -3,9 +3,28 @@
 
 #include "basetransaction.h"
 
-struct SupplementalIncome : public BaseTransaction
+class SupplementalIncome : public BaseTransaction
 {
-    std::string Description = "";
+public:
+    SupplementalIncome
+    (
+        QDate inputDate,
+        double inputAmount,
+        std::string inputDescription
+    )
+    :
+        BaseTransaction(inputDate, inputAmount),
+        description(inputDescription){}
+
+    std::string getDescription() const;
+
+private:
+    std::string description = "";
 };
 
 #endif // SUPPLEMENTALINCOME_H
+
+std::string SupplementalIncome::getDescription() const
+{
+return description;
+}

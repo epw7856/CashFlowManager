@@ -31,14 +31,18 @@ INCLUDEPATH += Asset/
 INCLUDEPATH += Mortgage/
 
 SOURCES += \
+        Mortgage/mortgageinformation.cpp \
+        basetransaction.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
-        systemdatasource.cpp
+        systemdatasource.cpp \
+        testclass.cpp
 
 HEADERS += \
         Asset/assetentry.h \
         Asset/assetinterface.h \
+        Asset/assettype.h \
         Expense/automaticmonthlypayment.h \
         Expense/expenseinterface.h \
         Expense/expensetransaction.h \
@@ -49,11 +53,13 @@ HEADERS += \
         Investment/investmentinterface.h \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
+        Mortgage/mortgageinformation.h \
         Mortgage/mortgagepayment.h \
         basetransaction.h \
         mainwindow.h \
         mainwindowcontroller.h \
-        systemdatasource.h
+        systemdatasource.h \
+        testclass.h
 
 FORMS += \
         mainwindow.ui
