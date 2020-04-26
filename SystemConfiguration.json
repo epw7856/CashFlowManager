@@ -53,10 +53,6 @@
         {
             "MonthlyBudget": 300,
             "Name": "Misc"
-        },
-        {
-            "MonthlyBudget": 100.5,
-            "Name": "Test Expense Type"
         }
     ],
     "Expenses": [

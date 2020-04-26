@@ -30,11 +30,15 @@ public:
     std::multiset<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
     std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const override;
     void addExpenseType(const ExpenseType& type) override;
+    void addExpenseTransaction(const ExpenseTransaction& transaction) override;
+    void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
     std::multiset<InvestmentTransaction*> getInvestmentTransactions() const override;
     std::multiset<InvestmentTransaction*> getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
+    void addInvestmentType(const InvestmentType& type) override;
+    void addInvestmentTransaction(const InvestmentTransaction& transaction) override;
 
     // Income Interface
     std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;

@@ -6,16 +6,7 @@
 class AutomaticMonthlyPayment
 {
 public:
-    AutomaticMonthlyPayment
-    (
-        std::string inputName,
-        std::string inputAccount,
-        double inputAmount
-    )
-    :
-        name(inputName),
-        account(inputAccount),
-        amount(inputAmount){}
+    AutomaticMonthlyPayment(std::string inputName, std::string inputAccount, double inputAmount);
 
     std::string getName() const;
 
@@ -28,19 +19,5 @@ private:
     std::string account = "";
     double amount = 0.0;
 };
+
 #endif // AUTOMATICMONTHLYPAYMENT_H
-
-std::string AutomaticMonthlyPayment::getName() const
-{
-    return name;
-}
-
-std::string AutomaticMonthlyPayment::getAccount() const
-{
-    return account;
-}
-
-double AutomaticMonthlyPayment::getAmount() const
-{
-    return amount;
-}

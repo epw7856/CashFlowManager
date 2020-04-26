@@ -18,6 +18,8 @@ public:
     virtual std::multiset<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
     virtual std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const = 0;
     virtual void addExpenseType(const ExpenseType& type) = 0;
+    virtual void addExpenseTransaction(const ExpenseTransaction& transaction) = 0;
+    virtual void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) = 0;
 
 };
 

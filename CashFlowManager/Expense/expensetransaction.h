@@ -6,17 +6,7 @@
 class ExpenseTransaction : public BaseTransaction
 {
 public:
-    ExpenseTransaction
-    (
-        QDate inputDate,
-        double inputAmount,
-        std::string inputType,
-        std::string inputDescription
-    )
-    :
-        BaseTransaction(inputDate, inputAmount),
-        type(inputType),
-        description(inputDescription){}
+    ExpenseTransaction(QDate inputDate, double inputAmount, std::string inputType, std::string inputDescription);
 
     std::string getType() const;
 
@@ -28,13 +18,3 @@ private:
 };
 
 #endif // EXPENSETRANSACTION_H
-
-std::string ExpenseTransaction::getType() const
-{
-    return type;
-}
-
-std::string ExpenseTransaction::getDescription() const
-{
-    return description;
-}

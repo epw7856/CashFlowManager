@@ -33,7 +33,11 @@ INCLUDEPATH += Asset/
 INCLUDEPATH += Mortgage/
 
 SOURCES += \
+        Expense/automaticmonthlypayment.cpp \
+        Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
+        Investment/investmenttransaction.cpp \
+        Investment/investmenttype.cpp \
         Mortgage/mortgageinformation.cpp \
         basetransaction.cpp \
         main.cpp \

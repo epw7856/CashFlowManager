@@ -6,15 +6,7 @@
 class InvestmentTransaction : public BaseTransaction
 {
 public:
-    InvestmentTransaction
-    (
-        QDate inputDate,
-        double inputAmount,
-        std::string inputType
-    )
-    :
-        BaseTransaction(inputDate, inputAmount),
-        type(inputType){}
+    InvestmentTransaction(QDate inputDate, double inputAmount, std::string inputType);
 
     std::string getType() const;
 
@@ -23,8 +15,3 @@ private:
 };
 
 #endif // INVESTMENTTRANSACTION_H
-
-std::string InvestmentTransaction::getType() const
-{
-    return type;
-}

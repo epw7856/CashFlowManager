@@ -41,16 +41,6 @@ void SystemDataSource::addExpenseType(const ExpenseType& type)
 {
     expenseTypes.push_back(std::make_unique<ExpenseType>(type.getName(), type.getMonthlyBudget()));
 
-//    QJsonArray array;
-//    for(const auto& i : expenseTypes)
-//    {
-//        QJsonObject item;
-//        item.insert("MonthlyBudget", QJsonValue(i->getMonthlyBudget()));
-//        item.insert("Name", QJsonValue(QString::fromStdString(i->getName())));
-//        array.append(item);
-//    }
-//    obj["ExpenseTypes"] = array;
-
     QJsonArray array = obj.value("ExpenseTypes").toArray();
     QJsonObject item;
     item.insert("MonthlyBudget", QJsonValue(type.getMonthlyBudget()));
@@ -58,6 +48,38 @@ void SystemDataSource::addExpenseType(const ExpenseType& type)
     array.append(item);
     obj["ExpenseTypes"] = array;
 
+}
+
+void SystemDataSource::addExpenseTransaction(const ExpenseTransaction& transaction)
+{
+    expenseTransactionList.insert(std::make_unique<ExpenseTransaction>(transaction.getDate(),
+                                                                       transaction.getAmount(),
+                                                                       transaction.getType(),
+                                                                       transaction.getDescription()));
+
+    QJsonArray array = obj.value("Expenses").toArray();
+    QJsonObject item;
+    item.insert("Amount", QJsonValue(transaction.getAmount()));
+    item.insert("Date", QJsonValue(transaction.getDate().toString("MM/dd/yyyy")));
+    item.insert("Description", QJsonValue(QString::fromStdString(transaction.getDescription())));
+    item.insert("Type", QJsonValue(QString::fromStdString(transaction.getType())));
+    array.append(item);
+    obj["Expenses"] = array;
+}
+
+void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment)
+{
+    automaticMonthlyPaymentList.push_back(std::make_unique<AutomaticMonthlyPayment>(payment.getName(),
+                                                                                    payment.getAccount(),
+                                                                                    payment.getAmount()));
+
+    QJsonArray array = obj.value("AutomaticMonthlyPayments").toArray();
+    QJsonObject item;
+    item.insert("Account", QJsonValue(QString::fromStdString(payment.getAccount())));
+    item.insert("Amount", QJsonValue(payment.getAmount()));
+    item.insert("Name", QJsonValue(QString::fromStdString(payment.getName())));
+    array.append(item);
+    obj["AutomaticMonthlyPayments"] = array;
 }
 
 std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
@@ -73,6 +95,33 @@ std::multiset<InvestmentTransaction*> SystemDataSource::getInvestmentTransaction
 std::multiset<InvestmentTransaction*> SystemDataSource::getInvestmentTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
 {
     return {};
+}
+
+void SystemDataSource::addInvestmentType(const InvestmentType& type)
+{
+    investmentTypes.push_back(std::make_unique<InvestmentType>(type.getName(), type.getMonthlyTarget()));
+
+    QJsonArray array = obj.value("InvestmentTypes").toArray();
+    QJsonObject item;
+    item.insert("MonthlyTarget", QJsonValue(type.getMonthlyTarget()));
+    item.insert("Name", QJsonValue(QString::fromStdString(type.getName())));
+    array.append(item);
+    obj["InvestmentTypes"] = array;
+}
+
+void SystemDataSource::addInvestmentTransaction(const InvestmentTransaction& transaction)
+{
+    investmentTransactionList.insert(std::make_unique<InvestmentTransaction>(transaction.getDate(),
+                                                                             transaction.getAmount(),
+                                                                             transaction.getType()));
+
+    QJsonArray array = obj.value("Investments").toArray();
+    QJsonObject item;
+    item.insert("Amount", QJsonValue(transaction.getAmount()));
+    item.insert("Date", QJsonValue(transaction.getDate().toString("MM/dd/yyyy")));
+    item.insert("Type", QJsonValue(QString::fromStdString(transaction.getType())));
+    array.append(item);
+    obj["Investments"] = array;
 }
 
 std::multiset<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const
