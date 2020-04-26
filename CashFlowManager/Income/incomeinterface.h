@@ -15,6 +15,9 @@ public:
     virtual std::multiset<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
     virtual double getTotalIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
     virtual double getSalaryIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
+    virtual void addSalaryPayment(const SalaryIncome& payment) = 0;
+    virtual void addSupplementalPayment(const SupplementalIncome& payment) = 0;
+
 };
 
 #endif // INCOMEINTERFACE_H

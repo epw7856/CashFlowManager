@@ -6,15 +6,7 @@
 class SalaryIncome : public BaseTransaction
 {
 public:
-    SalaryIncome
-    (
-        QDate inputDate,
-        double inputAmount,
-        unsigned inputOvertime
-    )
-    :
-        BaseTransaction(inputDate, inputAmount),
-        overtime(inputOvertime){}
+    SalaryIncome(QDate inputDate, double inputAmount, unsigned inputOvertime);
 
     unsigned getOvertime() const;
 
@@ -23,8 +15,3 @@ private:
 };
 
 #endif // SALARYINCOME_H
-
-unsigned SalaryIncome::getOvertime() const
-{
-    return overtime;
-}

@@ -144,6 +144,36 @@ double SystemDataSource::getSalaryIncomeByTimePeriod(QDate startingPeriod, QDate
     return 0.0;
 }
 
+void SystemDataSource::addSalaryPayment(const SalaryIncome& payment)
+{
+    salaryIncomeList.insert(std::make_unique<SalaryIncome>(payment.getDate(),
+                                                           payment.getAmount(),
+                                                           payment.getOvertime()));
+
+    QJsonArray array = obj.value("SalaryIncome").toArray();
+    QJsonObject item;
+    item.insert("Date", QJsonValue(payment.getDate().toString("MM/dd/yyyy")));
+    item.insert("Amount", QJsonValue(payment.getAmount()));
+    item.insert("Overtime", QJsonValue(static_cast<int>(payment.getOvertime())));
+    array.append(item);
+    obj["SalaryIncome"] = array;
+}
+
+void SystemDataSource::addSupplementalPayment(const SupplementalIncome& payment)
+{
+    supplementalIncomeList.insert(std::make_unique<SupplementalIncome>(payment.getDate(),
+                                                                       payment.getAmount(),
+                                                                       payment.getDescription()));
+
+    QJsonArray array = obj.value("SupplementalIncome").toArray();
+    QJsonObject item;
+    item.insert("Date", QJsonValue(payment.getDate().toString("MM/dd/yyyy")));
+    item.insert("Amount", QJsonValue(payment.getAmount()));
+    item.insert("Description", QJsonValue(QString::fromStdString(payment.getDescription())));
+    array.append(item);
+    obj["SupplementalIncome"] = array;
+}
+
 std::vector<AssetEntry*> SystemDataSource::getAssetList() const
 {
     return {};

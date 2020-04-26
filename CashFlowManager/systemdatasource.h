@@ -45,6 +45,8 @@ public:
     std::multiset<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
     double getTotalIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
     double getSalaryIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
+    void addSalaryPayment(const SalaryIncome& payment) override;
+    void addSupplementalPayment(const SupplementalIncome& payment) override;
 
     // Asset Interface
     std::vector<AssetEntry*> getAssetList() const override;

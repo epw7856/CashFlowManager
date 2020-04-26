@@ -36,6 +36,8 @@ SOURCES += \
         Expense/automaticmonthlypayment.cpp \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
+        Income/salaryincome.cpp \
+        Income/supplementalincome.cpp \
         Investment/investmenttransaction.cpp \
         Investment/investmenttype.cpp \
         Mortgage/mortgageinformation.cpp \
