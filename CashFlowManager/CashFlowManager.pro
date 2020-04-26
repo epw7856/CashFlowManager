@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += quick
+QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,13 +33,13 @@ INCLUDEPATH += Asset/
 INCLUDEPATH += Mortgage/
 
 SOURCES += \
+        Expense/expensetype.cpp \
         Mortgage/mortgageinformation.cpp \
         basetransaction.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
-        systemdatasource.cpp \
-        testclass.cpp
+        systemdatasource.cpp
 
 HEADERS += \
         Asset/assetentry.h \
@@ -58,8 +60,7 @@ HEADERS += \
         basetransaction.h \
         mainwindow.h \
         mainwindowcontroller.h \
-        systemdatasource.h \
-        testclass.h
+        systemdatasource.h
 
 FORMS += \
         mainwindow.ui

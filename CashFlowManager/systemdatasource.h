@@ -6,6 +6,7 @@
 #include "incomeinterface.h"
 #include "investmentinterface.h"
 #include <memory>
+#include <QFile>
 #include <QJsonObject>
 
 class MortgageInformation;
@@ -18,15 +19,17 @@ class SystemDataSource
     public AssetInterface
 {
 public:
-    SystemDataSource();
+    SystemDataSource(const std::string filePath);
     ~SystemDataSource() override;
-    void loadSystemConfig(std::string filePath);
+    bool loadSystemConfig();
+    bool saveSystemConfig();
 
     // Expense Interface
     std::vector<ExpenseType*> getExpenseTypes() const override;
     std::multiset<ExpenseTransaction*> getExpenseTransactions() const override;
     std::multiset<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const override;
     std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const override;
+    void addExpenseType(const ExpenseType& type) override;
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
@@ -44,6 +47,9 @@ public:
     std::vector<AssetEntry*> getAssetListByType(AssetType type) const override;
 
 private:
+    QFile systemConfigFile;
+    QJsonObject obj;
+
     std::vector<std::unique_ptr<ExpenseType>> expenseTypes;
     std::multiset<std::unique_ptr<ExpenseTransaction>> expenseTransactionList;
     std::vector<std::unique_ptr<InvestmentType>> investmentTypes;
@@ -54,14 +60,17 @@ private:
     std::vector<std::unique_ptr<AssetEntry>> assetList;
     std::unique_ptr<MortgageInformation> mortgageInfo;
 
-    void parseExpenseTypes(const QJsonObject& obj);
-    void parseExpenseTransactionList(const QJsonObject& obj);
-    void parseInvestmentTypes(const QJsonObject& obj);
-    void parseInvestmentTransactionList(const QJsonObject& obj);
-    void parseAutomaticMonthlyPayments(const QJsonObject& obj);
-    void parseSalaryIncome(const QJsonObject& obj);
-    void parseSupplementalIncome(const QJsonObject& obj);
-    void parseAssetList(const QJsonObject& obj);
+    void createSystemConfigurationTemplate();
+
+    // Helper functions for JSON data parsing
+    void parseExpenseTypes();
+    void parseExpenseTransactionList();
+    void parseInvestmentTypes();
+    void parseInvestmentTransactionList();
+    void parseAutomaticMonthlyPayments();
+    void parseSalaryIncome();
+    void parseSupplementalIncome();
+    void parseAssetList();
 
     std::string assetTypeToString(AssetType type);
     AssetType stringToAssetType(std::string type);

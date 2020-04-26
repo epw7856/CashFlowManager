@@ -6,16 +6,14 @@
 #include "investmenttype.h"
 #include "mortgageinformation.h"
 #include <QByteArray>
-#include <QFile>
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QDebug>
-#include <QDate>
 #include "salaryincome.h"
 #include "supplementalincome.h"
 #include "systemdatasource.h"
 
-SystemDataSource::SystemDataSource() {}
+SystemDataSource::SystemDataSource(const std::string filePath) : systemConfigFile(QString::fromStdString(filePath)) {}
 
 SystemDataSource::~SystemDataSource() = default;
 
@@ -37,6 +35,29 @@ std::multiset<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTim
 std::vector<AutomaticMonthlyPayment*> SystemDataSource::getAutomaticMonthlyPayments() const
 {
     return {};
+}
+
+void SystemDataSource::addExpenseType(const ExpenseType& type)
+{
+    expenseTypes.push_back(std::make_unique<ExpenseType>(type.getName(), type.getMonthlyBudget()));
+
+//    QJsonArray array;
+//    for(const auto& i : expenseTypes)
+//    {
+//        QJsonObject item;
+//        item.insert("MonthlyBudget", QJsonValue(i->getMonthlyBudget()));
+//        item.insert("Name", QJsonValue(QString::fromStdString(i->getName())));
+//        array.append(item);
+//    }
+//    obj["ExpenseTypes"] = array;
+
+    QJsonArray array = obj.value("ExpenseTypes").toArray();
+    QJsonObject item;
+    item.insert("MonthlyBudget", QJsonValue(type.getMonthlyBudget()));
+    item.insert("Name", QJsonValue(QString::fromStdString(type.getName())));
+    array.append(item);
+    obj["ExpenseTypes"] = array;
+
 }
 
 std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
@@ -84,32 +105,71 @@ std::vector<AssetEntry*> SystemDataSource::getAssetListByType(AssetType type) co
     return {};
 }
 
-void SystemDataSource::loadSystemConfig(std::string filePath)
+void SystemDataSource::createSystemConfigurationTemplate()
 {
-    QFile file(QString::fromStdString(filePath));
-    if(!file.open((QIODevice::ReadOnly | QIODevice::Text)))
+    systemConfigFile.setFileName("../CashFlowManager/SystemConfiguration.json");
+    if(!systemConfigFile.open(QIODevice::WriteOnly))
     {
-        qInfo() << "Unable to load System Configuration";
+        qWarning() << "Unable to create new System Configuration.";
         return;
     }
+    systemConfigFile.close();
 
-    QByteArray rawData = file.readAll();
-    file.close();
-    QJsonDocument doc = QJsonDocument::fromJson(rawData);
-    QJsonObject obj = doc.object();
+    QJsonValue empty;
 
-    parseExpenseTypes(obj);
-    parseExpenseTransactionList(obj);
-    parseInvestmentTypes(obj);
-    parseInvestmentTransactionList(obj);
-    parseAutomaticMonthlyPayments(obj);
-    parseSalaryIncome(obj);
-    parseSupplementalIncome(obj);
-    parseAssetList(obj);
-
+    obj.insert("Assets", empty);
+    obj.insert("AutomaticMonthlyPayments", empty);
+    obj.insert("ExpenseTypes", empty);
+    obj.insert("Expenses", empty);
+    obj.insert("InvestmentTypes", empty);
+    obj.insert("Investments", empty);
+    obj.insert("MortgageInformation", empty);
+    obj.insert("SalaryIncome", empty);
+    obj.insert("SupplementalIncome", empty);
 }
 
-void SystemDataSource::parseExpenseTypes(const QJsonObject& obj)
+bool SystemDataSource::loadSystemConfig()
+{
+    if(!systemConfigFile.open((QIODevice::ReadOnly | QIODevice::Text)))
+    {
+        qWarning() << "Unable to load System Configuration.";
+        createSystemConfigurationTemplate();
+        return false;
+    }
+
+    QByteArray rawData = systemConfigFile.readAll();
+    systemConfigFile.close();
+    QJsonDocument doc = QJsonDocument::fromJson(rawData);
+    obj = doc.object();
+
+    parseExpenseTypes();
+    parseExpenseTransactionList();
+    parseInvestmentTypes();
+    parseInvestmentTransactionList();
+    parseAutomaticMonthlyPayments();
+    parseSalaryIncome();
+    parseSupplementalIncome();
+    parseAssetList();
+
+    return true;
+}
+
+bool SystemDataSource::saveSystemConfig()
+{
+    if (!systemConfigFile.open(QIODevice::WriteOnly))
+    {
+        qWarning("Unable to save System Configuration.");
+        return false;
+    }
+
+    QJsonDocument doc(obj);
+    systemConfigFile.write(doc.toJson());
+    systemConfigFile.close();
+
+    return true;
+}
+
+void SystemDataSource::parseExpenseTypes()
 {
     QJsonValue expTypes = obj.value("ExpenseTypes");
     QJsonArray array = expTypes.toArray();
@@ -128,7 +188,7 @@ void SystemDataSource::parseExpenseTypes(const QJsonObject& obj)
     }
 }
 
-void SystemDataSource::parseExpenseTransactionList(const QJsonObject &obj)
+void SystemDataSource::parseExpenseTransactionList()
 {
     QJsonValue expList = obj.value("Expenses");
     QJsonArray array = expList.toArray();
@@ -150,10 +210,10 @@ void SystemDataSource::parseExpenseTransactionList(const QJsonObject &obj)
     }
 }
 
-void SystemDataSource::parseInvestmentTypes(const QJsonObject &obj)
+void SystemDataSource::parseInvestmentTypes()
 {
-    QJsonValue expTypes = obj.value("InvestmentTypes");
-    QJsonArray array = expTypes.toArray();
+    QJsonValue invTypes = obj.value("InvestmentTypes");
+    QJsonArray array = invTypes.toArray();
     for (const QJsonValue item : array)
     {
         const std::string& name = item.toObject().value("Name").toString().toStdString();
@@ -169,10 +229,10 @@ void SystemDataSource::parseInvestmentTypes(const QJsonObject &obj)
     }
 }
 
-void SystemDataSource::parseInvestmentTransactionList(const QJsonObject &obj)
+void SystemDataSource::parseInvestmentTransactionList()
 {
-    QJsonValue expList = obj.value("Investments");
-    QJsonArray array = expList.toArray();
+    QJsonValue invList = obj.value("Investments");
+    QJsonArray array = invList.toArray();
     for (const QJsonValue item : array)
     {
         QDate date;
@@ -190,10 +250,10 @@ void SystemDataSource::parseInvestmentTransactionList(const QJsonObject &obj)
     }
 }
 
-void SystemDataSource::parseAutomaticMonthlyPayments(const QJsonObject &obj)
+void SystemDataSource::parseAutomaticMonthlyPayments()
 {
-    QJsonValue expTypes = obj.value("AutomaticMonthlyPayments");
-    QJsonArray array = expTypes.toArray();
+    QJsonValue autoPayments = obj.value("AutomaticMonthlyPayments");
+    QJsonArray array = autoPayments.toArray();
     for (const QJsonValue item : array)
     {
         const std::string name = QString(item.toObject().value("Name").toString()).toStdString();
@@ -210,10 +270,10 @@ void SystemDataSource::parseAutomaticMonthlyPayments(const QJsonObject &obj)
     }
 }
 
-void SystemDataSource::parseSalaryIncome(const QJsonObject &obj)
+void SystemDataSource::parseSalaryIncome()
 {
-    QJsonValue expTypes = obj.value("SalaryIncome");
-    QJsonArray array = expTypes.toArray();
+    QJsonValue salaryIncome = obj.value("SalaryIncome");
+    QJsonArray array = salaryIncome.toArray();
     for (const QJsonValue item : array)
     {
         QDate date;
@@ -231,10 +291,10 @@ void SystemDataSource::parseSalaryIncome(const QJsonObject &obj)
     }
 }
 
-void SystemDataSource::parseSupplementalIncome(const QJsonObject &obj)
+void SystemDataSource::parseSupplementalIncome()
 {
-    QJsonValue expTypes = obj.value("SupplementalIncome");
-    QJsonArray array = expTypes.toArray();
+    QJsonValue supplementalIncome = obj.value("SupplementalIncome");
+    QJsonArray array = supplementalIncome.toArray();
     for (const QJsonValue item : array)
     {
         QDate date;
@@ -248,14 +308,14 @@ void SystemDataSource::parseSupplementalIncome(const QJsonObject &obj)
     qDebug() << "Supplemental Income: ";
     for(const auto& i:supplementalIncomeList)
     {
-        qDebug() << i->getDate().toString() << " " << i->getAmount();
+        qDebug() << i->getDate() << " " << i->getAmount();
     }
 }
 
-void SystemDataSource::parseAssetList(const QJsonObject &obj)
+void SystemDataSource::parseAssetList()
 {
-    QJsonValue expTypes = obj.value("Assets");
-    QJsonArray array = expTypes.toArray();
+    QJsonValue assets = obj.value("Assets");
+    QJsonArray array = assets.toArray();
     for (const QJsonValue item : array)
     {
         std::map<QDate, double> values;
@@ -280,7 +340,7 @@ void SystemDataSource::parseAssetList(const QJsonObject &obj)
         qDebug() << QString::fromStdString(i->getName());
         for(auto j:i->getNetValue())
         {
-            qDebug() << j.first.toString() << "  " << j.second;
+            qDebug() << j.first << "  " << j.second;
         }
     }
 }
