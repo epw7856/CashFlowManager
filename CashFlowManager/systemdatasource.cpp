@@ -184,6 +184,56 @@ std::vector<AssetEntry*> SystemDataSource::getAssetListByType(AssetType type) co
     return {};
 }
 
+void SystemDataSource::addAsset(const AssetEntry& entry)
+{
+    assetList.push_back(std::make_unique<AssetEntry>(entry.getType(),
+                                                     entry.getName(),
+                                                     entry.getNetValue()));
+
+    QJsonArray array = obj.value("Assets").toArray();
+    QJsonObject item;
+    item.insert("Type", QJsonValue(QString::fromStdString(AssetEntry::assetTypeToString(entry.getType()))));
+    item.insert("Name", QJsonValue(QString::fromStdString(entry.getName())));
+    item.insert("Value", QJsonArray());
+    array.append(item);
+    obj["Assets"] = array;
+}
+
+void SystemDataSource::addAssetValue(const std::string& assetName, const std::pair<QDate, double>& valueEntry)
+{
+    auto iterator = find_if(assetList.begin(), assetList.end(), [=] (std::unique_ptr<AssetEntry>& asset)
+    {
+        return (asset->getName() == assetName);
+    });
+
+    if(iterator != assetList.end())
+    {
+        iterator->get()->addValueEntry(valueEntry);
+
+        QJsonArray array = obj.value("Assets").toArray();
+        QJsonArray::iterator itr;
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == assetName)
+            {
+
+                QJsonArray values = item.value("Values").toArray();
+
+                QJsonObject newValueItem;
+                newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/dd/yyyy")));
+                newValueItem.insert("Value", QJsonValue(valueEntry.second));
+                values.append(newValueItem);
+                item.remove("Values");
+                item.insert("Values", values);
+                array.removeAt(i);
+                array.insert(i,item);
+            }
+        }
+        obj["Assets"] = array;
+    }
+}
+
 void SystemDataSource::createSystemConfigurationTemplate()
 {
     systemConfigFile.setFileName("../CashFlowManager/SystemConfiguration.json");
@@ -400,9 +450,9 @@ void SystemDataSource::parseAssetList()
         std::map<QDate, double> values;
 
         const std::string name = QString(item.toObject().value("Name").toString()).toStdString();
-        const AssetType type = stringToAssetType(QString(item.toObject().value("Name").toString().toLower()).toStdString());
+        const AssetType type = AssetEntry::stringToAssetType(QString(item.toObject().value("Name").toString().toLower()).toStdString());
 
-        QJsonArray valueArray = item.toObject().value("Value").toArray();
+        QJsonArray valueArray = item.toObject().value("Values").toArray();
         for (const QJsonValue valueItem : valueArray)
         {
             QDate tempDate;
@@ -422,32 +472,4 @@ void SystemDataSource::parseAssetList()
             qDebug() << j.first << "  " << j.second;
         }
     }
-}
-
-std::string SystemDataSource::assetTypeToString(AssetType type)
-{
-    if(type == AssetType::Liquid)
-    {
-        return "Liquid";
-    }
-    else if(type == AssetType::Illiquid)
-    {
-        return "Illiquid";
-    }
-
-    return "Unknown";
-}
-
-AssetType SystemDataSource::stringToAssetType(std::string type)
-{
-    if(type == "liquid")
-    {
-        return AssetType::Liquid;
-    }
-    else if(type == "illiquid")
-    {
-        return AssetType::Illiquid;
-    }
-
-    return AssetType::Unknown;
 }

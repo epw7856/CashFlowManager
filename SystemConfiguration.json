@@ -3,7 +3,7 @@
         {
             "Name": "Brokerage",
             "Type": "Liquid",
-            "Value": [
+            "Values": [
                 {
                     "Date": "02/17/2020",
                     "Value": 1000
@@ -11,13 +11,17 @@
                 {
                     "Date": "03/17/2020",
                     "Value": 2000
+                },
+                {
+                    "Date": "04/27/2020",
+                    "Value": 3000
                 }
             ]
         },
         {
             "Name": "House",
             "Type": "Illiquid",
-            "Value": [
+            "Values": [
                 {
                     "Date": "04/17/2020",
                     "Value": 10000

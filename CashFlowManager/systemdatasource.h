@@ -51,6 +51,8 @@ public:
     // Asset Interface
     std::vector<AssetEntry*> getAssetList() const override;
     std::vector<AssetEntry*> getAssetListByType(AssetType type) const override;
+    void addAsset(const AssetEntry& entry) override;
+    void addAssetValue(const std::string& assetName, const std::pair<QDate, double>& valueEntry) override;
 
 private:
     QFile systemConfigFile;
@@ -77,9 +79,6 @@ private:
     void parseSalaryIncome();
     void parseSupplementalIncome();
     void parseAssetList();
-
-    std::string assetTypeToString(AssetType type);
-    AssetType stringToAssetType(std::string type);
 };
 
 #endif // SYSTEMDATASOURCE_H

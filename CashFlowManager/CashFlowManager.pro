@@ -5,7 +5,6 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT += quick
 QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -33,6 +32,7 @@ INCLUDEPATH += Asset/
 INCLUDEPATH += Mortgage/
 
 SOURCES += \
+        Asset/assetentry.cpp \
         Expense/automaticmonthlypayment.cpp \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
