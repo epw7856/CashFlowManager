@@ -2,7 +2,17 @@
 
 SalaryIncome::SalaryIncome
 (
-    QDate inputDate,
+    const QDate& inputDate
+)
+:
+    BaseTransaction(inputDate, 0.0)
+{
+
+}
+
+SalaryIncome::SalaryIncome
+(
+    const QDate& inputDate,
     double inputAmount,
     unsigned inputOvertime
 )

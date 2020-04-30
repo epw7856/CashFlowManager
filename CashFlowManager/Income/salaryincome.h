@@ -6,8 +6,8 @@
 class SalaryIncome : public BaseTransaction
 {
 public:
-    SalaryIncome(QDate inputDate, double inputAmount, unsigned inputOvertime);
-
+    SalaryIncome(const QDate& inputDate);
+    SalaryIncome(const QDate& inputDate, double inputAmount, unsigned inputOvertime);
     unsigned getOvertime() const;
 
 private:

@@ -3,9 +3,10 @@
 
 MainWindowController::MainWindowController()
 :
-    sds(std::make_unique<SystemDataSource>("../CashFlowManager/SystemConfiguration.json"))
+    sds(std::make_unique<SystemDataSource>("../SystemConfiguration.json"))
 {
     sds->loadSystemConfig();
+
 }
 
 MainWindowController::~MainWindowController()

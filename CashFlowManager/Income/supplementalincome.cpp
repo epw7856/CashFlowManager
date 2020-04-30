@@ -2,9 +2,19 @@
 
 SupplementalIncome::SupplementalIncome
 (
-    QDate inputDate,
+    const QDate& inputDate
+)
+:
+    BaseTransaction(inputDate, 0.0)
+{
+
+}
+
+SupplementalIncome::SupplementalIncome
+(
+    const QDate& inputDate,
     double inputAmount,
-    std::string inputDescription
+    const std::string& inputDescription
 )
 :
     BaseTransaction(inputDate, inputAmount),

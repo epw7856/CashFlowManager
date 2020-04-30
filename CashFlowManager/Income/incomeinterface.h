@@ -11,10 +11,11 @@ class IncomeInterface
 {
 public:
     virtual ~IncomeInterface() = default;
-    virtual std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
-    virtual std::multiset<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
-    virtual double getTotalIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
-    virtual double getSalaryIncomeByTimePeriod(QDate startingPeriod, QDate endingPeriod) const = 0;
+    virtual std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
+    virtual std::multiset<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
+    virtual double getTotalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
+    virtual double getSalaryIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
+    virtual double getSupplementalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual void addSalaryPayment(const SalaryIncome& payment) = 0;
     virtual void addSupplementalPayment(const SupplementalIncome& payment) = 0;
 

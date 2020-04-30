@@ -66,7 +66,8 @@ HEADERS += \
         basetransaction.h \
         mainwindow.h \
         mainwindowcontroller.h \
-        systemdatasource.h
+        systemdatasource.h \
+        transactioncomparison.h
 
 FORMS += \
         mainwindow.ui

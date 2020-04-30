@@ -20,7 +20,7 @@ private:
     double totalLoanAmount = 0.0;
     double remainingLoanBalance = 0.0;
     double interestRate = 0.0;
-    std::multiset<std::unique_ptr<MortgagePayment>> payments = {};
+    std::multiset<std::unique_ptr<MortgagePayment>> payments;
 
 };
 

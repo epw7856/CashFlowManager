@@ -1,23 +1,23 @@
 #include "expensetransaction.h"
 
-ExpenseTransaction::ExpenseTransaction
-(
-    QDate inputDate,
-    double inputAmount,
-    std::string inputType,
-    std::string inputDescription
-)
+ExpenseTransaction::ExpenseTransaction(const QDate& inputDate)
 :
-    BaseTransaction(inputDate, inputAmount),
-    type(inputType),
-    description(inputDescription)
+    BaseTransaction(inputDate, 0.0)
 {
 
 }
 
-std::string ExpenseTransaction::getType() const
+ExpenseTransaction::ExpenseTransaction
+(
+    const QDate& inputDate,
+    double inputAmount,
+    const std::string& inputDescription
+)
+:
+    BaseTransaction(inputDate, inputAmount),
+    description(inputDescription)
 {
-    return type;
+
 }
 
 std::string ExpenseTransaction::getDescription() const

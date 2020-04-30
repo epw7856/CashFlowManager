@@ -1,19 +1,19 @@
 #include "investmenttransaction.h"
 
-InvestmentTransaction::InvestmentTransaction
-(
-    QDate inputDate,
-    double inputAmount,
-    std::string inputType
-)
+InvestmentTransaction::InvestmentTransaction(const QDate& inputDate)
 :
-    BaseTransaction(inputDate, inputAmount),
-    type(inputType)
+    BaseTransaction(inputDate, 0.0)
 {
 
 }
 
-std::string InvestmentTransaction::getType() const
+InvestmentTransaction::InvestmentTransaction
+(
+    const QDate& inputDate,
+    double inputAmount
+)
+:
+    BaseTransaction(inputDate, inputAmount)
 {
-    return type;
+
 }

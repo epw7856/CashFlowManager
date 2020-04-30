@@ -6,8 +6,8 @@
 class SupplementalIncome : public BaseTransaction
 {
 public:
-    SupplementalIncome(QDate inputDate, double inputAmount, std::string inputDescription);
-
+    SupplementalIncome(const QDate& inputDate);
+    SupplementalIncome(const QDate& inputDate, double inputAmount, const std::string& inputDescription);
     std::string getDescription() const;
 
 private:

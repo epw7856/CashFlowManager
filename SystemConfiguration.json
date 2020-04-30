@@ -19,6 +19,16 @@
             ]
         },
         {
+            "Name": "FC Bank",
+            "Type": "Liquid",
+            "Values": [
+                {
+                    "Date": "02/17/2020",
+                    "Value": 1000
+                }
+            ]
+        },
+        {
             "Name": "House",
             "Type": "Illiquid",
             "Values": [
@@ -48,56 +58,96 @@
     "ExpenseTypes": [
         {
             "MonthlyBudget": 1545.01,
-            "Name": "Mortgage"
+            "Name": "Mortgage",
+            "Transactions": [
+                {
+                    "Amount": 1545,
+                    "Date": "03/01/2020",
+                    "Description": "March Mortgage Payment"
+                },
+                {
+                    "Amount": 1545,
+                    "Date": "04/01/2020",
+                    "Description": "April Mortgage Payment"
+                }
+            ]
         },
         {
             "MonthlyBudget": 0,
-            "Name": "Electric"
+            "Name": "Electric",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
         },
         {
             "MonthlyBudget": 300,
-            "Name": "Misc"
-        }
-    ],
-    "Expenses": [
-        {
-            "Amount": 41.28,
-            "Date": "04/17/2020",
-            "Description": "April Electric Bill",
-            "Type": "Electric"
-        },
-        {
-            "Amount": 71.54,
-            "Date": "03/20/2020",
-            "Description": "Lowes",
-            "Type": "Electric"
+            "Name": "Misc",
+            "Transactions": [
+                {
+                    "Amount": 98.21,
+                    "Date": "03/31/2020",
+                    "Description": "Test misc expense 0"
+                },
+                {
+                    "Amount": 41.28,
+                    "Date": "04/01/2020",
+                    "Description": "Test misc expense 1"
+                },
+                {
+                    "Amount": 41.28,
+                    "Date": "04/17/2020",
+                    "Description": "Another Test misc expense"
+                },
+                {
+                    "Amount": 475.21,
+                    "Date": "04/30/2020",
+                    "Description": "Test misc expense 2"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "05/01/2020",
+                    "Description": "Test misc expense 3"
+                }
+            ]
         }
     ],
     "InvestmentTypes": [
         {
             "MonthlyTarget": 500,
-            "Name": "IRA"
+            "Name": "IRA",
+            "Transactions": [
+                {
+                    "Amount": 500,
+                    "Date": "03/01/2020"
+                },
+                {
+                    "Amount": 600,
+                    "Date": "04/01/2020"
+                }
+            ]
         },
         {
             "MonthlyTarget": 500,
-            "Name": "Brokerage"
-        }
-    ],
-    "Investments": [
-        {
-            "Amount": 500,
-            "Date": "05/10/2020",
-            "Type": "Brokerage"
-        },
-        {
-            "Amount": 500,
-            "Date": "05/11/2020",
-            "Type": "Brokerage"
-        },
-        {
-            "Amount": 450,
-            "Date": "03/20/2020",
-            "Type": "IRA"
+            "Name": "Brokerage",
+            "Transactions": [
+                {
+                    "Amount": 700,
+                    "Date": "04/01/2020"
+                },
+                {
+                    "Amount": 800,
+                    "Date": "05/01/2020"
+                }
+            ]
         }
     ],
     "MortgageInformation": {
