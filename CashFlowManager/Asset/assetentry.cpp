@@ -19,21 +19,6 @@ void AssetEntry::addValueEntry(const std::pair<QDate, double>& entry)
     netValue.insert(entry);
 }
 
-AssetType AssetEntry::getType() const
-{
-    return type;
-}
-
-std::string AssetEntry::getName() const
-{
-    return name;
-}
-
-std::map<QDate, double> AssetEntry::getNetValue() const
-{
-    return netValue;
-}
-
 std::string AssetEntry::assetTypeToString(AssetType type)
 {
     if(type == AssetType::Liquid)

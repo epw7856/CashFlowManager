@@ -14,4 +14,9 @@ private:
     std::string description = "";
 };
 
+inline std::string ExpenseTransaction::getDescription() const
+{
+    return description;
+}
+
 #endif // EXPENSETRANSACTION_H

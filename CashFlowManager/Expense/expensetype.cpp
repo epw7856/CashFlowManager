@@ -13,16 +13,6 @@ ExpenseType::ExpenseType
 
 }
 
-std::string ExpenseType::getName() const
-{
-    return name;
-}
-
-double ExpenseType::getMonthlyBudget() const
-{
-    return monthlyBudget;
-}
-
 void ExpenseType::addExpenseTransaction(const ExpenseTransaction& transaction)
 {
     expenseTransactionList.insert(std::make_unique<ExpenseTransaction>(transaction));

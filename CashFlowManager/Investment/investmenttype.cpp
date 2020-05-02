@@ -13,16 +13,6 @@ InvestmentType::InvestmentType
 
 }
 
-std::string InvestmentType::getName() const
-{
-    return name;
-}
-
-double InvestmentType::getMonthlyTarget() const
-{
-    return monthlyTarget;
-}
-
 void InvestmentType::addInvestmentTransaction(const InvestmentTransaction& transaction)
 {
     investmentTransactionList.insert(std::make_unique<InvestmentTransaction>(transaction));

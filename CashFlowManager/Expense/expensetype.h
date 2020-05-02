@@ -22,4 +22,14 @@ private:
     std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<ExpenseTransaction>> expenseTransactionList;
 };
 
+inline std::string ExpenseType::getName() const
+{
+    return name;
+}
+
+inline double ExpenseType::getMonthlyBudget() const
+{
+    return monthlyBudget;
+}
+
 #endif // EXPENSETYPE_H

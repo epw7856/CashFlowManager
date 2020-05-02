@@ -14,4 +14,9 @@ private:
     std::string description = "";
 };
 
+inline std::string SupplementalIncome::getDescription() const
+{
+    return description;
+}
+
 #endif // SUPPLEMENTALINCOME_H

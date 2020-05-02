@@ -22,8 +22,3 @@ SupplementalIncome::SupplementalIncome
 {
 
 }
-
-std::string SupplementalIncome::getDescription() const
-{
-    return description;
-}

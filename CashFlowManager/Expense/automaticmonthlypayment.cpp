@@ -13,18 +13,3 @@ AutomaticMonthlyPayment::AutomaticMonthlyPayment
 {
 
 }
-
-std::string AutomaticMonthlyPayment::getName() const
-{
-    return name;
-}
-
-std::string AutomaticMonthlyPayment::getAccount() const
-{
-    return account;
-}
-
-double AutomaticMonthlyPayment::getAmount() const
-{
-    return amount;
-}

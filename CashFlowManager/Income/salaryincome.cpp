@@ -22,8 +22,3 @@ SalaryIncome::SalaryIncome
 {
 
 }
-
-unsigned SalaryIncome::getOvertime() const
-{
-    return overtime;
-}

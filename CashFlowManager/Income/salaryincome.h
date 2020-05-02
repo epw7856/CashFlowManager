@@ -14,4 +14,9 @@ private:
     unsigned overtime = 0U;
 };
 
+inline unsigned SalaryIncome::getOvertime() const
+{
+    return overtime;
+}
+
 #endif // SALARYINCOME_H

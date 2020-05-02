@@ -19,8 +19,3 @@ ExpenseTransaction::ExpenseTransaction
 {
 
 }
-
-std::string ExpenseTransaction::getDescription() const
-{
-    return description;
-}

@@ -23,4 +23,14 @@ private:
     std::multiset<std::unique_ptr<InvestmentTransaction>, TransactionComparison<InvestmentTransaction>> investmentTransactionList;
 };
 
+inline std::string InvestmentType::getName() const
+{
+    return name;
+}
+
+inline double InvestmentType::getMonthlyTarget() const
+{
+    return monthlyTarget;
+}
+
 #endif // INVESTMENTTYPE_H
