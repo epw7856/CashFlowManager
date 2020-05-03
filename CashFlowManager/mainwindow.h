@@ -4,7 +4,6 @@
 #include <memory>
 #include <QMainWindow>
 #include "mainwindowcontroller.h"
-//class MainWindowController;
 
 namespace Ui {
 class MainWindow;

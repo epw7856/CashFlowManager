@@ -68,9 +68,8 @@ private:
     std::vector<std::unique_ptr<AssetEntry>> assetList;
     std::unique_ptr<MortgageInformation> mortgageInfo;
 
-    void createSystemConfigurationTemplate();
-
     // Helper functions for JSON data parsing
+    void createSystemConfigurationTemplate();
     void parseExpenseTypes();
     void parseInvestmentTypes();
     void parseAutomaticMonthlyPayments();
