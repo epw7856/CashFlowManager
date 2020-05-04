@@ -13,7 +13,12 @@
 #include "supplementalincome.h"
 #include "systemdatasource.h"
 
-SystemDataSource::SystemDataSource(const std::string& filePath) : systemConfigFile(QString::fromStdString(filePath)) {}
+SystemDataSource::SystemDataSource(const std::string& filePath)
+:
+    systemConfigFile(QString::fromStdString(filePath))
+{
+    loadSystemConfig();
+}
 
 SystemDataSource::~SystemDataSource() = default;
 

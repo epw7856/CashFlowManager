@@ -22,7 +22,6 @@ class SystemDataSource
 public:
     SystemDataSource(const std::string& filePath);
     ~SystemDataSource() override;
-    bool loadSystemConfig();
     bool saveSystemConfig();
 
     // Expense Interface
@@ -69,6 +68,7 @@ private:
     std::unique_ptr<MortgageInformation> mortgageInfo;
 
     // Helper functions for JSON data parsing
+    bool loadSystemConfig();
     void createSystemConfigurationTemplate();
     void parseExpenseTypes();
     void parseInvestmentTypes();

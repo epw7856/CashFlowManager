@@ -3,7 +3,9 @@
 
 #include <memory>
 #include <QMainWindow>
-#include "mainwindowcontroller.h"
+
+class BudgetBreakdownController;
+class SystemDataSource;
 
 namespace Ui {
 class MainWindow;
@@ -19,7 +21,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    MainWindowController controller;
+    std::unique_ptr<SystemDataSource> sds;
+    std::unique_ptr<BudgetBreakdownController> budgetBreakdownController;
+
+    void loadBudgetBreakdown();
 };
 
 #endif // MAINWINDOW_H

@@ -42,9 +42,11 @@ SOURCES += \
         Investment/investmenttype.cpp \
         Mortgage/mortgageinformation.cpp \
         basetransaction.cpp \
+        budgetbreakdowncontroller.cpp \
+        currencyutilities.cpp \
+        dateutilities.cpp \
         main.cpp \
         mainwindow.cpp \
-        mainwindowcontroller.cpp \
         systemdatasource.cpp
 
 HEADERS += \
@@ -64,8 +66,10 @@ HEADERS += \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgagepayment.h \
         basetransaction.h \
+        budgetbreakdowncontroller.h \
+        currencyutilities.h \
+        dateutilities.h \
         mainwindow.h \
-        mainwindowcontroller.h \
         systemdatasource.h \
         transactioncomparison.h
 
