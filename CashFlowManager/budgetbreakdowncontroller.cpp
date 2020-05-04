@@ -18,8 +18,7 @@ BudgetBreakdownController::BudgetBreakdownController
     investmentInterface(localInvestmentInterface),
     incomeInterface(localIncomeInterface)
 {
-    expenseTypes = localExpenseInterface.getExpenseTypes();
-    investmentTypes = localInvestmentInterface.getInvestmentTypes();
+
 }
 
 std::string BudgetBreakdownController::getCurrentMonthAndYear() const
@@ -29,60 +28,65 @@ std::string BudgetBreakdownController::getCurrentMonthAndYear() const
 
 std::string BudgetBreakdownController::getBudgetStatusStatement() const
 {
-    return CurrencyUtilities::formatCurrency(getTotalMonthlyExpenses()) + " of " + CurrencyUtilities::formatCurrency(getTotalMonthlyBudget());
+    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenses()) + " of " + CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudget());
 }
 
-double BudgetBreakdownController::getTotalMonthlyExpenses() const
+std::string BudgetBreakdownController::getMonthlyExpenses() const
 {
-    double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
-    for(auto i : expenseTypes)
+    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenses());
+}
+
+std::string BudgetBreakdownController::getMonthlyBudget() const
+{
+    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudget());
+}
+
+std::string BudgetBreakdownController::getMonthlyInvestments() const
+{
+    return CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestments());
+}
+
+std::string BudgetBreakdownController::getMonthlyIncome() const
+{
+    return CurrencyUtilities::formatCurrency(incomeInterface.getMonthlyIncome());
+}
+
+std::string BudgetBreakdownController::getYearlyExpenses() const
+{
+    return CurrencyUtilities::formatCurrency(expenseInterface.getYearlyExpenses());
+}
+
+std::string BudgetBreakdownController::getYearlyIncome() const
+{
+    return CurrencyUtilities::formatCurrency(incomeInterface.getYearlyIncome());
+}
+
+std::string BudgetBreakdownController::getMonthlyBudgetSurplus() const
+{
+    return CurrencyUtilities::formatCurrency((expenseInterface.getMonthlyBudget() - expenseInterface.getMonthlyExpenses()));
+}
+
+std::string BudgetBreakdownController::getMonthlyCashSaved() const
+{
+    return CurrencyUtilities::formatCurrency((incomeInterface.getMonthlyIncome() -
+                                              expenseInterface.getMonthlyExpenses() -
+                                              investmentInterface.getMonthlyInvestments()));
+}
+
+std::string BudgetBreakdownController::getYearlyAmountSaved() const
+{
+    return CurrencyUtilities::formatCurrency((incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()));
+}
+
+std::string BudgetBreakdownController::getYearlySavingsRatio() const
+{
+    double yearlyIncome = incomeInterface.getYearlyIncome();
+    if(yearlyIncome > 0.0)
     {
-        total += expenseInterface.getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
+        return CurrencyUtilities::formatCurrency((incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()) / yearlyIncome);
     }
-    return total;
-}
-
-double BudgetBreakdownController::getTotalMonthlyBudget() const
-{
-    double total = 0.0;
-    for(auto i : expenseTypes)
+    else
     {
-        total += i->getMonthlyBudget();
+        return CurrencyUtilities::formatCurrency(0.0);
     }
-    return total;
-}
-
-double BudgetBreakdownController::getTotalMonthlyInvestments() const
-{
-    double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
-    for(auto i : investmentTypes)
-    {
-        total += investmentInterface.getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
-    }
-    return total;
-}
-
-double BudgetBreakdownController::getTotalMonthlyIncome() const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
-    return incomeInterface.getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
-}
-
-double BudgetBreakdownController::getTotalYearlyExpenses() const
-{
-    double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
-    for(auto i : expenseTypes)
-    {
-        total += expenseInterface.getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
-    }
-    return total;
-}
-
-double BudgetBreakdownController::getTotalYearlyIncome() const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
-    return incomeInterface.getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }

@@ -1,5 +1,6 @@
 #include "assetentry.h"
 #include "automaticmonthlypayment.h"
+#include "dateutilities.h"
 #include "expensetransaction.h"
 #include "expensetype.h"
 #include "investmenttransaction.h"
@@ -200,6 +201,38 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
     obj["AutomaticMonthlyPayments"] = array;
 }
 
+double SystemDataSource::getMonthlyExpenses() const
+{
+    double total = 0.0;
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    for(const auto& i : expenseTypes)
+    {
+        total += getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
+    }
+    return total;
+}
+
+double SystemDataSource::getMonthlyBudget() const
+{
+    double total = 0.0;
+    for(const auto& i : expenseTypes)
+    {
+        total += i->getMonthlyBudget();
+    }
+    return total;
+}
+
+double SystemDataSource::getYearlyExpenses() const
+{
+    double total = 0.0;
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    for(const auto& i : expenseTypes)
+    {
+        total += getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
+    }
+    return total;
+}
+
 std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
 {
     std::vector<InvestmentType*> types;
@@ -286,6 +319,17 @@ void SystemDataSource::addInvestmentTransactionByType(const std::string& investm
     }
 }
 
+double SystemDataSource::getMonthlyInvestments() const
+{
+    double total = 0.0;
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    for(const auto& i : investmentTypes)
+    {
+        total += getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
+    }
+    return total;
+}
+
 std::multiset<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const
 {
     return getTransactionsByTimePeriod(salaryIncomeList, startingPeriod, endingPeriod);
@@ -340,6 +384,18 @@ void SystemDataSource::addSupplementalPayment(const SupplementalIncome& payment)
     item.insert("Description", QJsonValue(QString::fromStdString(payment.getDescription())));
     array.append(item);
     obj["SupplementalIncome"] = array;
+}
+
+double SystemDataSource::getMonthlyIncome() const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
+}
+
+double SystemDataSource::getYearlyIncome() const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }
 
 std::vector<AssetEntry*> SystemDataSource::getAssetList() const

@@ -32,6 +32,9 @@ public:
     void addExpenseType(const ExpenseType& type) override;
     void addExpenseTransactionByType(const std::string& expenseType, const ExpenseTransaction& transaction) override;
     void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
+    double getMonthlyExpenses() const override;
+    double getMonthlyBudget() const override;
+    double getYearlyExpenses() const override;
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
@@ -39,6 +42,7 @@ public:
     double getInvestmentTransactionsTotalByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     void addInvestmentType(const InvestmentType& type) override;
     void addInvestmentTransactionByType(const std::string& investmentType, const InvestmentTransaction& transaction) override;
+    double getMonthlyInvestments() const override;
 
     // Income Interface
     std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
@@ -48,6 +52,8 @@ public:
     double getSupplementalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     void addSalaryPayment(const SalaryIncome& payment) override;
     void addSupplementalPayment(const SupplementalIncome& payment) override;
+    double getMonthlyIncome() const override;
+    double getYearlyIncome() const override;
 
     // Asset Interface
     std::vector<AssetEntry*> getAssetList() const override;

@@ -18,19 +18,21 @@ public:
                               IncomeInterface& localIncomeInterface);
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
-    double getTotalMonthlyExpenses() const;
-    double getTotalMonthlyBudget() const;
-    double getTotalMonthlyInvestments() const;
-    double getTotalMonthlyIncome() const;
-    double getTotalYearlyExpenses() const;
-    double getTotalYearlyIncome() const;
+    std::string getMonthlyExpenses() const;
+    std::string getMonthlyBudget() const;
+    std::string getMonthlyInvestments() const;
+    std::string getMonthlyIncome() const;
+    std::string getYearlyExpenses() const;
+    std::string getYearlyIncome() const;
+    std::string getMonthlyBudgetSurplus() const;
+    std::string getMonthlyCashSaved() const;
+    std::string getYearlyAmountSaved() const;
+    std::string getYearlySavingsRatio() const;
 
 private:
     ExpenseInterface& expenseInterface;
     InvestmentInterface& investmentInterface;
     IncomeInterface& incomeInterface;
-    std::vector<ExpenseType*> expenseTypes;
-    std::vector<InvestmentType*> investmentTypes;
 };
 
 #endif // BUDGETBREAKDOWNCONTROLLER_H

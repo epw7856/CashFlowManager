@@ -21,6 +21,9 @@ public:
     virtual void addExpenseType(const ExpenseType& type) = 0;
     virtual void addExpenseTransactionByType(const std::string& expenseType, const ExpenseTransaction& transaction) = 0;
     virtual void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) = 0;
+    virtual double getMonthlyExpenses() const = 0;
+    virtual double getMonthlyBudget() const = 0;
+    virtual double getYearlyExpenses() const = 0;
 
 };
 

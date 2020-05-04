@@ -18,6 +18,7 @@ public:
     virtual double getInvestmentTransactionsTotalByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual void addInvestmentType(const InvestmentType& type) = 0;
     virtual void addInvestmentTransactionByType(const std::string& investmentType, const InvestmentTransaction& transaction) = 0;
+    virtual double getMonthlyInvestments() const = 0;
 };
 
 #endif // INVESTMENTINTERFACE_H

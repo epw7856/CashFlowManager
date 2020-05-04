@@ -1,5 +1,4 @@
 #include "budgetbreakdowncontroller.h"
-#include "currencyutilities.h"
 #include "mainwindow.h"
 #include "systemdatasource.h"
 #include "ui_mainwindow.h"
@@ -25,5 +24,14 @@ void MainWindow::loadBudgetBreakdown()
 {
     ui->labelCurrentMonth->setText(QString::fromStdString(budgetBreakdownController->getCurrentMonthAndYear()));
     ui->labelBudgetStatus->setText(QString::fromStdString(budgetBreakdownController->getBudgetStatusStatement()));
-    ui->labelMonthlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getTotalMonthlyExpenses())));
+    ui->labelMonthlyExpenses->setText(QString::fromStdString(budgetBreakdownController->getMonthlyExpenses()));
+    ui->labelMonthlyInvestments->setText(QString::fromStdString(budgetBreakdownController->getMonthlyInvestments()));
+    ui->labelMonthlyIncome->setText(QString::fromStdString(budgetBreakdownController->getMonthlyIncome()));
+    ui->labelMonthlyBudgetSurplus->setText(QString::fromStdString(budgetBreakdownController->getMonthlyBudgetSurplus()));
+    ui->labelMonthlyCashSaved->setText(QString::fromStdString(budgetBreakdownController->getMonthlyCashSaved()));
+    ui->labelYearlyExpenses->setText(QString::fromStdString(budgetBreakdownController->getYearlyExpenses()));
+    ui->labelYearlyIncome->setText(QString::fromStdString(budgetBreakdownController->getYearlyIncome()));
+    ui->labelYearlySavings->setText(QString::fromStdString(budgetBreakdownController->getYearlyAmountSaved()));
+    ui->labelYearlySavingsRatio->setText(QString::fromStdString(budgetBreakdownController->getYearlySavingsRatio()));
+
 }

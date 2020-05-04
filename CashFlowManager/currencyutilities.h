@@ -9,6 +9,7 @@ public:
     CurrencyUtilities() {}
     static std::string formatCurrency(int amount);
     static std::string formatCurrency(double amount);
+    static std::string formatRatio(double amount);
 };
 
 #endif // CURRENCYUTILITIES_H
