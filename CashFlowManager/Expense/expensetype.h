@@ -19,6 +19,7 @@ public:
 private:
     std::string name = "";
     double monthlyBudget = 0.00;
+    bool variableExpenseFlag = false;
     std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<ExpenseTransaction>> expenseTransactionList;
 };
 
