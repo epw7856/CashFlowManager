@@ -83,10 +83,10 @@ std::string BudgetBreakdownController::getYearlySavingsRatio() const
     double yearlyIncome = incomeInterface.getYearlyIncome();
     if(yearlyIncome > 0.0)
     {
-        return CurrencyUtilities::formatCurrency((incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()) / yearlyIncome);
+        return CurrencyUtilities::formatRatio((incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()) / yearlyIncome);
     }
     else
     {
-        return CurrencyUtilities::formatCurrency(0.0);
+        return CurrencyUtilities::formatRatio(0.0);
     }
 }

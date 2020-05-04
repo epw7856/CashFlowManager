@@ -23,5 +23,5 @@ std::string CurrencyUtilities::formatCurrency(double amount)
 
 std::string CurrencyUtilities::formatRatio(double amount)
 {
-    return QLocale(QLocale::English).toString(amount*100, 'f', 2).toStdString() + " %";
+    return QLocale(QLocale::English).toString(amount*100, 'f', 2).toStdString() + "%";
 }

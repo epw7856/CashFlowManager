@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     budgetBreakdownController = std::make_unique<BudgetBreakdownController>(*sds, *sds, *sds);
     ui->setupUi(this);
+    showMaximized();
+
     loadBudgetBreakdown();
 }
 
