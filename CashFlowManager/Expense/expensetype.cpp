@@ -26,12 +26,3 @@ const std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<E
 {
     return expenseTransactionList;
 }
-
-void ExpenseType::calculateVariableExpenseBudget()
-{
-    variableExpenseFlag = true;
-    for(const auto& i : expenseTransactionList)
-    {
-        monthlyBudget += i->getAmount();
-    }
-}
