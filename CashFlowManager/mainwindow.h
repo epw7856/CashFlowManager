@@ -25,6 +25,8 @@ private:
     std::unique_ptr<BudgetBreakdownController> budgetBreakdownController;
 
     void loadBudgetBreakdown();
+    void configureBudgetStatusBarChart();
+    void configureBreakdownPieChart();
 };
 
 #endif // MAINWINDOW_H

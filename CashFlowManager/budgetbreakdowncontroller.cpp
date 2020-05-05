@@ -28,65 +28,75 @@ std::string BudgetBreakdownController::getCurrentMonthAndYear() const
 
 std::string BudgetBreakdownController::getBudgetStatusStatement() const
 {
-    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenses()) + " of " + CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudget());
+    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenses()) + "  of  " + CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudget());
 }
 
-std::string BudgetBreakdownController::getMonthlyExpenses() const
+double BudgetBreakdownController::getMonthlyExpenses() const
 {
-    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenses());
+    return expenseInterface.getMonthlyExpenses();
 }
 
-std::string BudgetBreakdownController::getMonthlyBudget() const
+double BudgetBreakdownController::getMonthlyBudget() const
 {
-    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudget());
+    return expenseInterface.getMonthlyBudget();
 }
 
-std::string BudgetBreakdownController::getMonthlyInvestments() const
+double BudgetBreakdownController::getMonthlyInvestments() const
 {
-    return CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestments());
+    return investmentInterface.getMonthlyInvestments();
 }
 
-std::string BudgetBreakdownController::getMonthlyIncome() const
+double BudgetBreakdownController::getMonthlyIncome() const
 {
-    return CurrencyUtilities::formatCurrency(incomeInterface.getMonthlyIncome());
+    return incomeInterface.getMonthlyIncome();
 }
 
-std::string BudgetBreakdownController::getYearlyExpenses() const
+double BudgetBreakdownController::getYearlyExpenses() const
 {
-    return CurrencyUtilities::formatCurrency(expenseInterface.getYearlyExpenses());
+    return expenseInterface.getYearlyExpenses();
 }
 
-std::string BudgetBreakdownController::getYearlyIncome() const
+double BudgetBreakdownController::getYearlyIncome() const
 {
-    return CurrencyUtilities::formatCurrency(incomeInterface.getYearlyIncome());
+    return incomeInterface.getYearlyIncome();
 }
 
-std::string BudgetBreakdownController::getMonthlyBudgetSurplus() const
+double BudgetBreakdownController::getMonthlyBudgetSurplus() const
 {
-    return CurrencyUtilities::formatCurrency((expenseInterface.getMonthlyBudget() - expenseInterface.getMonthlyExpenses()));
+    return expenseInterface.getMonthlyBudget() - expenseInterface.getMonthlyExpenses();
 }
 
-std::string BudgetBreakdownController::getMonthlyCashSaved() const
+double BudgetBreakdownController::getMonthlyCashSaved() const
 {
-    return CurrencyUtilities::formatCurrency((incomeInterface.getMonthlyIncome() -
-                                              expenseInterface.getMonthlyExpenses() -
-                                              investmentInterface.getMonthlyInvestments()));
+    return (incomeInterface.getMonthlyIncome() -
+            expenseInterface.getMonthlyExpenses() -
+            investmentInterface.getMonthlyInvestments());
 }
 
-std::string BudgetBreakdownController::getYearlyAmountSaved() const
+double BudgetBreakdownController::getYearlyAmountSaved() const
 {
-    return CurrencyUtilities::formatCurrency((incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()));
+    return (incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses());
 }
 
-std::string BudgetBreakdownController::getYearlySavingsRatio() const
+double BudgetBreakdownController::getYearlySavingsRatio() const
 {
     double yearlyIncome = incomeInterface.getYearlyIncome();
     if(yearlyIncome > 0.0)
     {
-        return CurrencyUtilities::formatRatio((incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()) / yearlyIncome);
+        return (incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()) / yearlyIncome;
     }
     else
     {
-        return CurrencyUtilities::formatRatio(0.0);
+        return 0.0;
     }
+}
+
+double BudgetBreakdownController::getRemainingBudget() const
+{
+    double remaining = getMonthlyBudget() - getMonthlyExpenses();
+    if(remaining < 0.0)
+    {
+        remaining = 0.0;
+    }
+    return remaining;
 }

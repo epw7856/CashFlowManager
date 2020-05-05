@@ -18,16 +18,17 @@ public:
                               IncomeInterface& localIncomeInterface);
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
-    std::string getMonthlyExpenses() const;
-    std::string getMonthlyBudget() const;
-    std::string getMonthlyInvestments() const;
-    std::string getMonthlyIncome() const;
-    std::string getYearlyExpenses() const;
-    std::string getYearlyIncome() const;
-    std::string getMonthlyBudgetSurplus() const;
-    std::string getMonthlyCashSaved() const;
-    std::string getYearlyAmountSaved() const;
-    std::string getYearlySavingsRatio() const;
+    double getMonthlyExpenses() const;
+    double getMonthlyBudget() const;
+    double getMonthlyInvestments() const;
+    double getMonthlyIncome() const;
+    double getYearlyExpenses() const;
+    double getYearlyIncome() const;
+    double getMonthlyBudgetSurplus() const;
+    double getMonthlyCashSaved() const;
+    double getYearlyAmountSaved() const;
+    double getYearlySavingsRatio() const;
+    double getRemainingBudget() const;
 
 private:
     ExpenseInterface& expenseInterface;
