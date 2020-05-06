@@ -18,7 +18,7 @@ BudgetBreakdownController::BudgetBreakdownController
     investmentInterface(localInvestmentInterface),
     incomeInterface(localIncomeInterface)
 {
-
+    investmentTypes = investmentInterface.getInvestmentTypes();
 }
 
 std::string BudgetBreakdownController::getCurrentMonthAndYear() const
@@ -28,62 +28,69 @@ std::string BudgetBreakdownController::getCurrentMonthAndYear() const
 
 std::string BudgetBreakdownController::getBudgetStatusStatement() const
 {
-    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenses()) + "  of  " + CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudget());
+    return CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenseTotal()) + "  of  " + CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetTotal());
 }
 
-double BudgetBreakdownController::getMonthlyExpenses() const
+double BudgetBreakdownController::getMonthlyExpenseTotal() const
 {
-    return expenseInterface.getMonthlyExpenses();
+    return expenseInterface.getMonthlyExpenseTotal();
 }
 
-double BudgetBreakdownController::getMonthlyBudget() const
+double BudgetBreakdownController::getMonthlyBudgetTotal() const
 {
-    return expenseInterface.getMonthlyBudget();
+    return expenseInterface.getMonthlyBudgetTotal();
 }
 
-double BudgetBreakdownController::getMonthlyInvestments() const
+double BudgetBreakdownController::getMonthlyInvestmentTotal() const
 {
-    return investmentInterface.getMonthlyInvestments();
+    return investmentInterface.getMonthlyInvestmentTotal();
 }
 
-double BudgetBreakdownController::getMonthlyIncome() const
+double BudgetBreakdownController::getMonthlyIncomeTotal() const
 {
-    return incomeInterface.getMonthlyIncome();
+    return incomeInterface.getMonthlyIncomeTotal();
 }
 
-double BudgetBreakdownController::getYearlyExpenses() const
+double BudgetBreakdownController::getYearlyExpenseTotal() const
 {
-    return expenseInterface.getYearlyExpenses();
+    return expenseInterface.getYearlyExpenseTotal();
 }
 
-double BudgetBreakdownController::getYearlyIncome() const
+double BudgetBreakdownController::getYearlyIncomeTotal() const
 {
-    return incomeInterface.getYearlyIncome();
+    return incomeInterface.getYearlyIncomeTotal();
+}
+
+double BudgetBreakdownController::getYearlyCashSavedTotal() const
+{
+    return incomeInterface.getYearlyIncomeTotal() -
+           expenseInterface.getYearlyExpenseTotal() -
+           investmentInterface.getYearlyInvestmentTotal();
 }
 
 double BudgetBreakdownController::getMonthlyBudgetSurplus() const
 {
-    return expenseInterface.getMonthlyBudget() - expenseInterface.getMonthlyExpenses();
+    return expenseInterface.getMonthlyBudgetTotal() - expenseInterface.getMonthlyExpenseTotal();
 }
 
-double BudgetBreakdownController::getMonthlyCashSaved() const
+double BudgetBreakdownController::getMonthlyCashSavedTotal() const
 {
-    return (incomeInterface.getMonthlyIncome() -
-            expenseInterface.getMonthlyExpenses() -
-            investmentInterface.getMonthlyInvestments());
+    return (incomeInterface.getMonthlyIncomeTotal() -
+            expenseInterface.getMonthlyExpenseTotal() -
+            investmentInterface.getMonthlyInvestmentTotal());
 }
 
 double BudgetBreakdownController::getYearlyAmountSaved() const
 {
-    return (incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses());
+    return (incomeInterface.getYearlyIncomeTotal() - expenseInterface.getYearlyExpenseTotal());
 }
 
 double BudgetBreakdownController::getYearlySavingsRatio() const
 {
-    double yearlyIncome = incomeInterface.getYearlyIncome();
+    double yearlyIncome = incomeInterface.getYearlyIncomeTotal();
     if(yearlyIncome > 0.0)
     {
-        return (incomeInterface.getYearlyIncome() - expenseInterface.getYearlyExpenses()) / yearlyIncome;
+        return (incomeInterface.getYearlyIncomeTotal() - expenseInterface.getYearlyExpenseTotal()) / yearlyIncome;
     }
     else
     {
@@ -91,12 +98,24 @@ double BudgetBreakdownController::getYearlySavingsRatio() const
     }
 }
 
-double BudgetBreakdownController::getRemainingBudget() const
+double BudgetBreakdownController::getMonthlyRemainingBudget() const
 {
-    double remaining = getMonthlyBudget() - getMonthlyExpenses();
+    double remaining = expenseInterface.getMonthlyBudgetTotal() - expenseInterface.getMonthlyExpenseTotal();
     if(remaining < 0.0)
     {
         remaining = 0.0;
     }
     return remaining;
+}
+
+std::vector<std::pair<std::string, double>> BudgetBreakdownController::getInvestmentTypesAndYearlyTotals() const
+{
+    std::vector<std::pair<std::string, double>> types;
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    for(const auto& i : investmentInterface.getInvestmentTypes())
+    {
+        types.push_back({i->getName(), investmentInterface.getInvestmentTransactionsTotalByTimePeriod(i->getName(),dates.first, dates.second)});
+    }
+
+    return types;
 }

@@ -18,8 +18,8 @@ public:
     virtual double getSupplementalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual void addSalaryPayment(const SalaryIncome& payment) = 0;
     virtual void addSupplementalPayment(const SupplementalIncome& payment) = 0;
-    virtual double getMonthlyIncome() const = 0;
-    virtual double getYearlyIncome() const = 0;
+    virtual double getMonthlyIncomeTotal() const = 0;
+    virtual double getYearlyIncomeTotal() const = 0;
 
 };
 

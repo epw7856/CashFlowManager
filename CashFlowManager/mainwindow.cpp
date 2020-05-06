@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     budgetBreakdownController = std::make_unique<BudgetBreakdownController>(*sds, *sds, *sds);
 
     ui->setupUi(this);
-    showMaximized();
+    //showMaximized();
     ui->tabBudgetBreakdown->setAutoFillBackground(true);
 
     loadBudgetBreakdown();
@@ -28,16 +28,17 @@ MainWindow::~MainWindow()
 void MainWindow::loadBudgetBreakdown()
 {
     configureBudgetStatusBarChart();
+    configureBreakdownPieChart();
 
     ui->labelCurrentMonth->setText(QString::fromStdString(budgetBreakdownController->getCurrentMonthAndYear()));
     ui->labelBudgetStatus->setText(QString::fromStdString(budgetBreakdownController->getBudgetStatusStatement()));
-    ui->labelMonthlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyExpenses())));
-    ui->labelMonthlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyInvestments())));
-    ui->labelMonthlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyIncome())));
+    ui->labelMonthlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyExpenseTotal())));
+    ui->labelMonthlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyInvestmentTotal())));
+    ui->labelMonthlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyIncomeTotal())));
     ui->labelMonthlyBudgetSurplus->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyBudgetSurplus())));
-    ui->labelMonthlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyCashSaved())));
-    ui->labelYearlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyExpenses())));
-    ui->labelYearlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyIncome())));
+    ui->labelMonthlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyCashSavedTotal())));
+    ui->labelYearlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyExpenseTotal())));
+    ui->labelYearlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyIncomeTotal())));
     ui->labelYearlySavings->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyAmountSaved())));
     ui->labelYearlySavingsRatio->setText(QString::fromStdString(CurrencyUtilities::formatRatio(budgetBreakdownController->getYearlySavingsRatio())));
 }
@@ -46,25 +47,45 @@ void MainWindow::configureBudgetStatusBarChart()
 {
     QBarSet* expenses = new QBarSet("Expenses");
     QBarSet* remainingBudget = new QBarSet("Remaining Budget");
-    *expenses << budgetBreakdownController->getMonthlyExpenses();
-    *remainingBudget << budgetBreakdownController->getRemainingBudget();
+    *expenses << budgetBreakdownController->getMonthlyExpenseTotal();
+    *remainingBudget << budgetBreakdownController->getMonthlyRemainingBudget();
     expenses->setColor(QColorConstants::Red);
     remainingBudget->setColor(QColorConstants::Green);
 
-    QHorizontalStackedBarSeries *series = new QHorizontalStackedBarSeries();
-    series->append(expenses);
-    series->append(remainingBudget);
+    QHorizontalStackedBarSeries* stackedBarSeries = new QHorizontalStackedBarSeries();
+    stackedBarSeries->append(expenses);
+    stackedBarSeries->append(remainingBudget);
 
-    QChart* chart = new QChart();
-    chart->addSeries(series);
-    chart->setAnimationOptions(QChart::SeriesAnimations);
-    chart->setBackgroundVisible(false);
-    chart->legend()->setVisible(false);
+    QChart* barChart = new QChart();
+    barChart->addSeries(stackedBarSeries);
+    barChart->setAnimationOptions(QChart::SeriesAnimations);
+    barChart->setBackgroundVisible(false);
+    barChart->legend()->setVisible(false);
 
-    ui->graphicsViewExpenseBarChart->setChart(chart);
+    ui->graphicsViewExpenseBarChart->setChart(barChart);
 }
 
 void MainWindow::configureBreakdownPieChart()
 {
+    QPieSlice* expenseSlice = new QPieSlice("Expenses", budgetBreakdownController->getYearlyExpenseTotal());
+    expenseSlice->setBrush(Qt::red);
+    QPieSlice* cashSlice = new QPieSlice("Cash", budgetBreakdownController->getYearlyCashSavedTotal());
+    cashSlice->setBrush(Qt::green);
 
+    QPieSeries* series = new QPieSeries();
+    series->append(expenseSlice);
+    series->append(cashSlice);
+
+    for(const auto& i : budgetBreakdownController->getInvestmentTypesAndYearlyTotals())
+    {
+        series->append(QString::fromStdString(i.first), i.second);
+    }
+
+    QChart* pieChart = new QChart();
+    pieChart->addSeries(series);
+    pieChart->legend()->show();
+    pieChart->legend()->setAlignment(Qt::AlignRight);
+    pieChart->setBackgroundVisible(false);
+
+    ui->graphicsViewBreakdownPieChart->setChart(pieChart);
 }
