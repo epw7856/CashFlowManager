@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
-    <height>819</height>
+    <width>634</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -168,13 +168,13 @@
                 <property name="minimumSize">
                  <size>
                   <width>400</width>
-                  <height>80</height>
+                  <height>50</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>400</width>
-                  <height>80</height>
+                  <height>50</height>
                  </size>
                 </property>
                </widget>
@@ -414,7 +414,7 @@
                  <enum>QFormLayout::FieldsStayAtSizeHint</enum>
                 </property>
                 <property name="labelAlignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignCenter</set>
                 </property>
                 <property name="formAlignment">
                  <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -583,8 +583,8 @@
            <widget class="QChartView" name="graphicsViewBreakdownPieChart">
             <property name="minimumSize">
              <size>
-              <width>400</width>
-              <height>200</height>
+              <width>250</width>
+              <height>150</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -644,7 +644,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>858</width>
+     <width>634</width>
      <height>21</height>
     </rect>
    </property>

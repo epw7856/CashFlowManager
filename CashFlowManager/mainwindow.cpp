@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     budgetBreakdownController = std::make_unique<BudgetBreakdownController>(*sds, *sds, *sds);
 
     ui->setupUi(this);
-    //showMaximized();
     ui->tabBudgetBreakdown->setAutoFillBackground(true);
 
     loadBudgetBreakdown();
@@ -61,6 +60,8 @@ void MainWindow::configureBudgetStatusBarChart()
     barChart->setAnimationOptions(QChart::SeriesAnimations);
     barChart->setBackgroundVisible(false);
     barChart->legend()->setVisible(false);
+    barChart->setMargins(QMargins(0,0,0,0));
+
 
     ui->graphicsViewExpenseBarChart->setChart(barChart);
 }
@@ -86,6 +87,7 @@ void MainWindow::configureBreakdownPieChart()
     pieChart->legend()->show();
     pieChart->legend()->setAlignment(Qt::AlignRight);
     pieChart->setBackgroundVisible(false);
+    pieChart->setMargins(QMargins(0,0,0,0));
 
     ui->graphicsViewBreakdownPieChart->setChart(pieChart);
 }
