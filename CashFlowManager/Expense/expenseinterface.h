@@ -24,6 +24,8 @@ public:
     virtual double getMonthlyExpenseTotal() const = 0;
     virtual double getMonthlyBudgetTotal() const = 0;
     virtual double getYearlyExpenseTotal() const = 0;
+    virtual double getMonthlyExpenseTotalByType(const std::string& expenseType) const = 0;
+    virtual double getYearlyExpenseTotalByType(const std::string& expenseType) const = 0;
 
 };
 

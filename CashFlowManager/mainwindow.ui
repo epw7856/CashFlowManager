@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>634</width>
-    <height>672</height>
+    <width>749</width>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -342,35 +342,9 @@
                 <item row="5" column="1">
                  <widget class="QLabel" name="labelMonthlyCashSaved">
                   <property name="text">
-                   <string>&lt;Cash Saved&gt;</string>
+                   <string>&lt;CashSaved&gt;</string>
                   </property>
                  </widget>
-                </item>
-                <item row="6" column="0">
-                 <spacer name="horizontalSpacer_15">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="6" column="1">
-                 <spacer name="horizontalSpacer_16">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
                 </item>
                </layout>
               </item>
@@ -414,7 +388,7 @@
                  <enum>QFormLayout::FieldsStayAtSizeHint</enum>
                 </property>
                 <property name="labelAlignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                 <property name="formAlignment">
                  <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -433,31 +407,34 @@
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="0">
+                <item row="2" column="0">
                  <widget class="QLabel" name="label_10">
                   <property name="text">
                    <string>Income:</string>
                   </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
                  </widget>
                 </item>
-                <item row="1" column="1">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_13">
+                  <property name="text">
+                   <string>Investments:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
                  <widget class="QLabel" name="labelYearlyIncome">
                   <property name="text">
                    <string>&lt;Income&gt;</string>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="label_9">
+                <item row="1" column="1">
+                 <widget class="QLabel" name="labelYearlyInvestments">
                   <property name="text">
-                   <string>Savings:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QLabel" name="labelYearlySavings">
-                  <property name="text">
-                   <string>&lt;Savings&gt;</string>
+                   <string>&lt;Investments&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -465,6 +442,26 @@
                  <widget class="QLabel" name="label_11">
                   <property name="text">
                    <string>Savings Ratio:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_9">
+                  <property name="text">
+                   <string>Cash Saved:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QLabel" name="labelYearlyCashSaved">
+                  <property name="text">
+                   <string>&lt;CashSaved&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -474,58 +471,6 @@
                    <string>&lt;SavingsRatio&gt;</string>
                   </property>
                  </widget>
-                </item>
-                <item row="4" column="0">
-                 <spacer name="horizontalSpacer_10">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="4" column="1">
-                 <spacer name="horizontalSpacer_11">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="5" column="0">
-                 <spacer name="horizontalSpacer_17">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item row="5" column="1">
-                 <spacer name="horizontalSpacer_18">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
                 </item>
                </layout>
               </item>
@@ -564,7 +509,53 @@
            </spacer>
           </item>
           <item>
-           <widget class="QTableView" name="tableView"/>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QTableView" name="tableViewMonthlyExpenses">
+              <property name="minimumSize">
+               <size>
+                <width>410</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::HLine</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>1</number>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustIgnored</enum>
+              </property>
+              <property name="cornerButtonEnabled">
+               <bool>false</bool>
+              </property>
+              <attribute name="horizontalHeaderMinimumSectionSize">
+               <number>20</number>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>100</number>
+              </attribute>
+              <attribute name="horizontalHeaderHighlightSections">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="verticalHeaderMinimumSectionSize">
+               <number>15</number>
+              </attribute>
+              <attribute name="verticalHeaderDefaultSectionSize">
+               <number>25</number>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <spacer name="horizontalSpacer_14">
@@ -583,8 +574,8 @@
            <widget class="QChartView" name="graphicsViewBreakdownPieChart">
             <property name="minimumSize">
              <size>
-              <width>250</width>
-              <height>150</height>
+              <width>300</width>
+              <height>200</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -610,19 +601,6 @@
           </item>
          </layout>
         </item>
-        <item>
-         <spacer name="horizontalSpacer_20">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabExpenseSummary">
@@ -644,7 +622,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>634</width>
+     <width>749</width>
      <height>21</height>
     </rect>
    </property>
@@ -660,6 +638,7 @@
     </property>
     <addaction name="actionBudget_Breakdown"/>
     <addaction name="actionYearly_Expense_Summary"/>
+    <addaction name="actionYearly_Expense_and_Investment_Summary"/>
     <addaction name="actionIncome"/>
     <addaction name="actionAssets"/>
     <addaction name="actionMortgage_Information"/>
@@ -700,7 +679,7 @@
   </action>
   <action name="actionYearly_Expense_Summary">
    <property name="text">
-    <string>Expense Summary</string>
+    <string>Monthly Expense and Investment Summary</string>
    </property>
   </action>
   <action name="actionFood_Expenses">
@@ -771,6 +750,11 @@
   <action name="actionAsset_Value">
    <property name="text">
     <string>Asset Value</string>
+   </property>
+  </action>
+  <action name="actionYearly_Expense_and_Investment_Summary">
+   <property name="text">
+    <string>Yearly Expense and Investment Summary</string>
    </property>
   </action>
  </widget>

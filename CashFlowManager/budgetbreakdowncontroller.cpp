@@ -61,6 +61,11 @@ double BudgetBreakdownController::getYearlyIncomeTotal() const
     return incomeInterface.getYearlyIncomeTotal();
 }
 
+double BudgetBreakdownController::getYearlyInvestmentTotal() const
+{
+    return investmentInterface.getYearlyInvestmentTotal();
+}
+
 double BudgetBreakdownController::getYearlyCashSavedTotal() const
 {
     return incomeInterface.getYearlyIncomeTotal() -
@@ -111,10 +116,9 @@ double BudgetBreakdownController::getMonthlyRemainingBudget() const
 std::vector<std::pair<std::string, double>> BudgetBreakdownController::getInvestmentTypesAndYearlyTotals() const
 {
     std::vector<std::pair<std::string, double>> types;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
     for(const auto& i : investmentInterface.getInvestmentTypes())
     {
-        types.push_back({i->getName(), investmentInterface.getInvestmentTransactionsTotalByTimePeriod(i->getName(),dates.first, dates.second)});
+        types.push_back({i->getName(), investmentInterface.getYearlyInvestmentTotalByType(i->getName())});
     }
 
     return types;

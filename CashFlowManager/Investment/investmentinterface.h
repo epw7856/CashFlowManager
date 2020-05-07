@@ -20,6 +20,8 @@ public:
     virtual void addInvestmentTransactionByType(const std::string& investmentType, const InvestmentTransaction& transaction) = 0;
     virtual double getMonthlyInvestmentTotal() const = 0;
     virtual double getYearlyInvestmentTotal() const = 0;
+    virtual double getMonthlyInvestmentTotalByType(const std::string& investmentType) const = 0;
+    virtual double getYearlyInvestmentTotalByType(const std::string& investmentType) const = 0;
 };
 
 #endif // INVESTMENTINTERFACE_H

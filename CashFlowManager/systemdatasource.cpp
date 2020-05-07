@@ -233,6 +233,18 @@ double SystemDataSource::getYearlyExpenseTotal() const
     return total;
 }
 
+double SystemDataSource::getMonthlyExpenseTotalByType(const std::string& expenseType) const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
+}
+
+double SystemDataSource::getYearlyExpenseTotalByType(const std::string &expenseType) const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
+}
+
 std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
 {
     std::vector<InvestmentType*> types;
@@ -339,6 +351,18 @@ double SystemDataSource::getYearlyInvestmentTotal() const
         total += getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
     }
     return total;
+}
+
+double SystemDataSource::getMonthlyInvestmentTotalByType(const std::string& investmentType) const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    return getInvestmentTransactionsTotalByTimePeriod(investmentType, dates.first, dates.second);
+}
+
+double SystemDataSource::getYearlyInvestmentTotalByType(const std::string& investmentType) const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    return getInvestmentTransactionsTotalByTimePeriod(investmentType, dates.first, dates.second);
 }
 
 std::multiset<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const

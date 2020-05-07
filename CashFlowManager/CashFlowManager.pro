@@ -34,6 +34,7 @@ INCLUDEPATH += Mortgage/
 SOURCES += \
         Asset/assetentry.cpp \
         Expense/automaticmonthlypayment.cpp \
+        Expense/expensetablemodel.cpp \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
         Income/salaryincome.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
         Asset/assettype.h \
         Expense/automaticmonthlypayment.h \
         Expense/expenseinterface.h \
+        Expense/expensetablemodel.h \
         Expense/expensetransaction.h \
         Expense/expensetype.h \
         Income/incomeinterface.h \

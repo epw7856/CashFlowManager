@@ -35,6 +35,8 @@ public:
     double getMonthlyExpenseTotal() const override;
     double getMonthlyBudgetTotal() const override;
     double getYearlyExpenseTotal() const override;
+    double getMonthlyExpenseTotalByType(const std::string& expenseType) const override;
+    double getYearlyExpenseTotalByType(const std::string& expenseType) const override;
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
@@ -44,6 +46,8 @@ public:
     void addInvestmentTransactionByType(const std::string& investmentType, const InvestmentTransaction& transaction) override;
     double getMonthlyInvestmentTotal() const override;
     double getYearlyInvestmentTotal() const override;
+    double getMonthlyInvestmentTotalByType(const std::string& investmentType) const override;
+    double getYearlyInvestmentTotalByType(const std::string& investmentType) const override;
 
     // Income Interface
     std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
