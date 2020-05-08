@@ -14,11 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     investmentTableModel(*sds, mainWindowController->getCurrentMonthDates())
 {
     ui->setupUi(this);
-    showMaximized();
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
     ui->verticalLayout_10->setAlignment(Qt::AlignTop);
     ui->verticalLayout_11->setAlignment(Qt::AlignTop);
-    ui->tabBudgetBreakdown->setAutoFillBackground(true);
     expenseTableModel.setExpenseTypes(sds->getExpenseTypes());
     investmentTableModel.setInvestmentTypes(sds->getInvestmentTypes());
 
