@@ -111,7 +111,7 @@ std::multiset<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTim
     return {};
 }
 
-double SystemDataSource::getExpenseTransactionsTotalByTimePeriod(const std::string &expenseType,
+double SystemDataSource::getExpenseTransactionsTotalByTimePeriod(const std::string& expenseType,
                                                                  const QDate& startingPeriod,
                                                                  const QDate& endingPeriod) const
 {
@@ -217,7 +217,7 @@ double SystemDataSource::getMonthlyBudgetTotal() const
     double total = 0.0;
     for(const auto& i : expenseTypes)
     {
-        total += i->getMonthlyBudget();
+        total += getMonthlyBudgetByType(i->getName());
     }
     return total;
 }
@@ -243,6 +243,25 @@ double SystemDataSource::getYearlyExpenseTotalByType(const std::string &expenseT
 {
     std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
     return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
+}
+
+double SystemDataSource::getMonthlyBudgetByType(const std::string& expenseType) const
+{
+    auto itr = findMatchingType(expenseTypes, expenseType);
+
+    if(itr != expenseTypes.end())
+    {
+        if(itr->get()->getVariableExpenseFlag())
+        {
+            std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+            return getExpenseTransactionsTotalByTimePeriod(itr->get()->getName(), dates.first, dates.second);
+        }
+        else
+        {
+            return itr->get()->getMonthlyBudget();
+        }
+    }
+    return 0.0;
 }
 
 std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const

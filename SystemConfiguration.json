@@ -121,7 +121,7 @@
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 50,
             "Name": "Trash",
             "Transactions": [
                 {
@@ -131,7 +131,7 @@
                 },
                 {
                     "Amount": 87.32,
-                    "Date": "04/17/2020",
+                    "Date": "05/17/2020",
                     "Description": "April Electric Bill"
                 }
             ]

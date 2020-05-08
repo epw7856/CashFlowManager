@@ -3,6 +3,8 @@
 #include "expenseinterface.h"
 #include "expensetablemodel.h"
 #include "expensetype.h"
+#include <QBrush>
+#include <QColor>
 
 ExpenseTableModel::ExpenseTableModel(ExpenseInterface& localExpenseInterface, std::pair<QDate, QDate> dates)
 :
@@ -41,7 +43,7 @@ QVariant ExpenseTableModel::data(const QModelIndex& index, int role) const
             // Budget column
             else if(index.column() == 1)
             {
-                return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseTypes[rowUint]->getMonthlyBudget()));
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseTypes[rowUint]->getName())));
             }
             // Actual column
             else if(index.column() == 2)
@@ -56,10 +58,6 @@ QVariant ExpenseTableModel::data(const QModelIndex& index, int role) const
                 double remaining = expenseTypes[rowUint]->getMonthlyBudget() - expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(),
                                                                                                                                         startDatePeriod,
                                                                                                                                         endDatePeriod);
-                if(remaining < 0)
-                {
-                    remaining = 0.0;
-                }
                 return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
             }
         }
@@ -73,6 +71,25 @@ QVariant ExpenseTableModel::data(const QModelIndex& index, int role) const
             if(index.column()!= 0)
             {
                 return Qt::AlignCenter;
+            }
+        }
+    }
+
+    if(role == Qt::BackgroundRole)
+    {
+        int numRows = rowCount(index);
+        if(index.row() < numRows)
+        {
+            double actual = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
+            double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
+
+            if((actual > 0) && (remaining == 0))
+            {
+                return QVariant(QBrush(QColor(Qt::green)));
+            }
+            else if((actual > 0) && (remaining < 0))
+            {
+                return QVariant(QBrush(QColor(Qt::red)));
             }
         }
     }

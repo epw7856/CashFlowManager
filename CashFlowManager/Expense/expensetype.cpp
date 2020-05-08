@@ -16,10 +16,6 @@ ExpenseType::ExpenseType
 void ExpenseType::addExpenseTransaction(const ExpenseTransaction& transaction)
 {
     expenseTransactionList.insert(std::make_unique<ExpenseTransaction>(transaction));
-    if(variableExpenseFlag)
-    {
-        monthlyBudget += transaction.getAmount();
-    }
 }
 
 const std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<ExpenseTransaction>>& ExpenseType::getTransactionList() const

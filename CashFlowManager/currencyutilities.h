@@ -10,6 +10,7 @@ public:
     static std::string formatCurrency(int amount);
     static std::string formatCurrency(double amount);
     static std::string formatRatio(double amount);
+    static double formatCurrencyToDouble(const std::string& amount);
 };
 
 #endif // CURRENCYUTILITIES_H

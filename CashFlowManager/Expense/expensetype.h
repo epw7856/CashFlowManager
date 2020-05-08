@@ -13,6 +13,7 @@ public:
     ExpenseType(std::string inputName, double inputBudget);
     std::string getName() const;
     double getMonthlyBudget() const;
+    bool getVariableExpenseFlag() const;
     void addExpenseTransaction(const ExpenseTransaction& transaction);
     const std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<ExpenseTransaction>>& getTransactionList() const;
 
@@ -31,6 +32,11 @@ inline std::string ExpenseType::getName() const
 inline double ExpenseType::getMonthlyBudget() const
 {
     return monthlyBudget;
+}
+
+inline bool ExpenseType::getVariableExpenseFlag() const
+{
+    return variableExpenseFlag;
 }
 
 #endif // EXPENSETYPE_H

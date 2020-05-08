@@ -3,6 +3,8 @@
 #include "investmentinterface.h"
 #include "investmenttablemodel.h"
 #include "investmenttype.h"
+#include <QBrush>
+#include <QColor>
 
 InvestmentTableModel::InvestmentTableModel(InvestmentInterface& localInvestmentInterface, std::pair<QDate, QDate> dates)
 :
@@ -73,6 +75,26 @@ QVariant InvestmentTableModel::data(const QModelIndex& index, int role) const
             if(index.column()!= 0)
             {
                 return Qt::AlignCenter;
+            }
+        }
+    }
+
+    if(role == Qt::BackgroundRole)
+    {
+        int numRows = rowCount(index);
+        if(index.row() < numRows)
+        {
+            double target = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 1).data().toString().toStdString());
+            double actual = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
+            double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
+
+            if((actual > 0) && (remaining == 0))
+            {
+                return QVariant(QBrush(QColor(Qt::green)));
+            }
+            else if((actual > 0) && (target > 0) && (actual < target))
+            {
+                return QVariant(QBrush(QColor(Qt::red)));
             }
         }
     }
