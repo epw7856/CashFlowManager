@@ -1,6 +1,5 @@
-#include "budgetbreakdowncontroller.h"
+#include "mainwindowcontroller.h"
 #include "currencyutilities.h"
-#include "dateutilities.h"
 #include "mainwindow.h"
 #include "systemdatasource.h"
 #include "ui_mainwindow.h"
@@ -10,12 +9,18 @@ MainWindow::MainWindow(QWidget *parent)
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     sds(std::make_unique<SystemDataSource>("../SystemConfiguration.json")),
-    budgetBreakdownController(std::make_unique<BudgetBreakdownController>(*sds, *sds, *sds)),
-    tableModel(*sds, DateUtilities::getCurrentMonthDates())
+    mainWindowController(std::make_unique<MainWindowController>(*sds)),
+    expenseTableModel(*sds, mainWindowController->getCurrentMonthDates()),
+    investmentTableModel(*sds, mainWindowController->getCurrentMonthDates())
 {
     ui->setupUi(this);
+    showMaximized();
+    ui->verticalLayout_8->setAlignment(Qt::AlignTop);
+    ui->verticalLayout_10->setAlignment(Qt::AlignTop);
+    ui->verticalLayout_11->setAlignment(Qt::AlignTop);
     ui->tabBudgetBreakdown->setAutoFillBackground(true);
-    tableModel.setExpenseTypes(sds->getExpenseTypes());
+    expenseTableModel.setExpenseTypes(sds->getExpenseTypes());
+    investmentTableModel.setInvestmentTypes(sds->getInvestmentTypes());
 
     loadBudgetBreakdown();
 }
@@ -31,27 +36,28 @@ void MainWindow::loadBudgetBreakdown()
     configureBudgetStatusBarChart();
     configureBreakdownPieChart();
     configureExpenseTableView();
+    configureInvestmentTableView();
 
-    ui->labelCurrentMonth->setText(QString::fromStdString(budgetBreakdownController->getCurrentMonthAndYear()));
-    ui->labelBudgetStatus->setText(QString::fromStdString(budgetBreakdownController->getBudgetStatusStatement()));
-    ui->labelMonthlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyExpenseTotal())));
-    ui->labelMonthlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyInvestmentTotal())));
-    ui->labelMonthlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyIncomeTotal())));
-    ui->labelMonthlyBudgetSurplus->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyBudgetSurplus())));
-    ui->labelMonthlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getMonthlyCashSavedTotal())));
-    ui->labelYearlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyExpenseTotal())));
-    ui->labelYearlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyInvestmentTotal())));
-    ui->labelYearlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyIncomeTotal())));
-    ui->labelYearlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(budgetBreakdownController->getYearlyCashSavedTotal())));
-    ui->labelYearlySavingsRatio->setText(QString::fromStdString(CurrencyUtilities::formatRatio(budgetBreakdownController->getYearlySavingsRatio())));
+    ui->labelCurrentMonth->setText(QString::fromStdString(mainWindowController->getCurrentMonthAndYear()));
+    ui->labelBudgetStatus->setText(QString::fromStdString(mainWindowController->getBudgetStatusStatement()));
+    ui->labelMonthlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyExpenseTotal())));
+    ui->labelMonthlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyInvestmentTotal())));
+    ui->labelMonthlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyIncomeTotal())));
+    ui->labelMonthlyBudgetSurplus->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyBudgetSurplus())));
+    ui->labelMonthlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyCashSavedTotal())));
+    ui->labelYearlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyExpenseTotal())));
+    ui->labelYearlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyInvestmentTotal())));
+    ui->labelYearlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyIncomeTotal())));
+    ui->labelYearlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyCashSavedTotal())));
+    ui->labelYearlySavingsRatio->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlySavingsRatio())));
 }
 
 void MainWindow::configureBudgetStatusBarChart()
 {
     QBarSet* expenses = new QBarSet("Expenses");
     QBarSet* remainingBudget = new QBarSet("Remaining Budget");
-    *expenses << budgetBreakdownController->getMonthlyExpenseTotal();
-    *remainingBudget << budgetBreakdownController->getMonthlyRemainingBudget();
+    *expenses << mainWindowController->getMonthlyExpenseTotal();
+    *remainingBudget << mainWindowController->getMonthlyRemainingBudget();
     expenses->setColor(QColorConstants::Red);
     remainingBudget->setColor(QColorConstants::Green);
 
@@ -72,16 +78,16 @@ void MainWindow::configureBudgetStatusBarChart()
 
 void MainWindow::configureBreakdownPieChart()
 {
-    QPieSlice* expenseSlice = new QPieSlice("Expenses", budgetBreakdownController->getYearlyExpenseTotal());
+    QPieSlice* expenseSlice = new QPieSlice("Expenses", mainWindowController->getYearlyExpenseTotal());
     expenseSlice->setBrush(Qt::red);
-    QPieSlice* cashSlice = new QPieSlice("Cash", budgetBreakdownController->getYearlyCashSavedTotal());
+    QPieSlice* cashSlice = new QPieSlice("Cash", mainWindowController->getYearlyCashSavedTotal());
     cashSlice->setBrush(Qt::green);
 
     QPieSeries* series = new QPieSeries();
     series->append(expenseSlice);
     series->append(cashSlice);
 
-    for(const auto& i : budgetBreakdownController->getInvestmentTypesAndYearlyTotals())
+    for(const auto& i : mainWindowController->getInvestmentTypesAndYearlyTotals())
     {
         series->append(QString::fromStdString(i.first), i.second);
     }
@@ -99,7 +105,7 @@ void MainWindow::configureBreakdownPieChart()
 void MainWindow::configureExpenseTableView()
 {
     // Add table model data and disable selection
-    ui->tableViewMonthlyExpenses->setModel(&tableModel);
+    ui->tableViewMonthlyExpenses->setModel(&expenseTableModel);
     ui->tableViewMonthlyExpenses->setSelectionMode(QAbstractItemView::NoSelection);
 
     // Set bold font for the header
@@ -112,19 +118,21 @@ void MainWindow::configureExpenseTableView()
 
     // Disable cell resizing and selections
     ui->tableViewMonthlyExpenses->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableViewMonthlyExpenses->horizontalHeader()->setFixedHeight(25);
     ui->tableViewMonthlyExpenses->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->tableViewMonthlyExpenses->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewMonthlyExpenses->setFocusPolicy(Qt::NoFocus);
     ui->tableViewMonthlyExpenses->setSelectionMode(QAbstractItemView::NoSelection);
 
     // Add header frame
-    ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    ui->tableViewMonthlyExpenses->horizontalHeader()->setLineWidth(1);
+    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameStyle(QFrame::HLine);
+    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameShadow(QFrame::Plain);
+    //ui->tableViewMonthlyExpenses->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     int maxColumnWidth = 0;
-    for(int i = 1; i < tableModel.columnCount(); ++i)
+    ui->tableViewMonthlyExpenses->resizeRowsToContents();
+    for(int i = 1; i < expenseTableModel.columnCount(); ++i)
     {
         ui->tableViewMonthlyExpenses->resizeColumnToContents(i);
         int currentColumnWidth = ui->tableViewMonthlyExpenses->columnWidth(i);
@@ -140,7 +148,7 @@ void MainWindow::configureExpenseTableView()
 
     // Set TableView height
     int tableHeight = 0;
-    for(int i = 0; i < tableModel.rowCount(); ++i)
+    for(int i = 0; i < expenseTableModel.rowCount(); ++i)
     {
         tableHeight += ui->tableViewMonthlyExpenses->rowHeight(i);
     }
@@ -155,11 +163,82 @@ void MainWindow::configureExpenseTableView()
         tableWidth += ui->tableViewMonthlyExpenses->horizontalHeader()->sectionSize(i);
     }
 
-    if(ui->tableViewMonthlyExpenses->verticalScrollBar()->isVisible())
+    if(ui->tableViewMonthlyExpenses->verticalScrollBar()->width() < 100)
     {
         tableWidth += ui->tableViewMonthlyExpenses->verticalScrollBar()->width();
     }
 
-    ui->tableViewMonthlyExpenses->setMinimumWidth(tableWidth+5);
-    ui->tableViewMonthlyExpenses->setMaximumWidth(tableWidth+5);
+    ui->tableViewMonthlyExpenses->setMinimumWidth(tableWidth);
+    ui->tableViewMonthlyExpenses->setMaximumWidth(tableWidth);
+}
+
+void MainWindow::configureInvestmentTableView()
+{
+    // Add table model data and disable selection
+    ui->tableViewMonthlyInvestments->setModel(&investmentTableModel);
+    ui->tableViewMonthlyInvestments->setSelectionMode(QAbstractItemView::NoSelection);
+
+
+    // Set bold font for the header
+    QFont font(ui->tableViewMonthlyInvestments->font());
+    font.setBold(true);
+    ui->tableViewMonthlyInvestments->horizontalHeader()->setFont(font);
+
+    // Disable horizontal scroll bar
+    ui->tableViewMonthlyInvestments->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // Disable cell resizing and selections
+    ui->tableViewMonthlyInvestments->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableViewMonthlyInvestments->horizontalHeader()->setFixedHeight(25);
+    ui->tableViewMonthlyInvestments->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableViewMonthlyInvestments->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableViewMonthlyInvestments->setFocusPolicy(Qt::NoFocus);
+    ui->tableViewMonthlyInvestments->setSelectionMode(QAbstractItemView::NoSelection);
+
+    // Add header frame
+    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameStyle(QFrame::HLine);
+    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameShadow(QFrame::Plain);
+    //ui->tableViewMonthlyExpenses->horizontalHeader()->setLineWidth(1);
+
+    // Resize columns to be uniform
+    int maxColumnWidth = 0;
+    for(int i = 1; i < investmentTableModel.columnCount(); ++i)
+    {
+        ui->tableViewMonthlyInvestments->resizeColumnToContents(i);
+        int currentColumnWidth = ui->tableViewMonthlyInvestments->columnWidth(i);
+        if(currentColumnWidth > maxColumnWidth)
+        {
+            maxColumnWidth = currentColumnWidth;
+        }
+    }
+
+    ui->tableViewMonthlyInvestments->setColumnWidth(1, maxColumnWidth);
+    ui->tableViewMonthlyInvestments->setColumnWidth(2, maxColumnWidth);
+    ui->tableViewMonthlyInvestments->setColumnWidth(3, maxColumnWidth);
+
+    // Set TableView height
+    int tableHeight = 0;
+    ui->tableViewMonthlyInvestments->resizeRowsToContents();
+    for(int i = 0; i < investmentTableModel.rowCount(); ++i)
+    {
+        tableHeight += ui->tableViewMonthlyInvestments->rowHeight(i);
+    }
+
+    tableHeight += ui->tableViewMonthlyInvestments->horizontalHeader()->height();
+    ui->tableViewMonthlyInvestments->setMaximumHeight(tableHeight+5);
+
+    // Set TableView width
+    int tableWidth = 0;
+    for(int i = 0; i < ui->tableViewMonthlyInvestments->horizontalHeader()->count(); ++i)
+    {
+        tableWidth += ui->tableViewMonthlyInvestments->horizontalHeader()->sectionSize(i);
+    }
+
+    if(ui->tableViewMonthlyInvestments->verticalScrollBar()->width() < 100)
+    {
+        tableWidth += ui->tableViewMonthlyInvestments->verticalScrollBar()->width();
+    }
+
+    ui->tableViewMonthlyInvestments->setMinimumWidth(tableWidth);
+    ui->tableViewMonthlyInvestments->setMaximumWidth(tableWidth);
 }

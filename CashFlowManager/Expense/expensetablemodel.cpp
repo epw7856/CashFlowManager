@@ -56,6 +56,10 @@ QVariant ExpenseTableModel::data(const QModelIndex& index, int role) const
                 double remaining = expenseTypes[rowUint]->getMonthlyBudget() - expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(),
                                                                                                                                         startDatePeriod,
                                                                                                                                         endDatePeriod);
+                if(remaining < 0)
+                {
+                    remaining = 0.0;
+                }
                 return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
             }
         }

@@ -39,15 +39,16 @@ SOURCES += \
         Expense/expensetype.cpp \
         Income/salaryincome.cpp \
         Income/supplementalincome.cpp \
+        Investment/investmenttablemodel.cpp \
         Investment/investmenttransaction.cpp \
         Investment/investmenttype.cpp \
         Mortgage/mortgageinformation.cpp \
         basetransaction.cpp \
-        budgetbreakdowncontroller.cpp \
         currencyutilities.cpp \
         dateutilities.cpp \
         main.cpp \
         mainwindow.cpp \
+        mainwindowcontroller.cpp \
         systemdatasource.cpp
 
 HEADERS += \
@@ -63,15 +64,16 @@ HEADERS += \
         Income/salaryincome.h \
         Income/supplementalincome.h \
         Investment/investmentinterface.h \
+        Investment/investmenttablemodel.h \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgagepayment.h \
         basetransaction.h \
-        budgetbreakdowncontroller.h \
         currencyutilities.h \
         dateutilities.h \
         mainwindow.h \
+        mainwindowcontroller.h \
         systemdatasource.h \
         transactioncomparison.h
 

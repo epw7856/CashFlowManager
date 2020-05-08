@@ -2,10 +2,11 @@
 #define MAINWINDOW_H
 
 #include "expensetablemodel.h"
+#include "investmenttablemodel.h"
 #include <memory>
 #include <QMainWindow>
 
-class BudgetBreakdownController;
+class MainWindowController;
 class SystemDataSource;
 
 namespace Ui {
@@ -23,13 +24,15 @@ public:
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<SystemDataSource> sds;
-    std::unique_ptr<BudgetBreakdownController> budgetBreakdownController;
-    ExpenseTableModel tableModel;
+    std::unique_ptr<MainWindowController> mainWindowController;
+    ExpenseTableModel expenseTableModel;
+    InvestmentTableModel investmentTableModel;
 
     void loadBudgetBreakdown();
     void configureBudgetStatusBarChart();
     void configureBreakdownPieChart();
     void configureExpenseTableView();
+    void configureInvestmentTableView();
 };
 
 #endif // MAINWINDOW_H

@@ -89,6 +89,166 @@
             ]
         },
         {
+            "MonthlyBudget": 0,
+            "Name": "Natural Gas",
+            "Transactions": [
+                {
+                    "Amount": 100.2,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 23.76,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Sewage",
+            "Transactions": [
+                {
+                    "Amount": 43.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 43.28,
+                    "Date": "05/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Trash",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Water",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Internet",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Car Insurance",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Phone",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Gas",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Food",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
+            "MonthlyBudget": 0,
+            "Name": "Donations",
+            "Transactions": [
+                {
+                    "Amount": 41.28,
+                    "Date": "03/17/2020",
+                    "Description": "March Electric Bill"
+                },
+                {
+                    "Amount": 87.32,
+                    "Date": "04/17/2020",
+                    "Description": "April Electric Bill"
+                }
+            ]
+        },
+        {
             "MonthlyBudget": 300,
             "Name": "Misc",
             "Transactions": [

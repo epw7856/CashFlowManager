@@ -1,21 +1,19 @@
-#ifndef BUDGETBREAKDOWNCONTROLLER_H
-#define BUDGETBREAKDOWNCONTROLLER_H
+#ifndef MAINWINDOWCONTROLLER_H
+#define MAINWINDOWCONTROLLER_H
 
 #include <string>
 #include <vector>
 
-class ExpenseInterface;
-class ExpenseType;
-class IncomeInterface;
-class InvestmentInterface;
-class InvestmentType;
+class QDate;
+class SystemDataSource;
 
-class BudgetBreakdownController
+class MainWindowController
 {
 public:
-    BudgetBreakdownController(ExpenseInterface& localExpenseInterface,
-                              InvestmentInterface& localInvestmentInterface,
-                              IncomeInterface& localIncomeInterface);
+    MainWindowController(SystemDataSource& sds);
+
+    // Supporting functions for MainWindow display
+    std::pair<QDate, QDate> getCurrentMonthDates() const;
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
     double getMonthlyExpenseTotal() const;
@@ -34,10 +32,7 @@ public:
     std::vector<std::pair<std::string, double>> getInvestmentTypesAndYearlyTotals() const;
 
 private:
-    ExpenseInterface& expenseInterface;
-    InvestmentInterface& investmentInterface;
-    IncomeInterface& incomeInterface;
-    std::vector<InvestmentType*> investmentTypes;
+    SystemDataSource& sds;
 };
 
-#endif // BUDGETBREAKDOWNCONTROLLER_H
+#endif // MAINWINDOWCONTROLLER_H
