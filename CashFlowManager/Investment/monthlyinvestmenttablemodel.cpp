@@ -6,14 +6,14 @@
 #include <QBrush>
 #include <QColor>
 
-MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& localInvestmentInterface, std::pair<QDate, QDate> dates)
+MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& localInvestmentInterface)
 :
     investmentInterface(localInvestmentInterface),
-    numColumns(4),
-    startDatePeriod(dates.first),
-    endDatePeriod(dates.second)
+    numColumns(4)
 {
-
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    startDatePeriod = dates.first;
+    endDatePeriod = dates.second;
 }
 
 int MonthlyInvestmentTableModel::rowCount(const QModelIndex&) const

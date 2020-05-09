@@ -19,7 +19,6 @@ public:
     ~MainWindowController();
 
     // Supporting functions for Main Window information display
-    std::pair<QDate, QDate> getCurrentMonthDates() const;
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
     double getMonthlyExpenseTotal() const;

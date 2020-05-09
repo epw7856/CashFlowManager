@@ -6,14 +6,14 @@
 #include <QBrush>
 #include <QColor>
 
-MonthlyExpenseTableModel::MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface, std::pair<QDate, QDate> dates)
+MonthlyExpenseTableModel::MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface)
 :
     expenseInterface(localExpenseInterface),
-    numColumns(4),
-    startDatePeriod(dates.first),
-    endDatePeriod(dates.second)
+    numColumns(4)
 {
-
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    startDatePeriod = dates.first;
+    endDatePeriod = dates.second;
 }
 
 int MonthlyExpenseTableModel::rowCount(const QModelIndex&) const

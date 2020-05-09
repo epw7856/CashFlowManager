@@ -11,11 +11,6 @@ MainWindowController::MainWindowController(SystemDataSource& localSds) : sds(loc
 
 MainWindowController::~MainWindowController() = default;
 
-std::pair<QDate, QDate> MainWindowController::getCurrentMonthDates() const
-{
-    return DateUtilities::getCurrentMonthDates();
-}
-
 std::string MainWindowController::getCurrentMonthAndYear() const
 {
     return (DateUtilities::getCurrentMonth()) + " " + (DateUtilities::getCurrentYear());
@@ -121,5 +116,12 @@ std::vector<std::pair<std::string, double>> MainWindowController::getInvestmentT
 
 void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
 {
+    if(yearlyBudgetDialog == nullptr)
+    {
+        yearlyBudgetDialog = std::make_unique<YearlyBudgetSummaryDialog>(parent);
+    }
 
+    yearlyBudgetDialog->show();
+    yearlyBudgetDialog->raise();
+    yearlyBudgetDialog->activateWindow();
 }

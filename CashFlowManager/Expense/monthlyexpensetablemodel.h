@@ -12,7 +12,7 @@ class MonthlyExpenseTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface, std::pair<QDate, QDate> dates);
+    MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface);
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;

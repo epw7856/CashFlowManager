@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui(new Ui::MainWindow),
     sds(std::make_unique<SystemDataSource>("../SystemConfiguration.json")),
     mainWindowController(std::make_unique<MainWindowController>(*sds)),
-    expenseTableModel(*sds, mainWindowController->getCurrentMonthDates()),
-    investmentTableModel(*sds, mainWindowController->getCurrentMonthDates())
+    expenseTableModel(*sds),
+    investmentTableModel(*sds)
 {
     ui->setupUi(this);
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
@@ -188,7 +188,6 @@ void MainWindow::configureInvestmentTableView()
     ui->tableViewMonthlyInvestments->setModel(&investmentTableModel);
     ui->tableViewMonthlyInvestments->setSelectionMode(QAbstractItemView::NoSelection);
 
-
     // Set bold font for the header
     QFont font(ui->tableViewMonthlyInvestments->font());
     font.setBold(true);
@@ -251,4 +250,5 @@ void MainWindow::configureInvestmentTableView()
 
     ui->tableViewMonthlyInvestments->setMinimumWidth(tableWidth);
     ui->tableViewMonthlyInvestments->setMaximumWidth(tableWidth);
+
 }

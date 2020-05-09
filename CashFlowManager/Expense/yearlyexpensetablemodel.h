@@ -1,30 +1,30 @@
-#ifndef MONTHLYINVESTMENTTABLEMODEL_H
-#define MONTHLYINVESTMENTTABLEMODEL_H
+#ifndef YEARLYEXPENSETABLEMODEL_H
+#define YEARLYEXPENSETABLEMODEL_H
 
 #include <QAbstractTableModel>
 #include <QDate>
 
-class InvestmentInterface;
-class InvestmentType;
+class ExpenseInterface;
+class ExpenseType;
 class QVariant;
 
-class MonthlyInvestmentTableModel : public QAbstractTableModel
+class YearlyExpenseTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    MonthlyInvestmentTableModel(InvestmentInterface& localInvestmentInterface);
+    YearlyExpenseTableModel(ExpenseInterface& localExpenseInterface);
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-    void setInvestmentTypes(const std::vector<InvestmentType*>& localInvestmentTypes);
+    void setExpenseTypes(const std::vector<ExpenseType*>& localExpenseTypes);
 
 private:
-    InvestmentInterface& investmentInterface;
-    std::vector<InvestmentType*> investmentTypes = {};
+    ExpenseInterface& expenseInterface;
+    std::vector<ExpenseType*> expenseTypes = {};
     int numColumns = 0;
     QDate startDatePeriod;
     QDate endDatePeriod;
 };
 
-#endif // MONTHLYINVESTMENTTABLEMODEL_H
+#endif // YEARLYEXPENSETABLEMODEL_H

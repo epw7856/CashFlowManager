@@ -39,11 +39,13 @@ SOURCES += \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
         Expense/monthlyexpensetablemodel.cpp \
+        Expense/yearlyexpensetablemodel.cpp \
         Income/salaryincome.cpp \
         Income/supplementalincome.cpp \
         Investment/investmenttransaction.cpp \
         Investment/investmenttype.cpp \
         Investment/monthlyinvestmenttablemodel.cpp \
+        Investment/yearlyinvestmenttablemodel.cpp \
         Mortgage/mortgageinformation.cpp \
         basetransaction.cpp \
         currencyutilities.cpp \
@@ -64,6 +66,7 @@ HEADERS += \
         Expense/expensetransaction.h \
         Expense/expensetype.h \
         Expense/monthlyexpensetablemodel.h \
+        Expense/yearlyexpensetablemodel.h \
         Income/incomeinterface.h \
         Income/salaryincome.h \
         Income/supplementalincome.h \
@@ -71,6 +74,7 @@ HEADERS += \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
         Investment/monthlyinvestmenttablemodel.h \
+        Investment/yearlyinvestmenttablemodel.h \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgagepayment.h \
         basetransaction.h \
