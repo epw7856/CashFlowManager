@@ -12,7 +12,7 @@ class MainWindowController
 public:
     MainWindowController(SystemDataSource& sds);
 
-    // Supporting functions for MainWindow display
+    // Supporting functions for MainWindow information display
     std::pair<QDate, QDate> getCurrentMonthDates() const;
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;

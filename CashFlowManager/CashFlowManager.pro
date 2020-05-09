@@ -31,6 +31,8 @@ INCLUDEPATH += Income/
 INCLUDEPATH += Investment/
 INCLUDEPATH += Mortgage/
 
+RC_ICONS = app_icon.ico
+
 SOURCES += \
         Asset/assetentry.cpp \
         Expense/automaticmonthlypayment.cpp \
