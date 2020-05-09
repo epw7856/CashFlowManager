@@ -37,7 +37,7 @@ public:
     double getYearlyExpenseTotal() const override;
     double getMonthlyExpenseTotalByType(const std::string& expenseType) const override;
     double getYearlyExpenseTotalByType(const std::string& expenseType) const override;
-    double getExpenseTypeMonthlyBudget(const std::string& expenseType) const override;
+    double getMonthlyBudgetByType(const std::string& expenseType) const override;
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
