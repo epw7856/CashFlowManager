@@ -36,14 +36,14 @@ RC_ICONS = app_icon.ico
 SOURCES += \
         Asset/assetentry.cpp \
         Expense/automaticmonthlypayment.cpp \
-        Expense/expensetablemodel.cpp \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
+        Expense/monthlyexpensetablemodel.cpp \
         Income/salaryincome.cpp \
         Income/supplementalincome.cpp \
-        Investment/investmenttablemodel.cpp \
         Investment/investmenttransaction.cpp \
         Investment/investmenttype.cpp \
+        Investment/monthlyinvestmenttablemodel.cpp \
         Mortgage/mortgageinformation.cpp \
         basetransaction.cpp \
         currencyutilities.cpp \
@@ -51,7 +51,9 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
-        systemdatasource.cpp
+        systemdatasource.cpp \
+        yearlybudgetsummarydialog.cpp \
+        yearlybudgetsummarydialogcontroller.cpp
 
 HEADERS += \
         Asset/assetentry.h \
@@ -59,16 +61,16 @@ HEADERS += \
         Asset/assettype.h \
         Expense/automaticmonthlypayment.h \
         Expense/expenseinterface.h \
-        Expense/expensetablemodel.h \
         Expense/expensetransaction.h \
         Expense/expensetype.h \
+        Expense/monthlyexpensetablemodel.h \
         Income/incomeinterface.h \
         Income/salaryincome.h \
         Income/supplementalincome.h \
         Investment/investmentinterface.h \
-        Investment/investmenttablemodel.h \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
+        Investment/monthlyinvestmenttablemodel.h \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgagepayment.h \
         basetransaction.h \
@@ -77,10 +79,13 @@ HEADERS += \
         mainwindow.h \
         mainwindowcontroller.h \
         systemdatasource.h \
-        transactioncomparison.h
+        transactioncomparison.h \
+        yearlybudgetsummarydialog.h \
+        yearlybudgetsummarydialogcontroller.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        yearlybudgetsummarydialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,9 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "expensetablemodel.h"
-#include "investmenttablemodel.h"
 #include <memory>
+#include "monthlyexpensetablemodel.h"
+#include "monthlyinvestmenttablemodel.h"
 #include <QMainWindow>
 
 class MainWindowController;
@@ -21,14 +21,18 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void onActionExitTriggered();
+    void onActionYearlyBudgetSummaryTriggered();
+
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<SystemDataSource> sds;
     std::unique_ptr<MainWindowController> mainWindowController;
-    ExpenseTableModel expenseTableModel;
-    InvestmentTableModel investmentTableModel;
+    MonthlyExpenseTableModel expenseTableModel;
+    MonthlyInvestmentTableModel investmentTableModel;
 
-    void loadBudgetBreakdown();
+    void updateDisplayedInformation();
     void configureBudgetStatusBarChart();
     void configureBreakdownPieChart();
     void configureExpenseTableView();

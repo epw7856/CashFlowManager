@@ -1,11 +1,15 @@
-#include "mainwindowcontroller.h"
 #include "currencyutilities.h"
 #include "dateutilities.h"
 #include "expensetype.h"
 #include "investmenttype.h"
+#include "mainwindowcontroller.h"
 #include "systemdatasource.h"
+#include "yearlybudgetsummarydialog.h"
+#include "yearlybudgetsummarydialogcontroller.h"
 
 MainWindowController::MainWindowController(SystemDataSource& localSds) : sds(localSds) {}
+
+MainWindowController::~MainWindowController() = default;
 
 std::pair<QDate, QDate> MainWindowController::getCurrentMonthDates() const
 {
@@ -113,4 +117,9 @@ std::vector<std::pair<std::string, double>> MainWindowController::getInvestmentT
     }
 
     return types;
+}
+
+void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
+{
+
 }

@@ -1,18 +1,24 @@
 #ifndef MAINWINDOWCONTROLLER_H
 #define MAINWINDOWCONTROLLER_H
 
+#include <memory>
+#include <QObject>
 #include <string>
 #include <vector>
 
+class YearlyBudgetSummaryDialog;
+class YearlyBudgetSummaryDialogController;
 class QDate;
 class SystemDataSource;
 
-class MainWindowController
+class MainWindowController : public QObject
 {
+    Q_OBJECT
 public:
     MainWindowController(SystemDataSource& sds);
+    ~MainWindowController();
 
-    // Supporting functions for MainWindow information display
+    // Supporting functions for Main Window information display
     std::pair<QDate, QDate> getCurrentMonthDates() const;
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
@@ -31,8 +37,14 @@ public:
     double getMonthlyRemainingBudget() const;
     std::vector<std::pair<std::string, double>> getInvestmentTypesAndYearlyTotals() const;
 
+    // Supporting functions for Main Window auxilary actions
+    void showYearlyBudgetSummaryDialog(QWidget* parent);
+
 private:
     SystemDataSource& sds;
+
+    std::unique_ptr<YearlyBudgetSummaryDialog> yearlyBudgetDialog;
+    std::unique_ptr<YearlyBudgetSummaryDialogController> yearlyBudgetController;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

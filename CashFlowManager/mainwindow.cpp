@@ -1,6 +1,6 @@
-#include "mainwindowcontroller.h"
 #include "currencyutilities.h"
 #include "mainwindow.h"
+#include "mainwindowcontroller.h"
 #include "systemdatasource.h"
 #include "ui_mainwindow.h"
 
@@ -20,7 +20,10 @@ MainWindow::MainWindow(QWidget *parent)
     expenseTableModel.setExpenseTypes(sds->getExpenseTypes());
     investmentTableModel.setInvestmentTypes(sds->getInvestmentTypes());
 
-    loadBudgetBreakdown();
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
+    connect(ui->actionYearly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
+
+    updateDisplayedInformation();
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +32,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::loadBudgetBreakdown()
+void MainWindow::onActionExitTriggered()
+{
+    close();
+}
+
+void MainWindow::onActionYearlyBudgetSummaryTriggered()
+{
+    mainWindowController->showYearlyBudgetSummaryDialog(this);
+}
+
+void MainWindow::updateDisplayedInformation()
 {
     configureBudgetStatusBarChart();
     configureBreakdownPieChart();
@@ -69,7 +82,6 @@ void MainWindow::configureBudgetStatusBarChart()
     barChart->setBackgroundVisible(false);
     barChart->legend()->setVisible(false);
     barChart->setMargins(QMargins(0,0,0,0));
-
 
     ui->graphicsViewExpenseBarChart->setChart(barChart);
 }

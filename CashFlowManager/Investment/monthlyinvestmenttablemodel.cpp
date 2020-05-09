@@ -1,12 +1,12 @@
 #include "currencyutilities.h"
 #include "dateutilities.h"
 #include "investmentinterface.h"
-#include "investmenttablemodel.h"
+#include "monthlyinvestmenttablemodel.h"
 #include "investmenttype.h"
 #include <QBrush>
 #include <QColor>
 
-InvestmentTableModel::InvestmentTableModel(InvestmentInterface& localInvestmentInterface, std::pair<QDate, QDate> dates)
+MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& localInvestmentInterface, std::pair<QDate, QDate> dates)
 :
     investmentInterface(localInvestmentInterface),
     numColumns(4),
@@ -16,17 +16,17 @@ InvestmentTableModel::InvestmentTableModel(InvestmentInterface& localInvestmentI
 
 }
 
-int InvestmentTableModel::rowCount(const QModelIndex&) const
+int MonthlyInvestmentTableModel::rowCount(const QModelIndex&) const
 {
     return static_cast<int>(investmentTypes.size());
 }
 
-int InvestmentTableModel::columnCount(const QModelIndex&) const
+int MonthlyInvestmentTableModel::columnCount(const QModelIndex&) const
 {
     return numColumns;
 }
 
-QVariant InvestmentTableModel::data(const QModelIndex& index, int role) const
+QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) const
 {
     if(role == Qt::DisplayRole)
     {
@@ -102,7 +102,7 @@ QVariant InvestmentTableModel::data(const QModelIndex& index, int role) const
     return {};
 }
 
-QVariant InvestmentTableModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant MonthlyInvestmentTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(role == Qt::DisplayRole)
     {
@@ -129,7 +129,7 @@ QVariant InvestmentTableModel::headerData(int section, Qt::Orientation orientati
     return {};
 }
 
-void InvestmentTableModel::setInvestmentTypes(const std::vector<InvestmentType*>& localInvestmentTypes)
+void MonthlyInvestmentTableModel::setInvestmentTypes(const std::vector<InvestmentType*>& localInvestmentTypes)
 {
     investmentTypes = localInvestmentTypes;
 }

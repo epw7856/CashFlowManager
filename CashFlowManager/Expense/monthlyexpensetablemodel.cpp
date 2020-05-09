@@ -1,12 +1,12 @@
 #include "currencyutilities.h"
 #include "dateutilities.h"
 #include "expenseinterface.h"
-#include "expensetablemodel.h"
+#include "monthlyexpensetablemodel.h"
 #include "expensetype.h"
 #include <QBrush>
 #include <QColor>
 
-ExpenseTableModel::ExpenseTableModel(ExpenseInterface& localExpenseInterface, std::pair<QDate, QDate> dates)
+MonthlyExpenseTableModel::MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface, std::pair<QDate, QDate> dates)
 :
     expenseInterface(localExpenseInterface),
     numColumns(4),
@@ -16,17 +16,17 @@ ExpenseTableModel::ExpenseTableModel(ExpenseInterface& localExpenseInterface, st
 
 }
 
-int ExpenseTableModel::rowCount(const QModelIndex&) const
+int MonthlyExpenseTableModel::rowCount(const QModelIndex&) const
 {
     return static_cast<int>(expenseTypes.size());
 }
 
-int ExpenseTableModel::columnCount(const QModelIndex&) const
+int MonthlyExpenseTableModel::columnCount(const QModelIndex&) const
 {
     return numColumns;
 }
 
-QVariant ExpenseTableModel::data(const QModelIndex& index, int role) const
+QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) const
 {
     if(role == Qt::DisplayRole)
     {
@@ -97,7 +97,7 @@ QVariant ExpenseTableModel::data(const QModelIndex& index, int role) const
     return {};
 }
 
-QVariant ExpenseTableModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant MonthlyExpenseTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(role == Qt::DisplayRole)
     {
@@ -124,7 +124,7 @@ QVariant ExpenseTableModel::headerData(int section, Qt::Orientation orientation,
     return {};
 }
 
-void ExpenseTableModel::setExpenseTypes(const std::vector<ExpenseType*>& localExpenseTypes)
+void MonthlyExpenseTableModel::setExpenseTypes(const std::vector<ExpenseType*>& localExpenseTypes)
 {
     expenseTypes = localExpenseTypes;
 }
