@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
+    connect(ui->actionMonthly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionMonthlyBudgetSummaryTriggered);
 
     updateDisplayedInformation();
 }
@@ -40,6 +41,11 @@ void MainWindow::onActionExitTriggered()
 void MainWindow::onActionYearlyBudgetSummaryTriggered()
 {
     mainWindowController->showYearlyBudgetSummaryDialog(this);
+}
+
+void MainWindow::onActionMonthlyBudgetSummaryTriggered()
+{
+    mainWindowController->showMonthlyBudgetSummaryDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()

@@ -124,3 +124,8 @@ void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
     yearlyBudgetDialog->raise();
     yearlyBudgetDialog->activateWindow();
 }
+
+void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget *parent)
+{
+
+}

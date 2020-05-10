@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+//class MonthlyBudgetSummaryDialog;
 class YearlyBudgetSummaryDialog;
 class QDate;
 class SystemDataSource;
@@ -37,11 +38,13 @@ public:
 
     // Supporting functions for Main Window auxilary actions
     void showYearlyBudgetSummaryDialog(QWidget* parent);
+    void showMonthlyBudgetSummaryDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
 
     std::unique_ptr<YearlyBudgetSummaryDialog> yearlyBudgetDialog;
+    //std::unique_ptr<MonthlyBudgetSummaryDialog> monthlyBudgetDialog;
 };
 
 #endif // MAINWINDOWCONTROLLER_H
