@@ -7,7 +7,6 @@
 #include <vector>
 
 class YearlyBudgetSummaryDialog;
-class YearlyBudgetSummaryDialogController;
 class QDate;
 class SystemDataSource;
 
@@ -43,7 +42,6 @@ private:
     SystemDataSource& sds;
 
     std::unique_ptr<YearlyBudgetSummaryDialog> yearlyBudgetDialog;
-    std::unique_ptr<YearlyBudgetSummaryDialogController> yearlyBudgetController;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

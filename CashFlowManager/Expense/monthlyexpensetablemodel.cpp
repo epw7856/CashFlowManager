@@ -124,7 +124,7 @@ QVariant MonthlyExpenseTableModel::headerData(int section, Qt::Orientation orien
     return {};
 }
 
-void MonthlyExpenseTableModel::setExpenseTypes(const std::vector<ExpenseType*>& localExpenseTypes)
+void MonthlyExpenseTableModel::setExpenseTypes()
 {
-    expenseTypes = localExpenseTypes;
+    expenseTypes = expenseInterface.getExpenseTypes();
 }

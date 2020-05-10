@@ -54,8 +54,7 @@ SOURCES += \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
         systemdatasource.cpp \
-        yearlybudgetsummarydialog.cpp \
-        yearlybudgetsummarydialogcontroller.cpp
+        yearlybudgetsummarydialog.cpp
 
 HEADERS += \
         Asset/assetentry.h \
@@ -84,8 +83,7 @@ HEADERS += \
         mainwindowcontroller.h \
         systemdatasource.h \
         transactioncomparison.h \
-        yearlybudgetsummarydialog.h \
-        yearlybudgetsummarydialogcontroller.h
+        yearlybudgetsummarydialog.h
 
 FORMS += \
         mainwindow.ui \

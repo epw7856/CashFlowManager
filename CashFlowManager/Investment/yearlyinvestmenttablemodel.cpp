@@ -93,7 +93,7 @@ QVariant YearlyInvestmentTableModel::headerData(int section, Qt::Orientation ori
     return {};
 }
 
-void YearlyInvestmentTableModel::setInvestmentTypes(const std::vector<InvestmentType*>& localInvestmentTypes)
+void YearlyInvestmentTableModel::setInvestmentTypes()
 {
-    investmentTypes = localInvestmentTypes;
+    investmentTypes = investmentInterface.getInvestmentTypes();
 }

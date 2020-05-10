@@ -5,7 +5,6 @@
 #include "mainwindowcontroller.h"
 #include "systemdatasource.h"
 #include "yearlybudgetsummarydialog.h"
-#include "yearlybudgetsummarydialogcontroller.h"
 
 MainWindowController::MainWindowController(SystemDataSource& localSds) : sds(localSds) {}
 
@@ -118,7 +117,7 @@ void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
 {
     if(yearlyBudgetDialog == nullptr)
     {
-        yearlyBudgetDialog = std::make_unique<YearlyBudgetSummaryDialog>(parent);
+        yearlyBudgetDialog = std::make_unique<YearlyBudgetSummaryDialog>(sds, sds, parent);
     }
 
     yearlyBudgetDialog->show();

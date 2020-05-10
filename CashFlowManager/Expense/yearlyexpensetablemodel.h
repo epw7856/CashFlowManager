@@ -17,7 +17,7 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-    void setExpenseTypes(const std::vector<ExpenseType*>& localExpenseTypes);
+    void setExpenseTypes();
 
 private:
     ExpenseInterface& expenseInterface;

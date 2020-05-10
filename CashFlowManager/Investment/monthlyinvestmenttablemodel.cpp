@@ -129,7 +129,7 @@ QVariant MonthlyInvestmentTableModel::headerData(int section, Qt::Orientation or
     return {};
 }
 
-void MonthlyInvestmentTableModel::setInvestmentTypes(const std::vector<InvestmentType*>& localInvestmentTypes)
+void MonthlyInvestmentTableModel::setInvestmentTypes()
 {
-    investmentTypes = localInvestmentTypes;
+    investmentTypes = investmentInterface.getInvestmentTypes();
 }

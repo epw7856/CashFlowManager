@@ -17,8 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
     ui->verticalLayout_10->setAlignment(Qt::AlignTop);
     ui->verticalLayout_11->setAlignment(Qt::AlignTop);
-    expenseTableModel.setExpenseTypes(sds->getExpenseTypes());
-    investmentTableModel.setInvestmentTypes(sds->getInvestmentTypes());
+    expenseTableModel.setExpenseTypes();
+    investmentTableModel.setInvestmentTypes();
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
@@ -141,7 +141,6 @@ void MainWindow::configureExpenseTableView()
 
     // Resize columns to be uniform
     int maxColumnWidth = 0;
-    ui->tableViewMonthlyExpenses->resizeRowsToContents();
     for(int i = 1; i < expenseTableModel.columnCount(); ++i)
     {
         ui->tableViewMonthlyExpenses->resizeColumnToContents(i);
@@ -158,6 +157,7 @@ void MainWindow::configureExpenseTableView()
 
     // Set TableView height
     int tableHeight = 0;
+    ui->tableViewMonthlyExpenses->resizeRowsToContents();
     for(int i = 0; i < expenseTableModel.rowCount(); ++i)
     {
         tableHeight += ui->tableViewMonthlyExpenses->rowHeight(i);
