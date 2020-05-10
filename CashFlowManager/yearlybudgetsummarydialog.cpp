@@ -18,6 +18,7 @@ YearlyBudgetSummaryDialog::YearlyBudgetSummaryDialog
     investmentTableModel(localInvestmentInterface)
 {
     ui->setupUi(this);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::fromStdString(DateUtilities::getCurrentYear())).arg(" Yearly Budget Summary"));
     ui->verticalLayout_3->setAlignment(Qt::AlignTop);
     ui->verticalLayout_4->setAlignment(Qt::AlignTop);
