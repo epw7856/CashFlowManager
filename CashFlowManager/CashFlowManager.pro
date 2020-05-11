@@ -53,6 +53,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
+        monthlybudgetsummarydialog.cpp \
         systemdatasource.cpp \
         yearlybudgetsummarydialog.cpp
 
@@ -81,12 +82,14 @@ HEADERS += \
         dateutilities.h \
         mainwindow.h \
         mainwindowcontroller.h \
+        monthlybudgetsummarydialog.h \
         systemdatasource.h \
         transactioncomparison.h \
         yearlybudgetsummarydialog.h
 
 FORMS += \
         mainwindow.ui \
+        monthlybudgetsummarydialog.ui \
         yearlybudgetsummarydialog.ui
 
 # Default rules for deployment.
