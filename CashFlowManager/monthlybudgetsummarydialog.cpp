@@ -6,6 +6,8 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog(QWidget *parent) :
     ui(new Ui::MonthlyBudgetSummaryDialog)
 {
     ui->setupUi(this);
+    showMaximized();
+    setWindowFlag(Qt::Window);
 }
 
 MonthlyBudgetSummaryDialog::~MonthlyBudgetSummaryDialog()

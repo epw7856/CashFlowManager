@@ -79,7 +79,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
-              <widget class="QTableView" name="tableView"/>
+              <widget class="QTableView" name="tableViewJanuaryExpenses"/>
              </item>
              <item>
               <spacer name="verticalSpacer">
@@ -95,7 +95,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableView_2"/>
+              <widget class="QTableView" name="tableViewJanuaryInvestments"/>
              </item>
             </layout>
            </item>
@@ -115,7 +115,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QTableView" name="tableView_3"/>
+              <widget class="QTableView" name="tableViewFebruaryExpenses"/>
              </item>
              <item>
               <spacer name="verticalSpacer_2">
@@ -131,7 +131,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableView_4"/>
+              <widget class="QTableView" name="tableViewFebruaryInvestments"/>
              </item>
             </layout>
            </item>
@@ -151,7 +151,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
-              <widget class="QTableView" name="tableView_5"/>
+              <widget class="QTableView" name="tableViewMarchExpenses"/>
              </item>
              <item>
               <spacer name="verticalSpacer_3">
@@ -167,7 +167,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableView_6"/>
+              <widget class="QTableView" name="tableViewMarchInvestments"/>
              </item>
             </layout>
            </item>
@@ -187,7 +187,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <widget class="QTableView" name="tableView_7"/>
+              <widget class="QTableView" name="tableViewAprilExpenses"/>
              </item>
              <item>
               <spacer name="verticalSpacer_4">
@@ -203,7 +203,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableView_8"/>
+              <widget class="QTableView" name="tableViewAprilInvestments"/>
              </item>
             </layout>
            </item>
