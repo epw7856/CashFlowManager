@@ -3,6 +3,7 @@
 #include "expensetype.h"
 #include "investmenttype.h"
 #include "mainwindowcontroller.h"
+#include "monthlybudgetsummarydialog.h"
 #include "systemdatasource.h"
 #include "yearlybudgetsummarydialog.h"
 
@@ -127,5 +128,12 @@ void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
 
 void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget *parent)
 {
+    if(monthlyBudgetDialog == nullptr)
+    {
+        monthlyBudgetDialog = std::make_unique<MonthlyBudgetSummaryDialog>(sds, sds, parent);
+    }
 
+    monthlyBudgetDialog->show();
+    monthlyBudgetDialog->raise();
+    monthlyBudgetDialog->activateWindow();
 }

@@ -1,4 +1,5 @@
 #include "currencyutilities.h"
+#include "dateutilities.h"
 #include "mainwindow.h"
 #include "mainwindowcontroller.h"
 #include "systemdatasource.h"
@@ -10,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui(new Ui::MainWindow),
     sds(std::make_unique<SystemDataSource>("../SystemConfiguration.json")),
     mainWindowController(std::make_unique<MainWindowController>(*sds)),
-    expenseTableModel(*sds),
-    investmentTableModel(*sds)
+    expenseTableModel(*sds, DateUtilities::getCurrentMonthDates()),
+    investmentTableModel(*sds, DateUtilities::getCurrentMonthDates())
 {
     ui->setupUi(this);
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
