@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1041</width>
-    <height>521</height>
+    <height>786</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,23 +70,10 @@
           <x>0</x>
           <y>0</y>
           <width>1019</width>
-          <height>445</height>
+          <height>710</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <spacer name="verticalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
+        <layout class="QVBoxLayout" name="verticalLayout_11">
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
@@ -194,7 +181,28 @@
               </widget>
              </item>
              <item>
-              <widget class="QTableView" name="tableViewFebruaryExpenses"/>
+              <widget class="QTableView" name="tableViewFebruaryExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>36</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>21</number>
+               </attribute>
+              </widget>
              </item>
              <item>
               <spacer name="verticalSpacer_2">
@@ -213,7 +221,28 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableViewFebruaryInvestments"/>
+              <widget class="QTableView" name="tableViewFebruaryInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>26</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>21</number>
+               </attribute>
+              </widget>
              </item>
             </layout>
            </item>
@@ -243,7 +272,28 @@
               </widget>
              </item>
              <item>
-              <widget class="QTableView" name="tableViewMarchExpenses"/>
+              <widget class="QTableView" name="tableViewMarchExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>36</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>21</number>
+               </attribute>
+              </widget>
              </item>
              <item>
               <spacer name="verticalSpacer_3">
@@ -262,7 +312,28 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableViewMarchInvestments"/>
+              <widget class="QTableView" name="tableViewMarchInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>36</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>21</number>
+               </attribute>
+              </widget>
              </item>
             </layout>
            </item>
@@ -292,7 +363,28 @@
               </widget>
              </item>
              <item>
-              <widget class="QTableView" name="tableViewAprilExpenses"/>
+              <widget class="QTableView" name="tableViewAprilExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>36</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>21</number>
+               </attribute>
+              </widget>
              </item>
              <item>
               <spacer name="verticalSpacer_4">
@@ -311,7 +403,28 @@
               </spacer>
              </item>
              <item>
-              <widget class="QTableView" name="tableViewAprilInvestments"/>
+              <widget class="QTableView" name="tableViewAprilInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>36</number>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>21</number>
+               </attribute>
+              </widget>
              </item>
             </layout>
            </item>
@@ -331,17 +444,382 @@
           </layout>
          </item>
          <item>
-          <spacer name="verticalSpacer_6">
+          <spacer name="verticalSpacer_5">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>40</height>
+             <height>10</height>
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="Line" name="line">
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>10</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_5">
+               <property name="text">
+                <string>May</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewMayExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewMayInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>June</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewJuneExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewJuneInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>July</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewJulyExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewJulyInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>August</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewAugustExpenses">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QTableView" name="tableViewAugustInvestments">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>105</number>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>

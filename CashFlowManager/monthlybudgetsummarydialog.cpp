@@ -15,7 +15,21 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     QDialog(parent),
     ui(new Ui::MonthlyBudgetSummaryDialog),
     januaryExpenseTableModel(localExpenseInterface, 1, true),
+    februaryExpenseTableModel(localExpenseInterface, 2, true),
+    marchExpenseTableModel(localExpenseInterface, 3, true),
+    aprilExpenseTableModel(localExpenseInterface, 4, true),
+    mayExpenseTableModel(localExpenseInterface, 5, true),
+    juneExpenseTableModel(localExpenseInterface, 6, true),
+    julyExpenseTableModel(localExpenseInterface, 7, true),
+    augustExpenseTableModel(localExpenseInterface, 8, true),
     januaryInvestmentTableModel(localInvestmentInterface, 1, true),
+    februaryInvestmentTableModel(localInvestmentInterface, 2, true),
+    marchInvestmentTableModel(localInvestmentInterface, 3, true),
+    aprilInvestmentTableModel(localInvestmentInterface, 4, true),
+    mayInvestmentTableModel(localInvestmentInterface, 5, true),
+    juneInvestmentTableModel(localInvestmentInterface, 6, true),
+    julyInvestmentTableModel(localInvestmentInterface, 7, true),
+    augustInvestmentTableModel(localInvestmentInterface, 8, true),
     maxColumnWidth(0),
     tableWidth(0),
     expenseTableHeight(0),
@@ -30,7 +44,22 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     setTableData();
 
     configureTable(ui->tableViewJanuaryExpenses, januaryExpenseTableModel, true);
+    configureTable(ui->tableViewFebruaryExpenses, februaryExpenseTableModel, true);
+    configureTable(ui->tableViewMarchExpenses, marchExpenseTableModel, true);
+    configureTable(ui->tableViewAprilExpenses, aprilExpenseTableModel, true);
+    configureTable(ui->tableViewMayExpenses, mayExpenseTableModel, true);
+    configureTable(ui->tableViewJuneExpenses, juneExpenseTableModel, true);
+    configureTable(ui->tableViewJulyExpenses, julyExpenseTableModel, true);
+    configureTable(ui->tableViewAugustExpenses, augustExpenseTableModel, true);
+
     configureTable(ui->tableViewJanuaryInvestments, januaryInvestmentTableModel, false);
+    configureTable(ui->tableViewFebruaryInvestments, februaryInvestmentTableModel, false);
+    configureTable(ui->tableViewMarchInvestments, marchInvestmentTableModel, false);
+    configureTable(ui->tableViewAprilInvestments, aprilInvestmentTableModel, false);
+    configureTable(ui->tableViewMayInvestments, mayInvestmentTableModel, false);
+    configureTable(ui->tableViewJuneInvestments, juneInvestmentTableModel, false);
+    configureTable(ui->tableViewJulyInvestments, julyInvestmentTableModel, false);
+    configureTable(ui->tableViewAugustInvestments, augustInvestmentTableModel, false);
 }
 
 MonthlyBudgetSummaryDialog::~MonthlyBudgetSummaryDialog()
@@ -41,7 +70,22 @@ MonthlyBudgetSummaryDialog::~MonthlyBudgetSummaryDialog()
 void MonthlyBudgetSummaryDialog::setTableData()
 {
     januaryExpenseTableModel.setExpenseTypes();
+    februaryExpenseTableModel.setExpenseTypes();
+    marchExpenseTableModel.setExpenseTypes();
+    aprilExpenseTableModel.setExpenseTypes();
+    mayExpenseTableModel.setExpenseTypes();
+    juneExpenseTableModel.setExpenseTypes();
+    julyExpenseTableModel.setExpenseTypes();
+    augustExpenseTableModel.setExpenseTypes();
+
     januaryInvestmentTableModel.setInvestmentTypes();
+    februaryInvestmentTableModel.setInvestmentTypes();
+    marchInvestmentTableModel.setInvestmentTypes();
+    aprilInvestmentTableModel.setInvestmentTypes();
+    mayInvestmentTableModel.setInvestmentTypes();
+    juneInvestmentTableModel.setInvestmentTypes();
+    julyInvestmentTableModel.setInvestmentTypes();
+    augustInvestmentTableModel.setInvestmentTypes();
 }
 
 void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable)
@@ -91,9 +135,9 @@ void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstract
     tableView->setColumnWidth(3, maxColumnWidth);
 
     // Set TableView height
+    tableView->resizeRowsToContents();
     if(isExpenseTable && (expenseTableHeight <= 0))
     {
-        tableView->resizeRowsToContents();
         for(int i = 0; i < januaryExpenseTableModel.rowCount(); ++i)
         {
             expenseTableHeight += tableView->rowHeight(i);
@@ -104,7 +148,6 @@ void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstract
 
     if(!isExpenseTable && (investmentTableHeight <= 0))
     {
-        tableView->resizeRowsToContents();
         for(int i = 0; i < januaryInvestmentTableModel.rowCount(); ++i)
         {
             investmentTableHeight += tableView->rowHeight(i);

@@ -23,8 +23,25 @@ public:
 
 private:
     Ui::MonthlyBudgetSummaryDialog *ui;
+
     MonthlyExpenseTableModel januaryExpenseTableModel;
+    MonthlyExpenseTableModel februaryExpenseTableModel;
+    MonthlyExpenseTableModel marchExpenseTableModel;
+    MonthlyExpenseTableModel aprilExpenseTableModel;
+    MonthlyExpenseTableModel mayExpenseTableModel;
+    MonthlyExpenseTableModel juneExpenseTableModel;
+    MonthlyExpenseTableModel julyExpenseTableModel;
+    MonthlyExpenseTableModel augustExpenseTableModel;
+
     MonthlyInvestmentTableModel januaryInvestmentTableModel;
+    MonthlyInvestmentTableModel februaryInvestmentTableModel;
+    MonthlyInvestmentTableModel marchInvestmentTableModel;
+    MonthlyInvestmentTableModel aprilInvestmentTableModel;
+    MonthlyInvestmentTableModel mayInvestmentTableModel;
+    MonthlyInvestmentTableModel juneInvestmentTableModel;
+    MonthlyInvestmentTableModel julyInvestmentTableModel;
+    MonthlyInvestmentTableModel augustInvestmentTableModel;
+
     int maxColumnWidth = 0;
     int tableWidth = 0;
     int expenseTableHeight = 0;
