@@ -32,6 +32,10 @@ private:
     MonthlyExpenseTableModel juneExpenseTableModel;
     MonthlyExpenseTableModel julyExpenseTableModel;
     MonthlyExpenseTableModel augustExpenseTableModel;
+    MonthlyExpenseTableModel septemberExpenseTableModel;
+    MonthlyExpenseTableModel octoberExpenseTableModel;
+    MonthlyExpenseTableModel novemberExpenseTableModel;
+    MonthlyExpenseTableModel decemberExpenseTableModel;
 
     MonthlyInvestmentTableModel januaryInvestmentTableModel;
     MonthlyInvestmentTableModel februaryInvestmentTableModel;
@@ -41,6 +45,10 @@ private:
     MonthlyInvestmentTableModel juneInvestmentTableModel;
     MonthlyInvestmentTableModel julyInvestmentTableModel;
     MonthlyInvestmentTableModel augustInvestmentTableModel;
+    MonthlyInvestmentTableModel septemberInvestmentTableModel;
+    MonthlyInvestmentTableModel octoberInvestmentTableModel;
+    MonthlyInvestmentTableModel novemberInvestmentTableModel;
+    MonthlyInvestmentTableModel decemberInvestmentTableModel;
 
     int maxColumnWidth = 0;
     int tableWidth = 0;

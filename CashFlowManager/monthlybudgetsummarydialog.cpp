@@ -22,6 +22,10 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     juneExpenseTableModel(localExpenseInterface, 6, true),
     julyExpenseTableModel(localExpenseInterface, 7, true),
     augustExpenseTableModel(localExpenseInterface, 8, true),
+    septemberExpenseTableModel(localExpenseInterface, 9, true),
+    octoberExpenseTableModel(localExpenseInterface, 10, true),
+    novemberExpenseTableModel(localExpenseInterface, 11, true),
+    decemberExpenseTableModel(localExpenseInterface, 12, true),
     januaryInvestmentTableModel(localInvestmentInterface, 1, true),
     februaryInvestmentTableModel(localInvestmentInterface, 2, true),
     marchInvestmentTableModel(localInvestmentInterface, 3, true),
@@ -30,6 +34,10 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     juneInvestmentTableModel(localInvestmentInterface, 6, true),
     julyInvestmentTableModel(localInvestmentInterface, 7, true),
     augustInvestmentTableModel(localInvestmentInterface, 8, true),
+    septemberInvestmentTableModel(localInvestmentInterface, 9, true),
+    octoberInvestmentTableModel(localInvestmentInterface, 10, true),
+    novemberInvestmentTableModel(localInvestmentInterface, 11, true),
+    decemberInvestmentTableModel(localInvestmentInterface, 12, true),
     maxColumnWidth(0),
     tableWidth(0),
     expenseTableHeight(0),
@@ -51,6 +59,10 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     configureTable(ui->tableViewJuneExpenses, juneExpenseTableModel, true);
     configureTable(ui->tableViewJulyExpenses, julyExpenseTableModel, true);
     configureTable(ui->tableViewAugustExpenses, augustExpenseTableModel, true);
+    configureTable(ui->tableViewSeptemberExpenses, septemberExpenseTableModel, true);
+    configureTable(ui->tableViewOctoberExpenses, octoberExpenseTableModel, true);
+    configureTable(ui->tableViewNovemberExpenses, novemberExpenseTableModel, true);
+    configureTable(ui->tableViewDecemberExpenses, decemberExpenseTableModel, true);
 
     configureTable(ui->tableViewJanuaryInvestments, januaryInvestmentTableModel, false);
     configureTable(ui->tableViewFebruaryInvestments, februaryInvestmentTableModel, false);
@@ -60,6 +72,10 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     configureTable(ui->tableViewJuneInvestments, juneInvestmentTableModel, false);
     configureTable(ui->tableViewJulyInvestments, julyInvestmentTableModel, false);
     configureTable(ui->tableViewAugustInvestments, augustInvestmentTableModel, false);
+    configureTable(ui->tableViewSeptemberInvestments, septemberInvestmentTableModel, false);
+    configureTable(ui->tableViewOctoberInvestments, octoberInvestmentTableModel, false);
+    configureTable(ui->tableViewNovemberInvestments, novemberInvestmentTableModel, false);
+    configureTable(ui->tableViewDecemberInvestments, decemberInvestmentTableModel, false);
 }
 
 MonthlyBudgetSummaryDialog::~MonthlyBudgetSummaryDialog()
@@ -77,6 +93,10 @@ void MonthlyBudgetSummaryDialog::setTableData()
     juneExpenseTableModel.setExpenseTypes();
     julyExpenseTableModel.setExpenseTypes();
     augustExpenseTableModel.setExpenseTypes();
+    septemberExpenseTableModel.setExpenseTypes();
+    octoberExpenseTableModel.setExpenseTypes();
+    novemberExpenseTableModel.setExpenseTypes();
+    decemberExpenseTableModel.setExpenseTypes();
 
     januaryInvestmentTableModel.setInvestmentTypes();
     februaryInvestmentTableModel.setInvestmentTypes();
@@ -86,6 +106,10 @@ void MonthlyBudgetSummaryDialog::setTableData()
     juneInvestmentTableModel.setInvestmentTypes();
     julyInvestmentTableModel.setInvestmentTypes();
     augustInvestmentTableModel.setInvestmentTypes();
+    septemberInvestmentTableModel.setInvestmentTypes();
+    octoberInvestmentTableModel.setInvestmentTypes();
+    novemberInvestmentTableModel.setInvestmentTypes();
+    decemberInvestmentTableModel.setInvestmentTypes();
 }
 
 void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable)
