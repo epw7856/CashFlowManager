@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui(new Ui::MainWindow),
     sds(std::make_unique<SystemDataSource>("../SystemConfiguration.json")),
     mainWindowController(std::make_unique<MainWindowController>(*sds)),
-    expenseTableModel(*sds, DateUtilities::getCurrentMonthDates()),
-    investmentTableModel(*sds, DateUtilities::getCurrentMonthDates())
+    expenseTableModel(*sds, QDate::currentDate().month(), false),
+    investmentTableModel(*sds, QDate::currentDate().month(), false)
 {
     ui->setupUi(this);
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);

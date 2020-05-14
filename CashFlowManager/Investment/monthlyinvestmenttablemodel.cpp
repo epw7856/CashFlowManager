@@ -5,20 +5,23 @@
 #include "investmenttype.h"
 #include <QBrush>
 #include <QColor>
+#include <QFont>
 
-MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& localInvestmentInterface, std::pair<QDate, QDate> dates)
+MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& localInvestmentInterface, int localMonth, bool total)
 :
     investmentInterface(localInvestmentInterface),
     numColumns(4),
-    startDatePeriod(dates.first),
-    endDatePeriod(dates.second)
+    appendTotalFlag(total),
+    month(localMonth)
 {
-
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    startDatePeriod = dates.first;
+    endDatePeriod = dates.second;
 }
 
 int MonthlyInvestmentTableModel::rowCount(const QModelIndex&) const
 {
-    return static_cast<int>(investmentTypes.size());
+    return (appendTotalFlag) ? static_cast<int>(investmentTypes.size())+1 : static_cast<int>(investmentTypes.size());
 }
 
 int MonthlyInvestmentTableModel::columnCount(const QModelIndex&) const
@@ -31,7 +34,10 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
     if(role == Qt::DisplayRole)
     {
         int numRows = rowCount(index);
-        if((index.row() < numRows) && (index.column() < numColumns))
+        int maxIndex = 0;
+        (appendTotalFlag) ? maxIndex = numRows-1 : maxIndex = numRows;
+
+        if((index.row() < maxIndex) && (index.column() < numColumns))
         {
             auto rowUint = static_cast<quint32>(index.row());
 
@@ -65,6 +71,35 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
                 return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
             }
         }
+
+        // Total Row
+        if(appendTotalFlag)
+        {
+            if((index.row() == maxIndex) && (index.column() < numColumns))
+            {
+                // Investment Type column
+                if(index.column() == 0)
+                {
+                    return "Total";
+                }
+                // Target column
+                else if(index.column() == 1)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTargetTotal()));
+                }
+                // Actual column
+                else if(index.column() == 2)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTotal(month)));
+                }
+                // Remaining column
+                else if(index.column() == 3)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTargetTotal() -
+                                                                                    investmentInterface.getMonthlyInvestmentTotal(month)));
+                }
+            }
+        }
     }
 
     if(role == Qt::TextAlignmentRole)
@@ -86,17 +121,29 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
         {
             double target = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 1).data().toString().toStdString());
             double actual = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
-            double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
 
-            if((actual > 0) && (remaining == 0))
+            if((actual > 0) && (actual >= target))
             {
                 return QVariant(QBrush(QColor(Qt::green)));
             }
-            else if((actual > 0) && (target > 0) && (actual < target))
+            else if((actual == target) && (month < QDate::currentDate().month()))
+            {
+                return QVariant(QBrush(QColor(Qt::green)));
+            }
+            else if((actual >= 0) && (target > 0) && (actual < target) && (month < QDate::currentDate().month()))
             {
                 return QVariant(QBrush(QColor(Qt::red)));
             }
         }
+    }
+
+    if(appendTotalFlag &&
+       (role == Qt::FontRole) &&
+       (index.row() == rowCount(index)-1))
+    {
+        QFont font;
+        font.setBold(true);
+        return font;
     }
 
     return {};

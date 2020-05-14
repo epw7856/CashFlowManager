@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1031</width>
-    <height>698</height>
+    <height>770</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -550,7 +550,7 @@
            <number>20</number>
           </attribute>
           <attribute name="horizontalHeaderDefaultSectionSize">
-           <number>100</number>
+           <number>105</number>
           </attribute>
           <attribute name="horizontalHeaderHighlightSections">
            <bool>false</bool>
@@ -610,6 +610,9 @@
           </property>
           <attribute name="horizontalHeaderMinimumSectionSize">
            <number>20</number>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>105</number>
           </attribute>
           <attribute name="horizontalHeaderHighlightSections">
            <bool>false</bool>

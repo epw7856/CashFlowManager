@@ -32,12 +32,12 @@ public:
     void addExpenseType(const ExpenseType& type) override;
     void addExpenseTransactionByType(const std::string& expenseType, const ExpenseTransaction& transaction) override;
     void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
-    double getMonthlyExpenseTotal() const override;
-    double getMonthlyBudgetTotal() const override;
+    double getMonthlyExpenseTotal(int month) const override;
+    double getMonthlyBudgetTotal(int month) const override;
     double getYearlyExpenseTotal() const override;
     double getMonthlyExpenseTotalByType(const std::string& expenseType) const override;
     double getYearlyExpenseTotalByType(const std::string& expenseType) const override;
-    double getMonthlyBudgetByType(const std::string& expenseType) const override;
+    double getMonthlyBudgetByType(const std::string& expenseType, int month) const override;
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
@@ -45,10 +45,11 @@ public:
     double getInvestmentTransactionsTotalByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     void addInvestmentType(const InvestmentType& type) override;
     void addInvestmentTransactionByType(const std::string& investmentType, const InvestmentTransaction& transaction) override;
-    double getMonthlyInvestmentTotal() const override;
+    double getMonthlyInvestmentTotal(int month) const override;
     double getYearlyInvestmentTotal() const override;
     double getMonthlyInvestmentTotalByType(const std::string& investmentType) const override;
     double getYearlyInvestmentTotalByType(const std::string& investmentType) const override;
+    double getMonthlyInvestmentTargetTotal() const override;
 
     // Income Interface
     std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
@@ -58,7 +59,7 @@ public:
     double getSupplementalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     void addSalaryPayment(const SalaryIncome& payment) override;
     void addSupplementalPayment(const SupplementalIncome& payment) override;
-    double getMonthlyIncomeTotal() const override;
+    double getMonthlyIncomeTotal(int month) const override;
     double getYearlyIncomeTotal() const override;
 
     // Asset Interface

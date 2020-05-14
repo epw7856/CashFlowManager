@@ -201,10 +201,10 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
     obj["AutomaticMonthlyPayments"] = array;
 }
 
-double SystemDataSource::getMonthlyExpenseTotal() const
+double SystemDataSource::getMonthlyExpenseTotal(int month) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
     for(const auto& i : expenseTypes)
     {
         total += getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
@@ -212,12 +212,12 @@ double SystemDataSource::getMonthlyExpenseTotal() const
     return total;
 }
 
-double SystemDataSource::getMonthlyBudgetTotal() const
+double SystemDataSource::getMonthlyBudgetTotal(int month) const
 {
     double total = 0.0;
     for(const auto& i : expenseTypes)
     {
-        total += getMonthlyBudgetByType(i->getName());
+        total += getMonthlyBudgetByType(i->getName(), month);
     }
     return total;
 }
@@ -245,7 +245,7 @@ double SystemDataSource::getYearlyExpenseTotalByType(const std::string &expenseT
     return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
 }
 
-double SystemDataSource::getMonthlyBudgetByType(const std::string& expenseType) const
+double SystemDataSource::getMonthlyBudgetByType(const std::string& expenseType, int month) const
 {
     auto itr = findMatchingType(expenseTypes, expenseType);
 
@@ -253,7 +253,7 @@ double SystemDataSource::getMonthlyBudgetByType(const std::string& expenseType) 
     {
         if(itr->get()->getVariableExpenseFlag())
         {
-            std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+            std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
             return getExpenseTransactionsTotalByTimePeriod(itr->get()->getName(), dates.first, dates.second);
         }
         else
@@ -350,10 +350,10 @@ void SystemDataSource::addInvestmentTransactionByType(const std::string& investm
     }
 }
 
-double SystemDataSource::getMonthlyInvestmentTotal() const
+double SystemDataSource::getMonthlyInvestmentTotal(int month) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
     for(const auto& i : investmentTypes)
     {
         total += getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
@@ -382,6 +382,16 @@ double SystemDataSource::getYearlyInvestmentTotalByType(const std::string& inves
 {
     std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
     return getInvestmentTransactionsTotalByTimePeriod(investmentType, dates.first, dates.second);
+}
+
+double SystemDataSource::getMonthlyInvestmentTargetTotal() const
+{
+    double total = 0.0;
+    for(const auto& i : investmentTypes)
+    {
+        total += i.get()->getMonthlyTarget();
+    }
+    return total;
 }
 
 std::multiset<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const
@@ -440,9 +450,9 @@ void SystemDataSource::addSupplementalPayment(const SupplementalIncome& payment)
     obj["SupplementalIncome"] = array;
 }
 
-double SystemDataSource::getMonthlyIncomeTotal() const
+double SystemDataSource::getMonthlyIncomeTotal(int month) const
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
     return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }
 

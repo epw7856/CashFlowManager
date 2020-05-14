@@ -25,9 +25,13 @@ private:
     Ui::MonthlyBudgetSummaryDialog *ui;
     MonthlyExpenseTableModel januaryExpenseTableModel;
     MonthlyInvestmentTableModel januaryInvestmentTableModel;
+    int maxColumnWidth = 0;
+    int tableWidth = 0;
+    int expenseTableHeight = 0;
+    int investmentTableHeight = 0;
 
-    void configureTable(QTableView* tableView, QAbstractTableModel& tableModel);
-    void configureJanuaryTables();
+    void setTableData();
+    void configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable);
 };
 
 #endif // MONTHLYBUDGETSUMMARYDIALOG_H

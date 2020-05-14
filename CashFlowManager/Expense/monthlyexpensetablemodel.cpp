@@ -2,23 +2,27 @@
 #include "dateutilities.h"
 #include "expenseinterface.h"
 #include "monthlyexpensetablemodel.h"
+#include "expensetransaction.h"
 #include "expensetype.h"
 #include <QBrush>
 #include <QColor>
+#include <QFont>
 
-MonthlyExpenseTableModel::MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface, std::pair<QDate, QDate> dates)
+MonthlyExpenseTableModel::MonthlyExpenseTableModel(ExpenseInterface& localExpenseInterface, int localMonth, bool total)
 :
     expenseInterface(localExpenseInterface),
     numColumns(4),
-    startDatePeriod(dates.first),
-    endDatePeriod(dates.second)
+    appendTotalFlag(total),
+    month(localMonth)
 {
-
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    startDatePeriod = dates.first;
+    endDatePeriod = dates.second;
 }
 
 int MonthlyExpenseTableModel::rowCount(const QModelIndex&) const
 {
-    return static_cast<int>(expenseTypes.size());
+    return (appendTotalFlag) ? static_cast<int>(expenseTypes.size())+1 : static_cast<int>(expenseTypes.size());
 }
 
 int MonthlyExpenseTableModel::columnCount(const QModelIndex&) const
@@ -31,7 +35,10 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
     if(role == Qt::DisplayRole)
     {
         int numRows = rowCount(index);
-        if((index.row() < numRows) && (index.column() < numColumns))
+        int maxIndex = 0;
+        (appendTotalFlag) ? maxIndex = numRows-1 : maxIndex = numRows;
+
+        if((index.row() < maxIndex) && (index.column() < numColumns))
         {
             auto rowUint = static_cast<quint32>(index.row());
 
@@ -43,7 +50,7 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
             // Budget column
             else if(index.column() == 1)
             {
-                return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseTypes[rowUint]->getName())));
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseTypes[rowUint]->getName(), month)));
             }
             // Actual column
             else if(index.column() == 2)
@@ -55,10 +62,38 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
             // Remaining column
             else if(index.column() == 3)
             {
-                double remaining = expenseInterface.getMonthlyBudgetByType(expenseTypes[rowUint]->getName()) - expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(),
-                                                                                                                                        startDatePeriod,
-                                                                                                                                        endDatePeriod);
+                double remaining = expenseInterface.getMonthlyBudgetByType(expenseTypes[rowUint]->getName(), month) -
+                                   expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(), startDatePeriod, endDatePeriod);
                 return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
+            }
+        }
+
+        // Total Row
+        if(appendTotalFlag)
+        {
+            if((index.row() == maxIndex) && (index.column() < numColumns))
+            {
+                // Expense Type column
+                if(index.column() == 0)
+                {
+                    return "Total";
+                }
+                // Budget column
+                else if(index.column() == 1)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetTotal(month)));
+                }
+                // Actual column
+                else if(index.column() == 2)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenseTotal(month)));
+                }
+                // Remaining column
+                else if(index.column() == 3)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetTotal(month) -
+                                                                                    expenseInterface.getMonthlyExpenseTotal(month)));
+                }
             }
         }
     }
@@ -87,11 +122,24 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
             {
                 return QVariant(QBrush(QColor(Qt::green)));
             }
+            else if((actual > 0) && (remaining >= 0) && (month < QDate::currentDate().month()))
+            {
+                return QVariant(QBrush(QColor(Qt::green)));
+            }
             else if((actual > 0) && (remaining < 0))
             {
                 return QVariant(QBrush(QColor(Qt::red)));
             }
         }
+    }
+
+    if(appendTotalFlag &&
+       (role == Qt::FontRole) &&
+       (index.row() == rowCount(index)-1))
+    {
+        QFont font;
+        font.setBold(true);
+        return font;
     }
 
     return {};
