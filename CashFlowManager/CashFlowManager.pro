@@ -38,6 +38,7 @@ SOURCES += \
         Expense/automaticmonthlypayment.cpp \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
+        Expense/expensetypetablemodel.cpp \
         Expense/monthlyexpensetablemodel.cpp \
         Expense/yearlyexpensetablemodel.cpp \
         Income/salaryincome.cpp \
@@ -65,6 +66,7 @@ HEADERS += \
         Expense/expenseinterface.h \
         Expense/expensetransaction.h \
         Expense/expensetype.h \
+        Expense/expensetypetablemodel.h \
         Expense/monthlyexpensetablemodel.h \
         Expense/yearlyexpensetablemodel.h \
         Income/incomeinterface.h \
