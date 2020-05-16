@@ -1,6 +1,7 @@
 #include "currencyutilities.h"
 #include "dateutilities.h"
 #include "expensetype.h"
+#include "expensetypesummarydialog.h"
 #include "investmenttype.h"
 #include "mainwindowcontroller.h"
 #include "monthlybudgetsummarydialog.h"
@@ -126,7 +127,7 @@ void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
     yearlyBudgetDialog->activateWindow();
 }
 
-void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget *parent)
+void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget* parent)
 {
     if(monthlyBudgetDialog == nullptr)
     {
@@ -136,4 +137,28 @@ void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget *parent)
     monthlyBudgetDialog->show();
     monthlyBudgetDialog->raise();
     monthlyBudgetDialog->activateWindow();
+}
+
+void MainWindowController::showFoodExpensesDialog(QWidget* parent)
+{
+    if(foodExpensesDialog == nullptr)
+    {
+        foodExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, parent);
+    }
+
+    foodExpensesDialog->show();
+    foodExpensesDialog->raise();
+    foodExpensesDialog->activateWindow();
+}
+
+void MainWindowController::showMiscExpensesDialog(QWidget* parent)
+{
+    if(miscExpensesDialog == nullptr)
+    {
+        miscExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, parent);
+    }
+
+    miscExpensesDialog->show();
+    miscExpensesDialog->raise();
+    miscExpensesDialog->activateWindow();
 }

@@ -6,10 +6,11 @@
 #include <string>
 #include <vector>
 
+class ExpenseTypeSummaryDialog;
 class MonthlyBudgetSummaryDialog;
-class YearlyBudgetSummaryDialog;
 class QDate;
 class SystemDataSource;
+class YearlyBudgetSummaryDialog;
 
 class MainWindowController : public QObject
 {
@@ -39,12 +40,16 @@ public:
     // Supporting functions for Main Window auxilary actions
     void showYearlyBudgetSummaryDialog(QWidget* parent);
     void showMonthlyBudgetSummaryDialog(QWidget* parent);
+    void showFoodExpensesDialog(QWidget* parent);
+    void showMiscExpensesDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
 
     std::unique_ptr<YearlyBudgetSummaryDialog> yearlyBudgetDialog;
     std::unique_ptr<MonthlyBudgetSummaryDialog> monthlyBudgetDialog;
+    std::unique_ptr<ExpenseTypeSummaryDialog> foodExpensesDialog;
+    std::unique_ptr<ExpenseTypeSummaryDialog> miscExpensesDialog;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

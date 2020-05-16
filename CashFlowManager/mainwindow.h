@@ -25,6 +25,8 @@ public slots:
     void onActionExitTriggered();
     void onActionYearlyBudgetSummaryTriggered();
     void onActionMonthlyBudgetSummaryTriggered();
+    void onActionFoodExpensesTriggered();
+    void onActionMiscExpensesTriggered();
 
 private:
     Ui::MainWindow *ui;

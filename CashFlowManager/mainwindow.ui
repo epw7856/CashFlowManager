@@ -698,6 +698,10 @@
     </property>
     <addaction name="actionYearly_Budget_Summary"/>
     <addaction name="actionMonthly_Budget_Summary"/>
+    <addaction name="separator"/>
+    <addaction name="actionFood_Expenses"/>
+    <addaction name="actionMisc_Expenses"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuModify">
     <property name="title">
@@ -722,6 +726,16 @@
   <action name="actionMonthly_Budget_Summary">
    <property name="text">
     <string>Monthly Budget Summary</string>
+   </property>
+  </action>
+  <action name="actionFood_Expenses">
+   <property name="text">
+    <string>Food Expenses</string>
+   </property>
+  </action>
+  <action name="actionMisc_Expenses">
+   <property name="text">
+    <string>Misc Expenses</string>
    </property>
   </action>
  </widget>

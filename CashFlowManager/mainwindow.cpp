@@ -49,6 +49,16 @@ void MainWindow::onActionMonthlyBudgetSummaryTriggered()
     mainWindowController->showMonthlyBudgetSummaryDialog(this);
 }
 
+void MainWindow::onActionFoodExpensesTriggered()
+{
+
+}
+
+void MainWindow::onActionMiscExpensesTriggered()
+{
+
+}
+
 void MainWindow::updateDisplayedInformation()
 {
     configureBudgetStatusBarChart();
@@ -257,5 +267,4 @@ void MainWindow::configureInvestmentTableView()
 
     ui->tableViewMonthlyInvestments->setMinimumWidth(tableWidth);
     ui->tableViewMonthlyInvestments->setMaximumWidth(tableWidth);
-
 }

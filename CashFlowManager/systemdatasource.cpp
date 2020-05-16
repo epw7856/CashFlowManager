@@ -239,7 +239,7 @@ double SystemDataSource::getMonthlyExpenseTotalByType(const std::string& expense
     return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
 }
 
-double SystemDataSource::getYearlyExpenseTotalByType(const std::string &expenseType) const
+double SystemDataSource::getYearlyExpenseTotalByType(const std::string& expenseType) const
 {
     std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
     return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
