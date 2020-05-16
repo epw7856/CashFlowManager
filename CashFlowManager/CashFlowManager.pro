@@ -51,6 +51,7 @@ SOURCES += \
         basetransaction.cpp \
         currencyutilities.cpp \
         dateutilities.cpp \
+        expensetypesummarydialog.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
@@ -82,6 +83,7 @@ HEADERS += \
         basetransaction.h \
         currencyutilities.h \
         dateutilities.h \
+        expensetypesummarydialog.h \
         mainwindow.h \
         mainwindowcontroller.h \
         monthlybudgetsummarydialog.h \
@@ -90,6 +92,7 @@ HEADERS += \
         yearlybudgetsummarydialog.h
 
 FORMS += \
+        expensetypesummarydialog.ui \
         mainwindow.ui \
         monthlybudgetsummarydialog.ui \
         yearlybudgetsummarydialog.ui

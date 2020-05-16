@@ -80,12 +80,12 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
             // Date column
             if(index.column() == 0)
             {
-                return "Total";
+                return "";
             }
             // Description column
             else if(index.column() == 1)
             {
-                return "";
+                return "Total";
             }
             // Amount column
             else if(index.column() == 2)
