@@ -5,7 +5,8 @@
 #include "monthlyinvestmenttablemodel.h"
 #include <QAbstractTableModel>
 #include <QDialog>
-#include <QTableView>
+
+class QTableView;
 
 namespace Ui {
 class MonthlyBudgetSummaryDialog;

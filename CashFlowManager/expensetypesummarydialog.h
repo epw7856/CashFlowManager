@@ -1,9 +1,10 @@
 #ifndef EXPENSETYPESUMMARYDIALOG_H
 #define EXPENSETYPESUMMARYDIALOG_H
 
+#include "expensetypetablemodel.h"
 #include <QDialog>
 
-class ExpenseInterface;
+class QTableView;
 
 namespace Ui {
 class ExpenseTypeSummaryDialog;
@@ -20,9 +21,23 @@ public:
     ~ExpenseTypeSummaryDialog();
 
 private:
+    void configureExpenseTable(QTableView* tableView, QAbstractTableModel& tableModel);
+
     Ui::ExpenseTypeSummaryDialog *ui;
-    ExpenseInterface& expenseInterface;
     std::string expenseType = "";
+
+    ExpenseTypeTableModel januaryExpenseTable;
+    ExpenseTypeTableModel februaryExpenseTable;
+    ExpenseTypeTableModel marchExpenseTable;
+    ExpenseTypeTableModel aprilExpenseTable;
+    ExpenseTypeTableModel mayExpenseTable;
+    ExpenseTypeTableModel juneExpenseTable;
+    ExpenseTypeTableModel julyExpenseTable;
+    ExpenseTypeTableModel augustExpenseTable;
+    ExpenseTypeTableModel septemberExpenseTable;
+    ExpenseTypeTableModel octoberExpenseTable;
+    ExpenseTypeTableModel novemberExpenseTable;
+    ExpenseTypeTableModel decemberExpenseTable;
 };
 
 #endif // EXPENSETYPESUMMARYDIALOG_H
