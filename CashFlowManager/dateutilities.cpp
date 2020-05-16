@@ -32,3 +32,10 @@ std::pair<QDate, QDate> DateUtilities::getMonthlyDates(int month)
     QDate endDate(QDate::currentDate().year(), month, startDate.daysInMonth());
     return {startDate, endDate};
 }
+
+std::pair<QDate, QDate> DateUtilities::getYearlyDates(int year)
+{
+    QDate startDate(year, 1, 1);
+    QDate endDate(year, 12, 31);
+    return {startDate, endDate};
+}

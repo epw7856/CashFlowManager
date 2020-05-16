@@ -1,9 +1,18 @@
+#include "expenseinterface.h"
 #include "expensetypesummarydialog.h"
 #include "ui_expensetypesummarydialog.h"
 
-ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog(QWidget *parent) :
+ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog
+(
+    ExpenseInterface& localExpenseInterface,
+    std::string localExpenseType,
+    QWidget* parent
+)
+:
     QDialog(parent),
-    ui(new Ui::ExpenseTypeSummaryDialog)
+    ui(new Ui::ExpenseTypeSummaryDialog),
+    expenseInterface(localExpenseInterface),
+    expenseType(localExpenseType)
 {
     ui->setupUi(this);
 }

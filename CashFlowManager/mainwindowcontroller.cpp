@@ -143,7 +143,7 @@ void MainWindowController::showFoodExpensesDialog(QWidget* parent)
 {
     if(foodExpensesDialog == nullptr)
     {
-        foodExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, parent);
+        foodExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, "Food", parent);
     }
 
     foodExpensesDialog->show();
@@ -155,7 +155,7 @@ void MainWindowController::showMiscExpensesDialog(QWidget* parent)
 {
     if(miscExpensesDialog == nullptr)
     {
-        miscExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, parent);
+        miscExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, "Misc", parent);
     }
 
     miscExpensesDialog->show();
