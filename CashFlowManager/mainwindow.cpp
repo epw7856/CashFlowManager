@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
     connect(ui->actionMonthly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionMonthlyBudgetSummaryTriggered);
+    connect(ui->actionFood_Expenses, &QAction::triggered, this, &MainWindow::onActionFoodExpensesTriggered);
+    connect(ui->actionMisc_Expenses, &QAction::triggered, this, &MainWindow::onActionMiscExpensesTriggered);
 
     updateDisplayedInformation();
 }
@@ -51,12 +53,12 @@ void MainWindow::onActionMonthlyBudgetSummaryTriggered()
 
 void MainWindow::onActionFoodExpensesTriggered()
 {
-
+    mainWindowController->showFoodExpensesDialog(this);
 }
 
 void MainWindow::onActionMiscExpensesTriggered()
 {
-
+    mainWindowController->showMiscExpensesDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()

@@ -22,6 +22,7 @@ public:
 
 private:
     void configureExpenseTable(QTableView* tableView, QAbstractTableModel& tableModel);
+    void setTableData();
 
     Ui::ExpenseTypeSummaryDialog *ui;
     std::string expenseType = "";

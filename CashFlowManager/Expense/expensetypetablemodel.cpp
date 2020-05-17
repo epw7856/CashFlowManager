@@ -42,7 +42,7 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
             // Date column
             if(index.column() == 0)
             {
-                return (*itr)->getDate().toString("MM/dd/yyyy");
+                return (*itr)->getDate().toString("MM/dd");
             }
             // Description column
             else if(index.column() == 1)
@@ -61,21 +61,22 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
                 {
                     return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseType, month) - (*itr)->getAmount()));
                 }
-                else
+                else if(rowUint > 0)
                 {
-                    double remaining = index.sibling(index.row() - 1, 3).data().toDouble() - (*itr)->getAmount();
+                    double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row() - 1, 3).data().toString().toStdString()) - (*itr)->getAmount();
+                    //double remaining = 0.0;
                     return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
                 }
 
             }
         }
 
-        if((index.row() == numRows-2) && (index.column() < numColumns))
+        if((index.row() == numRows - 2) && (index.column() < numColumns))
         {
             return "";
         }
 
-        if((index.row() == numRows-1) && (index.column() < numColumns))
+        if((index.row() == numRows - 1) && (index.column() < numColumns))
         {
             // Date column
             if(index.column() == 0)
@@ -97,7 +98,15 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
             // Remaining column
             else if(index.column() == 3)
             {
-                return QString::fromStdString(CurrencyUtilities::formatCurrency(index.sibling(index.row() - 2, 3).data().toDouble()));
+                if(rowCount(index) > 2)
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row() - 2, 3).data().toString().toStdString())));
+                }
+                else
+                {
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseType, month)));
+                }
+
             }
         }
     }
