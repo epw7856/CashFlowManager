@@ -26,7 +26,7 @@ public:
 
     // Expense Interface
     std::vector<ExpenseType*> getExpenseTypes() const override;
-    std::multiset<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
+    std::vector<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getExpenseTransactionsTotalByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const override;
     void addExpenseType(const ExpenseType& type) override;
@@ -41,7 +41,7 @@ public:
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
-    std::multiset<InvestmentTransaction*> getInvestmentTransactionsByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
+    std::vector<InvestmentTransaction*> getInvestmentTransactionsByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getInvestmentTransactionsTotalByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     void addInvestmentType(const InvestmentType& type) override;
     void addInvestmentTransactionByType(const std::string& investmentType, const InvestmentTransaction& transaction) override;
@@ -52,8 +52,8 @@ public:
     double getMonthlyInvestmentTargetTotal() const override;
 
     // Income Interface
-    std::multiset<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
-    std::multiset<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
+    std::vector<SalaryIncome*> getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
+    std::vector<SupplementalIncome*> getSupplementalIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getTotalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getSalaryIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getSupplementalIncomeTotalByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const override;
@@ -92,7 +92,7 @@ private:
 
     // Template functions to query for types, transactions, and transaction totals
     template<typename Transaction>
-    std::multiset<Transaction*> getTransactionsByTimePeriod(const std::multiset<std::unique_ptr<Transaction>, TransactionComparison<Transaction>>& set, const QDate& startingPeriod, const QDate& endingPeriod) const;
+    std::vector<Transaction*> getTransactionsByTimePeriod(const std::multiset<std::unique_ptr<Transaction>, TransactionComparison<Transaction>>& set, const QDate& startingPeriod, const QDate& endingPeriod) const;
 
     template<typename Transaction>
     double getTransactionsTotalByTimePeriod(const std::multiset<std::unique_ptr<Transaction>, TransactionComparison<Transaction>>& set, const QDate& startingPeriod, const QDate& endingPeriod) const;

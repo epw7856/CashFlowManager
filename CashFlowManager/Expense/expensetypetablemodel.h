@@ -1,9 +1,9 @@
 #ifndef EXPENSETYPETABLEMODEL_H
 #define EXPENSETYPETABLEMODEL_H
 
-#include <set>
 #include <QAbstractTableModel>
 #include <QDate>
+#include <vector>
 
 class ExpenseInterface;
 class ExpenseTransaction;
@@ -22,7 +22,7 @@ public:
 
 private:
     ExpenseInterface& expenseInterface;
-    std::multiset<ExpenseTransaction*> expenseTransactions;
+    std::vector<ExpenseTransaction*> expenseTransactions;
     std::string expenseType = "";
     int numColumns = 0;
     QDate startDatePeriod;

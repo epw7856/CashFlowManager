@@ -3,6 +3,8 @@
 #include "expenseinterface.h"
 #include "expensetransaction.h"
 #include "expensetypetablemodel.h"
+#include <QBrush>
+#include <QColor>
 #include <QFont>
 
 ExpenseTypeTableModel::ExpenseTypeTableModel(ExpenseInterface& localExpenseInterface, std::string localExpenseType, int localMonth)
@@ -36,34 +38,31 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
         {
             auto rowUint = static_cast<quint32>(index.row());
 
-            std::multiset<ExpenseTransaction*>::iterator itr = expenseTransactions.begin();
-            std::advance(itr, rowUint);
-
             // Date column
             if(index.column() == 0)
             {
-                return (*itr)->getDate().toString("MM/dd");
+                return expenseTransactions[rowUint]->getDate().toString("MM/dd");
             }
             // Description column
             else if(index.column() == 1)
             {
-                return QString::fromStdString((*itr)->getDescription());
+                return QString::fromStdString(expenseTransactions[rowUint]->getDescription());
             }
             // Amount column
             else if(index.column() == 2)
             {
-                return QString::fromStdString(CurrencyUtilities::formatCurrency((*itr)->getAmount()));
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseTransactions[rowUint]->getAmount()));
             }
             // Remaining column
             else if(index.column() == 3)
             {
                 if(rowUint == 0)
                 {
-                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseType, month) - (*itr)->getAmount()));
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseType, month) - expenseTransactions[rowUint]->getAmount()));
                 }
                 else if(rowUint > 0)
                 {
-                    double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row() - 1, 3).data().toString().toStdString()) - (*itr)->getAmount();
+                    double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row() - 1, 3).data().toString().toStdString()) - expenseTransactions[rowUint]->getAmount();
                     //double remaining = 0.0;
                     return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
                 }
@@ -107,6 +106,25 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
                     return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetByType(expenseType, month)));
                 }
 
+            }
+        }
+    }
+
+    if(role == Qt::BackgroundRole)
+    {
+        int numRows = rowCount(index);
+        if(index.row() == numRows - 1)
+        {
+            double total = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
+            double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
+
+            if((total <= remaining) && (month < QDate::currentDate().month()))
+            {
+                return QVariant(QBrush(QColor(Qt::green)));
+            }
+            else if((total > remaining))
+            {
+                return QVariant(QBrush(QColor(Qt::red)));
             }
         }
     }

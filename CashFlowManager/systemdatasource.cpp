@@ -97,9 +97,9 @@ std::vector<ExpenseType*> SystemDataSource::getExpenseTypes() const
     return types;
 }
 
-std::multiset<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(const std::string& expenseType,
-                                                                                        const QDate& startingPeriod,
-                                                                                        const QDate& endingPeriod) const
+std::vector<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(const std::string& expenseType,
+                                                                                      const QDate& startingPeriod,
+                                                                                      const QDate& endingPeriod) const
 {
     auto itr = findMatchingType(expenseTypes, expenseType);
 
@@ -277,9 +277,9 @@ std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
     return types;
 }
 
-std::multiset<InvestmentTransaction*> SystemDataSource::getInvestmentTransactionsByTimePeriod(const std::string& investmentType,
-                                                                                              const QDate& startingPeriod,
-                                                                                              const QDate& endingPeriod) const
+std::vector<InvestmentTransaction*> SystemDataSource::getInvestmentTransactionsByTimePeriod(const std::string& investmentType,
+                                                                                            const QDate& startingPeriod,
+                                                                                            const QDate& endingPeriod) const
 {
     auto itr = findMatchingType(investmentTypes, investmentType);
 
@@ -394,12 +394,12 @@ double SystemDataSource::getMonthlyInvestmentTargetTotal() const
     return total;
 }
 
-std::multiset<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const
+std::vector<SalaryIncome*> SystemDataSource::getSalaryIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const
 {
     return getTransactionsByTimePeriod(salaryIncomeList, startingPeriod, endingPeriod);
 }
 
-std::multiset<SupplementalIncome*> SystemDataSource::getSupplementalIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const
+std::vector<SupplementalIncome*> SystemDataSource::getSupplementalIncomeTransactionsByTimePeriod(const QDate& startingPeriod, const QDate& endingPeriod) const
 {
     return getTransactionsByTimePeriod(supplementalIncomeList, startingPeriod, endingPeriod);
 }
@@ -695,18 +695,18 @@ void SystemDataSource::parseAssetList()
 }
 
 template<typename Transaction>
-std::multiset<Transaction*> SystemDataSource::getTransactionsByTimePeriod(const std::multiset<std::unique_ptr<Transaction>, TransactionComparison<Transaction>>& set,
-                                                                          const QDate& startingPeriod,
-                                                                          const QDate& endingPeriod) const
+std::vector<Transaction*> SystemDataSource::getTransactionsByTimePeriod(const std::multiset<std::unique_ptr<Transaction>, TransactionComparison<Transaction>>& set,
+                                                                        const QDate& startingPeriod,
+                                                                        const QDate& endingPeriod) const
 {
-    std::multiset<Transaction*> matchingTransactions;
+    std::vector<Transaction*> matchingTransactions;
 
     auto lowerItr = set.lower_bound(std::make_unique<Transaction>(startingPeriod));
     auto upperItr = set.upper_bound(std::make_unique<Transaction>(endingPeriod));
 
     for(auto i = lowerItr; i != upperItr; ++i)
     {
-        matchingTransactions.insert(i->get());
+        matchingTransactions.push_back(i->get());
     }
 
     return matchingTransactions;
