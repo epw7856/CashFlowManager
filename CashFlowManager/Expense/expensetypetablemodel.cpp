@@ -115,14 +115,13 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
         int numRows = rowCount(index);
         if(index.row() == numRows - 1)
         {
-            double total = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
             double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
 
-            if((total <= remaining) && (month < QDate::currentDate().month()))
+            if((remaining >= 0) && (month < QDate::currentDate().month()))
             {
                 return QVariant(QBrush(QColor(Qt::green)));
             }
-            else if((total > remaining))
+            else if(remaining < 0)
             {
                 return QVariant(QBrush(QColor(Qt::red)));
             }
