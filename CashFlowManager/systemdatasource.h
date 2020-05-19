@@ -61,6 +61,7 @@ public:
     void addSupplementalPayment(const SupplementalIncome& payment) override;
     double getMonthlyIncomeTotal(int month) const override;
     double getYearlyIncomeTotal() const override;
+    int getYearlyOvertimeTotal() const override;
 
     // Asset Interface
     std::vector<AssetEntry*> getAssetList() const override;

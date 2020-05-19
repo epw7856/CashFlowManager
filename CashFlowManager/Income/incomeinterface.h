@@ -21,6 +21,7 @@ public:
     virtual void addSupplementalPayment(const SupplementalIncome& payment) = 0;
     virtual double getMonthlyIncomeTotal(int month) const = 0;
     virtual double getYearlyIncomeTotal() const = 0;
+    virtual int getYearlyOvertimeTotal() const = 0;
 
 };
 

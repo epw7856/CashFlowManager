@@ -462,6 +462,17 @@ double SystemDataSource::getYearlyIncomeTotal() const
     return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }
 
+int SystemDataSource::getYearlyOvertimeTotal() const
+{
+    int total = 0;
+    for(const auto& i : salaryIncomeList)
+    {
+        total += i.get()->getOvertime();
+    }
+
+    return total;
+}
+
 std::vector<AssetEntry*> SystemDataSource::getAssetList() const
 {
     std::vector<AssetEntry*> entries;

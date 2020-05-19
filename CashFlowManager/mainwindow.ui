@@ -702,6 +702,13 @@
     <addaction name="actionFood_Expenses"/>
     <addaction name="actionMisc_Expenses"/>
     <addaction name="separator"/>
+    <addaction name="actionYearly_Income_Summary"/>
+    <addaction name="separator"/>
+    <addaction name="actionAutomatic_Monthly_Payments"/>
+    <addaction name="separator"/>
+    <addaction name="actionMortgage_Information"/>
+    <addaction name="separator"/>
+    <addaction name="actionAsset_and_Net_Worth_Tracking"/>
    </widget>
    <widget class="QMenu" name="menuModify">
     <property name="title">
@@ -736,6 +743,26 @@
   <action name="actionMisc_Expenses">
    <property name="text">
     <string>Misc Expenses</string>
+   </property>
+  </action>
+  <action name="actionYearly_Income_Summary">
+   <property name="text">
+    <string>Yearly Income Summary</string>
+   </property>
+  </action>
+  <action name="actionAutomatic_Monthly_Payments">
+   <property name="text">
+    <string>Automatic Monthly Payments</string>
+   </property>
+  </action>
+  <action name="actionMortgage_Information">
+   <property name="text">
+    <string>Mortgage Information</string>
+   </property>
+  </action>
+  <action name="actionAsset_and_Net_Worth_Tracking">
+   <property name="text">
+    <string>Asset and Net Worth Tracking</string>
    </property>
   </action>
  </widget>

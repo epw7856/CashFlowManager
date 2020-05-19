@@ -42,7 +42,9 @@ SOURCES += \
         Expense/monthlyexpensetablemodel.cpp \
         Expense/yearlyexpensetablemodel.cpp \
         Income/salaryincome.cpp \
+        Income/salaryincometablemodel.cpp \
         Income/supplementalincome.cpp \
+        Income/supplementalincometablemodel.cpp \
         Investment/investmenttransaction.cpp \
         Investment/investmenttype.cpp \
         Investment/monthlyinvestmenttablemodel.cpp \
@@ -72,7 +74,9 @@ HEADERS += \
         Expense/yearlyexpensetablemodel.h \
         Income/incomeinterface.h \
         Income/salaryincome.h \
+        Income/salaryincometablemodel.h \
         Income/supplementalincome.h \
+        Income/supplementalincometablemodel.h \
         Investment/investmentinterface.h \
         Investment/investmenttransaction.h \
         Investment/investmenttype.h \
