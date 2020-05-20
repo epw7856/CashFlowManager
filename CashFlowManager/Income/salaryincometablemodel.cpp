@@ -112,7 +112,7 @@ QVariant SalaryIncomeTableModel::headerData(int section, Qt::Orientation orienta
             }
             else if(section == 2)
             {
-                return QString("Overtime");
+                return QString("Overtime  ");
             }
         }
     }

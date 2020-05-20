@@ -336,12 +336,32 @@
     },
     "SalaryIncome": [
         {
-            "Amount": 2500,
+            "Amount": 1600,
+            "Date": "01/01/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1500,
+            "Date": "01/10/2020",
+            "Overtime": 2
+        },
+        {
+            "Amount": 1100,
+            "Date": "02/01/2020",
+            "Overtime": 5
+        },
+        {
+            "Amount": 1000.5,
             "Date": "02/10/2020",
             "Overtime": 2
         },
         {
-            "Amount": 1500,
+            "Amount": 976,
+            "Date": "03/01/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1000,
             "Date": "03/10/2020",
             "Overtime": 0
         }

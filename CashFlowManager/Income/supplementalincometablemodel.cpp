@@ -112,7 +112,7 @@ QVariant SupplementalIncomeTableModel::headerData(int section, Qt::Orientation o
             }
             else if(section == 2)
             {
-                return QString("Amount");
+                return QString("Amount  ");
             }
         }
     }
