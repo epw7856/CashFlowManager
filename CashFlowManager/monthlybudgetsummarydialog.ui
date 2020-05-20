@@ -42,6 +42,9 @@
          <property name="text">
           <string>&lt;MonthlyBudgetSummary&gt;</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
        </item>
        <item>
