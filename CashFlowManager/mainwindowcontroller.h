@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+class AutomaticMonthlyPaymentSummaryDialog;
 class ExpenseTypeSummaryDialog;
 class MonthlyBudgetSummaryDialog;
 class QDate;
@@ -44,6 +45,7 @@ public:
     void showFoodExpensesDialog(QWidget* parent);
     void showMiscExpensesDialog(QWidget* parent);
     void showYearlyIncomeSummaryDialog(QWidget* parent);
+    void showAutomaticMonthlyPaymentSummaryDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
@@ -53,6 +55,7 @@ private:
     std::unique_ptr<ExpenseTypeSummaryDialog> foodExpensesDialog;
     std::unique_ptr<ExpenseTypeSummaryDialog> miscExpensesDialog;
     std::unique_ptr<YearlyIncomeSummaryDialog> yearlyIncomeDialog;
+    std::unique_ptr<AutomaticMonthlyPaymentSummaryDialog> automaticMonthlyPaymentDialog;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

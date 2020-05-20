@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionFood_Expenses, &QAction::triggered, this, &MainWindow::onActionFoodExpensesTriggered);
     connect(ui->actionMisc_Expenses, &QAction::triggered, this, &MainWindow::onActionMiscExpensesTriggered);
     connect(ui->actionYearly_Income_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyIncomeSummaryTriggered);
+    connect(ui->actionAutomatic_Monthly_Payments, &QAction::triggered, this, &MainWindow::onActionAutomaticMonthlyPaymentSummaryTriggered);
 
     updateDisplayedInformation();
 }
@@ -65,6 +66,11 @@ void MainWindow::onActionMiscExpensesTriggered()
 void MainWindow::onActionYearlyIncomeSummaryTriggered()
 {
     mainWindowController->showYearlyIncomeSummaryDialog(this);
+}
+
+void MainWindow::onActionAutomaticMonthlyPaymentSummaryTriggered()
+{
+    mainWindowController->showAutomaticMonthlyPaymentSummaryDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()

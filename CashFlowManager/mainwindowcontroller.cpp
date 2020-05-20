@@ -1,3 +1,4 @@
+#include "automaticmonthlypaymentsummarydialog.h"
 #include "currencyutilities.h"
 #include "dateutilities.h"
 #include "expensetype.h"
@@ -174,4 +175,16 @@ void MainWindowController::showYearlyIncomeSummaryDialog(QWidget* parent)
     yearlyIncomeDialog->show();
     yearlyIncomeDialog->raise();
     yearlyIncomeDialog->activateWindow();
+}
+
+void MainWindowController::showAutomaticMonthlyPaymentSummaryDialog(QWidget *parent)
+{
+    if(automaticMonthlyPaymentDialog == nullptr)
+    {
+        automaticMonthlyPaymentDialog = std::make_unique<AutomaticMonthlyPaymentSummaryDialog>(sds, parent);
+    }
+
+    automaticMonthlyPaymentDialog->show();
+    automaticMonthlyPaymentDialog->raise();
+    automaticMonthlyPaymentDialog->activateWindow();
 }
