@@ -68,8 +68,15 @@ void YearlyIncomeSummaryDialog::configureSalaryTable()
     ui->tableViewSalarySummary->resizeColumnsToContents();
 
     // Set TableView height
+    int tableHeight = 0;
     ui->tableViewSalarySummary->resizeRowsToContents();
-    ui->tableViewSalarySummary->setMaximumHeight(ui->tableViewSalarySummary->rowHeight(0) * 24);
+    for(int i = 0; i < salaryTableModel.rowCount(); ++i)
+    {
+        tableHeight += ui->tableViewSalarySummary->rowHeight(i);
+    }
+
+    tableHeight += ui->tableViewSalarySummary->horizontalHeader()->height();
+    ui->tableViewSalarySummary->setMaximumHeight(tableHeight+5);
 
     // Set TableView width
     int tableWidth = 0;
@@ -118,8 +125,15 @@ void YearlyIncomeSummaryDialog::configureSupplementalTable()
     ui->tableViewSupplementalSummary->resizeColumnsToContents();
 
     // Set TableView height
+    int tableHeight = 0;
     ui->tableViewSupplementalSummary->resizeRowsToContents();
-    ui->tableViewSupplementalSummary->setMaximumHeight(ui->tableViewSupplementalSummary->rowHeight(0) * 24);
+    for(int i = 0; i < supplementalTableModel.rowCount(); ++i)
+    {
+        tableHeight += ui->tableViewSupplementalSummary->rowHeight(i);
+    }
+
+    tableHeight += ui->tableViewSupplementalSummary->horizontalHeader()->height();
+    ui->tableViewSupplementalSummary->setMaximumHeight(tableHeight+5);
 
     // Set TableView width
     int tableWidth = 0;
