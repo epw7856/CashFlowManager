@@ -22,8 +22,8 @@ public slots:
 
 private:
     Ui::YearlyIncomeSummaryDialog *ui;
-    SalaryIncomeTableModel salaryTable;
-    SupplementalIncomeTableModel supplementalTable;
+    SalaryIncomeTableModel salaryTableModel;
+    SupplementalIncomeTableModel supplementalTableModel;
 
     void configureSalaryTable();
     void configureSupplementalTable();

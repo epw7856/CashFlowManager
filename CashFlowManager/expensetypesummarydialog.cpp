@@ -100,30 +100,9 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
 
     // Resize columns to be uniform
     tableView->resizeColumnsToContents();
-//    int maxColumnWidth = 0;
-//    for(int i = 0; i < tableModel.columnCount(); ++i)
-//    {
-//        tableView->resizeColumnToContents(i);
-//        int currentColumnWidth = tableView->columnWidth(i);
-//        if(currentColumnWidth > maxColumnWidth)
-//        {
-//            maxColumnWidth = currentColumnWidth;
-//        }
-//    }
-
-//    tableView->setColumnWidth(1, maxColumnWidth);
-//    tableView->setColumnWidth(2, maxColumnWidth);
-//    tableView->setColumnWidth(3, maxColumnWidth);
 
     // Set TableView height
-//    int tableHeight = 0;
     tableView->resizeRowsToContents();
-//    for(int i = 0; i < tableModel.rowCount(); ++i)
-//    {
-//        tableHeight += tableView->rowHeight(i);
-//    }
-
-//    tableHeight += tableView->horizontalHeader()->height();
     tableView->setMaximumHeight(tableView->rowHeight(0) * 12);
 
     // Set TableView width
