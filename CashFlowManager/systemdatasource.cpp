@@ -137,6 +137,16 @@ std::vector<AutomaticMonthlyPayment*> SystemDataSource::getAutomaticMonthlyPayme
     return payments;
 }
 
+double SystemDataSource::getAutomaticMonthlyPaymentsTotal() const
+{
+    double total = 0.0;
+    for(const auto& i : automaticMonthlyPaymentList)
+    {
+        total += i->getAmount();
+    }
+    return total;
+}
+
 void SystemDataSource::addExpenseType(const ExpenseType& type)
 {
     expenseTypes.push_back(std::make_unique<ExpenseType>(type.getName(), type.getMonthlyBudget()));

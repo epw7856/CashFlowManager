@@ -36,6 +36,7 @@ RC_ICONS = app_icon.ico
 SOURCES += \
         Asset/assetentry.cpp \
         Expense/automaticmonthlypayment.cpp \
+        Expense/automaticmonthlypaymenttablemodel.cpp \
         Expense/expensetransaction.cpp \
         Expense/expensetype.cpp \
         Expense/expensetypetablemodel.cpp \
@@ -67,6 +68,7 @@ HEADERS += \
         Asset/assetinterface.h \
         Asset/assettype.h \
         Expense/automaticmonthlypayment.h \
+        Expense/automaticmonthlypaymenttablemodel.h \
         Expense/expenseinterface.h \
         Expense/expensetransaction.h \
         Expense/expensetype.h \

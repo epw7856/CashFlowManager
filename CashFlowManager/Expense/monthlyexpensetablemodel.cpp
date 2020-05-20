@@ -169,6 +169,7 @@ QVariant MonthlyExpenseTableModel::headerData(int section, Qt::Orientation orien
             }
         }
     }
+
     return {};
 }
 

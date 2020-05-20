@@ -70,11 +70,6 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
             }
         }
 
-        if((index.row() == numRows - 2) && (index.column() < numColumns))
-        {
-            return "";
-        }
-
         if((index.row() == numRows - 1) && (index.column() < numColumns))
         {
             // Date column

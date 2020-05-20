@@ -29,6 +29,7 @@ public:
     std::vector<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getExpenseTransactionsTotalByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const override;
+    double getAutomaticMonthlyPaymentsTotal() const override;
     void addExpenseType(const ExpenseType& type) override;
     void addExpenseTransactionByType(const std::string& expenseType, const ExpenseTransaction& transaction) override;
     void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
