@@ -7,6 +7,7 @@
 #include "monthlybudgetsummarydialog.h"
 #include "systemdatasource.h"
 #include "yearlybudgetsummarydialog.h"
+#include "yearlyincomesummarydialog.h"
 
 MainWindowController::MainWindowController(SystemDataSource& localSds) : sds(localSds) {}
 
@@ -161,4 +162,16 @@ void MainWindowController::showMiscExpensesDialog(QWidget* parent)
     miscExpensesDialog->show();
     miscExpensesDialog->raise();
     miscExpensesDialog->activateWindow();
+}
+
+void MainWindowController::showYearlyIncomeSummaryDialog(QWidget* parent)
+{
+    if(yearlyIncomeDialog == nullptr)
+    {
+        yearlyIncomeDialog = std::make_unique<YearlyIncomeSummaryDialog>(sds, parent);
+    }
+
+    yearlyIncomeDialog->show();
+    yearlyIncomeDialog->raise();
+    yearlyIncomeDialog->activateWindow();
 }

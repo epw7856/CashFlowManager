@@ -1,4 +1,3 @@
-#include "dateutilities.h"
 #include "expenseinterface.h"
 #include "investmentinterface.h"
 #include <QScrollBar>
@@ -19,7 +18,7 @@ YearlyBudgetSummaryDialog::YearlyBudgetSummaryDialog
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    ui->labelDialogTitle->setText(QString("%1%2").arg(QString::fromStdString(DateUtilities::getCurrentYear())).arg(" Yearly Budget Summary"));
+    ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Yearly Budget Summary"));
     ui->verticalLayout_3->setAlignment(Qt::AlignTop);
     ui->verticalLayout_4->setAlignment(Qt::AlignTop);
     expenseTableModel.setExpenseTypes();

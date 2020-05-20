@@ -11,6 +11,7 @@ class MonthlyBudgetSummaryDialog;
 class QDate;
 class SystemDataSource;
 class YearlyBudgetSummaryDialog;
+class YearlyIncomeSummaryDialog;
 
 class MainWindowController : public QObject
 {
@@ -42,6 +43,7 @@ public:
     void showMonthlyBudgetSummaryDialog(QWidget* parent);
     void showFoodExpensesDialog(QWidget* parent);
     void showMiscExpensesDialog(QWidget* parent);
+    void showYearlyIncomeSummaryDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
@@ -50,6 +52,7 @@ private:
     std::unique_ptr<MonthlyBudgetSummaryDialog> monthlyBudgetDialog;
     std::unique_ptr<ExpenseTypeSummaryDialog> foodExpensesDialog;
     std::unique_ptr<ExpenseTypeSummaryDialog> miscExpensesDialog;
+    std::unique_ptr<YearlyIncomeSummaryDialog> yearlyIncomeDialog;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

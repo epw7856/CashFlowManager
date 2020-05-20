@@ -59,7 +59,8 @@ SOURCES += \
         mainwindowcontroller.cpp \
         monthlybudgetsummarydialog.cpp \
         systemdatasource.cpp \
-        yearlybudgetsummarydialog.cpp
+        yearlybudgetsummarydialog.cpp \
+        yearlyincomesummarydialog.cpp
 
 HEADERS += \
         Asset/assetentry.h \
@@ -93,13 +94,15 @@ HEADERS += \
         monthlybudgetsummarydialog.h \
         systemdatasource.h \
         transactioncomparison.h \
-        yearlybudgetsummarydialog.h
+        yearlybudgetsummarydialog.h \
+        yearlyincomesummarydialog.h
 
 FORMS += \
         expensetypesummarydialog.ui \
         mainwindow.ui \
         monthlybudgetsummarydialog.ui \
-        yearlybudgetsummarydialog.ui
+        yearlybudgetsummarydialog.ui \
+        yearlyincomesummarydialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
