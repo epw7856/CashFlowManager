@@ -46,13 +46,23 @@
     "AutomaticMonthlyPayments": [
         {
             "Account": "First Commonwealth",
-            "Amount": 1545,
+            "Amount": 1545.01,
             "Name": "Mortgage"
         },
         {
-            "Account": "Dollar Bank",
+            "Account": "First Commonwealth",
             "Amount": 100,
             "Name": "Donation"
+        },
+        {
+            "Account": "Dollar Bank",
+            "Amount": 500,
+            "Name": "IRA Contribution"
+        },
+        {
+            "Account": "Dollar Bank",
+            "Amount": 500,
+            "Name": "Brokerage Contribution"
         }
     ],
     "ExpenseTypes": [
