@@ -513,7 +513,7 @@ void SystemDataSource::addAsset(const AssetEntry& entry)
 {
     assetList.push_back(std::make_unique<AssetEntry>(entry.getType(),
                                                      entry.getName(),
-                                                     entry.getNetValue()));
+                                                     entry.getValue()));
 
     QJsonArray array = obj.value("Assets").toArray();
     QJsonObject item;
@@ -708,7 +708,7 @@ void SystemDataSource::parseAssetList()
     for(const auto& i:assetList)
     {
         qDebug() << QString::fromStdString(i->getName());
-        for(auto j:i->getNetValue())
+        for(auto j:i->getValue())
         {
             qDebug() << j.first << "  " << j.second;
         }

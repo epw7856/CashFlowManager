@@ -12,14 +12,14 @@ public:
     void addValueEntry(const std::pair<QDate, double>& entry);
     AssetType getType() const;
     std::string getName() const;
-    std::map<QDate, double> getNetValue() const;
+    std::map<QDate, double> getValue() const;
     static std::string assetTypeToString(AssetType type);
     static AssetType stringToAssetType(std::string type);
 
 private:
     AssetType type = AssetType::Unknown;
     std::string name = "";
-    std::map<QDate, double> netValue;
+    std::map<QDate, double> value;
 };
 
 inline AssetType AssetEntry::getType() const
@@ -32,9 +32,9 @@ inline std::string AssetEntry::getName() const
     return name;
 }
 
-inline std::map<QDate, double> AssetEntry::getNetValue() const
+inline std::map<QDate, double> AssetEntry::getValue() const
 {
-    return netValue;
+    return value;
 }
 
 #endif // ASSETENTRY_H

@@ -9,14 +9,14 @@ AssetEntry::AssetEntry
 :
     type(inputType),
     name(inputName),
-    netValue(std::move(inputNetValue))
+    value(std::move(inputNetValue))
 {
 
 }
 
 void AssetEntry::addValueEntry(const std::pair<QDate, double>& entry)
 {
-    netValue.insert(entry);
+    value.insert(entry);
 }
 
 std::string AssetEntry::assetTypeToString(AssetType type)
