@@ -545,7 +545,7 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
                 QJsonArray values = item.value("Values").toArray();
 
                 QJsonObject newValueItem;
-                newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/dd/yyyy")));
+                newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/yyyy")));
                 newValueItem.insert("Value", QJsonValue(valueEntry.second));
                 values.append(newValueItem);
                 item.remove("Values");
@@ -557,8 +557,6 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
         obj["Assets"] = array;
     }
 }
-
-
 
 void SystemDataSource::parseExpenseTypes()
 {
@@ -697,7 +695,7 @@ void SystemDataSource::parseAssetList()
         for (const QJsonValue valueItem : valueArray)
         {
             QDate tempDate;
-            tempDate = tempDate.fromString(valueItem.toObject().value("Date").toString(), "MM/dd/yyyy");
+            tempDate = tempDate.fromString(valueItem.toObject().value("Date").toString(), "MM/yyyy");
             values.insert({tempDate, valueItem.toObject().value("Value").toDouble()});
         }
 

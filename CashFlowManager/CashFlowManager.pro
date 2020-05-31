@@ -52,6 +52,7 @@ SOURCES += \
         Investment/monthlyinvestmenttablemodel.cpp \
         Investment/yearlyinvestmenttablemodel.cpp \
         Mortgage/mortgageinformation.cpp \
+        assetsummarydialog.cpp \
         automaticmonthlypaymentsummarydialog.cpp \
         basetransaction.cpp \
         currencyutilities.cpp \
@@ -90,6 +91,7 @@ HEADERS += \
         Investment/yearlyinvestmenttablemodel.h \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgagepayment.h \
+        assetsummarydialog.h \
         automaticmonthlypaymentsummarydialog.h \
         basetransaction.h \
         currencyutilities.h \
@@ -104,6 +106,7 @@ HEADERS += \
         yearlyincomesummarydialog.h
 
 FORMS += \
+        assetsummarydialog.ui \
         automaticmonthlypaymentsummarydialog.ui \
         expensetypesummarydialog.ui \
         mainwindow.ui \

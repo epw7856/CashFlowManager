@@ -29,6 +29,7 @@ public slots:
     void onActionMiscExpensesTriggered();
     void onActionYearlyIncomeSummaryTriggered();
     void onActionAutomaticMonthlyPaymentSummaryTriggered();
+    void onActionAssetAndNetWorthSummaryTriggered();
 
 private:
     Ui::MainWindow *ui;

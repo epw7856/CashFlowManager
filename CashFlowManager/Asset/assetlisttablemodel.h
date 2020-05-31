@@ -1,7 +1,6 @@
 #ifndef ASSETLISTTABLEMODEL_H
 #define ASSETLISTTABLEMODEL_H
 
-#include "assettype.h"
 #include <QAbstractTableModel>
 #include <QDate>
 #include <vector>
@@ -13,7 +12,7 @@ class QVariant;
 class AssetListTableModel : public QAbstractTableModel
 {
 public:
-    AssetListTableModel(AssetInterface& localAssetInterface, AssetType localType, int localYear);
+    AssetListTableModel(AssetInterface& localAssetInterface, int localYear);
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -22,11 +21,14 @@ public:
 
 private:
     AssetInterface& assetInterface;
-    std::vector<AssetEntry*> assetEntries;
+    std::vector<AssetEntry*> liquidAssetEntries;
+    std::vector<AssetEntry*> illiquidAssetEntries;
+    int numRows = 0;
     int numCols = 0;
+    quint32 numLiquidAssets = 0;
+    quint32 numIlliquidAssets = 0;
     QDate startDatePeriod;
     QDate endDatePeriod;
-    AssetType type = AssetType::Unknown;
     int year = 0;
 };
 

@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+class AssetSummaryDialog;
 class AutomaticMonthlyPaymentSummaryDialog;
 class ExpenseTypeSummaryDialog;
 class MonthlyBudgetSummaryDialog;
@@ -46,6 +47,7 @@ public:
     void showMiscExpensesDialog(QWidget* parent);
     void showYearlyIncomeSummaryDialog(QWidget* parent);
     void showAutomaticMonthlyPaymentSummaryDialog(QWidget* parent);
+    void showAssetSummaryDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
@@ -56,6 +58,7 @@ private:
     std::unique_ptr<ExpenseTypeSummaryDialog> miscExpensesDialog;
     std::unique_ptr<YearlyIncomeSummaryDialog> yearlyIncomeDialog;
     std::unique_ptr<AutomaticMonthlyPaymentSummaryDialog> automaticMonthlyPaymentDialog;
+    std::unique_ptr<AssetSummaryDialog> assetSummaryDialog;
 };
 
 #endif // MAINWINDOWCONTROLLER_H
