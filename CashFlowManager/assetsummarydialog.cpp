@@ -82,7 +82,9 @@ void AssetSummaryDialog::configureAssetListTable()
     }
 
     tableHeight += ui->tableViewAssetSummary->horizontalHeader()->height();
-    ui->tableViewAssetSummary->setMaximumHeight(tableHeight+5);
+    //ui->tableViewAssetSummary->setMinimumHeight(tableHeight+5);
+    //ui->tableViewAssetSummary->setMaximumHeight(tableHeight+5);
+    ui->tableViewAssetSummary->setFixedHeight(tableHeight+5);
 
     // Set TableView width
     int tableWidth = 0;
@@ -96,6 +98,7 @@ void AssetSummaryDialog::configureAssetListTable()
         tableWidth += ui->tableViewAssetSummary->verticalScrollBar()->width();
     }
 
-    ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
-    ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
+    //ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
+    //ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
+    ui->tableViewAssetSummary->setFixedWidth(tableWidth);
 }

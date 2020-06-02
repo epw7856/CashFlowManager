@@ -69,6 +69,9 @@ public:
     std::vector<AssetEntry*> getAssetListByType(AssetType type) const override;
     void addAsset(const AssetEntry& entry) override;
     void addAssetValue(const std::string& assetName, const std::pair<QDate, double>& valueEntry) override;
+    double getAssetValue(const std::string assetName, int year, int month) const override;
+    double getAssetTotalValueByType(AssetType type, int year, int month) const override;
+    bool currentMonthValuesEntered() const override;
 
 private:
     QFile systemConfigFile;

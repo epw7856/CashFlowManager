@@ -1,6 +1,7 @@
 #include "assetentry.h"
 #include "assetinterface.h"
 #include "assetlisttablemodel.h"
+#include "currencyutilities.h"
 #include "dateutilities.h"
 #include <QBrush>
 #include <QColor>
@@ -12,9 +13,7 @@ AssetListTableModel::AssetListTableModel(AssetInterface& localAssetInterface, in
     numRows(12),
     year(localYear)
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getYearlyDates(year);
-    startDatePeriod = dates.first;
-    endDatePeriod = dates.second;
+    tableData.resize(12);
 }
 
 int AssetListTableModel::rowCount(const QModelIndex&) const
@@ -31,68 +30,84 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
 {
     if(role == Qt::DisplayRole)
     {
-        int numRows = rowCount(index);
-
-        if((index.row() < numRows))
+        if((index.row() < numRows) && (index.column() < numCols))
         {
             auto rowUint = static_cast<quint32>(index.row());
             auto colUint = static_cast<quint32>(index.column());
 
-            if(rowUint == 0)
+            if(colUint == 0)
             {
-                if(colUint == 0)
+                if(rowUint == 0)
                 {
                     return "January";
                 }
-//                else if(colUint > 0 && colUint < (numLiquidAssets + 1))
-//                {
+                else if(rowUint == 1)
+                {
+                    return "February";
+                }
+                else if(rowUint == 2)
+                {
+                    return "March";
+                }
+                else if(rowUint == 3)
+                {
+                    return "April";
+                }
+                else if(rowUint == 4)
+                {
+                    return "May";
+                }
+                else if(rowUint == 5)
+                {
+                    return "June";
+                }
+                else if(rowUint == 6)
+                {
+                    return "July";
+                }
+                else if(rowUint == 7)
+                {
+                    return "August";
+                }
+                else if(rowUint == 8)
+                {
+                    return "September";
+                }
+                else if(rowUint == 9)
+                {
+                    return "October";
+                }
+                else if(rowUint == 10)
+                {
+                    return "November";
+                }
+                else if(rowUint == 11)
+                {
+                    return "December";
+                }
+            }
 
-//                }
-            }
-            else if(rowUint == 1 && index.column() == 0)
+            if(colUint > 0)
             {
-                return "February";
+                if((QDate::currentDate().month() - 1) >= static_cast<int>(rowUint))
+                {
+                    if(static_cast<int>(rowUint) == (QDate::currentDate().month() - 1) &&
+                       !assetInterface.currentMonthValuesEntered())
+                    {
+                        return "";
+                    }
+                    else
+                    {
+                        return tableData[rowUint][colUint - 1];
+                    }
+
+                }
+                else
+                {
+                    return "";
+                }
             }
-            else if(rowUint == 2 && index.column() == 0)
-            {
-                return "March";
-            }
-            else if(rowUint == 3 && index.column() == 0)
-            {
-                return "April";
-            }
-            else if(rowUint == 4 && index.column() == 0)
-            {
-                return "May";
-            }
-            else if(rowUint == 5 && index.column() == 0)
-            {
-                return "June";
-            }
-            else if(rowUint == 6 && index.column() == 0)
-            {
-                return "July";
-            }
-            else if(rowUint == 7 && index.column() == 0)
-            {
-                return "August";
-            }
-            else if(rowUint == 8 && index.column() == 0)
-            {
-                return "September";
-            }
-            else if(rowUint == 9 && index.column() == 0)
-            {
-                return "October";
-            }
-            else if(rowUint == 10 && index.column() == 0)
-            {
-                return "November";
-            }
-            else if(rowUint == 11 && index.column() == 0)
-            {
-                return "December";
-            }
+
         }
     }
 
@@ -128,103 +143,49 @@ QVariant AssetListTableModel::headerData(int section, Qt::Orientation orientatio
             {
                 return "";
             }
-
-            for(int i = 1; i < static_cast<int>(liquidAssetEntries.size() + 1); ++i)
+            else if(section < getLiquidAssetTotalColumnIndex())
             {
-                if(section == i)
-                {
-                    return QString::fromStdString(liquidAssetEntries[i-1]->getName());
-                }
+                return QString::fromStdString(liquidAssetEntries[section - 1]->getName());
             }
-
-            if(section == static_cast<int>(liquidAssetEntries.size() + 1))
+            else if(section == getLiquidAssetTotalColumnIndex())
             {
-                return "Liquid Asset Total ";
+                return "Liquid Total";
             }
-            else if(section == static_cast<int>(liquidAssetEntries.size() + 2))
+            else if(section == getLiquidAssetChangeColumnIndex())
             {
                 return "% Change";
             }
-
-            for(int i = static_cast<int>(liquidAssetEntries.size() + 3); i < static_cast<int>(illiquidAssetEntries.size() + liquidAssetEntries.size() + 3); ++i)
+            else if(section < getIlliquidAssetTotalColumnIndex())
             {
-                if(section == i)
-                {
-                    return QString::fromStdString(illiquidAssetEntries[i - static_cast<int>(liquidAssetEntries.size() + 3)]->getName());
-                }
+                return QString::fromStdString(illiquidAssetEntries[section - getLiquidAssetChangeColumnIndex() - 1]->getName());
             }
-
-            if(section == static_cast<int>(liquidAssetEntries.size() + 3 + illiquidAssetEntries.size()))
+            else if(section == getIlliquidAssetTotalColumnIndex())
             {
-                return "Illiquid Asset Total ";
+                return "Illiquid Total";
             }
-            else if(section == static_cast<int>(liquidAssetEntries.size() + 3 + illiquidAssetEntries.size() + 1))
+            else if(section == getIlliquidAssetChangeColumnIndex())
             {
                 return "% Change";
             }
-            else if(section == static_cast<int>(liquidAssetEntries.size() + 3 + illiquidAssetEntries.size() + 2))
+            else if(section == getNetWorthTotalColumnIndex())
             {
                 return "Net Worth";
             }
-            else if(section == static_cast<int>(liquidAssetEntries.size() + 3 + illiquidAssetEntries.size() + 3))
+            else if(section == getNetWorthChangeColumnIndex())
             {
                 return "% Change";
             }
+        }
+    }
 
-
-
-//            if(section == 0)
-//            {
-//                return "";
-//            }
-//            else if(section == 1)
-//            {
-//                return "January";
-//            }
-//            else if(section == 2)
-//            {
-//                return "February";
-//            }
-//            else if(section == 3)
-//            {
-//                return "March";
-//            }
-//            else if(section == 4)
-//            {
-//                return "April";
-//            }
-//            else if(section == 5)
-//            {
-//                return "May";
-//            }
-//            else if(section == 6)
-//            {
-//                return "June";
-//            }
-//            else if(section == 7)
-//            {
-//                return "July";
-//            }
-//            else if(section == 8)
-//            {
-//                return "August";
-//            }
-//            else if(section == 9)
-//            {
-//                return "September";
-//            }
-//            else if(section == 10)
-//            {
-//                return "October";
-//            }
-//            else if(section == 11)
-//            {
-//                return "November";
-//            }
-//            else if(section == 12)
-//            {
-//                return "December";
-//            }
+    if((role == Qt::FontRole) && ((section < getLiquidAssetTotalColumnIndex()) || (section < getIlliquidAssetTotalColumnIndex())))
+    {
+        if((section < getLiquidAssetTotalColumnIndex()) ||
+           ((section > getLiquidAssetChangeColumnIndex()) && (section < getIlliquidAssetTotalColumnIndex())))
+        {
+            QFont font;
+            font.setBold(false);
+            return font;
         }
     }
 
@@ -236,8 +197,82 @@ void AssetListTableModel::setAssetEntries()
     liquidAssetEntries = assetInterface.getAssetListByType(AssetType::Liquid);
     illiquidAssetEntries = assetInterface.getAssetListByType(AssetType::Illiquid);
 
-    numLiquidAssets = liquidAssetEntries.size();
-    numIlliquidAssets = illiquidAssetEntries.size();
+    numCols = static_cast<int>(liquidAssetEntries.size() + illiquidAssetEntries.size() + 7);
 
-    numCols = static_cast<int>(liquidAssetEntries.size() + illiquidAssetEntries.size() + 6);
+    for(int i = 1; i <= QDate::currentDate().month(); ++i)
+    {
+        if(i == QDate::currentDate().month() && !assetInterface.currentMonthValuesEntered())
+        {
+            break;
+        }
+        else
+        {
+            setTableData(i);
+        }
+    }
+}
+
+void AssetListTableModel::setTableData(int month)
+{
+    QDate date(year, month, 1);
+    QDate prevDate = date.addMonths(-1);
+    double currentLiquidValue = assetInterface.getAssetTotalValueByType(AssetType::Liquid, year, month);
+    double previousLiquidValue = assetInterface.getAssetTotalValueByType(AssetType::Liquid, prevDate.year(), prevDate.month());
+    double currentIlliquidValue = assetInterface.getAssetTotalValueByType(AssetType::Illiquid, year, month);
+    double previousIlliquidValue = assetInterface.getAssetTotalValueByType(AssetType::Illiquid, prevDate.year(), prevDate.month());
+
+    for(const auto& i : liquidAssetEntries)
+    {
+        tableData[month - 1].push_back(QString::fromStdString(CurrencyUtilities::formatCurrency(assetInterface.getAssetValue(i->getName(), year, month))));
+    }
+
+    tableData[month - 1].push_back(QString::fromStdString(CurrencyUtilities::formatCurrency(currentLiquidValue)));
+    tableData[month - 1].push_back(calculatePercentChange(previousLiquidValue, currentLiquidValue));
+
+    for(const auto& i : illiquidAssetEntries)
+    {
+        tableData[month - 1].push_back(QString::fromStdString(CurrencyUtilities::formatCurrency(assetInterface.getAssetValue(i->getName(), year, month))));
+    }
+
+    tableData[month - 1].push_back(QString::fromStdString(CurrencyUtilities::formatCurrency(currentIlliquidValue)));
+    tableData[month - 1].push_back(calculatePercentChange(previousIlliquidValue, currentIlliquidValue));
+
+    tableData[month - 1].push_back(QString::fromStdString(CurrencyUtilities::formatCurrency(currentLiquidValue + currentIlliquidValue)));
+    tableData[month - 1].push_back(calculatePercentChange((previousLiquidValue + previousIlliquidValue), (currentLiquidValue + currentIlliquidValue)));
+}
+
+QString AssetListTableModel::calculatePercentChange(double previousValue, double currentValue)
+{
+    return (previousValue > 0.0) ? QString::fromStdString(CurrencyUtilities::formatRatio((currentValue - previousValue) / previousValue))
+                                 : "N/A";
+}
+
+int AssetListTableModel::getLiquidAssetTotalColumnIndex() const
+{
+    return liquidAssetEntries.size() + 1;
+}
+
+int AssetListTableModel::getLiquidAssetChangeColumnIndex() const
+{
+    return (liquidAssetEntries.size() + 2);
+}
+
+int AssetListTableModel::getIlliquidAssetTotalColumnIndex() const
+{
+    return (liquidAssetEntries.size() + illiquidAssetEntries.size() + 3);
+}
+
+int AssetListTableModel::getIlliquidAssetChangeColumnIndex() const
+{
+    return (liquidAssetEntries.size() + illiquidAssetEntries.size() + 4);
+}
+
+int AssetListTableModel::getNetWorthTotalColumnIndex() const
+{
+    return (liquidAssetEntries.size() + illiquidAssetEntries.size() + 5);
+}
+
+int AssetListTableModel::getNetWorthChangeColumnIndex() const
+{
+    return (liquidAssetEntries.size() + illiquidAssetEntries.size() + 6);
 }

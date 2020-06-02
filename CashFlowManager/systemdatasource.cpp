@@ -558,6 +558,72 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
     }
 }
 
+double SystemDataSource::getAssetTotalValueByType(AssetType type, int year, int month) const
+{
+    std::vector<AssetEntry*> list;
+    auto itr = assetList.begin();
+    while((itr = std::find_if(itr, assetList.end(), [=] (const std::unique_ptr<AssetEntry>& entry){ return (entry->getType() == type); })) != assetList.end())
+    {
+        list.push_back(itr->get());
+        itr++;
+    }
+
+    double value = 0.0;
+    for(const auto& i : list)
+    {
+        value += getAssetValue(i->getName(), year, month);
+    }
+
+    return value;
+}
+
+bool SystemDataSource::currentMonthValuesEntered() const
+{
+    QDate date(QDate::currentDate().year(), QDate::currentDate().month(), 1);
+
+    for(const auto& i : assetList)
+    {
+        std::map<QDate, double> values = i->getValue();
+        auto entry = values.find(date);
+        if(entry == values.end())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const
+{
+    QDate date(year, month, 1);
+    double amount = 0.0;
+
+    auto iterator = find_if(assetList.begin(), assetList.end(), [=] (const std::unique_ptr<AssetEntry>& asset)
+    {
+        return (asset->getName() == assetName);
+    });
+
+    if(iterator != assetList.end())
+    {
+        std::map<QDate, double> values = iterator->get()->getValue();
+        auto valueItr = values.find(date);
+        if(valueItr == values.end() && values.size() > 0)
+        {
+            valueItr = values.lower_bound(date);
+            if(valueItr != values.begin())
+            {
+                valueItr--;
+            }
+            else
+            {
+                return amount;
+            }
+        }
+        amount = valueItr->second;
+    }
+    return amount;
+}
+
 void SystemDataSource::parseExpenseTypes()
 {
     QJsonValue expTypes = obj.value("ExpenseTypes");

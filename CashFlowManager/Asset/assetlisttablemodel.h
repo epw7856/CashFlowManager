@@ -19,17 +19,23 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void setAssetEntries();
 
+    int getLiquidAssetTotalColumnIndex() const;
+    int getLiquidAssetChangeColumnIndex() const;
+    int getIlliquidAssetTotalColumnIndex() const;
+    int getIlliquidAssetChangeColumnIndex() const;
+    int getNetWorthTotalColumnIndex() const;
+    int getNetWorthChangeColumnIndex() const;
+
 private:
+    void setTableData(int month);
+    QString calculatePercentChange(double previousValue, double currentValue);
     AssetInterface& assetInterface;
     std::vector<AssetEntry*> liquidAssetEntries;
     std::vector<AssetEntry*> illiquidAssetEntries;
     int numRows = 0;
     int numCols = 0;
-    quint32 numLiquidAssets = 0;
-    quint32 numIlliquidAssets = 0;
-    QDate startDatePeriod;
-    QDate endDatePeriod;
     int year = 0;
+    std::vector<std::vector<QString>> tableData = {};
 };
 
 #endif // ASSETLISTTABLEMODEL_H
