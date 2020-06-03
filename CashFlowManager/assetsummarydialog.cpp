@@ -1,16 +1,19 @@
 #include "assetinterface.h"
 #include "assetsummarydialog.h"
+#include "assetsummarydialogcontroller.h"
 #include <QScrollBar>
 #include "ui_assetsummarydialog.h"
 
 AssetSummaryDialog::AssetSummaryDialog(AssetInterface& localAssetInterface, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AssetSummaryDialog),
-    assetListTable(localAssetInterface, QDate::currentDate().year())
+    assetListTable(localAssetInterface, QDate::currentDate().year()),
+    assetSummaryDialogController(std::make_unique<AssetSummaryDialogController>(localAssetInterface))
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Asset and Net Worth Summary"));
+    //ui->labelLiquidAssetAmount->setText()
 
     assetListTable.setAssetEntries();
 
@@ -82,8 +85,9 @@ void AssetSummaryDialog::configureAssetListTable()
     }
 
     tableHeight += ui->tableViewAssetSummary->horizontalHeader()->height();
-    //ui->tableViewAssetSummary->setMinimumHeight(tableHeight+5);
-    //ui->tableViewAssetSummary->setMaximumHeight(tableHeight+5);
+
+    //ui->tableViewAssetSummary->setMinimumHeight(tableHeight);
+    //ui->tableViewAssetSummary->setMaximumHeight(tableHeight);
     ui->tableViewAssetSummary->setFixedHeight(tableHeight+5);
 
     // Set TableView width
@@ -98,7 +102,6 @@ void AssetSummaryDialog::configureAssetListTable()
         tableWidth += ui->tableViewAssetSummary->verticalScrollBar()->width();
     }
 
-    //ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
-    //ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
-    ui->tableViewAssetSummary->setFixedWidth(tableWidth);
+    ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
+    ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
 }

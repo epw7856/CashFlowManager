@@ -2,11 +2,14 @@
 #define ASSETSUMMARYDIALOG_H
 
 #include "assetlisttablemodel.h"
+#include <memory>
 #include <QDialog>
 
 namespace Ui {
 class AssetSummaryDialog;
 }
+
+class AssetSummaryDialogController;
 
 class AssetSummaryDialog : public QDialog
 {
@@ -22,6 +25,7 @@ public slots:
 private:
     Ui::AssetSummaryDialog *ui;
     AssetListTableModel assetListTable;
+    std::unique_ptr<AssetSummaryDialogController> assetSummaryDialogController;
 
     void configureAssetListTable();
 };
