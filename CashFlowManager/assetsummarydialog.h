@@ -25,9 +25,10 @@ public slots:
 private:
     Ui::AssetSummaryDialog *ui;
     AssetListTableModel assetListTable;
-    std::unique_ptr<AssetSummaryDialogController> assetSummaryDialogController;
+    std::unique_ptr<AssetSummaryDialogController> controller;
 
     void configureAssetListTable();
+    void configureNetWorthTrackingChart();
 };
 
 #endif // ASSETSUMMARYDIALOG_H

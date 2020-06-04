@@ -8,12 +8,18 @@ AssetSummaryDialog::AssetSummaryDialog(AssetInterface& localAssetInterface, QWid
     QDialog(parent),
     ui(new Ui::AssetSummaryDialog),
     assetListTable(localAssetInterface, QDate::currentDate().year()),
-    assetSummaryDialogController(std::make_unique<AssetSummaryDialogController>(localAssetInterface))
+    controller(std::make_unique<AssetSummaryDialogController>(localAssetInterface))
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Asset and Net Worth Summary"));
-    //ui->labelLiquidAssetAmount->setText()
+    ui->labelYearlyNetWorthTracker->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Net Worth Tracking"));
+    ui->labelLiquidAssetAmount->setText(QString::fromStdString(controller->getCurrentLiquidAssetAmount()));
+    ui->labelLiquidAssetPercent->setText(QString::fromStdString(controller->getYearlyChange(false, AssetType::Liquid)));
+    ui->labelIlliquidAssetAmount->setText(QString::fromStdString(controller->getCurrentIlliquidAssetAmount()));
+    ui->labelIlliquidAssetPercent->setText(QString::fromStdString(controller->getYearlyChange(false, AssetType::Illiquid)));
+    ui->labelNetWorthAmount->setText(QString::fromStdString(controller->getCurrentNetWorthAmount()));
+    ui->labelNetWorthPercent->setText(QString::fromStdString(controller->getYearlyChange(true)));
 
     assetListTable.setAssetEntries();
 
@@ -104,4 +110,11 @@ void AssetSummaryDialog::configureAssetListTable()
 
     ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
     ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
+}
+
+void AssetSummaryDialog::configureNetWorthTrackingChart()
+{
+    QLineSeries* series = new QLineSeries();
+
+
 }
