@@ -42,5 +42,28 @@ double CurrencyUtilities::formatCurrencyToDouble(const std::string& amount)
     }
     interAmount.remove(',');
     convertedValue = interAmount.toDouble();
-    return (negative) ? (-1.0)*convertedValue : convertedValue;
+    return (negative) ? (-1.0) * convertedValue : convertedValue;
+}
+
+double CurrencyUtilities::formatRatioToDouble(const std::string& ratio)
+{
+    double convertedValue = 0.0;
+    QString interRatio = QString::fromStdString(ratio);
+    bool negative = false;
+
+    if(interRatio == "N/A")
+    {
+        return convertedValue;
+    }
+
+    interRatio.remove(interRatio.size() - 1, 1);
+
+    if(interRatio.at(0) == '-')
+    {
+        negative = true;
+        interRatio.remove(0, 1);
+    }
+
+    convertedValue = interRatio.toDouble() / 100.0;
+    return (negative) ? (-1.0) * convertedValue : convertedValue;
 }

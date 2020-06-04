@@ -100,7 +100,6 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
                     {
                         return tableData[rowUint][colUint - 1];
                     }
-
                 }
                 else
                 {
@@ -108,6 +107,67 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
                 }
             }
 
+        }
+    }
+
+    if(role == Qt::BackgroundRole)
+    {
+        int stopIndex;
+        (assetInterface.currentMonthValuesEntered()) ? stopIndex = QDate::currentDate().month() : stopIndex = QDate::currentDate().month() - 1;
+
+        if(index.row() < stopIndex)
+        {
+            if(index.column() == getLiquidAssetChangeColumnIndex())
+            {
+                if(index.sibling(index.row(), getLiquidAssetChangeColumnIndex()).data().toString() == "N/A")
+                {
+                    return {};
+                }
+
+                double liquidPercentage = CurrencyUtilities::formatRatioToDouble(index.sibling(index.row(), getLiquidAssetChangeColumnIndex()).data().toString().toStdString());
+                if(liquidPercentage > 0.0)
+                {
+                    return QVariant(QBrush(QColor(Qt::green)));
+                }
+                else
+                {
+                    return QVariant(QBrush(QColor(Qt::red)));
+                }
+            }
+            else if(index.column() == getIlliquidAssetChangeColumnIndex())
+            {
+                if(index.sibling(index.row(), getIlliquidAssetChangeColumnIndex()).data().toString() == "N/A")
+                {
+                    return {};
+                }
+
+                double illiquidPercentage = CurrencyUtilities::formatRatioToDouble(index.sibling(index.row(), getIlliquidAssetChangeColumnIndex()).data().toString().toStdString());
+                if(illiquidPercentage > 0.0)
+                {
+                    return QVariant(QBrush(QColor(Qt::green)));
+                }
+                else
+                {
+                    return QVariant(QBrush(QColor(Qt::red)));
+                }
+            }
+            else if(index.column() == getNetWorthChangeColumnIndex())
+            {
+                if(index.sibling(index.row(), getNetWorthChangeColumnIndex()).data().toString() == "N/A")
+                {
+                    return {};
+                }
+
+                double netWorthPercentage = CurrencyUtilities::formatRatioToDouble(index.sibling(index.row(), getNetWorthChangeColumnIndex()).data().toString().toStdString());
+                if(netWorthPercentage > 0.0)
+                {
+                    return QVariant(QBrush(QColor(Qt::green)));
+                }
+                else
+                {
+                    return QVariant(QBrush(QColor(Qt::red)));
+                }
+            }
         }
     }
 
