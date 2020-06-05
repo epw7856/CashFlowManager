@@ -183,7 +183,11 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
         }
     }
 
-    if((role == Qt::FontRole) && (index.column() == 0))
+    if((role == Qt::FontRole) &&
+      ((index.column() == 0) ||
+       (index.column() == getLiquidAssetTotalColumnIndex()) ||
+       (index.column() == getIlliquidAssetTotalColumnIndex()) ||
+       (index.column() == getNetWorthTotalColumnIndex())))
     {
         QFont font;
         font.setBold(true);
