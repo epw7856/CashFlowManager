@@ -52,6 +52,7 @@ SOURCES += \
         Investment/monthlyinvestmenttablemodel.cpp \
         Investment/yearlyinvestmenttablemodel.cpp \
         Mortgage/mortgageinformation.cpp \
+        Mortgage/mortgagepayment.cpp \
         assetsummarydialog.cpp \
         assetsummarydialogcontroller.cpp \
         automaticmonthlypaymentsummarydialog.cpp \

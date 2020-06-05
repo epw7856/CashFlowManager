@@ -366,14 +366,15 @@
             {
                 "AdditionalPrincipal": 100,
                 "Amount": 1545,
-                "Date": "05/1/2020"
+                "Date": "05/01/2020"
             },
             {
                 "AdditionalPrincipal": 500,
                 "Amount": 1545,
-                "Date": "06/1/2020"
+                "Date": "06/01/2020"
             }
         ],
+		"MarketValue": 250000,
         "PurchasePrice": 230900,
         "Rate": 3.656,
         "RemainingBalance": 199000,

@@ -3,9 +3,14 @@
 
 #include "basetransaction.h"
 
-struct MortgagePayment : public BaseTransaction
+class MortgagePayment : public BaseTransaction
 {
-    double AdditionalPrincipalPayment = 0.0;
+public:
+    MortgagePayment(const QDate& inputDate);
+    MortgagePayment(const QDate& inputDate, double inputAmount, double inputAdditionalPrincipal);
+
+private:
+    double additionalPrincipalPayment = 0.0;
 };
 
 #endif // MORTGAGEPAYMENT_H
