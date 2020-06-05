@@ -17,6 +17,8 @@ public:
     std::string getYearlyChange(bool netWorthFlag, AssetType type = AssetType::Unknown) const;
     std::string getCurrentNetWorthAmount() const;
     std::vector<std::pair<int, double>> getMonthlyNetWorthTotals() const;
+    bool getCurrentMonthValuesEntered() const;
+    std::pair<double, double> getMinandMaxYearlyNetWorth() const;
 
 private:
     AssetInterface& assetInterface;

@@ -68,3 +68,30 @@ std::vector<std::pair<int, double>> AssetSummaryDialogController::getMonthlyNetW
     }
     return totals;
 }
+
+bool AssetSummaryDialogController::getCurrentMonthValuesEntered() const
+{
+    return assetInterface.currentMonthValuesEntered();
+}
+
+std::pair<double, double> AssetSummaryDialogController::getMinandMaxYearlyNetWorth() const
+{
+    std::vector<std::pair<int, double>> totals = getMonthlyNetWorthTotals();
+    double min = 0.0, max = 0.0;
+    min = totals.begin()->second;
+
+    for(const auto& i : totals)
+    {
+        if(i.second > max)
+        {
+            max = i.second;
+        }
+
+        if(i.second < min)
+        {
+            min = i.second;
+        }
+    }
+
+    return {min, max};
+}

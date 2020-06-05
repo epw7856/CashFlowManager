@@ -1,6 +1,7 @@
 #include "assetinterface.h"
 #include "assetsummarydialog.h"
 #include "assetsummarydialogcontroller.h"
+#include "currencyutilities.h"
 #include <QScrollBar>
 #include "ui_assetsummarydialog.h"
 
@@ -12,6 +13,8 @@ AssetSummaryDialog::AssetSummaryDialog(AssetInterface& localAssetInterface, QWid
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlag(Qt::WindowMinMaxButtonsHint);
+    showMaximized();
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Asset and Net Worth Summary"));
     ui->labelYearlyNetWorthTracker->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Net Worth Tracking"));
     ui->labelLiquidAssetAmount->setText(QString::fromStdString(controller->getCurrentLiquidAssetAmount()));
@@ -26,6 +29,7 @@ AssetSummaryDialog::AssetSummaryDialog(AssetInterface& localAssetInterface, QWid
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &AssetSummaryDialog::onPushButtonExitClicked);
 
     configureAssetListTable();
+    configureNetWorthTrackingChart();
 }
 
 AssetSummaryDialog::~AssetSummaryDialog()
@@ -116,5 +120,53 @@ void AssetSummaryDialog::configureNetWorthTrackingChart()
 {
     QLineSeries* series = new QLineSeries();
 
+    std::pair<double, double> range = controller->getMinandMaxYearlyNetWorth();
+    double tickCount = 5.0;
+    std::vector<std::pair<int, double>> values = controller->getMonthlyNetWorthTotals();
+    for(const auto& i : values)
+    {
+        series->append(i.first, i.second);
+    }
 
+    QChart* chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+
+    auto axisX = (chart->axes(Qt::Horizontal)).at(0);
+    auto axisY = (chart->axes(Qt::Vertical)).at(0);
+    axisX->setVisible(false);
+    axisY->setVisible(false);
+
+    QCategoryAxis* labelX = new QCategoryAxis;
+    QCategoryAxis* labelY = new QCategoryAxis;
+    labelX->setLabelsPosition(QCategoryAxis::AxisLabelsPositionOnValue);
+    labelY->setLabelsPosition(QCategoryAxis::AxisLabelsPositionOnValue);
+
+    int index;
+    (controller->getCurrentMonthValuesEntered()) ? index = QDate::currentDate().month() : index = QDate::currentDate().month() - 1;
+    for(int i = 1; i <= index; ++i)
+    {
+        QDate date(QDate::currentDate().year(), i, 1);
+        labelX->append(date.toString("MMM"), i);
+    }
+    labelX->setRange(1, index);
+    axisX->setRange(0, index - 1);
+
+    double min = range.first * .9;
+    double max = range.second * 1.1;
+    double increment = (max - min) / tickCount;
+
+    for(int i = 0; i < tickCount; ++i)
+    {
+        int value = std::floor(min + (i * increment));
+        labelY->append(QString::fromStdString(CurrencyUtilities::formatCurrency(value, true)), value);
+    }
+    labelY->setRange(min, min + (tickCount * increment));
+    axisY->setRange(min, min + (tickCount * increment));
+
+    chart->addAxis(labelX, Qt::AlignBottom);
+    chart->addAxis(labelY, Qt::AlignLeft);
+
+    ui->graphicsViewNetWorth->setChart(chart);
 }

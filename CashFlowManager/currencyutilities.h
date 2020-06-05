@@ -7,9 +7,8 @@ class CurrencyUtilities
 {
 public:
     CurrencyUtilities() {}
-    static std::string formatCurrency(int amount);
-    static std::string formatCurrency(double amount);
-    static std::string formatRatio(double amount);
+    static std::string formatCurrency(double amount, bool trimPrecision = false);
+    static std::string formatRatio(double ratio);
     static double formatCurrencyToDouble(const std::string& amount);
     static double formatRatioToDouble(const std::string& ratio);
 };

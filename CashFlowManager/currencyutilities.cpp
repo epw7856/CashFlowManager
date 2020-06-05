@@ -1,29 +1,27 @@
 #include "currencyutilities.h"
 #include <QLocale>
 
-std::string CurrencyUtilities::formatCurrency(int amount)
+std::string CurrencyUtilities::formatCurrency(double amount, bool trimPrecision)
 {
-    if(amount < 0)
-    {
-        amount *= -1;
-        return "-$" + QLocale(QLocale::English).toString(static_cast<double>(amount), 'f', 2).toStdString();
-    }
-    return "$" + QLocale(QLocale::English).toString(static_cast<double>(amount), 'f', 2).toStdString();
-}
-
-std::string CurrencyUtilities::formatCurrency(double amount)
-{
+    std::string value;
+    value = "$" + QLocale(QLocale::English).toString(amount, 'f', 2).toStdString();
     if(amount < 0.0)
     {
         amount *= -1.0;
-        return "-$" + QLocale(QLocale::English).toString(amount, 'f', 2).toStdString();
+        value.insert(0, "-");
     }
-    return "$" + QLocale(QLocale::English).toString(amount, 'f', 2).toStdString();
+
+    if(trimPrecision)
+    {
+        value.erase(value.size() - 3);
+    }
+
+    return value;
 }
 
-std::string CurrencyUtilities::formatRatio(double amount)
+std::string CurrencyUtilities::formatRatio(double ratio)
 {
-    return QLocale(QLocale::English).toString(amount*100, 'f', 2).toStdString() + "%";
+    return QLocale(QLocale::English).toString(ratio*100, 'f', 2).toStdString() + "%";
 }
 
 double CurrencyUtilities::formatCurrencyToDouble(const std::string& amount)
