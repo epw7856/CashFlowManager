@@ -23,11 +23,6 @@ MortgageInformation::MortgageInformation
 
 MortgageInformation::~MortgageInformation() = default;
 
-void MortgageInformation::updateMarketValue(double value)
-{
-    marketValue = value;
-}
-
 void MortgageInformation::updateRemainingBalance(double amount)
 {
     remainingLoanBalance -= amount;
@@ -42,8 +37,5 @@ void MortgageInformation::addMortgagePayment(const MortgagePayment& payment)
     payments.insert(std::make_unique<MortgagePayment>(payment));
 }
 
-const std::multiset<std::unique_ptr<MortgagePayment>>& MortgageInformation::getMortgagePayments() const
-{
-    return payments;
-}
+
 

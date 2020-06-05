@@ -71,4 +71,14 @@ inline int MortgageInformation::getLoanTerm() const
     return loanTerm;
 }
 
+inline void MortgageInformation::updateMarketValue(double value)
+{
+    marketValue = value;
+}
+
+inline const std::multiset<std::unique_ptr<MortgagePayment>>& MortgageInformation::getMortgagePayments() const
+{
+    return payments;
+}
+
 #endif // MORTGAGEINFORMATION_H
