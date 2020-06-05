@@ -53,8 +53,9 @@ void AssetSummaryDialog::configureAssetListTable()
     font.setBold(true);
     ui->tableViewAssetSummary->horizontalHeader()->setFont(font);
 
-    // Disable horizontal scroll bar
-    ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // Set scrollbar policies
+    ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->tableViewAssetSummary->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     // Disable cell resizing and selections
     ui->tableViewAssetSummary->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
@@ -96,9 +97,13 @@ void AssetSummaryDialog::configureAssetListTable()
 
     tableHeight += ui->tableViewAssetSummary->horizontalHeader()->height();
 
-    //ui->tableViewAssetSummary->setMinimumHeight(tableHeight);
-    //ui->tableViewAssetSummary->setMaximumHeight(tableHeight);
-    ui->tableViewAssetSummary->setFixedHeight(tableHeight+5);
+    if(ui->tableViewAssetSummary->horizontalScrollBar()->height() < 100)
+    {
+        tableHeight += ui->tableViewAssetSummary->horizontalScrollBar()->height();
+    }
+
+    ui->tableViewAssetSummary->setMinimumHeight(tableHeight - 100);
+    ui->tableViewAssetSummary->setMaximumHeight(tableHeight);
 
     // Set TableView width
     int tableWidth = 0;
@@ -112,8 +117,8 @@ void AssetSummaryDialog::configureAssetListTable()
         tableWidth += ui->tableViewAssetSummary->verticalScrollBar()->width();
     }
 
+    ui->tableViewAssetSummary->setMinimumWidth(tableWidth - 200);
     ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
-    ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
 }
 
 void AssetSummaryDialog::configureNetWorthTrackingChart()
