@@ -94,6 +94,7 @@ private:
     void parseSalaryIncome();
     void parseSupplementalIncome();
     void parseAssetList();
+    void parseMortgageInformation();
 
     // Template functions to query for types, transactions, and transaction totals
     template<typename Transaction>

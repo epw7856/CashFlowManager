@@ -43,6 +43,7 @@ bool SystemDataSource::loadSystemConfig()
     parseSalaryIncome();
     parseSupplementalIncome();
     parseAssetList();
+    parseMortgageInformation();
 
     return true;
 }
@@ -775,6 +776,29 @@ void SystemDataSource::parseAssetList()
         for(auto j:i->getValue())
         {
             qDebug() << j.first << "  " << j.second;
+        }
+    }
+}
+
+void SystemDataSource::parseMortgageInformation()
+{
+    QJsonValue info = obj.value("MortgageInformation");
+
+    if(!info.isNull() && !info.isUndefined())
+    {
+        double marketValue = info.toObject().value("MarketValue").toDouble();
+        double purchasePrice = info.toObject().value("PurchasePrice").toDouble();
+        double rate = info.toObject().value("Rate").toDouble();
+        double remainingBalance = info.toObject().value("RemainingBalance").toDouble();
+        int term = info.toObject().value("Term").toInt();
+        double loanAmount = info.toObject().value("TotalLoanAmount").toDouble();
+
+        mortgageInfo = std::make_unique<MortgageInformation>(loanAmount, remainingBalance, purchasePrice, marketValue, rate, term);
+
+        QJsonArray payments = info.toObject().value("Payments").toArray();
+        for (const QJsonValue item : payments)
+        {
+
         }
     }
 }
