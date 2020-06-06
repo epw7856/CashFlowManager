@@ -6,6 +6,7 @@
 #include "investmenttransaction.h"
 #include "investmenttype.h"
 #include "mortgageinformation.h"
+#include "mortgagepayment.h"
 #include <QByteArray>
 #include <QDebug>
 #include <QJsonArray>
@@ -798,7 +799,12 @@ void SystemDataSource::parseMortgageInformation()
         QJsonArray payments = info.toObject().value("Payments").toArray();
         for (const QJsonValue item : payments)
         {
-
+            QDate date;
+            double additionalPrincipal = item.toObject().value("AdditionalPrincipal").toDouble();
+            double amount = info.toObject().value("Amount").toDouble();
+            date = date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+            MortgagePayment transaction(date, amount, additionalPrincipal);
+            mortgageInfo->addMortgagePayment(transaction);
         }
     }
 }
