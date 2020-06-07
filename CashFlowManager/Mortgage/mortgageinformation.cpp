@@ -38,6 +38,14 @@ void MortgageInformation::updateRemainingBalance(double amount)
 void MortgageInformation::addMortgagePayment(const MortgagePayment& payment)
 {
     payments.insert(std::make_unique<MortgagePayment>(payment));
-    double principal = std::min(remainingLoanBalance, (monthlyPayment - remainingLoanBalance * monthlyInterestRate));
-    updateRemainingBalance(principal + payment.getAdditionalPrincipalPayment());
+
+    if(payment.getAmount() > 0.0)
+    {
+        double principal = std::min(remainingLoanBalance, (monthlyPayment - remainingLoanBalance * monthlyInterestRate));
+        updateRemainingBalance(principal + payment.getAdditionalPrincipalPayment());
+    }
+    else
+    {
+        updateRemainingBalance(payment.getAdditionalPrincipalPayment());
+    }
 }
