@@ -2,6 +2,7 @@
 #define MORTGAGEINFORMATION_H
 
 #include <memory>
+#include <QDate>
 #include <set>
 
 class MortgagePayment;
@@ -15,7 +16,8 @@ public:
         double purchasePrice,
         double homeValue,
         double percentageRate,
-        int term
+        int term,
+        QDate startDate
     );
     ~MortgageInformation();
 
@@ -39,6 +41,7 @@ private:
     int loanTerm = 0;
     double monthlyPayment = 0.0;
     double monthlyInterestRate = 0.0;
+    QDate loanStartDate;
     std::multiset<std::unique_ptr<MortgagePayment>> payments;
 };
 

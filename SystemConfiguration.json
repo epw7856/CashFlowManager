@@ -375,6 +375,7 @@
             }
         ],
 		"MarketValue": 250000,
+		"MortgageStartDate": "01/01/2018",
         "PurchasePrice": 230900,
         "Rate": 3.656,
         "Term": 30,

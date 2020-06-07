@@ -787,13 +787,16 @@ void SystemDataSource::parseMortgageInformation()
 
     if(!info.isNull() && !info.isUndefined())
     {
+        QDate start;
+
         double marketValue = info.toObject().value("MarketValue").toDouble();
         double purchasePrice = info.toObject().value("PurchasePrice").toDouble();
         double rate = info.toObject().value("Rate").toDouble();
         int term = info.toObject().value("Term").toInt();
         double loanAmount = info.toObject().value("TotalLoanAmount").toDouble();
+        start = QDate::fromString(info.toObject().value("MortgageStartDate").toString(), "MM/dd/yyyy");
 
-        mortgageInfo = std::make_unique<MortgageInformation>(loanAmount, purchasePrice, marketValue, rate, term);
+        mortgageInfo = std::make_unique<MortgageInformation>(loanAmount, purchasePrice, marketValue, rate, term, start);
 
         QJsonArray payments = info.toObject().value("Payments").toArray();
         for (const QJsonValue item : payments)
@@ -801,7 +804,7 @@ void SystemDataSource::parseMortgageInformation()
             QDate date;
             double additionalPrincipal = item.toObject().value("AdditionalPrincipal").toDouble();
             double amount = info.toObject().value("Amount").toDouble();
-            date = date.fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
+            date = QDate::fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
             MortgagePayment transaction(date, amount, additionalPrincipal);
             mortgageInfo->addMortgagePayment(transaction);
         }

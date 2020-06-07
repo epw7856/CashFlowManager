@@ -8,7 +8,8 @@ MortgageInformation::MortgageInformation
     double purchasePrice,
     double homeValue,
     double percentageRate,
-    int term
+    int term,
+    QDate startDate
 )
 :
     totalLoanAmount(loanAmount),
@@ -17,7 +18,8 @@ MortgageInformation::MortgageInformation
     marketValue(homeValue),
     interestRate(percentageRate / 100.0),
     loanTerm(term),
-    monthlyInterestRate(interestRate / 12.0)
+    monthlyInterestRate(interestRate / 12.0),
+    loanStartDate(startDate)
 {
     monthlyPayment = totalLoanAmount * (monthlyInterestRate * pow((1 + monthlyInterestRate), (loanTerm * 12.0))) / (pow((1 + monthlyInterestRate), (loanTerm * 12.0)) - 1);
 }
