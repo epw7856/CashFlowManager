@@ -12,7 +12,6 @@ public:
     MortgageInformation
     (
         double loanAmount,
-        double loanBalance,
         double purchasePrice,
         double homeValue,
         double percentageRate,
@@ -38,6 +37,8 @@ private:
     double marketValue = 0.0;
     double interestRate = 0.0;
     int loanTerm = 0;
+    double monthlyPayment = 0.0;
+    double monthlyInterestRate = 0.0;
     std::multiset<std::unique_ptr<MortgagePayment>> payments;
 };
 
