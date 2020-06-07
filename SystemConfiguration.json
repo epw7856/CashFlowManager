@@ -377,9 +377,9 @@
 		"MarketValue": 250000,
 		"MortgageStartDate": "01/01/2018",
         "PurchasePrice": 230900,
-        "Rate": 3.656,
+        "Rate": 3.625,
         "Term": 30,
-        "TotalLoanAmount": 207900
+        "TotalLoanAmount": 207800
     },
     "SalaryIncome": [
         {
