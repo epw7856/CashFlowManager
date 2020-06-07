@@ -362,6 +362,8 @@
         }
     ],
     "MortgageInformation": {
+        "MarketValue": 250000,
+        "MortgageStartDate": "01/01/2018",
         "Payments": [
             {
                 "AdditionalPrincipal": 100,
@@ -374,8 +376,6 @@
                 "Date": "06/01/2020"
             }
         ],
-		"MarketValue": 250000,
-		"MortgageStartDate": "01/01/2018",
         "PurchasePrice": 230900,
         "Rate": 3.625,
         "Term": 30,

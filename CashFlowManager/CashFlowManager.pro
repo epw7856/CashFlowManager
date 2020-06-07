@@ -64,6 +64,7 @@ SOURCES += \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
         monthlybudgetsummarydialog.cpp \
+        mortgagesummarydialog.cpp \
         systemdatasource.cpp \
         yearlybudgetsummarydialog.cpp \
         yearlyincomesummarydialog.cpp
@@ -103,6 +104,7 @@ HEADERS += \
         mainwindow.h \
         mainwindowcontroller.h \
         monthlybudgetsummarydialog.h \
+        mortgagesummarydialog.h \
         systemdatasource.h \
         transactioncomparison.h \
         yearlybudgetsummarydialog.h \
@@ -114,6 +116,7 @@ FORMS += \
         expensetypesummarydialog.ui \
         mainwindow.ui \
         monthlybudgetsummarydialog.ui \
+        mortgagesummarydialog.ui \
         yearlybudgetsummarydialog.ui \
         yearlyincomesummarydialog.ui
 
