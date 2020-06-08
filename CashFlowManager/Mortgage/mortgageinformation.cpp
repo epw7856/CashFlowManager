@@ -24,6 +24,11 @@ MortgageInformation::MortgageInformation
     monthlyPayment = totalLoanAmount * (monthlyInterestRate * pow((1 + monthlyInterestRate), (loanTerm * 12.0))) / (pow((1 + monthlyInterestRate), (loanTerm * 12.0)) - 1);
 }
 
+double MortgageInformation::getMonthlyPayment() const
+{
+    return monthlyPayment;
+}
+
 MortgageInformation::~MortgageInformation() = default;
 
 void MortgageInformation::updateRemainingBalance(double amount)

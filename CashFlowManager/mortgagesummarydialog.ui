@@ -116,7 +116,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Market Value:</string>
@@ -136,7 +136,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QLabel" name="labelMarketValue">
          <property name="text">
           <string>&lt;MarketValue&gt;</string>
@@ -146,14 +146,14 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Interest Rate:</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <widget class="QLabel" name="labelInterestRate">
          <property name="text">
           <string>&lt;Rate&gt;</string>
@@ -163,14 +163,14 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Loan Term:</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="4" column="1">
         <widget class="QLabel" name="labelTerm">
          <property name="text">
           <string>&lt;Term&gt;</string>
@@ -180,17 +180,34 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>Monthly Payment:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="5" column="1">
         <widget class="QLabel" name="labelBasePayment">
          <property name="text">
           <string>&lt;BasePayment&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Remaining Balance:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="labelRemainingBalance">
+         <property name="text">
+          <string>&lt;RemainingBalance&gt;</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -253,7 +270,7 @@
           <x>0</x>
           <y>0</y>
           <width>330</width>
-          <height>529</height>
+          <height>510</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -261,7 +278,7 @@
           <widget class="QTableView" name="tableViewMortgageSummary">
            <property name="font">
             <font>
-             <pointsize>9</pointsize>
+             <pointsize>8</pointsize>
             </font>
            </property>
            <property name="verticalScrollBarPolicy">

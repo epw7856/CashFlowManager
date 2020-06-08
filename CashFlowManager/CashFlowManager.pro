@@ -93,6 +93,7 @@ HEADERS += \
         Investment/monthlyinvestmenttablemodel.h \
         Investment/yearlyinvestmenttablemodel.h \
         Mortgage/mortgageinformation.h \
+        Mortgage/mortgageinterface.h \
         Mortgage/mortgagepayment.h \
         assetsummarydialog.h \
         assetsummarydialogcontroller.h \

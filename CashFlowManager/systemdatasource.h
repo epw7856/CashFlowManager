@@ -6,6 +6,7 @@
 #include "incomeinterface.h"
 #include "investmentinterface.h"
 #include <memory>
+#include "mortgageinterface.h"
 #include <QFile>
 #include <QJsonObject>
 #include "transactioncomparison.h"
@@ -17,7 +18,8 @@ class SystemDataSource
     public ExpenseInterface,
     public InvestmentInterface,
     public IncomeInterface,
-    public AssetInterface
+    public AssetInterface,
+    public MortgageInterface
 {
 public:
     SystemDataSource(const std::string& filePath);
@@ -72,6 +74,14 @@ public:
     double getAssetValue(const std::string assetName, int year, int month) const override;
     double getAssetTotalValueByType(AssetType type, int year, int month) const override;
     bool currentMonthValuesEntered() const override;
+
+    // Mortgage Interface
+    double getTotalLoanAmount() const override;
+    double getMarketValue() const override;
+    double getInterestRate() const override;
+    int getLoanTerm() const override;
+    double getBasePayment() const override;
+    double getRemainingLoanBalance() const override;
 
 private:
     QFile systemConfigFile;

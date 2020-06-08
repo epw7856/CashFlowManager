@@ -27,6 +27,7 @@ public:
     double getMarketValue() const;
     double getInterestRate() const;
     int getLoanTerm() const;
+    double getMonthlyPayment() const;
     const std::multiset<std::unique_ptr<MortgagePayment>>& getMortgagePayments() const;
     void updateMarketValue(double value);
     void updateRemainingBalance(double amount);

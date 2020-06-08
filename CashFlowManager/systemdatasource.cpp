@@ -595,6 +595,36 @@ bool SystemDataSource::currentMonthValuesEntered() const
     return true;
 }
 
+double SystemDataSource::getTotalLoanAmount() const
+{
+    return mortgageInfo->getTotalLoanAmount();
+}
+
+double SystemDataSource::getMarketValue() const
+{
+    return mortgageInfo->getMarketValue();
+}
+
+double SystemDataSource::getInterestRate() const
+{
+    return mortgageInfo->getInterestRate();
+}
+
+int SystemDataSource::getLoanTerm() const
+{
+    return mortgageInfo->getLoanTerm();
+}
+
+double SystemDataSource::getBasePayment() const
+{
+    return mortgageInfo->getMonthlyPayment();
+}
+
+double SystemDataSource::getRemainingLoanBalance() const
+{
+    return mortgageInfo->getRemainingLoanBalance();
+}
+
 double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const
 {
     QDate date(year, month, 1);
