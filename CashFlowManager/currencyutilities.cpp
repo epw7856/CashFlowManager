@@ -19,9 +19,9 @@ std::string CurrencyUtilities::formatCurrency(double amount, bool trimPrecision)
     return value;
 }
 
-std::string CurrencyUtilities::formatRatio(double ratio)
+std::string CurrencyUtilities::formatRatio(double ratio, int precision)
 {
-    return QLocale(QLocale::English).toString(ratio*100, 'f', 2).toStdString() + "%";
+    return QLocale(QLocale::English).toString(ratio * 100.0, 'f', precision).toStdString() + "%";
 }
 
 double CurrencyUtilities::formatCurrencyToDouble(const std::string& amount)

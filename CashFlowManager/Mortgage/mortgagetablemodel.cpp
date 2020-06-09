@@ -75,6 +75,16 @@ QVariant MortgageTableModel::data(const QModelIndex& index, int role) const
             }
         }
     }
+
+    if(role == Qt::TextAlignmentRole)
+    {
+        int numRows = rowCount(index);
+        if((index.row() < numRows) && (index.column() < numCols))
+        {
+            return Qt::AlignCenter;
+        }
+    }
+
     return {};
 }
 
@@ -114,7 +124,7 @@ QVariant MortgageTableModel::headerData(int section, Qt::Orientation orientation
             }
             else if(section == 7)
             {
-                return QString("Loan-to-Dedt Ratio");
+                return QString("Loan-to-Dedt Ratio  ");
             }
         }
     }

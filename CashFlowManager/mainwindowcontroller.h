@@ -10,6 +10,7 @@ class AssetSummaryDialog;
 class AutomaticMonthlyPaymentSummaryDialog;
 class ExpenseTypeSummaryDialog;
 class MonthlyBudgetSummaryDialog;
+class MortgageSummaryDialog;
 class QDate;
 class SystemDataSource;
 class YearlyBudgetSummaryDialog;
@@ -48,6 +49,7 @@ public:
     void showYearlyIncomeSummaryDialog(QWidget* parent);
     void showAutomaticMonthlyPaymentSummaryDialog(QWidget* parent);
     void showAssetSummaryDialog(QWidget* parent);
+    void showMortgageSummaryDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
@@ -59,6 +61,7 @@ private:
     std::unique_ptr<YearlyIncomeSummaryDialog> yearlyIncomeDialog;
     std::unique_ptr<AutomaticMonthlyPaymentSummaryDialog> automaticMonthlyPaymentDialog;
     std::unique_ptr<AssetSummaryDialog> assetSummaryDialog;
+    std::unique_ptr<MortgageSummaryDialog> mortgageSummaryDialog;
 };
 
 #endif // MAINWINDOWCONTROLLER_H

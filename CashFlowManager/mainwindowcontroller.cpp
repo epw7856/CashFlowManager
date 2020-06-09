@@ -7,6 +7,7 @@
 #include "investmenttype.h"
 #include "mainwindowcontroller.h"
 #include "monthlybudgetsummarydialog.h"
+#include "mortgagesummarydialog.h"
 #include "systemdatasource.h"
 #include "yearlybudgetsummarydialog.h"
 #include "yearlyincomesummarydialog.h"
@@ -200,4 +201,16 @@ void MainWindowController::showAssetSummaryDialog(QWidget* parent)
     assetSummaryDialog->show();
     assetSummaryDialog->raise();
     assetSummaryDialog->activateWindow();
+}
+
+void MainWindowController::showMortgageSummaryDialog(QWidget* parent)
+{
+    if(mortgageSummaryDialog == nullptr)
+    {
+        mortgageSummaryDialog = std::make_unique<MortgageSummaryDialog>(sds, parent);
+    }
+
+    mortgageSummaryDialog->show();
+    mortgageSummaryDialog->raise();
+    mortgageSummaryDialog->activateWindow();
 }

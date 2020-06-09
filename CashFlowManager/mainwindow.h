@@ -30,6 +30,7 @@ public slots:
     void onActionYearlyIncomeSummaryTriggered();
     void onActionAutomaticMonthlyPaymentSummaryTriggered();
     void onActionAssetAndNetWorthSummaryTriggered();
+    void onActionMortgageInformationTriggered();
 
 private:
     Ui::MainWindow *ui;
