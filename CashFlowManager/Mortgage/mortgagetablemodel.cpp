@@ -1,3 +1,4 @@
+#include "dateutilities.h"
 #include "mortgageinterface.h"
 #include "mortgagetablemodel.h"
 
@@ -77,15 +78,30 @@ void MortgageTableModel::setMortgageInformation()
 
     for(int i = 0; i < rowCount(); ++i)
     {
+        QDate loanStartDate(mortgageInterface.getLoanStartDate());
+        loanStartDate = loanStartDate.addMonths(i);
+        std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(loanStartDate.year(), loanStartDate.month());
+        QDate startDatePeriod = dates.first;
+        QDate endDatePeriod = dates.second;
+
+        additionalPrincipalPayments.push_back(mortgageInterface.getAdditionalPrincipalPaymentTotalByDate(startDatePeriod, endDatePeriod));
+
         if(i == 0)
         {
-            interestPayments.push_back(mortgageInterface.getTotalLoanAmount() * (mortgageInterface.getInterestRate() / 12));
+            interestPayments.push_back(mortgageInterface.getTotalLoanAmount() * (mortgageInterface.getInterestRate() / 12.0));
             principalPayments.push_back(mortgageInterface.getBasePayment() - interestPayments.back());
+            remainingLoanAmounts.push_back(mortgageInterface.getTotalLoanAmount() -
+                                           principalPayments.back() -
+                                           additionalPrincipalPayments.back());
+
         }
         else
         {
-            interestPayments.push_back(remainingLoanAmounts[i - 1] * (mortgageInterface.getInterestRate() / 12));
+            interestPayments.push_back(remainingLoanAmounts[i - 1] * (mortgageInterface.getInterestRate() / 12.0));
             principalPayments.push_back(std::min(remainingLoanAmounts[i - 1], mortgageInterface.getBasePayment() - interestPayments.back()));
+            remainingLoanAmounts.push_back(remainingLoanAmounts[i - 1] -
+                                           principalPayments.back() -
+                                           additionalPrincipalPayments.back());
         }
 
     }

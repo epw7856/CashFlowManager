@@ -12,7 +12,7 @@ public:
     static std::string getCurrentYear();
     static std::pair<QDate, QDate> getCurrentMonthDates();
     static std::pair<QDate, QDate> getCurrentYearDates();
-    static std::pair<QDate, QDate> getMonthlyDates(int month);
+    static std::pair<QDate, QDate> getMonthlyDates(int year, int month);
     static std::pair<QDate, QDate> getYearlyDates(int year);
 };
 

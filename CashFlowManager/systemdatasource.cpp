@@ -216,7 +216,7 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
 double SystemDataSource::getMonthlyExpenseTotal(int month) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
     for(const auto& i : expenseTypes)
     {
         total += getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
@@ -265,7 +265,7 @@ double SystemDataSource::getMonthlyBudgetByType(const std::string& expenseType, 
     {
         if(itr->get()->getVariableExpenseFlag())
         {
-            std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+            std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
             return getExpenseTransactionsTotalByTimePeriod(itr->get()->getName(), dates.first, dates.second);
         }
         else
@@ -365,7 +365,7 @@ void SystemDataSource::addInvestmentTransactionByType(const std::string& investm
 double SystemDataSource::getMonthlyInvestmentTotal(int month) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
     for(const auto& i : investmentTypes)
     {
         total += getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
@@ -464,7 +464,7 @@ void SystemDataSource::addSupplementalPayment(const SupplementalIncome& payment)
 
 double SystemDataSource::getMonthlyIncomeTotal(int month) const
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
     return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }
 
@@ -635,7 +635,7 @@ double SystemDataSource::getPurchasePrice() const
     return mortgageInfo->getPurchasePrice();
 }
 
-double SystemDataSource::getAdditionalPrincipalPaymentsByDate(const QDate& startingPeriod, const QDate& endingPeriod) const
+double SystemDataSource::getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const
 {
     return getTransactionsTotalByTimePeriod(mortgageInfo->getPrincipalPayments(), startingPeriod, endingPeriod);
 }

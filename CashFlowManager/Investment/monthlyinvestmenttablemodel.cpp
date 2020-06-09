@@ -14,7 +14,7 @@ MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& lo
     appendTotalFlag(total),
     month(localMonth)
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
     startDatePeriod = dates.first;
     endDatePeriod = dates.second;
 }

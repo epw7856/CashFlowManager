@@ -14,7 +14,7 @@ ExpenseTypeTableModel::ExpenseTypeTableModel(ExpenseInterface& localExpenseInter
     numColumns(4),
     month(localMonth)
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
     startDatePeriod = dates.first;
     endDatePeriod = dates.second;
 }

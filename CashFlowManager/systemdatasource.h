@@ -84,7 +84,7 @@ public:
     double getRemainingLoanBalance() const override;
     QDate getLoanStartDate() const override;
     double getPurchasePrice() const override;
-    double getAdditionalPrincipalPaymentsByDate(const QDate& startingPeriod, const QDate& endingPeriod) const override;
+    double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const override;
 
 private:
     QFile systemConfigFile;
