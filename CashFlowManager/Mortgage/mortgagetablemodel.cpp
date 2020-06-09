@@ -1,3 +1,4 @@
+#include "currencyutilities.h"
 #include "dateutilities.h"
 #include "mortgageinterface.h"
 #include "mortgagetablemodel.h"
@@ -22,6 +23,58 @@ int MortgageTableModel::columnCount(const QModelIndex&) const
 
 QVariant MortgageTableModel::data(const QModelIndex& index, int role) const
 {
+    if(role == Qt::DisplayRole)
+    {
+        int numRows = rowCount(index);
+        if((index.row() < numRows) && (index.column() < numCols))
+        {
+            auto rowUint = static_cast<quint32>(index.row());
+
+            // # column
+            if(index.column() == 0)
+            {
+                return QString::number(rowUint + 1);
+            }
+            // Date column
+            else if(index.column() == 1)
+            {
+                QDate date(mortgageInterface.getLoanStartDate().addMonths(rowUint));
+                return date.toString("MMM yy");
+            }
+            // Principal column
+            else if(index.column() == 2)
+            {
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(principalPayments[rowUint]));
+            }
+            // Interest column
+            else if(index.column() == 3)
+            {
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(interestPayments[rowUint]));
+            }
+            // Additional Principal column
+            else if(index.column() == 4)
+            {
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(additionalPrincipalPayments[rowUint]));
+            }
+            // Total Payment column
+            else if(index.column() == 5)
+            {
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(principalPayments[rowUint] +
+                                                                                interestPayments[rowUint] +
+                                                                                additionalPrincipalPayments[rowUint]));
+            }
+            // Remaining Balance column
+            else if(index.column() == 6)
+            {
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(remainingLoanAmounts[rowUint]));
+            }
+            // Loan-to-Dedt Ratio column
+            else if(index.column() == 7)
+            {
+                return QString::fromStdString(CurrencyUtilities::formatRatio(remainingLoanAmounts[rowUint] / mortgageInterface.getPurchasePrice()));
+            }
+        }
+    }
     return {};
 }
 
@@ -78,8 +131,7 @@ void MortgageTableModel::setMortgageInformation()
 
     for(int i = 0; i < rowCount(); ++i)
     {
-        QDate loanStartDate(mortgageInterface.getLoanStartDate());
-        loanStartDate = loanStartDate.addMonths(i);
+        QDate loanStartDate(mortgageInterface.getLoanStartDate().addMonths(i));
         std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(loanStartDate.year(), loanStartDate.month());
         QDate startDatePeriod = dates.first;
         QDate endDatePeriod = dates.second;

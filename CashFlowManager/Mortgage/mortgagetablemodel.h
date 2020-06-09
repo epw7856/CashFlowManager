@@ -19,7 +19,6 @@ public:
 private:
     MortgageInterface& mortgageInterface;
     int numCols = 0;
-    double remainingBalance = 0.0;
     std::vector<double> principalPayments = {};
     std::vector<double> interestPayments = {};
     std::vector<double> additionalPrincipalPayments = {};
