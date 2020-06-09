@@ -67,3 +67,26 @@ QVariant MortgageTableModel::headerData(int section, Qt::Orientation orientation
 
     return {};
 }
+
+void MortgageTableModel::setMortgageInformation()
+{
+    interestPayments.reserve(rowCount());
+    principalPayments.reserve(rowCount());
+    additionalPrincipalPayments.reserve(rowCount());
+    remainingLoanAmounts.reserve(rowCount());
+
+    for(int i = 0; i < rowCount(); ++i)
+    {
+        if(i == 0)
+        {
+            interestPayments.push_back(mortgageInterface.getTotalLoanAmount() * (mortgageInterface.getInterestRate() / 12));
+            principalPayments.push_back(mortgageInterface.getBasePayment() - interestPayments.back());
+        }
+        else
+        {
+            interestPayments.push_back(remainingLoanAmounts[i - 1] * (mortgageInterface.getInterestRate() / 12));
+            principalPayments.push_back(std::min(remainingLoanAmounts[i - 1], mortgageInterface.getBasePayment() - interestPayments.back()));
+        }
+
+    }
+}

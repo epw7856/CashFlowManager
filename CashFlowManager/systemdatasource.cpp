@@ -635,6 +635,11 @@ double SystemDataSource::getPurchasePrice() const
     return mortgageInfo->getPurchasePrice();
 }
 
+double SystemDataSource::getAdditionalPrincipalPaymentsByDate(const QDate& startingPeriod, const QDate& endingPeriod) const
+{
+    return getTransactionsTotalByTimePeriod(mortgageInfo->getPrincipalPayments(), startingPeriod, endingPeriod);
+}
+
 double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const
 {
     QDate date(year, month, 1);
