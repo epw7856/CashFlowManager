@@ -7,7 +7,7 @@ MortgageTableModel::MortgageTableModel(MortgageInterface& localMortgageInterface
     mortgageInterface(localMortgageInterface),
     numCols(8)
 {
-    remainingBalance = mortgageInterface.getTotalLoanAmount();
+
 }
 
 int MortgageTableModel::rowCount(const QModelIndex&) const
@@ -93,7 +93,6 @@ void MortgageTableModel::setMortgageInformation()
             remainingLoanAmounts.push_back(mortgageInterface.getTotalLoanAmount() -
                                            principalPayments.back() -
                                            additionalPrincipalPayments.back());
-
         }
         else
         {
