@@ -8,7 +8,6 @@
 class ExpenseInterface;
 class ExpenseTransaction;
 class ExpenseType;
-class QVariant;
 
 class ExpenseTypeTableModel : public QAbstractTableModel
 {

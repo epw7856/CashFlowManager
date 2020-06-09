@@ -82,6 +82,8 @@ public:
     int getLoanTerm() const override;
     double getBasePayment() const override;
     double getRemainingLoanBalance() const override;
+    QDate getLoanStartDate() const override;
+    double getPurchasePrice() const override;
 
 private:
     QFile systemConfigFile;

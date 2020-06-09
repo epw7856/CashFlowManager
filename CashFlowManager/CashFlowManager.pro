@@ -53,6 +53,7 @@ SOURCES += \
         Investment/yearlyinvestmenttablemodel.cpp \
         Mortgage/mortgageinformation.cpp \
         Mortgage/mortgagepayment.cpp \
+        Mortgage/mortgagetablemodel.cpp \
         assetsummarydialog.cpp \
         assetsummarydialogcontroller.cpp \
         automaticmonthlypaymentsummarydialog.cpp \
@@ -95,6 +96,7 @@ HEADERS += \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgageinterface.h \
         Mortgage/mortgagepayment.h \
+        Mortgage/mortgagetablemodel.h \
         assetsummarydialog.h \
         assetsummarydialogcontroller.h \
         automaticmonthlypaymentsummarydialog.h \

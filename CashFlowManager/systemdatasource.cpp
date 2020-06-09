@@ -625,6 +625,16 @@ double SystemDataSource::getRemainingLoanBalance() const
     return mortgageInfo->getRemainingLoanBalance();
 }
 
+QDate SystemDataSource::getLoanStartDate() const
+{
+    return mortgageInfo->getLoanStartDate();
+}
+
+double SystemDataSource::getPurchasePrice() const
+{
+    return mortgageInfo->getPurchasePrice();
+}
+
 double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const
 {
     QDate date(year, month, 1);

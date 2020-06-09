@@ -28,6 +28,7 @@ public:
     double getInterestRate() const;
     int getLoanTerm() const;
     double getMonthlyPayment() const;
+    QDate getLoanStartDate() const;
     const std::multiset<std::unique_ptr<MortgagePayment>>& getMortgagePayments() const;
     void updateMarketValue(double value);
     void updateRemainingBalance(double amount);
@@ -84,6 +85,11 @@ inline void MortgageInformation::updateMarketValue(double value)
 inline const std::multiset<std::unique_ptr<MortgagePayment>>& MortgageInformation::getMortgagePayments() const
 {
     return payments;
+}
+
+inline QDate MortgageInformation::getLoanStartDate() const
+{
+    return loanStartDate;
 }
 
 #endif // MORTGAGEINFORMATION_H
