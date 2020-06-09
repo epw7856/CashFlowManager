@@ -107,12 +107,12 @@
             "Name": "Mortgage",
             "Transactions": [
                 {
-                    "Amount": 1545,
+                    "Amount": 1545.01,
                     "Date": "01/02/2020",
                     "Description": "March Mortgage Payment"
                 },
                 {
-                    "Amount": 1545,
+                    "Amount": 1545.01,
                     "Date": "04/01/2020",
                     "Description": "April Mortgage Payment"
                 }
@@ -364,14 +364,12 @@
     "MortgageInformation": {
         "MarketValue": 250000,
         "MortgageStartDate": "01/01/2018",
-        "Payments": [
+        "AdditionalPrincipalPayments": [
             {
-                "AdditionalPrincipal": 100,
                 "Amount": 1545,
                 "Date": "05/01/2020"
             },
             {
-                "AdditionalPrincipal": 500,
                 "Amount": 1545,
                 "Date": "06/01/2020"
             }

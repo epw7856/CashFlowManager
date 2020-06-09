@@ -52,7 +52,7 @@ SOURCES += \
         Investment/monthlyinvestmenttablemodel.cpp \
         Investment/yearlyinvestmenttablemodel.cpp \
         Mortgage/mortgageinformation.cpp \
-        Mortgage/mortgagepayment.cpp \
+        Mortgage/mortgageprincipalpayment.cpp \
         Mortgage/mortgagetablemodel.cpp \
         assetsummarydialog.cpp \
         assetsummarydialogcontroller.cpp \
@@ -95,7 +95,7 @@ HEADERS += \
         Investment/yearlyinvestmenttablemodel.h \
         Mortgage/mortgageinformation.h \
         Mortgage/mortgageinterface.h \
-        Mortgage/mortgagepayment.h \
+        Mortgage/mortgageprincipalpayment.h \
         Mortgage/mortgagetablemodel.h \
         assetsummarydialog.h \
         assetsummarydialogcontroller.h \

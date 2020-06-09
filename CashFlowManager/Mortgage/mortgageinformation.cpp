@@ -1,6 +1,6 @@
 #include <cmath>
 #include "mortgageinformation.h"
-#include "mortgagepayment.h"
+#include "mortgageprincipalpayment.h"
 
 MortgageInformation::MortgageInformation
 (
@@ -40,17 +40,8 @@ void MortgageInformation::updateRemainingBalance(double amount)
     }
 }
 
-void MortgageInformation::addMortgagePayment(const MortgagePayment& payment)
+void MortgageInformation::addPrincipalPayment(const MortgagePrincipalPayment& payment)
 {
-    payments.insert(std::make_unique<MortgagePayment>(payment));
-
-    if(payment.getAmount() > 0.0)
-    {
-        double principal = std::min(remainingLoanBalance, (monthlyPayment - remainingLoanBalance * monthlyInterestRate));
-        updateRemainingBalance(principal + payment.getAdditionalPrincipalPayment());
-    }
-    else
-    {
-        updateRemainingBalance(payment.getAdditionalPrincipalPayment());
-    }
+    principalPayments.insert(std::make_unique<MortgagePrincipalPayment>(payment));
+    updateRemainingBalance(payment.getAmount());
 }

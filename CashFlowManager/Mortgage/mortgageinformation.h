@@ -5,7 +5,7 @@
 #include <QDate>
 #include <set>
 
-class MortgagePayment;
+class MortgagePrincipalPayment;
 
 class MortgageInformation
 {
@@ -29,10 +29,10 @@ public:
     int getLoanTerm() const;
     double getMonthlyPayment() const;
     QDate getLoanStartDate() const;
-    const std::multiset<std::unique_ptr<MortgagePayment>>& getMortgagePayments() const;
+    const std::multiset<std::unique_ptr<MortgagePrincipalPayment>>& getPrincipalPayments() const;
     void updateMarketValue(double value);
     void updateRemainingBalance(double amount);
-    void addMortgagePayment(const MortgagePayment& payment);
+    void addPrincipalPayment(const MortgagePrincipalPayment& payment);
 
 private:
     double totalLoanAmount = 0.0;
@@ -44,7 +44,7 @@ private:
     double monthlyPayment = 0.0;
     double monthlyInterestRate = 0.0;
     QDate loanStartDate;
-    std::multiset<std::unique_ptr<MortgagePayment>> payments;
+    std::multiset<std::unique_ptr<MortgagePrincipalPayment>> principalPayments;
 };
 
 inline double MortgageInformation::getTotalLoanAmount() const
@@ -82,9 +82,9 @@ inline void MortgageInformation::updateMarketValue(double value)
     marketValue = value;
 }
 
-inline const std::multiset<std::unique_ptr<MortgagePayment>>& MortgageInformation::getMortgagePayments() const
+inline const std::multiset<std::unique_ptr<MortgagePrincipalPayment>>& MortgageInformation::getPrincipalPayments() const
 {
-    return payments;
+    return principalPayments;
 }
 
 inline QDate MortgageInformation::getLoanStartDate() const
