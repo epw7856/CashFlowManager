@@ -853,7 +853,7 @@ void SystemDataSource::parseMortgageInformation()
         for (const QJsonValue item : payments)
         {
             QDate date;
-            double amount = info.toObject().value("Amount").toDouble();
+            double amount = item.toObject().value("Amount").toDouble();
             date = QDate::fromString(item.toObject().value("Date").toString(), "MM/dd/yyyy");
             MortgagePrincipalPayment transaction(date, amount);
             mortgageInfo->addPrincipalPayment(transaction);
