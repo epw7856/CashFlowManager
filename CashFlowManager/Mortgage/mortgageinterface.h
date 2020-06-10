@@ -16,6 +16,7 @@ public:
     virtual double getRemainingLoanBalance() const = 0;
     virtual QDate getLoanStartDate() const = 0;
     virtual double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
+    virtual bool mortgagePaidForMonth(int year, int month) const = 0;
 };
 
 #endif // MORTGAGEINTERFACE_H

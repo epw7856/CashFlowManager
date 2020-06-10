@@ -2,6 +2,8 @@
 #include "dateutilities.h"
 #include "mortgageinterface.h"
 #include "mortgagetablemodel.h"
+#include <QBrush>
+#include <QFont>
 
 MortgageTableModel::MortgageTableModel(MortgageInterface& localMortgageInterface)
 :
@@ -72,6 +74,20 @@ QVariant MortgageTableModel::data(const QModelIndex& index, int role) const
             else if(index.column() == 7)
             {
                 return QString::fromStdString(CurrencyUtilities::formatRatio(remainingLoanAmounts[rowUint] / mortgageInterface.getPurchasePrice()));
+            }
+        }
+    }
+
+    if(role == Qt::BackgroundRole)
+    {
+        int numRows = rowCount(index);
+        if((index.row() < numRows) && (index.column() < numCols))
+        {
+            auto rowUint = static_cast<quint32>(index.row());
+            QDate date(mortgageInterface.getLoanStartDate().addMonths(rowUint));
+            if(mortgageInterface.mortgagePaidForMonth(date.year(), date.month()))
+            {
+                return QVariant(QBrush(QColor(Qt::yellow)));
             }
         }
     }

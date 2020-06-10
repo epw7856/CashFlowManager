@@ -85,6 +85,7 @@ public:
     QDate getLoanStartDate() const override;
     double getPurchasePrice() const override;
     double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const override;
+    bool mortgagePaidForMonth(int year, int month) const override;
 
 private:
     QFile systemConfigFile;
