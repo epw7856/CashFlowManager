@@ -157,8 +157,8 @@ void MortgageTableModel::setMortgageInformation()
 
     for(int i = 0; i < rowCount(); ++i)
     {
-        QDate loanStartDate(mortgageInterface.getLoanStartDate().addMonths(i));
-        std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(loanStartDate.year(), loanStartDate.month());
+        QDate dateIteration(mortgageInterface.getLoanStartDate().addMonths(i));
+        std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(dateIteration.year(), dateIteration.month());
         QDate startDatePeriod = dates.first;
         QDate endDatePeriod = dates.second;
 
@@ -181,10 +181,9 @@ void MortgageTableModel::setMortgageInformation()
                                            additionalPrincipalPayments.back());
         }
 
+        if(mortgageInterface.mortgagePaidForMonth(dateIteration.year(), dateIteration.month()))
+        {
+            currentRemainingBalance = remainingLoanAmounts.back();
+        }
     }
-}
-
-double MortgageTableModel::getRemainingLoanBalance() const
-{
-    return 0.0;
 }

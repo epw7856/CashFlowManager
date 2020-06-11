@@ -24,6 +24,12 @@ private:
     std::vector<double> interestPayments = {};
     std::vector<double> additionalPrincipalPayments = {};
     std::vector<double> remainingLoanAmounts = {};
+    double currentRemainingBalance = 0.0;
 };
+
+double inline MortgageTableModel::getRemainingLoanBalance() const
+{
+    return currentRemainingBalance;
+}
 
 #endif // MORTGAGETABLEMODEL_H
