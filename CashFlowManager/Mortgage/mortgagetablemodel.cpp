@@ -183,3 +183,8 @@ void MortgageTableModel::setMortgageInformation()
 
     }
 }
+
+double MortgageTableModel::getRemainingLoanBalance() const
+{
+    return 0.0;
+}

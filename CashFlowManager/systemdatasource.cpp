@@ -620,11 +620,6 @@ double SystemDataSource::getBasePayment() const
     return mortgageInfo->getMonthlyPayment();
 }
 
-double SystemDataSource::getRemainingLoanBalance() const
-{
-    return mortgageInfo->getRemainingLoanBalance();
-}
-
 QDate SystemDataSource::getLoanStartDate() const
 {
     return mortgageInfo->getLoanStartDate();

@@ -23,7 +23,6 @@ public:
     ~MortgageInformation();
 
     double getTotalLoanAmount() const;
-    double getRemainingLoanBalance() const;
     double getPurchasePrice() const;
     double getMarketValue() const;
     double getInterestRate() const;
@@ -37,7 +36,6 @@ public:
 
 private:
     double totalLoanAmount = 0.0;
-    double remainingLoanBalance = 0.0;
     double purchasePrice = 0.0;
     double marketValue = 0.0;
     double interestRate = 0.0;
@@ -51,11 +49,6 @@ private:
 inline double MortgageInformation::getTotalLoanAmount() const
 {
     return totalLoanAmount;
-}
-
-inline double MortgageInformation::getRemainingLoanBalance() const
-{
-    return remainingLoanBalance;
 }
 
 inline double MortgageInformation::getPurchasePrice() const

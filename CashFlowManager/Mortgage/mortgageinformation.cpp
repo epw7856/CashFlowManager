@@ -13,7 +13,6 @@ MortgageInformation::MortgageInformation
 )
 :
     totalLoanAmount(loanAmount),
-    remainingLoanBalance(loanAmount),
     purchasePrice(purchasePrice),
     marketValue(homeValue),
     interestRate(percentageRate / 100.0),
@@ -31,17 +30,7 @@ double MortgageInformation::getMonthlyPayment() const
 
 MortgageInformation::~MortgageInformation() = default;
 
-void MortgageInformation::updateRemainingBalance(double amount)
-{
-    remainingLoanBalance -= amount;
-    if(remainingLoanBalance < 0.0)
-    {
-        remainingLoanBalance = 0.0;
-    }
-}
-
 void MortgageInformation::addPrincipalPayment(const MortgagePrincipalPayment& payment)
 {
     principalPayments.insert(std::make_unique<MortgagePrincipalPayment>(payment));
-    updateRemainingBalance(payment.getAmount());
 }

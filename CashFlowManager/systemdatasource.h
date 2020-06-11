@@ -81,7 +81,6 @@ public:
     double getInterestRate() const override;
     int getLoanTerm() const override;
     double getBasePayment() const override;
-    double getRemainingLoanBalance() const override;
     QDate getLoanStartDate() const override;
     double getPurchasePrice() const override;
     double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const override;

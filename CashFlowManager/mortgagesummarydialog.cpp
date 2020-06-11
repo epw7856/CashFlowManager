@@ -16,7 +16,7 @@ MortgageSummaryDialog::MortgageSummaryDialog(MortgageInterface& localMortgageInt
     mortgageTableModel.setMortgageInformation();
 
     ui->labelLoanAmount->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(localMortgageInterface.getTotalLoanAmount())));
-    ui->labelRemainingBalance->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(localMortgageInterface.getRemainingLoanBalance())));
+    ui->labelRemainingBalance->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mortgageTableModel.getRemainingLoanBalance())));
     ui->labelMarketValue->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(localMortgageInterface.getMarketValue())));
     ui->labelInterestRate->setText(QString::fromStdString(CurrencyUtilities::formatRatio(localMortgageInterface.getInterestRate(), 3)));
     ui->labelTerm->setText(QString::number(localMortgageInterface.getLoanTerm()) + " years");
