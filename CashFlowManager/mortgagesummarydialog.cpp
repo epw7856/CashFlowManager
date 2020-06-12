@@ -77,7 +77,7 @@ void MortgageSummaryDialog::configureMortgageSummaryTable()
         }
     }
 
-    for(int i = 2; i < 7; ++i)
+    for(int i = 2; i < mortgageTableModel.columnCount() - 1; ++i)
     {
         ui->tableViewMortgageSummary->setColumnWidth(i, maxColumnWidth);
     }

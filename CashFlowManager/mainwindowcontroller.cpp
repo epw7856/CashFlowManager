@@ -12,7 +12,13 @@
 #include "yearlybudgetsummarydialog.h"
 #include "yearlyincomesummarydialog.h"
 
-MainWindowController::MainWindowController(SystemDataSource& localSds) : sds(localSds) {}
+MainWindowController::MainWindowController(SystemDataSource& localSds)
+:
+    sds(localSds)
+{
+    currentYear = QDate::currentDate().year();
+    currentMonth = QDate::currentDate().month();
+}
 
 MainWindowController::~MainWindowController() = default;
 
@@ -23,74 +29,74 @@ std::string MainWindowController::getCurrentMonthAndYear() const
 
 std::string MainWindowController::getBudgetStatusStatement() const
 {
-    return CurrencyUtilities::formatCurrency(sds.getMonthlyExpenseTotal(QDate::currentDate().month())) + "  of  " + CurrencyUtilities::formatCurrency(sds.getMonthlyBudgetTotal(QDate::currentDate().month()));
+    return CurrencyUtilities::formatCurrency(sds.getMonthlyExpenseTotal(currentYear, currentMonth)) + "  of  " + CurrencyUtilities::formatCurrency(sds.getMonthlyBudgetTotal(currentMonth));
 }
 
 double MainWindowController::getMonthlyExpenseTotal() const
 {
-    return sds.getMonthlyExpenseTotal(QDate::currentDate().month());
+    return sds.getMonthlyExpenseTotal(currentYear, currentMonth);
 }
 
 double MainWindowController::getMonthlyBudgetTotal() const
 {
-    return sds.getMonthlyBudgetTotal(QDate::currentDate().month());
+    return sds.getMonthlyBudgetTotal(currentMonth);
 }
 
 double MainWindowController::getMonthlyInvestmentTotal() const
 {
-    return sds.getMonthlyInvestmentTotal(QDate::currentDate().month());
+    return sds.getMonthlyInvestmentTotal(currentYear, currentMonth);
 }
 
 double MainWindowController::getMonthlyIncomeTotal() const
 {
-    return sds.getMonthlyIncomeTotal(QDate::currentDate().month());
+    return sds.getMonthlyIncomeTotal(currentYear, currentMonth);
 }
 
 double MainWindowController::getYearlyExpenseTotal() const
 {
-    return sds.getYearlyExpenseTotal();
+    return sds.getYearlyExpenseTotal(currentYear);
 }
 
 double MainWindowController::getYearlyIncomeTotal() const
 {
-    return sds.getYearlyIncomeTotal();
+    return sds.getYearlyIncomeTotal(currentYear);
 }
 
 double MainWindowController::getYearlyInvestmentTotal() const
 {
-    return sds.getYearlyInvestmentTotal();
+    return sds.getYearlyInvestmentTotal(currentYear);
 }
 
 double MainWindowController::getYearlyCashSavedTotal() const
 {
-    return sds.getYearlyIncomeTotal() -
-           sds.getYearlyExpenseTotal() -
-           sds.getYearlyInvestmentTotal();
+    return sds.getYearlyIncomeTotal(currentYear) -
+           sds.getYearlyExpenseTotal(currentYear) -
+           sds.getYearlyInvestmentTotal(currentYear);
 }
 
 double MainWindowController::getMonthlyBudgetSurplus() const
 {
-    return sds.getMonthlyBudgetTotal(QDate::currentDate().month()) - sds.getMonthlyExpenseTotal(QDate::currentDate().month());
+    return sds.getMonthlyBudgetTotal(currentMonth) - sds.getMonthlyExpenseTotal(currentYear, currentMonth);
 }
 
 double MainWindowController::getMonthlyCashSavedTotal() const
 {
-    return (sds.getMonthlyIncomeTotal(QDate::currentDate().month()) -
-            sds.getMonthlyExpenseTotal(QDate::currentDate().month()) -
-            sds.getMonthlyInvestmentTotal(QDate::currentDate().month()));
+    return (sds.getMonthlyIncomeTotal(currentYear, currentMonth) -
+            sds.getMonthlyExpenseTotal(currentYear, currentMonth) -
+            sds.getMonthlyInvestmentTotal(currentYear, currentMonth));
 }
 
 double MainWindowController::getYearlyAmountSaved() const
 {
-    return (sds.getYearlyIncomeTotal() - sds.getYearlyExpenseTotal());
+    return (sds.getYearlyIncomeTotal(currentYear) - sds.getYearlyExpenseTotal(currentYear));
 }
 
 double MainWindowController::getYearlySavingsRatio() const
 {
-    double yearlyIncome = sds.getYearlyIncomeTotal();
+    double yearlyIncome = sds.getYearlyIncomeTotal(currentYear);
     if(yearlyIncome > 0.0)
     {
-        return (yearlyIncome - sds.getYearlyExpenseTotal()) / yearlyIncome;
+        return (yearlyIncome - sds.getYearlyExpenseTotal(currentYear)) / yearlyIncome;
     }
     else
     {
@@ -100,7 +106,7 @@ double MainWindowController::getYearlySavingsRatio() const
 
 double MainWindowController::getMonthlyRemainingBudget() const
 {
-    double remaining = sds.getMonthlyBudgetTotal(QDate::currentDate().month()) - sds.getMonthlyExpenseTotal(QDate::currentDate().month());
+    double remaining = sds.getMonthlyBudgetTotal(currentMonth) - sds.getMonthlyExpenseTotal(currentYear, currentMonth);
     if(remaining < 0.0)
     {
         remaining = 0.0;
@@ -113,7 +119,8 @@ std::vector<std::pair<std::string, double>> MainWindowController::getInvestmentT
     std::vector<std::pair<std::string, double>> types;
     for(const auto& i : sds.getInvestmentTypes())
     {
-        types.push_back({i->getName(), sds.getYearlyInvestmentTotalByType(i->getName())});
+        std::pair<QDate, QDate> dates = DateUtilities::getYearlyDates(currentYear);
+        types.push_back({i->getName(), sds.getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second)});
     }
 
     return types;

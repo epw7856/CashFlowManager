@@ -27,6 +27,7 @@ private:
     QDate endDatePeriod;
     bool appendTotalFlag;
     int month = 0;
+    int year = 0;
 };
 
 #endif // MONTHLYEXPENSETABLEMODEL_H

@@ -15,7 +15,8 @@ MonthlyExpenseTableModel::MonthlyExpenseTableModel(ExpenseInterface& localExpens
     appendTotalFlag(total),
     month(localMonth)
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
+    year = QDate::currentDate().year();
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(year, month);
     startDatePeriod = dates.first;
     endDatePeriod = dates.second;
 }
@@ -86,13 +87,13 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
                 // Actual column
                 else if(index.column() == 2)
                 {
-                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenseTotal(month)));
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyExpenseTotal(year, month)));
                 }
                 // Remaining column
                 else if(index.column() == 3)
                 {
                     return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getMonthlyBudgetTotal(month) -
-                                                                                    expenseInterface.getMonthlyExpenseTotal(month)));
+                                                                                    expenseInterface.getMonthlyExpenseTotal(year, month)));
                 }
             }
         }

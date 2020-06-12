@@ -50,7 +50,7 @@ QVariant YearlyInvestmentTableModel::data(const QModelIndex& index, int role) co
             // Percentage column
             else if(index.column() == 2)
             {
-                double percentage = 100.0 * (investmentInterface.getInvestmentTransactionsTotalByTimePeriod(investmentTypes[rowUint]->getName(), startDatePeriod, endDatePeriod) / investmentInterface.getYearlyInvestmentTotal());
+                double percentage = 100.0 * (investmentInterface.getInvestmentTransactionsTotalByTimePeriod(investmentTypes[rowUint]->getName(), startDatePeriod, endDatePeriod) / investmentInterface.getYearlyInvestmentTotal(QDate::currentDate().year()));
                 return QString::number(percentage, 'f', 2);
             }
         }

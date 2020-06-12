@@ -213,10 +213,10 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
     obj["AutomaticMonthlyPayments"] = array;
 }
 
-double SystemDataSource::getMonthlyExpenseTotal(int month) const
+double SystemDataSource::getMonthlyExpenseTotal(int year, int month) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(year, month);
     for(const auto& i : expenseTypes)
     {
         total += getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
@@ -234,27 +234,15 @@ double SystemDataSource::getMonthlyBudgetTotal(int month) const
     return total;
 }
 
-double SystemDataSource::getYearlyExpenseTotal() const
+double SystemDataSource::getYearlyExpenseTotal(int year) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    std::pair<QDate, QDate> dates = DateUtilities::getYearlyDates(year);
     for(const auto& i : expenseTypes)
     {
         total += getExpenseTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
     }
     return total;
-}
-
-double SystemDataSource::getMonthlyExpenseTotalByType(const std::string& expenseType) const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
-    return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
-}
-
-double SystemDataSource::getYearlyExpenseTotalByType(const std::string& expenseType) const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
-    return getExpenseTransactionsTotalByTimePeriod(expenseType, dates.first, dates.second);
 }
 
 double SystemDataSource::getMonthlyBudgetByType(const std::string& expenseType, int month) const
@@ -362,10 +350,10 @@ void SystemDataSource::addInvestmentTransactionByType(const std::string& investm
     }
 }
 
-double SystemDataSource::getMonthlyInvestmentTotal(int month) const
+double SystemDataSource::getMonthlyInvestmentTotal(int year, int month) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(year, month);
     for(const auto& i : investmentTypes)
     {
         total += getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
@@ -373,27 +361,15 @@ double SystemDataSource::getMonthlyInvestmentTotal(int month) const
     return total;
 }
 
-double SystemDataSource::getYearlyInvestmentTotal() const
+double SystemDataSource::getYearlyInvestmentTotal(int year) const
 {
     double total = 0.0;
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    std::pair<QDate, QDate> dates = DateUtilities::getYearlyDates(year);
     for(const auto& i : investmentTypes)
     {
         total += getInvestmentTransactionsTotalByTimePeriod(i->getName(), dates.first, dates.second);
     }
     return total;
-}
-
-double SystemDataSource::getMonthlyInvestmentTotalByType(const std::string& investmentType) const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
-    return getInvestmentTransactionsTotalByTimePeriod(investmentType, dates.first, dates.second);
-}
-
-double SystemDataSource::getYearlyInvestmentTotalByType(const std::string& investmentType) const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
-    return getInvestmentTransactionsTotalByTimePeriod(investmentType, dates.first, dates.second);
 }
 
 double SystemDataSource::getMonthlyInvestmentTargetTotal() const
@@ -462,15 +438,15 @@ void SystemDataSource::addSupplementalPayment(const SupplementalIncome& payment)
     obj["SupplementalIncome"] = array;
 }
 
-double SystemDataSource::getMonthlyIncomeTotal(int month) const
+double SystemDataSource::getMonthlyIncomeTotal(int year, int month) const
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(year, month);
     return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }
 
-double SystemDataSource::getYearlyIncomeTotal() const
+double SystemDataSource::getYearlyIncomeTotal(int year) const
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    std::pair<QDate, QDate> dates = DateUtilities::getYearlyDates(year);
     return getTotalIncomeTotalByTimePeriod(dates.first, dates.second);
 }
 

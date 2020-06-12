@@ -18,7 +18,7 @@ YearlyIncomeSummaryDialog::YearlyIncomeSummaryDialog
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Yearly Income Summary"));
-    ui->labelTotalIncomeAmount->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(localIncomeInterface.getYearlyIncomeTotal())));
+    ui->labelTotalIncomeAmount->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(localIncomeInterface.getYearlyIncomeTotal(QDate::currentDate().year()))));
     ui->verticalLayout_3->setAlignment(Qt::AlignTop);
     ui->verticalLayout_4->setAlignment(Qt::AlignTop);
     salaryTableModel.setSalaryIncomeTransactions();

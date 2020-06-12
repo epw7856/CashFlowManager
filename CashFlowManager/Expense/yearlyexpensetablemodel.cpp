@@ -50,7 +50,7 @@ QVariant YearlyExpenseTableModel::data(const QModelIndex& index, int role) const
             // Percentage column
             else if(index.column() == 2)
             {
-                double percentage = 100.0 * (expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(), startDatePeriod, endDatePeriod) / expenseInterface.getYearlyExpenseTotal());
+                double percentage = 100.0 * (expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(), startDatePeriod, endDatePeriod) / expenseInterface.getYearlyExpenseTotal(QDate::currentDate().year()));
                 return QString::number(percentage, 'f', 2);
             }
         }

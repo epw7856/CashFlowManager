@@ -14,7 +14,8 @@ MonthlyInvestmentTableModel::MonthlyInvestmentTableModel(InvestmentInterface& lo
     appendTotalFlag(total),
     month(localMonth)
 {
-    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(QDate::currentDate().year(), month);
+    year = QDate::currentDate().year();
+    std::pair<QDate, QDate> dates = DateUtilities::getMonthlyDates(year, month);
     startDatePeriod = dates.first;
     endDatePeriod = dates.second;
 }
@@ -90,13 +91,13 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
                 // Actual column
                 else if(index.column() == 2)
                 {
-                    return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTotal(month)));
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTotal(year, month)));
                 }
                 // Remaining column
                 else if(index.column() == 3)
                 {
                     return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTargetTotal() -
-                                                                                    investmentInterface.getMonthlyInvestmentTotal(month)));
+                                                                                    investmentInterface.getMonthlyInvestmentTotal(year, month)));
                 }
             }
         }

@@ -62,6 +62,9 @@ private:
     std::unique_ptr<AutomaticMonthlyPaymentSummaryDialog> automaticMonthlyPaymentDialog;
     std::unique_ptr<AssetSummaryDialog> assetSummaryDialog;
     std::unique_ptr<MortgageSummaryDialog> mortgageSummaryDialog;
+
+    int currentYear = 0;
+    int currentMonth = 0;
 };
 
 #endif // MAINWINDOWCONTROLLER_H
