@@ -34,6 +34,8 @@ ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
+    connect(ui->pushButtonExit, &QPushButton::clicked, this, &ExpenseTypeSummaryDialog::onPushButtonExitClicked);
+
     setTableData();
 
     configureExpenseTable(ui->tableViewJanuaryExpenses, januaryExpenseTable);
@@ -53,6 +55,11 @@ ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog
 ExpenseTypeSummaryDialog::~ExpenseTypeSummaryDialog()
 {
     delete ui;
+}
+
+void ExpenseTypeSummaryDialog::onPushButtonExitClicked()
+{
+    close();
 }
 
 void ExpenseTypeSummaryDialog::setTableData()

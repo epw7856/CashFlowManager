@@ -22,6 +22,9 @@ public:
                                         QWidget* parent = nullptr);
     ~MonthlyBudgetSummaryDialog();
 
+public slots:
+    void onPushButtonExitClicked();
+
 private:
     Ui::MonthlyBudgetSummaryDialog *ui;
 

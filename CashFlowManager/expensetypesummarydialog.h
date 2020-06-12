@@ -20,6 +20,9 @@ public:
                                       QWidget *parent = nullptr);
     ~ExpenseTypeSummaryDialog();
 
+public slots:
+    void onPushButtonExitClicked();
+
 private:
     void configureExpenseTable(QTableView* tableView, QAbstractTableModel& tableModel);
     void setTableData();

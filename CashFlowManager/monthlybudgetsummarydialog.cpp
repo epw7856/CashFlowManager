@@ -48,6 +48,8 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
+    connect(ui->pushButtonExit, &QPushButton::clicked, this, &MonthlyBudgetSummaryDialog::onPushButtonExitClicked);
+
     setTableData();
 
     configureTable(ui->tableViewJanuaryExpenses, januaryExpenseTableModel, true);
@@ -80,6 +82,11 @@ MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
 MonthlyBudgetSummaryDialog::~MonthlyBudgetSummaryDialog()
 {
     delete ui;
+}
+
+void MonthlyBudgetSummaryDialog::onPushButtonExitClicked()
+{
+    close();
 }
 
 void MonthlyBudgetSummaryDialog::setTableData()
