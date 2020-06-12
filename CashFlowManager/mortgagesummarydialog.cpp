@@ -114,6 +114,6 @@ void MortgageSummaryDialog::configureMortgageSummaryTable()
         tableWidth += ui->scrollArea->verticalScrollBar()->width();
     }
 
-    ui->scrollArea->setMinimumWidth(tableWidth + 20);
-    ui->scrollArea->setMaximumWidth(tableWidth + 20);
+    //ui->scrollArea->setMinimumWidth(tableWidth + 20);
+    //ui->scrollArea->setMaximumWidth(tableWidth + 20);
 }
