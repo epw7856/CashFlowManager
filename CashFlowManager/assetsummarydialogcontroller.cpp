@@ -57,14 +57,22 @@ std::string AssetSummaryDialogController::getCurrentNetWorthAmount() const
     return (CurrencyUtilities::formatCurrency(liquidValue + illiquidValue));
 }
 
-std::vector<std::pair<int, double>> AssetSummaryDialogController::getMonthlyNetWorthTotals() const
+std::vector<double> AssetSummaryDialogController::getPastYearNetWorthTotals() const
 {
-    std::vector<std::pair<int, double>> totals;
-    for(int i = 0; i < currentDate.month(); ++i)
+    std::vector<double> totals;
+    QDate date(QDate::currentDate());
+
+    if(!assetInterface.currentMonthValuesEntered())
     {
-        double netWorth = assetInterface.getAssetTotalValueByType(AssetType::Liquid, currentDate.year(), i + 1) +
-                          assetInterface.getAssetTotalValueByType(AssetType::Illiquid, currentDate.year(), i + 1);
-        totals.push_back({i, netWorth});
+        date = date.addMonths(-1);
+    }
+
+    for(int i = 0; i < 12; ++i)
+    {
+        double netWorth = assetInterface.getAssetTotalValueByType(AssetType::Liquid, date.year(), date.month()) +
+                          assetInterface.getAssetTotalValueByType(AssetType::Illiquid, date.year(), date.month());
+        totals.push_back(netWorth);
+        date = date.addMonths(-1);
     }
     return totals;
 }
@@ -74,22 +82,22 @@ bool AssetSummaryDialogController::getCurrentMonthValuesEntered() const
     return assetInterface.currentMonthValuesEntered();
 }
 
-std::pair<double, double> AssetSummaryDialogController::getMinandMaxYearlyNetWorth() const
+std::pair<double, double> AssetSummaryDialogController::getPastYearMinandMaxNetWorth() const
 {
-    std::vector<std::pair<int, double>> totals = getMonthlyNetWorthTotals();
+    std::vector<double> totals = getPastYearNetWorthTotals();
     double min = 0.0, max = 0.0;
-    min = totals.begin()->second;
+    min = totals[0];
 
     for(const auto& i : totals)
     {
-        if(i.second > max)
+        if(i > max)
         {
-            max = i.second;
+            max = i;
         }
 
-        if(i.second < min)
+        if(i < min)
         {
-            min = i.second;
+            min = i;
         }
     }
 

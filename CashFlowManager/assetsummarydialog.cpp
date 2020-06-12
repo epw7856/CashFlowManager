@@ -14,9 +14,8 @@ AssetSummaryDialog::AssetSummaryDialog(AssetInterface& localAssetInterface, QWid
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
-    showMaximized();
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Asset and Net Worth Summary"));
-    ui->labelYearlyNetWorthTracker->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Net Worth Tracking"));
+    ui->labelYearlyNetWorthTracker->setText("Net Worth Tracking");
     ui->labelLiquidAssetAmount->setText(QString::fromStdString(controller->getCurrentLiquidAssetAmount()));
     ui->labelLiquidAssetPercent->setText(QString::fromStdString(controller->getYearlyChange(false, AssetType::Liquid)));
     ui->labelIlliquidAssetAmount->setText(QString::fromStdString(controller->getCurrentIlliquidAssetAmount()));
@@ -54,7 +53,7 @@ void AssetSummaryDialog::configureAssetListTable()
     ui->tableViewAssetSummary->horizontalHeader()->setFont(font);
 
     // Set scrollbar policies
-    ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableViewAssetSummary->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     // Disable cell resizing and selections
@@ -117,7 +116,7 @@ void AssetSummaryDialog::configureAssetListTable()
         tableWidth += ui->tableViewAssetSummary->verticalScrollBar()->width();
     }
 
-    ui->tableViewAssetSummary->setMinimumWidth(tableWidth - 200);
+    ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
     ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
 }
 
@@ -125,12 +124,13 @@ void AssetSummaryDialog::configureNetWorthTrackingChart()
 {
     QLineSeries* series = new QLineSeries();
 
-    std::pair<double, double> range = controller->getMinandMaxYearlyNetWorth();
+    std::pair<double, double> range = controller->getPastYearMinandMaxNetWorth();
     double tickCount = 5.0;
-    std::vector<std::pair<int, double>> values = controller->getMonthlyNetWorthTotals();
-    for(const auto& i : values)
+    std::vector<double> values = controller->getPastYearNetWorthTotals();
+    std::reverse(values.begin(), values.end());
+    for(quint32 i = 0; i < values.size(); ++i)
     {
-        series->append(i.first, i.second);
+        series->append(i, values[i]);
     }
 
     QChart* chart = new QChart();
@@ -148,14 +148,20 @@ void AssetSummaryDialog::configureNetWorthTrackingChart()
     labelX->setLabelsPosition(QCategoryAxis::AxisLabelsPositionOnValue);
     labelY->setLabelsPosition(QCategoryAxis::AxisLabelsPositionOnValue);
 
-    int index;
-    (controller->getCurrentMonthValuesEntered()) ? index = QDate::currentDate().month() : index = QDate::currentDate().month() - 1;
-    for(int i = 1; i <= index; ++i)
+    int index = 12;
+    QDate date(QDate::currentDate());
+    if(!controller->getCurrentMonthValuesEntered())
     {
-        QDate date(QDate::currentDate().year(), i, 1);
-        labelX->append(date.toString("MMM"), i);
+        date = date.addMonths(-1);
     }
-    labelX->setRange(1, index);
+
+    date = date.addMonths(-11);
+    for(int i = 0; i < index; ++i)
+    {
+        labelX->append(date.toString("MMM yy"), i);
+        date = date.addMonths(1);
+    }
+    labelX->setRange(0, index - 1);
     axisX->setRange(0, index - 1);
 
     double min = range.first * .9;

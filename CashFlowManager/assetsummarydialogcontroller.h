@@ -16,9 +16,9 @@ public:
     std::string getCurrentIlliquidAssetAmount() const;
     std::string getYearlyChange(bool netWorthFlag, AssetType type = AssetType::Unknown) const;
     std::string getCurrentNetWorthAmount() const;
-    std::vector<std::pair<int, double>> getMonthlyNetWorthTotals() const;
+    std::vector<double> getPastYearNetWorthTotals() const;
     bool getCurrentMonthValuesEntered() const;
-    std::pair<double, double> getMinandMaxYearlyNetWorth() const;
+    std::pair<double, double> getPastYearMinandMaxNetWorth() const;
 
 private:
     AssetInterface& assetInterface;
