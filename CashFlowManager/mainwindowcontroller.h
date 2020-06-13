@@ -32,14 +32,18 @@ public:
     double getMonthlyIncomeTotal() const;
     double getMonthlyCashSavedTotal() const;
     double getMonthlyBudgetSurplus() const;
+    double getMonthlyAdditionalPrincipal() const;
     double getYearlyExpenseTotal() const;
     double getYearlyIncomeTotal() const;
     double getYearlyInvestmentTotal() const;
     double getYearlyCashSavedTotal() const;
     double getYearlyAmountSaved() const;
     double getYearlySavingsRatio() const;
+    double getYearlyAdditionalPrincipal() const;
     double getMonthlyRemainingBudget() const;
     std::vector<std::pair<std::string, double>> getInvestmentTypesAndYearlyTotals() const;
+    std::string getRatioForPieChart(double amount) const;
+    double getYearlyExpenditureRatio() const;
 
     // Supporting functions for Main Window auxilary actions
     void showYearlyBudgetSummaryDialog(QWidget* parent);

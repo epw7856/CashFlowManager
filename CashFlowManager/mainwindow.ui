@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1031</width>
-    <height>770</height>
+    <width>1083</width>
+    <height>732</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -341,7 +341,21 @@
            </widget>
           </item>
           <item row="5" column="0">
-           <spacer name="horizontalSpacer_10">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Additional Principal:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="labelMonthlyPrincipal">
+            <property name="text">
+             <string>&lt;Principal&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <spacer name="horizontalSpacer_9">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -353,8 +367,8 @@
             </property>
            </spacer>
           </item>
-          <item row="5" column="1">
-           <spacer name="horizontalSpacer_9">
+          <item row="6" column="1">
+           <spacer name="horizontalSpacer_10">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -480,6 +494,20 @@
            </widget>
           </item>
           <item row="5" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Additional Principal:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="labelYearlyPrincipal">
+            <property name="text">
+             <string>&lt;Principal&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
            <spacer name="horizontalSpacer_11">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -492,8 +520,8 @@
             </property>
            </spacer>
           </item>
-          <item row="5" column="1">
-           <spacer name="horizontalSpacer_16">
+          <item row="6" column="1">
+           <spacer name="horizontalSpacer_12">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -526,19 +554,6 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="layoutTables">
-      <item>
-       <spacer name="horizontalSpacer_13">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_10">
         <item>
@@ -592,19 +607,6 @@
        </layout>
       </item>
       <item>
-       <spacer name="horizontalSpacer_15">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
        <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
          <widget class="QTableView" name="tableViewMonthlyInvestments">
@@ -654,20 +656,51 @@
        </layout>
       </item>
       <item>
-       <spacer name="horizontalSpacer_12">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_11">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>Expenditures to Income Ratio:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelExpenditurePercentage">
+            <property name="text">
+             <string>&lt;Percentage&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_14">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
         <item>
          <widget class="QChartView" name="graphicsViewBreakdownPieChart">
           <property name="minimumSize">
@@ -686,19 +719,6 @@
         </item>
        </layout>
       </item>
-      <item>
-       <spacer name="horizontalSpacer_14">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
      </layout>
     </item>
    </layout>
@@ -708,7 +728,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1031</width>
+     <width>1083</width>
      <height>21</height>
     </rect>
    </property>

@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
     ui->verticalLayout_10->setAlignment(Qt::AlignTop);
-    ui->verticalLayout_11->setAlignment(Qt::AlignTop);
     expenseTableModel.setExpenseTypes();
     investmentTableModel.setInvestmentTypes();
 
@@ -99,11 +98,14 @@ void MainWindow::updateDisplayedInformation()
     ui->labelMonthlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyIncomeTotal())));
     ui->labelMonthlyBudgetSurplus->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyBudgetSurplus())));
     ui->labelMonthlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyCashSavedTotal())));
+    ui->labelMonthlyPrincipal->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getMonthlyAdditionalPrincipal())));
     ui->labelYearlyExpenses->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyExpenseTotal())));
     ui->labelYearlyInvestments->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyInvestmentTotal())));
     ui->labelYearlyIncome->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyIncomeTotal())));
     ui->labelYearlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyCashSavedTotal())));
     ui->labelYearlySavingsRatio->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlySavingsRatio())));
+    ui->labelYearlyPrincipal->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyAdditionalPrincipal())));
+    ui->labelExpenditurePercentage->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlyExpenditureRatio())));
 }
 
 void MainWindow::configureBudgetStatusBarChart()
@@ -131,18 +133,32 @@ void MainWindow::configureBudgetStatusBarChart()
 
 void MainWindow::configureBreakdownPieChart()
 {
-    QPieSlice* expenseSlice = new QPieSlice("Expenses", mainWindowController->getYearlyExpenseTotal());
+    QPieSlice* expenseSlice = new QPieSlice("Expenses, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyExpenseTotal())),
+                                            mainWindowController->getYearlyExpenseTotal());
     expenseSlice->setBrush(Qt::red);
-    QPieSlice* cashSlice = new QPieSlice("Cash", mainWindowController->getYearlyCashSavedTotal());
+
+
+    QPieSlice* cashSlice = new QPieSlice("Cash, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyCashSavedTotal())),
+                                                                           mainWindowController->getYearlyCashSavedTotal());
     cashSlice->setBrush(Qt::green);
+
+    QPieSlice* mortgagePrincipalSlice = new QPieSlice("Principal, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyAdditionalPrincipal())),
+                                                      mainWindowController->getYearlyAdditionalPrincipal());
+    mortgagePrincipalSlice->setBrush(Qt::yellow);
 
     QPieSeries* series = new QPieSeries();
     series->append(expenseSlice);
-    series->append(cashSlice);
+    series->append(mortgagePrincipalSlice);
+
+    if(mainWindowController->getYearlyCashSavedTotal() >= 0.0)
+    {
+        series->append(cashSlice);
+    }
 
     for(const auto& i : mainWindowController->getInvestmentTypesAndYearlyTotals())
     {
-        series->append(QString::fromStdString(i.first), i.second);
+        series->append(QString::fromStdString(i.first) + ", " + QString::fromStdString(mainWindowController->getRatioForPieChart(i.second)),
+                       i.second);
     }
 
     QChart* pieChart = new QChart();

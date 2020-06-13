@@ -69,9 +69,11 @@ double MainWindowController::getYearlyInvestmentTotal() const
 
 double MainWindowController::getYearlyCashSavedTotal() const
 {
-    return sds.getYearlyIncomeTotal(currentYear) -
-           sds.getYearlyExpenseTotal(currentYear) -
-           sds.getYearlyInvestmentTotal(currentYear);
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    return (sds.getYearlyIncomeTotal(currentYear) -
+            sds.getYearlyExpenseTotal(currentYear) -
+            sds.getYearlyInvestmentTotal(currentYear) -
+            sds.getAdditionalPrincipalPaymentTotalByDate(dates.first, dates.second));
 }
 
 double MainWindowController::getMonthlyBudgetSurplus() const
@@ -79,11 +81,19 @@ double MainWindowController::getMonthlyBudgetSurplus() const
     return sds.getMonthlyBudgetTotal(currentMonth) - sds.getMonthlyExpenseTotal(currentYear, currentMonth);
 }
 
+double MainWindowController::getMonthlyAdditionalPrincipal() const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
+    return sds.getAdditionalPrincipalPaymentTotalByDate(dates.first, dates.second);
+}
+
 double MainWindowController::getMonthlyCashSavedTotal() const
 {
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
     return (sds.getMonthlyIncomeTotal(currentYear, currentMonth) -
             sds.getMonthlyExpenseTotal(currentYear, currentMonth) -
-            sds.getMonthlyInvestmentTotal(currentYear, currentMonth));
+            sds.getMonthlyInvestmentTotal(currentYear, currentMonth) -
+            sds.getAdditionalPrincipalPaymentTotalByDate(dates.first, dates.second));
 }
 
 double MainWindowController::getYearlyAmountSaved() const
@@ -102,6 +112,12 @@ double MainWindowController::getYearlySavingsRatio() const
     {
         return 0.0;
     }
+}
+
+double MainWindowController::getYearlyAdditionalPrincipal() const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    return sds.getAdditionalPrincipalPaymentTotalByDate(dates.first, dates.second);
 }
 
 double MainWindowController::getMonthlyRemainingBudget() const
@@ -124,6 +140,21 @@ std::vector<std::pair<std::string, double>> MainWindowController::getInvestmentT
     }
 
     return types;
+}
+
+std::string MainWindowController::getRatioForPieChart(double amount) const
+{
+    return CurrencyUtilities::formatRatio(amount / getYearlyIncomeTotal());
+}
+
+double MainWindowController::getYearlyExpenditureRatio() const
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
+    double totalExpenditures = sds.getYearlyExpenseTotal(currentYear) +
+                               sds.getYearlyInvestmentTotal(currentYear) +
+                               sds.getAdditionalPrincipalPaymentTotalByDate(dates.first, dates.second);
+
+    return totalExpenditures / getYearlyIncomeTotal();
 }
 
 void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)

@@ -4,12 +4,18 @@
 std::string CurrencyUtilities::formatCurrency(double amount, bool trimPrecision)
 {
     std::string value;
-    value = "$" + QLocale(QLocale::English).toString(amount, 'f', 2).toStdString();
+
     if(amount < 0.0)
     {
         amount *= -1.0;
-        value.insert(0, "-");
+        value = "-$";
     }
+    else
+    {
+        value = "$";
+    }
+
+    value += QLocale(QLocale::English).toString(amount, 'f', 2).toStdString();
 
     if(trimPrecision)
     {
