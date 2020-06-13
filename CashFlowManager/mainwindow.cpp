@@ -106,6 +106,11 @@ void MainWindow::updateDisplayedInformation()
     ui->labelYearlySavingsRatio->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlySavingsRatio())));
     ui->labelYearlyPrincipal->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyAdditionalPrincipal())));
     ui->labelExpenditurePercentage->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlyExpenditureRatio())));
+
+    QPalette sample_palette;
+    (mainWindowController->getYearlyExpenditureRatio() > 1.0) ? sample_palette.setColor(QPalette::WindowText, Qt::red) :
+                                                                sample_palette.setColor(QPalette::WindowText, Qt::green);
+    ui->labelExpenditurePercentage->setPalette(sample_palette);
 }
 
 void MainWindow::configureBudgetStatusBarChart()
@@ -150,6 +155,8 @@ void MainWindow::configureBreakdownPieChart()
     series->append(expenseSlice);
     series->append(mortgagePrincipalSlice);
 
+    series->setHoleSize(0.35);
+
     if(mainWindowController->getYearlyCashSavedTotal() >= 0.0)
     {
         series->append(cashSlice);
@@ -167,6 +174,7 @@ void MainWindow::configureBreakdownPieChart()
     pieChart->legend()->setAlignment(Qt::AlignRight);
     pieChart->setBackgroundVisible(false);
     pieChart->setMargins(QMargins(0,0,0,0));
+    pieChart->setAnimationOptions(QChart::SeriesAnimations);
 
     ui->graphicsViewBreakdownPieChart->setChart(pieChart);
 }
