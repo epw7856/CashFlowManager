@@ -620,6 +620,16 @@ bool SystemDataSource::mortgagePaidForMonth(int year, int month) const
 void SystemDataSource::addAdditionalPrincipalPayment(const MortgagePrincipalPayment& payment)
 {
     mortgageInfo->addPrincipalPayment(payment);
+
+    QJsonObject mortgage = obj.value("MortgageInformation").toObject();
+    QJsonArray values = mortgage.value("AdditionalPrincipalPayments").toArray();
+    QJsonObject newValueItem;
+    newValueItem.insert("Date", QJsonValue(payment.getDate().toString("MM/dd/yyyy")));
+    newValueItem.insert("Amount", QJsonValue(payment.getAmount()));
+    values.append(newValueItem);
+    mortgage.remove("AdditionalPrincipalPayments");
+    mortgage.insert("AdditionalPrincipalPayments", values);
+    obj["MortgageInformation"] = mortgage;
 }
 
 double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const

@@ -87,6 +87,7 @@ void AddExpenseTransactionDialog::expenseTypeSelectionChanged(QString type)
 
 void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 {
+    ui->lineEditDescription->clear();
     ui->label_5->setVisible(false);
     ui->lineEditAdditionalPrincipalAmount->setVisible(false);
     ui->gridLayout->removeItem(ui->horizontalSpacer_7);
@@ -97,6 +98,8 @@ void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 
 void AddExpenseTransactionDialog::showAdditionalPrincipal()
 {
+    ui->lineEditDescription->clear();
+    ui->lineEditDescription->setText(QDate::currentDate().toString("MMMM") + " Mortgage Payment");
     ui->label_5->setVisible(true);
     ui->lineEditAdditionalPrincipalAmount->setVisible(true);
     ui->gridLayout->addLayout(ui->horizontalSpacer_7->layout(), ui->gridLayout->rowCount() - 1, 0);

@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
+    <width>545</width>
     <height>254</height>
    </rect>
   </property>
@@ -297,13 +297,13 @@
       <widget class="QLineEdit" name="lineEditDescription">
        <property name="minimumSize">
         <size>
-         <width>100</width>
+         <width>160</width>
          <height>30</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>100</width>
+         <width>160</width>
          <height>30</height>
         </size>
        </property>

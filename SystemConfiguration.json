@@ -119,6 +119,11 @@
                     "Amount": 1545.01,
                     "Date": "04/01/2020",
                     "Description": "April Mortgage Payment"
+                },
+                {
+                    "Amount": 1545.01,
+                    "Date": "06/14/2020",
+                    "Description": "June Mortgage Payment"
                 }
             ]
         },
@@ -379,6 +384,10 @@
             {
                 "Amount": 1545,
                 "Date": "06/01/2020"
+            },
+            {
+                "Amount": 100,
+                "Date": "06/14/2020"
             }
         ],
         "MarketValue": 250000,
