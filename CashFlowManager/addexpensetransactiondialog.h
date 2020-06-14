@@ -24,10 +24,15 @@ public:
 
 public slots:
     void onPushButtonExitClicked();
+    void onPushButtonAddTransaction();
+    void expenseTypeSelectionChanged(QString type);
 
 private:
     Ui::AddExpenseTransactionDialog *ui;
     std::unique_ptr<AddExpenseTransactionDialogController> controller;
+
+    void hideAdditionalPrincipal();
+    void showAdditionalPrincipal();
 };
 
 #endif // ADDEXPENSETRANSACTIONDIALOG_H
