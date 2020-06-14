@@ -1,17 +1,5 @@
 #include "dateutilities.h"
 
-std::string DateUtilities::getCurrentMonth()
-{
-    QDate date(QDate::currentDate());
-    return date.toString("MMMM").toStdString();
-}
-
-std::string DateUtilities::getCurrentYear()
-{
-    QDate date(QDate::currentDate());
-    return date.toString("yyyy").toStdString();
-}
-
 std::pair<QDate, QDate> DateUtilities::getCurrentMonthDates()
 {
     QDate startDate(QDate::currentDate().year(), QDate::currentDate().month(), 1);

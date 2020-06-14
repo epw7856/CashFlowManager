@@ -25,7 +25,7 @@ MainWindowController::~MainWindowController() = default;
 
 std::string MainWindowController::getCurrentMonthAndYear() const
 {
-    return (DateUtilities::getCurrentMonth()) + " " + (DateUtilities::getCurrentYear());
+    return (QDate::currentDate().toString("MMM").toStdString()) + " " + (QDate::currentDate().toString("yyyy").toStdString());
 }
 
 std::string MainWindowController::getBudgetStatusStatement() const
