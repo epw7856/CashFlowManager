@@ -617,6 +617,11 @@ bool SystemDataSource::mortgagePaidForMonth(int year, int month) const
     return (getExpenseTransactionsTotalByTimePeriod("Mortgage", dates.first, dates.second) > 0.0);
 }
 
+void SystemDataSource::addAdditionalPrincipalPayment(const MortgagePrincipalPayment& payment)
+{
+    mortgageInfo->addPrincipalPayment(payment);
+}
+
 double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const
 {
     QDate date(year, month, 1);

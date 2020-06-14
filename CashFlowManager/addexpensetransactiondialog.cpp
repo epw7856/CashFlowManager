@@ -2,6 +2,7 @@
 #include "addexpensetransactiondialogcontroller.h"
 #include "expenseinterface.h"
 #include "mortgageinterface.h"
+#include <QMessageBox>
 #include "ui_addexpensetransactiondialog.h"
 
 AddExpenseTransactionDialog::AddExpenseTransactionDialog
@@ -43,7 +44,40 @@ void AddExpenseTransactionDialog::onPushButtonExitClicked()
 
 void AddExpenseTransactionDialog::onPushButtonAddTransaction()
 {
+    if(ui->comboBoxExpenseType->currentIndex() == 0)
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Please select an expense type for the transaction."), QMessageBox::Ok);
+    }
+    else if(!controller->verifyDescription(ui->lineEditDescription->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Invalid expense transaction description entered.\nPlease enter a valid description."), QMessageBox::Ok);
+    }
+    else if(!controller->verifyTransactionDate(ui->dateEditTransaction->date()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Invalid transaction date selected.\nPlease enter a valid date within +/- 1 year of today's date."), QMessageBox::Ok);
+    }
+    else if(((ui->comboBoxExpenseType->currentText() == "Mortgage") &&
+            (!controller->verifyAmount((ui->lineEditTransactionAmount->text()), true))) ||
+            ((ui->comboBoxExpenseType->currentText() != "Mortgage") &&
+            (!controller->verifyAmount((ui->lineEditTransactionAmount->text()), false))))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Invalid transaction amount entered.\nPlease enter a valid non-zero amount."), QMessageBox::Ok);
+    }
+    else if((ui->comboBoxExpenseType->currentText() == "Mortgage") &&
+            (!controller->verifyAmount((ui->lineEditAdditionalPrincipalAmount->text()), true)))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Invalid additional principal amount entered.\nPlease enter a valid amount."), QMessageBox::Ok);
+    }
+    else
+    {
+        controller->addExpenseTransaction(ui->dateEditTransaction->date(),
+                                          ui->comboBoxExpenseType->currentText(),
+                                          ui->lineEditDescription->text(),
+                                          ui->lineEditTransactionAmount->text().toDouble(),
+                                          ui->lineEditAdditionalPrincipalAmount->text().toDouble());
 
+        QMessageBox::information(this, tr("Success"), tr("Successfully added expense transaction."), QMessageBox::Ok);
+    }
 }
 
 void AddExpenseTransactionDialog::expenseTypeSelectionChanged(QString type)

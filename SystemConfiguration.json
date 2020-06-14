@@ -284,6 +284,11 @@
                     "Amount": 87.32,
                     "Date": "03/17/2020",
                     "Description": "April Electric Bill"
+                },
+                {
+                    "Amount": 32.56,
+                    "Date": "06/14/2020",
+                    "Description": "Test"
                 }
             ]
         },

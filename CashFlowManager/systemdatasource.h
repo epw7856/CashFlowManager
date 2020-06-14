@@ -81,6 +81,7 @@ public:
     double getPurchasePrice() const override;
     double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     bool mortgagePaidForMonth(int year, int month) const override;
+    void addAdditionalPrincipalPayment(const MortgagePrincipalPayment& payment) override;
 
 private:
     QFile systemConfigFile;

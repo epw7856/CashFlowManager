@@ -2,6 +2,7 @@
 #define MORTGAGEINTERFACE_H
 
 class QDate;
+class MortgagePrincipalPayment;
 
 class MortgageInterface
 {
@@ -16,6 +17,7 @@ public:
     virtual QDate getLoanStartDate() const = 0;
     virtual double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual bool mortgagePaidForMonth(int year, int month) const = 0;
+    virtual void addAdditionalPrincipalPayment(const MortgagePrincipalPayment& payment) = 0;
 };
 
 #endif // MORTGAGEINTERFACE_H

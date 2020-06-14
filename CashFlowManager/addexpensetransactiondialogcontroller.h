@@ -1,6 +1,7 @@
 #ifndef ADDEXPENSETRANSACTIONDIALOGCONTROLLER_H
 #define ADDEXPENSETRANSACTIONDIALOGCONTROLLER_H
 
+#include <QDate>
 #include <QStringList>
 
 class ExpenseInterface;
@@ -11,6 +12,14 @@ class AddExpenseTransactionDialogController
 public:
     AddExpenseTransactionDialogController(ExpenseInterface& localExpenseInterface, MortgageInterface& localMortgageInterface);
     QStringList getExpenseTypes() const;
+    bool verifyDescription(QString description) const;
+    bool verifyTransactionDate(QDate date) const;
+    bool verifyAmount(QString amount, bool zeroAllowed) const;
+    void addExpenseTransaction(const QDate& date,
+                               const QString& type,
+                               const QString& description,
+                               double transactionAmount,
+                               double additionalPrincipal = 0.0);
 
 private:
     ExpenseInterface& expenseInterface;
