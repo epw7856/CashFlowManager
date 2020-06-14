@@ -144,7 +144,7 @@
         <item>
          <widget class="QLabel" name="label_7">
           <property name="text">
-           <string>Expense Budget</string>
+           <string>Expense Budget Status</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -771,14 +771,26 @@
     <addaction name="separator"/>
     <addaction name="actionAsset_and_Net_Worth_Tracking"/>
    </widget>
-   <widget class="QMenu" name="menuModify">
+   <widget class="QMenu" name="menuAdd">
     <property name="title">
-     <string>Modify</string>
+     <string>Add</string>
     </property>
+    <addaction name="actionAddExpense_Transaction"/>
+    <addaction name="actionAddExpense_Type"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddInvestment_Transaction"/>
+    <addaction name="actionAddInvestment_Type"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddIncome_Transaction"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddAutomatic_Monthly_Payment"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddAsset_Values"/>
+    <addaction name="actionAddAsset_Type"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
-   <addaction name="menuModify"/>
+   <addaction name="menuAdd"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
@@ -824,6 +836,46 @@
   <action name="actionAsset_and_Net_Worth_Tracking">
    <property name="text">
     <string>Asset and Net Worth Tracking</string>
+   </property>
+  </action>
+  <action name="actionAddExpense_Transaction">
+   <property name="text">
+    <string>Expense Transaction</string>
+   </property>
+  </action>
+  <action name="actionAddExpense_Type">
+   <property name="text">
+    <string>Expense Type</string>
+   </property>
+  </action>
+  <action name="actionAddInvestment_Transaction">
+   <property name="text">
+    <string>Investment Transaction</string>
+   </property>
+  </action>
+  <action name="actionAddInvestment_Type">
+   <property name="text">
+    <string>Investment Type</string>
+   </property>
+  </action>
+  <action name="actionAddIncome_Transaction">
+   <property name="text">
+    <string>Income Transaction</string>
+   </property>
+  </action>
+  <action name="actionAddAutomatic_Monthly_Payment">
+   <property name="text">
+    <string>Automatic Monthly Payment</string>
+   </property>
+  </action>
+  <action name="actionAddAsset_Values">
+   <property name="text">
+    <string>Asset Values</string>
+   </property>
+  </action>
+  <action name="actionAddAsset_Type">
+   <property name="text">
+    <string>Asset Type</string>
    </property>
   </action>
  </widget>

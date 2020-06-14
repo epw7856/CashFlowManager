@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+class AddExpenseTransactionDialog;
 class AssetSummaryDialog;
 class AutomaticMonthlyPaymentSummaryDialog;
 class ExpenseTypeSummaryDialog;
@@ -54,6 +55,7 @@ public:
     void showAutomaticMonthlyPaymentSummaryDialog(QWidget* parent);
     void showAssetSummaryDialog(QWidget* parent);
     void showMortgageSummaryDialog(QWidget* parent);
+    void showAddExpenseTransactionDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
@@ -66,6 +68,7 @@ private:
     std::unique_ptr<AutomaticMonthlyPaymentSummaryDialog> automaticMonthlyPaymentDialog;
     std::unique_ptr<AssetSummaryDialog> assetSummaryDialog;
     std::unique_ptr<MortgageSummaryDialog> mortgageSummaryDialog;
+    std::unique_ptr<AddExpenseTransactionDialog> addExpenseTransactionDialog;
 
     int currentYear = 0;
     int currentMonth = 0;

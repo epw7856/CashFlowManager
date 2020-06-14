@@ -179,5 +179,6 @@ void AssetSummaryDialog::configureNetWorthTrackingChart()
     chart->addAxis(labelX, Qt::AlignBottom);
     chart->addAxis(labelY, Qt::AlignLeft);
 
+    chart->setAnimationOptions(QChart::SeriesAnimations);
     ui->graphicsViewNetWorth->setChart(chart);
 }

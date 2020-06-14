@@ -1,3 +1,4 @@
+#include "addexpensetransactiondialog.h"
 #include "assetsummarydialog.h"
 #include "automaticmonthlypaymentsummarydialog.h"
 #include "currencyutilities.h"
@@ -251,4 +252,16 @@ void MainWindowController::showMortgageSummaryDialog(QWidget* parent)
     mortgageSummaryDialog->show();
     mortgageSummaryDialog->raise();
     mortgageSummaryDialog->activateWindow();
+}
+
+void MainWindowController::showAddExpenseTransactionDialog(QWidget *parent)
+{
+    if(addExpenseTransactionDialog == nullptr)
+    {
+        addExpenseTransactionDialog = std::make_unique<AddExpenseTransactionDialog>(sds, sds, parent);
+    }
+
+    addExpenseTransactionDialog->show();
+    addExpenseTransactionDialog->raise();
+    addExpenseTransactionDialog->activateWindow();
 }

@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAutomatic_Monthly_Payments, &QAction::triggered, this, &MainWindow::onActionAutomaticMonthlyPaymentSummaryTriggered);
     connect(ui->actionAsset_and_Net_Worth_Tracking, &QAction::triggered, this, &MainWindow::onActionAssetAndNetWorthSummaryTriggered);
     connect(ui->actionMortgage_Information, &QAction::triggered, this, &MainWindow::onActionMortgageInformationTriggered);
+    connect(ui->actionAddExpense_Transaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
 
     updateDisplayedInformation();
 }
@@ -82,6 +83,11 @@ void MainWindow::onActionAssetAndNetWorthSummaryTriggered()
 void MainWindow::onActionMortgageInformationTriggered()
 {
     mainWindowController->showMortgageSummaryDialog(this);
+}
+
+void MainWindow::onActionAddExpenseTransactionTriggered()
+{
+    mainWindowController->showAddExpenseTransactionDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()
