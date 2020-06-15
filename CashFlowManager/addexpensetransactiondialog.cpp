@@ -48,7 +48,7 @@ void AddExpenseTransactionDialog::onPushButtonAddTransaction()
     {
         QMessageBox::critical(this, tr("Error"), tr("Please select an expense type for the transaction."), QMessageBox::Ok);
     }
-    else if(!controller->verifyDescription(ui->lineEditDescription->text()))
+    else if(!controller->verifyTransactionDescription(ui->lineEditDescription->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("Invalid expense transaction description entered.\nPlease enter a valid description."), QMessageBox::Ok);
     }
@@ -57,14 +57,14 @@ void AddExpenseTransactionDialog::onPushButtonAddTransaction()
         QMessageBox::critical(this, tr("Error"), tr("Invalid transaction date selected.\nPlease enter a valid date within +/- 1 year of today's date."), QMessageBox::Ok);
     }
     else if(((ui->comboBoxExpenseType->currentText() == "Mortgage") &&
-            (!controller->verifyAmount((ui->lineEditTransactionAmount->text()), true))) ||
+            (!controller->verifyTransactionAmount((ui->lineEditTransactionAmount->text()), true))) ||
             ((ui->comboBoxExpenseType->currentText() != "Mortgage") &&
-            (!controller->verifyAmount((ui->lineEditTransactionAmount->text()), false))))
+            (!controller->verifyTransactionAmount((ui->lineEditTransactionAmount->text()), false))))
     {
         QMessageBox::critical(this, tr("Error"), tr("Invalid transaction amount entered.\nPlease enter a valid non-zero amount."), QMessageBox::Ok);
     }
     else if((ui->comboBoxExpenseType->currentText() == "Mortgage") &&
-            (!controller->verifyAmount((ui->lineEditAdditionalPrincipalAmount->text()), true)))
+            (!controller->verifyTransactionAmount((ui->lineEditAdditionalPrincipalAmount->text()), true)))
     {
         QMessageBox::critical(this, tr("Error"), tr("Invalid additional principal amount entered.\nPlease enter a valid amount."), QMessageBox::Ok);
     }

@@ -56,6 +56,7 @@ SOURCES += \
         Mortgage/mortgagetablemodel.cpp \
         addexpensetransactiondialog.cpp \
         addexpensetransactiondialogcontroller.cpp \
+        addexpensetypedialog.cpp \
         assetsummarydialog.cpp \
         assetsummarydialogcontroller.cpp \
         automaticmonthlypaymentsummarydialog.cpp \
@@ -69,6 +70,7 @@ SOURCES += \
         monthlybudgetsummarydialog.cpp \
         mortgagesummarydialog.cpp \
         systemdatasource.cpp \
+        validator.cpp \
         yearlybudgetsummarydialog.cpp \
         yearlyincomesummarydialog.cpp
 
@@ -101,6 +103,7 @@ HEADERS += \
         Mortgage/mortgagetablemodel.h \
         addexpensetransactiondialog.h \
         addexpensetransactiondialogcontroller.h \
+        addexpensetypedialog.h \
         assetsummarydialog.h \
         assetsummarydialogcontroller.h \
         automaticmonthlypaymentsummarydialog.h \
@@ -114,11 +117,13 @@ HEADERS += \
         mortgagesummarydialog.h \
         systemdatasource.h \
         transactioncomparison.h \
+        validator.h \
         yearlybudgetsummarydialog.h \
         yearlyincomesummarydialog.h
 
 FORMS += \
         addexpensetransactiondialog.ui \
+        addexpensetypedialog.ui \
         assetsummarydialog.ui \
         automaticmonthlypaymentsummarydialog.ui \
         expensetypesummarydialog.ui \

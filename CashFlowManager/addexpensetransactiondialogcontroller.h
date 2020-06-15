@@ -12,9 +12,9 @@ class AddExpenseTransactionDialogController
 public:
     AddExpenseTransactionDialogController(ExpenseInterface& localExpenseInterface, MortgageInterface& localMortgageInterface);
     QStringList getExpenseTypes() const;
-    bool verifyDescription(QString description) const;
+    bool verifyTransactionDescription(QString description) const;
     bool verifyTransactionDate(QDate date) const;
-    bool verifyAmount(QString amount, bool zeroAllowed) const;
+    bool verifyTransactionAmount(QString amount, bool zeroAllowed) const;
     void addExpenseTransaction(const QDate& date,
                                const QString& type,
                                const QString& description,

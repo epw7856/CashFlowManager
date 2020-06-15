@@ -4,8 +4,9 @@
 #include "expensetype.h"
 #include "mortgageinterface.h"
 #include "mortgageprincipalpayment.h"
-#include <QRegExp>
+#include "validator.h"
 #include <QDoubleValidator>
+#include <QRegExp>
 
 AddExpenseTransactionDialogController::AddExpenseTransactionDialogController
 (
@@ -29,25 +30,19 @@ QStringList AddExpenseTransactionDialogController::getExpenseTypes() const
     return expenseTypes;
 }
 
-bool AddExpenseTransactionDialogController::verifyDescription(QString description) const
+bool AddExpenseTransactionDialogController::verifyTransactionDescription(QString description) const
 {
-    return (!description.isEmpty());
+    return Validator::verifyDescription(description);
 }
 
 bool AddExpenseTransactionDialogController::verifyTransactionDate(QDate date) const
 {
-    return (date.year() <= QDate::currentDate().year() &&
-            date.year() >= QDate::currentDate().addYears(-1).year());
+    return Validator::verifyDate(date);
 }
 
-bool AddExpenseTransactionDialogController::verifyAmount(QString amount, bool zeroAllowed) const
+bool AddExpenseTransactionDialogController::verifyTransactionAmount(QString amount, bool zeroAllowed) const
 {
-    QDoubleValidator validator;
-    int pos = 0;
-
-    (zeroAllowed) ? validator.setRange(0.00, 100000.00, 2) : validator.setRange(0.01, 100000.00, 2);
-
-    return (validator.validate(amount, pos) == QValidator::Acceptable);
+    return Validator::verifyAmount(amount, zeroAllowed);
 }
 
 void AddExpenseTransactionDialogController::addExpenseTransaction(const QDate& date, const QString& type, const QString& description, double transactionAmount, double additionalPrincipal)

@@ -32,6 +32,7 @@ public slots:
     void onActionAssetAndNetWorthSummaryTriggered();
     void onActionMortgageInformationTriggered();
     void onActionAddExpenseTransactionTriggered();
+    void onActionAddExpenseTypeTriggered();
 
 private:
     Ui::MainWindow *ui;

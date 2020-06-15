@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAsset_and_Net_Worth_Tracking, &QAction::triggered, this, &MainWindow::onActionAssetAndNetWorthSummaryTriggered);
     connect(ui->actionMortgage_Information, &QAction::triggered, this, &MainWindow::onActionMortgageInformationTriggered);
     connect(ui->actionAddExpense_Transaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
+    connect(ui->actionAddExpense_Type, &QAction::triggered, this, &MainWindow::onActionAddExpenseTypeTriggered);
 
     updateDisplayedInformation();
 }
@@ -88,6 +89,11 @@ void MainWindow::onActionMortgageInformationTriggered()
 void MainWindow::onActionAddExpenseTransactionTriggered()
 {
     mainWindowController->showAddExpenseTransactionDialog(this);
+}
+
+void MainWindow::onActionAddExpenseTypeTriggered()
+{
+    mainWindowController->showAddExpenseTypeDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()
