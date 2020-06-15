@@ -1,8 +1,10 @@
 #ifndef ADDEXPENSETYPEDIALOG_H
 #define ADDEXPENSETYPEDIALOG_H
 
+#include <memory>
 #include <QDialog>
 
+class AddExpenseTypeDialogController;
 class ExpenseInterface;
 
 namespace Ui {
@@ -25,6 +27,7 @@ public slots:
 private:
     Ui::AddExpenseTypeDialog *ui;
     ExpenseInterface& expenseInterface;
+    std::unique_ptr<AddExpenseTypeDialogController> controller;
 };
 
 #endif // ADDEXPENSETYPEDIALOG_H
