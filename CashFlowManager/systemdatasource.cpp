@@ -99,6 +99,29 @@ std::vector<ExpenseType*> SystemDataSource::getExpenseTypes() const
     return types;
 }
 
+void SystemDataSource::deleteExpenseType(const std::string& expenseType)
+{
+    auto itr = findMatchingType(expenseTypes, expenseType);
+
+    if(itr != expenseTypes.end())
+    {
+        expenseTypes.erase(itr, itr + 1);
+
+        QJsonValue expTypes = obj.value("ExpenseTypes");
+        QJsonArray array = expTypes.toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == expenseType)
+            {
+                array.removeAt(i);
+            }
+        }
+        obj["ExpenseTypes"] = array;
+    }
+}
+
 std::vector<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(const std::string& expenseType,
                                                                                       const QDate& startingPeriod,
                                                                                       const QDate& endingPeriod) const

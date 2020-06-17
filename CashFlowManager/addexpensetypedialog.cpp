@@ -21,8 +21,7 @@ AddExpenseTypeDialog::AddExpenseTypeDialog(ExpenseInterface& localExpenseInterfa
     {
         setWindowTitle("Modify/Delete Expense Type");
         ui->pushButtonAddType->setVisible(false);
-        ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
-        ui->comboBoxExpenseType->addItems(controller->getExpenseTypes());
+        updateComboBox();
 
         connect(ui->comboBoxExpenseType, SIGNAL(currentTextChanged(QString)), this, SLOT(expenseTypeSelectionChanged(QString)));
         connect(ui->pushButtonUpdateType, &QPushButton::clicked, this, &AddExpenseTypeDialog::onPushButtonUpdateTypeClicked);
@@ -78,12 +77,46 @@ void AddExpenseTypeDialog::onPushButtonAddTypeClicked()
 
 void AddExpenseTypeDialog::onPushButtonUpdateTypeClicked()
 {
-
+    updateComboBox();
 }
 
 void AddExpenseTypeDialog::onPushButtonDeleteTypeClicked()
 {
+    if(ui->comboBoxExpenseType->currentIndex() > 0)
+    {
+        if(controller->expenseTypeContainsYearlyTransactions(ui->comboBoxExpenseType->currentText()))
+        {
+            QMessageBox::critical(this, tr("Error"), "<p align='center'>The expense type '" + ui->comboBoxExpenseType->currentText() + "' contains transactions for the current year.<br>Cannot delete selected expense type.</p>", QMessageBox::Ok);
+            return;
+        }
+        else
+        {
+            int returnValue = QMessageBox::warning(this, tr("Confirm Selection"), "Are you sure you want to delete expense type '" + ui->comboBoxExpenseType->currentText() + "'?", QMessageBox::Yes | QMessageBox::No);
 
+            switch (returnValue)
+            {
+              case QMessageBox::Yes:
+
+                  expenseInterface.deleteExpenseType(ui->comboBoxExpenseType->currentText().toStdString());
+                  QMessageBox::information(this, tr("Success"), "<p align='center'>Successfully deleted expense type '" + ui->comboBoxExpenseType->currentText() + "'.</p>", QMessageBox::Ok);
+
+                break;
+
+              case QMessageBox::No:
+                  return;
+
+              default:
+                  return;
+            }
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>No expense type has been selected.<br>Please select an expense type to be deleted.</p>", QMessageBox::Ok);
+        return;
+    }
+    ui->comboBoxExpenseType->setCurrentIndex(0);
+    updateComboBox();
 }
 
 void AddExpenseTypeDialog::onRadioButtonToggled()
@@ -124,4 +157,11 @@ void AddExpenseTypeDialog::expenseTypeSelectionChanged(QString type)
         ui->lineEditName->clear();
         ui->lineEditBudgetAmount->setText("0.00");
     }
+}
+
+void AddExpenseTypeDialog::updateComboBox()
+{
+    ui->comboBoxExpenseType->clear();
+    ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
+    ui->comboBoxExpenseType->addItems(controller->getExpenseTypes());
 }

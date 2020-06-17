@@ -1,9 +1,11 @@
 #include "addexpensetypedialogcontroller.h"
 #include "currencyutilities.h"
+#include "dateutilities.h"
 #include "expenseinterface.h"
 #include "expensetransaction.h"
 #include "expensetype.h"
 #include "mortgageinterface.h"
+#include <QDate>
 #include "validator.h"
 #include <vector>
 
@@ -53,6 +55,11 @@ void AddExpenseTypeDialogController::addExpenseType(const QString& name, double 
     expenseInterface.addExpenseType(type);
 }
 
+void AddExpenseTypeDialogController::deleteExpenseType(const QString& name)
+{
+    expenseInterface.deleteExpenseType(name.toStdString());
+}
+
 QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) const
 {
     std::vector<ExpenseType*> types = expenseInterface.getExpenseTypes();
@@ -67,4 +74,10 @@ QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) con
         return QString::fromStdString(CurrencyUtilities::formatCurrency((*itr)->getMonthlyBudget())).remove(0, 1);
     }
     return "0.00";
+}
+
+bool AddExpenseTypeDialogController::expenseTypeContainsYearlyTransactions(const QString& name)
+{
+    std::pair<QDate, QDate> dates = DateUtilities::getYearlyDates(QDate::currentDate().year());
+    return (expenseInterface.getExpenseTransactionsTotalByTimePeriod(name.toStdString(), dates.first, dates.second) > 0.0);
 }

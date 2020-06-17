@@ -29,6 +29,8 @@ public slots:
     void expenseTypeSelectionChanged(QString type);
 
 private:
+    void updateComboBox();
+
     Ui::AddExpenseTypeDialog *ui;
     ExpenseInterface& expenseInterface;
     MortgageInterface& mortgageInterface;

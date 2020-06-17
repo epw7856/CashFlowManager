@@ -15,7 +15,9 @@ public:
     bool verifyBudgetAmount(QString amount, bool zeroAllowed) const;
     bool verifyUniqueTypeName(QString name);
     void addExpenseType(const QString& name, double budgetAmount);
+    void deleteExpenseType(const QString& name);
     QString getMonthlyBudgetAmount(QString name) const;
+    bool expenseTypeContainsYearlyTransactions(const QString& name);
 
 private:
     ExpenseInterface& expenseInterface;

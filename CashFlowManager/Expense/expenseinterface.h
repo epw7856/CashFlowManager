@@ -15,6 +15,7 @@ class ExpenseInterface
 public:
     virtual ~ExpenseInterface() = default;
     virtual std::vector<ExpenseType*> getExpenseTypes() const = 0;
+    virtual void deleteExpenseType(const std::string& expenseType) = 0;
     virtual std::vector<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual double getExpenseTransactionsTotalByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const = 0;
