@@ -3,14 +3,26 @@
 #include "expenseinterface.h"
 #include "expensetransaction.h"
 #include "expensetype.h"
+#include "mortgageinterface.h"
 #include "validator.h"
 #include <vector>
 
-AddExpenseTypeDialogController::AddExpenseTypeDialogController(ExpenseInterface& localExpenseInterface)
+AddExpenseTypeDialogController::AddExpenseTypeDialogController(ExpenseInterface& localExpenseInterface, MortgageInterface& localMortgageInterface)
 :
-    expenseInterface(localExpenseInterface)
+    expenseInterface(localExpenseInterface),
+    mortgageInterface(localMortgageInterface)
 {
 
+}
+
+QStringList AddExpenseTypeDialogController::getExpenseTypes() const
+{
+    QStringList expenseTypes;
+    for(const auto& type : expenseInterface.getExpenseTypes())
+    {
+        expenseTypes << QString::fromStdString(type->getName());
+    }
+    return expenseTypes;
 }
 
 bool AddExpenseTypeDialogController::verifyTypeName(QString name) const
@@ -41,7 +53,7 @@ void AddExpenseTypeDialogController::addExpenseType(const QString& name, double 
     expenseInterface.addExpenseType(type);
 }
 
-QString AddExpenseTypeDialogController::getFixedExpenseBudgetAmount(QString name) const
+QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) const
 {
     std::vector<ExpenseType*> types = expenseInterface.getExpenseTypes();
 

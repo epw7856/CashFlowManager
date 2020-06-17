@@ -271,10 +271,22 @@ void MainWindowController::showAddExpenseTypeDialog(QWidget* parent)
 {
     if(addExpenseTypeDialog == nullptr)
     {
-        addExpenseTypeDialog = std::make_unique<AddExpenseTypeDialog>(sds, parent);
+        addExpenseTypeDialog = std::make_unique<AddExpenseTypeDialog>(sds, sds, false, parent);
     }
 
     addExpenseTypeDialog->show();
     addExpenseTypeDialog->raise();
     addExpenseTypeDialog->activateWindow();
+}
+
+void MainWindowController::showModifyExpenseTypeDialog(QWidget *parent)
+{
+    if(modifyExpenseTypeDialog == nullptr)
+    {
+        modifyExpenseTypeDialog = std::make_unique<AddExpenseTypeDialog>(sds, sds, true, parent);
+    }
+
+    modifyExpenseTypeDialog->show();
+    modifyExpenseTypeDialog->raise();
+    modifyExpenseTypeDialog->activateWindow();
 }

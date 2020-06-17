@@ -58,6 +58,7 @@ public:
     void showMortgageSummaryDialog(QWidget* parent);
     void showAddExpenseTransactionDialog(QWidget* parent);
     void showAddExpenseTypeDialog(QWidget* parent);
+    void showModifyExpenseTypeDialog(QWidget* parent);
 
 private:
     SystemDataSource& sds;
@@ -72,6 +73,7 @@ private:
     std::unique_ptr<MortgageSummaryDialog> mortgageSummaryDialog;
     std::unique_ptr<AddExpenseTransactionDialog> addExpenseTransactionDialog;
     std::unique_ptr<AddExpenseTypeDialog> addExpenseTypeDialog;
+    std::unique_ptr<AddExpenseTypeDialog> modifyExpenseTypeDialog;
 
     int currentYear = 0;
     int currentMonth = 0;

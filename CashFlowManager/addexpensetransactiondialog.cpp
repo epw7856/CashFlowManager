@@ -88,11 +88,11 @@ void AddExpenseTransactionDialog::expenseTypeSelectionChanged(QString type)
 void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 {
     ui->lineEditDescription->clear();
-    ui->label_5->setVisible(false);
+    ui->labelAdditionalPrincipal->setVisible(false);
     ui->lineEditAdditionalPrincipalAmount->setVisible(false);
     ui->gridLayout->removeItem(ui->horizontalSpacer_7);
     ui->gridLayout->removeItem(ui->horizontalSpacer_8);
-    ui->gridLayout->removeItem(ui->label_5->layout());
+    ui->gridLayout->removeItem(ui->labelAdditionalPrincipal->layout());
     ui->gridLayout->removeItem(ui->lineEditAdditionalPrincipalAmount->layout());
 }
 
@@ -100,10 +100,10 @@ void AddExpenseTransactionDialog::showAdditionalPrincipal()
 {
     ui->lineEditDescription->clear();
     ui->lineEditDescription->setText(QDate::currentDate().toString("MMMM") + " Mortgage Payment");
-    ui->label_5->setVisible(true);
+    ui->labelAdditionalPrincipal->setVisible(true);
     ui->lineEditAdditionalPrincipalAmount->setVisible(true);
     ui->gridLayout->addLayout(ui->horizontalSpacer_7->layout(), ui->gridLayout->rowCount() - 1, 0);
-    ui->gridLayout->addWidget(ui->label_5, ui->gridLayout->rowCount() - 1, 1);
+    ui->gridLayout->addWidget(ui->labelAdditionalPrincipal, ui->gridLayout->rowCount() - 1, 1);
     ui->gridLayout->addWidget(ui->lineEditAdditionalPrincipalAmount, ui->gridLayout->rowCount() - 1, 2);
     ui->gridLayout->addLayout(ui->horizontalSpacer_8->layout(), ui->gridLayout->rowCount() - 1, 3);
 }

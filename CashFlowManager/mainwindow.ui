@@ -773,10 +773,11 @@
    </widget>
    <widget class="QMenu" name="menuAdd">
     <property name="title">
-     <string>Add</string>
+     <string>Modify</string>
     </property>
     <addaction name="actionAddExpense_Transaction"/>
     <addaction name="actionAddExpense_Type"/>
+    <addaction name="actionModifyExpense_Type"/>
     <addaction name="separator"/>
     <addaction name="actionAddInvestment_Transaction"/>
     <addaction name="actionAddInvestment_Type"/>
@@ -840,12 +841,12 @@
   </action>
   <action name="actionAddExpense_Transaction">
    <property name="text">
-    <string>Expense Transaction</string>
+    <string>Add Expense Transaction</string>
    </property>
   </action>
-  <action name="actionAddExpense_Type">
+  <action name="actionModifyExpense_Type">
    <property name="text">
-    <string>Expense Type</string>
+    <string>Update/Delete Expense Type</string>
    </property>
   </action>
   <action name="actionAddInvestment_Transaction">
@@ -876,6 +877,11 @@
   <action name="actionAddAsset_Type">
    <property name="text">
     <string>Asset Type</string>
+   </property>
+  </action>
+  <action name="actionAddExpense_Type">
+   <property name="text">
+    <string>Add Expense Type</string>
    </property>
   </action>
  </widget>
