@@ -60,6 +60,11 @@ void AddExpenseTypeDialogController::deleteExpenseType(const QString& name)
     expenseInterface.deleteExpenseType(name.toStdString());
 }
 
+void AddExpenseTypeDialogController::updateExpenseType(const QString& currentName, const QString& updatedName, double updatedAmount)
+{
+    expenseInterface.updateExpenseType(currentName.toStdString(), updatedName.toStdString(), updatedAmount);
+}
+
 QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) const
 {
     std::vector<ExpenseType*> types = expenseInterface.getExpenseTypes();

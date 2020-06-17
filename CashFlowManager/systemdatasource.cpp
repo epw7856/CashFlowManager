@@ -122,6 +122,17 @@ void SystemDataSource::deleteExpenseType(const std::string& expenseType)
     }
 }
 
+void SystemDataSource::updateExpenseType(const std::string& currentName, const std::string& updatedName, double monthlyBudget)
+{
+    auto itr = findMatchingType(expenseTypes, currentName);
+
+    if(itr != expenseTypes.end())
+    {
+        (*itr)->updateName(updatedName);
+        (*itr)->updateBudget(monthlyBudget);
+    }
+}
+
 std::vector<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(const std::string& expenseType,
                                                                                       const QDate& startingPeriod,
                                                                                       const QDate& endingPeriod) const

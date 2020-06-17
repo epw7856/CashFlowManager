@@ -16,6 +16,7 @@ public:
     bool verifyUniqueTypeName(QString name);
     void addExpenseType(const QString& name, double budgetAmount);
     void deleteExpenseType(const QString& name);
+    void updateExpenseType(const QString& currentName, const QString& updatedName, double updatedAmount);
     QString getMonthlyBudgetAmount(QString name) const;
     bool expenseTypeContainsYearlyTransactions(const QString& name);
 

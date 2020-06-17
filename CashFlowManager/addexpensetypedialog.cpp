@@ -77,6 +77,30 @@ void AddExpenseTypeDialog::onPushButtonAddTypeClicked()
 
 void AddExpenseTypeDialog::onPushButtonUpdateTypeClicked()
 {
+    if(ui->comboBoxExpenseType->currentIndex() > 0)
+    {
+        if(!controller->verifyTypeName(ui->lineEditName->text()))
+        {
+            QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid expense type name entered.<br>Please enter a valid name.</p>"), QMessageBox::Ok);
+            return;
+        }
+        else if(ui->radioButtonFixed->isChecked() && !controller->verifyBudgetAmount(ui->lineEditBudgetAmount->text(), false))
+        {
+            QMessageBox::critical(this, tr("Error"), tr("<p align='center'>No monthly budget amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
+            return;
+        }
+        else
+        {
+            controller->updateExpenseType(ui->comboBoxExpenseType->currentText(), ui->lineEditName->text(), ui->lineEditBudgetAmount->text().toDouble());
+            QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated expense type.</p>"), QMessageBox::Ok);
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>No expense type has been selected.<br>Please select an expense type to be updated.</p>", QMessageBox::Ok);
+        return;
+    }
+
     updateComboBox();
 }
 
@@ -115,6 +139,7 @@ void AddExpenseTypeDialog::onPushButtonDeleteTypeClicked()
         QMessageBox::critical(this, tr("Error"), "<p align='center'>No expense type has been selected.<br>Please select an expense type to be deleted.</p>", QMessageBox::Ok);
         return;
     }
+
     ui->comboBoxExpenseType->setCurrentIndex(0);
     updateComboBox();
 }
