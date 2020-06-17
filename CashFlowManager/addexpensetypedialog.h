@@ -20,6 +20,9 @@ public:
     explicit AddExpenseTypeDialog(ExpenseInterface& localExpenseInterface, MortgageInterface& localMortgageInterface, bool modifyFlag, QWidget* parent = nullptr);
     ~AddExpenseTypeDialog();
 
+signals:
+    void dialogClosed();
+
 public slots:
     void onPushButtonExitClicked();
     void onPushButtonAddTypeClicked();
@@ -27,6 +30,7 @@ public slots:
     void onPushButtonDeleteTypeClicked();
     void onRadioButtonToggled();
     void expenseTypeSelectionChanged(QString type);
+    void closeEvent(QCloseEvent*) override;
 
 private:
     void updateComboBox();

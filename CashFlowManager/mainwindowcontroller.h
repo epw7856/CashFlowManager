@@ -60,6 +60,12 @@ public:
     void showAddExpenseTypeDialog(QWidget* parent);
     void showModifyExpenseTypeDialog(QWidget* parent);
 
+signals:
+    void requestMainWindowUpdate();
+
+public slots:
+    void dialogCloseEvent();
+
 private:
     SystemDataSource& sds;
 

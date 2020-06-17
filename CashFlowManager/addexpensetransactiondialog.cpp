@@ -85,6 +85,12 @@ void AddExpenseTransactionDialog::expenseTypeSelectionChanged(QString type)
     (type == "Mortgage") ? showAdditionalPrincipal() : hideAdditionalPrincipal();
 }
 
+void AddExpenseTransactionDialog::closeEvent(QCloseEvent*)
+{
+    emit dialogClosed();
+    close();
+}
+
 void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 {
     ui->lineEditDescription->clear();

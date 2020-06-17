@@ -130,6 +130,23 @@ void SystemDataSource::updateExpenseType(const std::string& currentName, const s
     {
         (*itr)->updateName(updatedName);
         (*itr)->updateBudget(monthlyBudget);
+
+        QJsonValue expTypes = obj.value("ExpenseTypes");
+        QJsonArray array = expTypes.toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == currentName)
+            {
+                item.insert("MonthlyBudget", QJsonValue(monthlyBudget));
+                item.insert("Name", QJsonValue(QString::fromStdString(updatedName)));
+                array.removeAt(i);
+                array.insert(i,item);
+                break;
+            }
+        }
+        obj["ExpenseTypes"] = array;
     }
 }
 

@@ -176,7 +176,7 @@
             ]
         },
         {
-            "MonthlyBudget": 50,
+            "MonthlyBudget": 60,
             "Name": "Trash",
             "Transactions": [
                 {
@@ -188,6 +188,11 @@
                     "Amount": 87.32,
                     "Date": "05/17/2020",
                     "Description": "April Electric Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "06/17/2020",
+                    "Description": "june bill"
                 }
             ]
         },

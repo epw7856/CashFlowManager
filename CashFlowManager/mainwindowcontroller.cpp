@@ -20,6 +20,9 @@ MainWindowController::MainWindowController(SystemDataSource& localSds)
 {
     currentYear = QDate::currentDate().year();
     currentMonth = QDate::currentDate().month();
+
+    connect(addExpenseTransactionDialog.get(), &AddExpenseTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+    //connect(addExpenseTransactionDialog.get(), &AddExpenseTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 }
 
 MainWindowController::~MainWindowController() = default;
@@ -289,4 +292,9 @@ void MainWindowController::showModifyExpenseTypeDialog(QWidget *parent)
     modifyExpenseTypeDialog->show();
     modifyExpenseTypeDialog->raise();
     modifyExpenseTypeDialog->activateWindow();
+}
+
+void MainWindowController::dialogCloseEvent()
+{
+    emit requestMainWindowUpdate();
 }

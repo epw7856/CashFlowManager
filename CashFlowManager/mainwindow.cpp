@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
     ui->verticalLayout_10->setAlignment(Qt::AlignTop);
-    expenseTableModel.setExpenseTypes();
-    investmentTableModel.setInvestmentTypes();
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
@@ -32,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAddExpense_Transaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
     connect(ui->actionAddExpense_Type, &QAction::triggered, this, &MainWindow::onActionAddExpenseTypeTriggered);
     connect(ui->actionModifyExpense_Type, &QAction::triggered, this, &MainWindow::onActionModifyExpenseTypeTriggered);
+
+    connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
     updateDisplayedInformation();
 }
@@ -104,6 +104,9 @@ void MainWindow::onActionModifyExpenseTypeTriggered()
 
 void MainWindow::updateDisplayedInformation()
 {
+    expenseTableModel.setExpenseTypes();
+    investmentTableModel.setInvestmentTypes();
+
     configureBudgetStatusBarChart();
     configureBreakdownPieChart();
     configureExpenseTableView();

@@ -22,6 +22,7 @@ public:
     ~MainWindow();
 
 public slots:
+    void updateDisplayedInformation();
     void onActionExitTriggered();
     void onActionYearlyBudgetSummaryTriggered();
     void onActionMonthlyBudgetSummaryTriggered();
@@ -42,7 +43,6 @@ private:
     MonthlyExpenseTableModel expenseTableModel;
     MonthlyInvestmentTableModel investmentTableModel;
 
-    void updateDisplayedInformation();
     void configureBudgetStatusBarChart();
     void configureBreakdownPieChart();
     void configureExpenseTableView();

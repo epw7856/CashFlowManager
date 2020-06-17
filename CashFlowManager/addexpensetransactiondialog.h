@@ -22,10 +22,14 @@ public:
                                          QWidget *parent = nullptr);
     ~AddExpenseTransactionDialog();
 
+signals:
+    void dialogClosed();
+
 public slots:
     void onPushButtonExitClicked();
     void onPushButtonAddTransaction();
     void expenseTypeSelectionChanged(QString type);
+    void closeEvent(QCloseEvent*) override;
 
 private:
     Ui::AddExpenseTransactionDialog *ui;

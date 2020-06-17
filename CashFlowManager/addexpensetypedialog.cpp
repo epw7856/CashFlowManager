@@ -19,7 +19,7 @@ AddExpenseTypeDialog::AddExpenseTypeDialog(ExpenseInterface& localExpenseInterfa
 
     if(modifyFlag)
     {
-        setWindowTitle("Modify/Delete Expense Type");
+        setWindowTitle("Update/Delete Expense Type");
         ui->pushButtonAddType->setVisible(false);
         updateComboBox();
 
@@ -47,6 +47,12 @@ AddExpenseTypeDialog::AddExpenseTypeDialog(ExpenseInterface& localExpenseInterfa
 AddExpenseTypeDialog::~AddExpenseTypeDialog()
 {
     delete ui;
+}
+
+void AddExpenseTypeDialog::closeEvent(QCloseEvent*)
+{
+    emit dialogClosed();
+    close();
 }
 
 void AddExpenseTypeDialog::onPushButtonExitClicked()
