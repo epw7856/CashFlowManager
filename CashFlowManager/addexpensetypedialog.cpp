@@ -62,7 +62,7 @@ void AddExpenseTypeDialog::onPushButtonAddTypeClicked()
     }
     else if(ui->radioButtonFixed->isChecked() && !controller->verifyBudgetAmount(ui->lineEditBudgetAmount->text(), false))
     {
-        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>No monthly budget amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid monthly budget amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
     }
     else if(!controller->verifyUniqueTypeName(ui->lineEditName->text()))
     {
@@ -86,7 +86,7 @@ void AddExpenseTypeDialog::onPushButtonUpdateTypeClicked()
         }
         else if(ui->radioButtonFixed->isChecked() && !controller->verifyBudgetAmount(ui->lineEditBudgetAmount->text(), false))
         {
-            QMessageBox::critical(this, tr("Error"), tr("<p align='center'>No monthly budget amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
+            QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid monthly budget amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
             return;
         }
         else
