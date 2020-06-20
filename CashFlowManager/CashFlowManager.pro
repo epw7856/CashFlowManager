@@ -59,6 +59,7 @@ SOURCES += \
         addexpensetypedialog.cpp \
         addexpensetypedialogcontroller.cpp \
         addinvestmenttransactiondialog.cpp \
+        addinvestmenttransactiondialogcontroller.cpp \
         assetsummarydialog.cpp \
         assetsummarydialogcontroller.cpp \
         automaticmonthlypaymentsummarydialog.cpp \
@@ -108,6 +109,7 @@ HEADERS += \
         addexpensetypedialog.h \
         addexpensetypedialogcontroller.h \
         addinvestmenttransactiondialog.h \
+        addinvestmenttransactiondialogcontroller.h \
         assetsummarydialog.h \
         assetsummarydialogcontroller.h \
         automaticmonthlypaymentsummarydialog.h \

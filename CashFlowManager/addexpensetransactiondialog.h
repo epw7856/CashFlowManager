@@ -37,6 +37,7 @@ private:
 
     void hideAdditionalPrincipal();
     void showAdditionalPrincipal();
+    void disableActions();
 };
 
 #endif // ADDEXPENSETRANSACTIONDIALOG_H

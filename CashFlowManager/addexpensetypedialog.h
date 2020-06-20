@@ -34,6 +34,7 @@ public slots:
 
 private:
     void updateComboBox();
+    void disableActions();
 
     Ui::AddExpenseTypeDialog *ui;
     ExpenseInterface& expenseInterface;

@@ -8,6 +8,7 @@
 
 class AddExpenseTransactionDialog;
 class AddExpenseTypeDialog;
+class AddInvestmentTransactionDialog;
 class AssetSummaryDialog;
 class AutomaticMonthlyPaymentSummaryDialog;
 class ExpenseTypeSummaryDialog;
@@ -59,6 +60,7 @@ public:
     void showAddExpenseTransactionDialog(QWidget* parent);
     void showAddExpenseTypeDialog(QWidget* parent);
     void showModifyExpenseTypeDialog(QWidget* parent);
+    void showAddInvestmentTransactionDialog(QWidget* parent);
 
 signals:
     void requestMainWindowUpdate();
@@ -80,6 +82,7 @@ private:
     std::unique_ptr<AddExpenseTransactionDialog> addExpenseTransactionDialog;
     std::unique_ptr<AddExpenseTypeDialog> addExpenseTypeDialog;
     std::unique_ptr<AddExpenseTypeDialog> modifyExpenseTypeDialog;
+    std::unique_ptr<AddInvestmentTransactionDialog> addInvestmentTransactionDialog;
 
     int currentYear = 0;
     int currentMonth = 0;

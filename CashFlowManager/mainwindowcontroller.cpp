@@ -1,5 +1,6 @@
 #include "addexpensetransactiondialog.h"
 #include "addexpensetypedialog.h"
+#include "addinvestmenttransactiondialog.h"
 #include "assetsummarydialog.h"
 #include "automaticmonthlypaymentsummarydialog.h"
 #include "currencyutilities.h"
@@ -22,7 +23,7 @@ MainWindowController::MainWindowController(SystemDataSource& localSds)
     currentMonth = QDate::currentDate().month();
 
     connect(addExpenseTransactionDialog.get(), &AddExpenseTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
-    //connect(addExpenseTransactionDialog.get(), &AddExpenseTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+    connect(addInvestmentTransactionDialog.get(), &AddInvestmentTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 }
 
 MainWindowController::~MainWindowController() = default;
@@ -292,6 +293,18 @@ void MainWindowController::showModifyExpenseTypeDialog(QWidget *parent)
     modifyExpenseTypeDialog->show();
     modifyExpenseTypeDialog->raise();
     modifyExpenseTypeDialog->activateWindow();
+}
+
+void MainWindowController::showAddInvestmentTransactionDialog(QWidget *parent)
+{
+    if(addInvestmentTransactionDialog == nullptr)
+    {
+        addInvestmentTransactionDialog = std::make_unique<AddInvestmentTransactionDialog>(sds, parent);
+    }
+
+    addInvestmentTransactionDialog->show();
+    addInvestmentTransactionDialog->raise();
+    addInvestmentTransactionDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

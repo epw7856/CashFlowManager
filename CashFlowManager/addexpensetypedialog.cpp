@@ -52,7 +52,7 @@ AddExpenseTypeDialog::~AddExpenseTypeDialog()
 void AddExpenseTypeDialog::closeEvent(QCloseEvent*)
 {
     emit dialogClosed();
-    close();
+    accept();
 }
 
 void AddExpenseTypeDialog::onPushButtonExitClicked()
@@ -193,6 +193,22 @@ void AddExpenseTypeDialog::expenseTypeSelectionChanged(QString type)
 void AddExpenseTypeDialog::updateComboBox()
 {
     ui->comboBoxExpenseType->clear();
-    ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
     ui->comboBoxExpenseType->addItems(controller->getExpenseTypes());
+    if(ui->comboBoxExpenseType->count() == 0)
+    {
+        ui->comboBoxExpenseType->insertItem(0, "No Expenses Types Found");
+        disableActions();
+    }
+    else
+    {
+        ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
+    }
+}
+
+void AddExpenseTypeDialog::disableActions()
+{
+    ui->radioButtonFixed->setEnabled(false);
+    ui->radioButtonVariable->setEnabled(false);
+    ui->lineEditName->setEnabled(false);
+    ui->lineEditBudgetAmount->setEnabled(false);
 }

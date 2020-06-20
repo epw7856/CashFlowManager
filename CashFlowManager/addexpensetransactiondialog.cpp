@@ -20,8 +20,17 @@ AddExpenseTransactionDialog::AddExpenseTransactionDialog
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
-    ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
+
     ui->comboBoxExpenseType->addItems(controller->getExpenseTypes());
+    if(ui->comboBoxExpenseType->count() == 0)
+    {
+        ui->comboBoxExpenseType->insertItem(0, "No Expenses Types Found");
+        disableActions();
+    }
+    else
+    {
+        ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
+    }
 
     ui->dateEditTransaction->setDate(QDate::currentDate());
 
@@ -88,7 +97,7 @@ void AddExpenseTransactionDialog::expenseTypeSelectionChanged(QString type)
 void AddExpenseTransactionDialog::closeEvent(QCloseEvent*)
 {
     emit dialogClosed();
-    close();
+    accept();
 }
 
 void AddExpenseTransactionDialog::hideAdditionalPrincipal()
@@ -112,4 +121,13 @@ void AddExpenseTransactionDialog::showAdditionalPrincipal()
     ui->gridLayout->addWidget(ui->labelAdditionalPrincipal, ui->gridLayout->rowCount() - 1, 1);
     ui->gridLayout->addWidget(ui->lineEditAdditionalPrincipalAmount, ui->gridLayout->rowCount() - 1, 2);
     ui->gridLayout->addLayout(ui->horizontalSpacer_8->layout(), ui->gridLayout->rowCount() - 1, 3);
+}
+
+void AddExpenseTransactionDialog::disableActions()
+{
+    ui->lineEditDescription->setEnabled(false);
+    ui->dateEditTransaction->setEnabled(false);
+    ui->lineEditTransactionAmount->setEnabled(false);
+    ui->lineEditAdditionalPrincipalAmount->setEnabled(false);
+    ui->pushButtonAddTransaction->setEnabled(false);
 }
