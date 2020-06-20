@@ -781,6 +781,7 @@
     <addaction name="separator"/>
     <addaction name="actionAddInvestment_Transaction"/>
     <addaction name="actionAddInvestment_Type"/>
+    <addaction name="actionModifyInvestment_Type"/>
     <addaction name="separator"/>
     <addaction name="actionAddIncome_Transaction"/>
     <addaction name="separator"/>
@@ -851,12 +852,12 @@
   </action>
   <action name="actionAddInvestment_Transaction">
    <property name="text">
-    <string>Investment Transaction</string>
+    <string>Add Investment Transaction</string>
    </property>
   </action>
   <action name="actionAddInvestment_Type">
    <property name="text">
-    <string>Investment Type</string>
+    <string>Add Investment Type</string>
    </property>
   </action>
   <action name="actionAddIncome_Transaction">
@@ -882,6 +883,11 @@
   <action name="actionAddExpense_Type">
    <property name="text">
     <string>Add Expense Type</string>
+   </property>
+  </action>
+  <action name="actionModifyInvestment_Type">
+   <property name="text">
+    <string>Update/Delete Investment Type</string>
    </property>
   </action>
  </widget>
