@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAddExpense_Transaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
     connect(ui->actionAddExpense_Type, &QAction::triggered, this, &MainWindow::onActionAddExpenseTypeTriggered);
     connect(ui->actionModifyExpense_Type, &QAction::triggered, this, &MainWindow::onActionModifyExpenseTypeTriggered);
-    connect(ui->actionAddInvestment_Transaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
+    connect(ui->actionAddInvestment_Transaction, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTransactionTriggered);
 
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 

@@ -21,9 +21,6 @@ MainWindowController::MainWindowController(SystemDataSource& localSds)
 {
     currentYear = QDate::currentDate().year();
     currentMonth = QDate::currentDate().month();
-
-    connect(addExpenseTransactionDialog.get(), &AddExpenseTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
-    connect(addInvestmentTransactionDialog.get(), &AddInvestmentTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 }
 
 MainWindowController::~MainWindowController() = default;
@@ -266,6 +263,8 @@ void MainWindowController::showAddExpenseTransactionDialog(QWidget* parent)
         addExpenseTransactionDialog = std::make_unique<AddExpenseTransactionDialog>(sds, sds, parent);
     }
 
+    connect(addExpenseTransactionDialog.get(), &AddExpenseTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
     addExpenseTransactionDialog->show();
     addExpenseTransactionDialog->raise();
     addExpenseTransactionDialog->activateWindow();
@@ -301,6 +300,8 @@ void MainWindowController::showAddInvestmentTransactionDialog(QWidget *parent)
     {
         addInvestmentTransactionDialog = std::make_unique<AddInvestmentTransactionDialog>(sds, parent);
     }
+
+    connect(addInvestmentTransactionDialog.get(), &AddInvestmentTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 
     addInvestmentTransactionDialog->show();
     addInvestmentTransactionDialog->raise();
