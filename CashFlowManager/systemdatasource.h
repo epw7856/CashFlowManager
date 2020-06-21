@@ -44,6 +44,8 @@ public:
 
     // Investment Interface
     std::vector<InvestmentType*> getInvestmentTypes() const override;
+    void deleteInvestmentType(const std::string& investmentType) override;
+    void updateInvestmentType(const std::string& currentName, const std::string& updatedName, double monthlyTarget) override;
     std::vector<InvestmentTransaction*> getInvestmentTransactionsByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getInvestmentTransactionsTotalByTimePeriod(const std::string& investmentType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     void addInvestmentType(const InvestmentType& type) override;

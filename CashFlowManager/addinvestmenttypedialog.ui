@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddExpenseTypeDialog</class>
- <widget class="QDialog" name="AddExpenseTypeDialog">
-  <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
-  </property>
+ <class>AddInvestmentTypeDialog</class>
+ <widget class="QDialog" name="AddInvestmentTypeDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>546</width>
-    <height>199</height>
+    <width>548</width>
+    <height>184</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Add Expense Type</string>
-  </property>
-  <property name="modal">
-   <bool>true</bool>
+   <string>Add Investment Type</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -36,14 +30,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="labelExpenseTypes">
+      <widget class="QLabel" name="labelInvestmentTypes">
        <property name="text">
-        <string>Select Expense Type: </string>
+        <string>Select Investment Type: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBoxExpenseType">
+      <widget class="QComboBox" name="comboBoxInvestmentType">
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
        </property>
@@ -74,14 +68,14 @@
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer_2">
+    <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>4</height>
+       <height>29</height>
       </size>
      </property>
     </spacer>
@@ -91,15 +85,28 @@
      <item row="3" column="1">
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Enter Monthly Budget Amount:  $</string>
+        <string>Enter Monthly Target Amount:  $</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <spacer name="horizontalSpacer_9">
+     <item row="0" column="2">
+      <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Enter Investment Type Name:    </string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <spacer name="horizontalSpacer_10">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -123,35 +130,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Enter Expense Type Name:    </string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLineEdit" name="lineEditBudgetAmount">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>0.00</string>
-       </property>
-      </widget>
      </item>
      <item row="1" column="2">
       <widget class="QLineEdit" name="lineEditName">
@@ -182,8 +160,8 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="3">
-      <spacer name="horizontalSpacer_10">
+     <item row="1" column="0">
+      <spacer name="horizontalSpacer_9">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -195,74 +173,36 @@
        </property>
       </spacer>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Select Monthly Characteristic:    </string>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="lineEditTargetAmount">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>30</height>
+        </size>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>0.00</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="2">
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QRadioButton" name="radioButtonFixed">
-         <property name="text">
-          <string>Fixed</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButtonVariable">
-         <property name="text">
-          <string>Variable</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="3">
-      <spacer name="horizontalSpacer_12">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="0">
-      <spacer name="horizontalSpacer_11">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>6</height>
+       <height>29</height>
       </size>
      </property>
     </spacer>

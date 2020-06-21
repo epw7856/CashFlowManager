@@ -1,7 +1,5 @@
 #include "addexpensetransactiondialog.h"
 #include "addexpensetransactiondialogcontroller.h"
-#include "expenseinterface.h"
-#include "mortgageinterface.h"
 #include <QMessageBox>
 #include "ui_addexpensetransactiondialog.h"
 

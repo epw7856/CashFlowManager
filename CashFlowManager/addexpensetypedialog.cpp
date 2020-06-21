@@ -1,7 +1,5 @@
 #include "addexpensetypedialog.h"
 #include "addexpensetypedialogcontroller.h"
-#include "expenseinterface.h"
-#include "mortgageinterface.h"
 #include <QMessageBox>
 #include "ui_addexpensetypedialog.h"
 
@@ -32,7 +30,7 @@ AddExpenseTypeDialog::AddExpenseTypeDialog(ExpenseInterface& localExpenseInterfa
         setWindowTitle("Add Expense Type");
         ui->pushButtonUpdateType->setVisible(false);
         ui->pushButtonDeleteType->setVisible(false);
-        ui->label->setVisible(false);
+        ui->labelExpenseTypes->setVisible(false);
         ui->comboBoxExpenseType->setVisible(false);
         ui->horizontalLayout_2->removeItem(ui->horizontalSpacer_3);
         ui->horizontalLayout_2->removeItem(ui->horizontalSpacer_4);
@@ -127,7 +125,7 @@ void AddExpenseTypeDialog::onPushButtonDeleteTypeClicked()
             {
               case QMessageBox::Yes:
 
-                  expenseInterface.deleteExpenseType(ui->comboBoxExpenseType->currentText().toStdString());
+                  controller->deleteExpenseType(ui->comboBoxExpenseType->currentText());
                   QMessageBox::information(this, tr("Success"), "<p align='center'>Successfully deleted expense type '" + ui->comboBoxExpenseType->currentText() + "'.</p>", QMessageBox::Ok);
 
                 break;
@@ -211,4 +209,7 @@ void AddExpenseTypeDialog::disableActions()
     ui->radioButtonVariable->setEnabled(false);
     ui->lineEditName->setEnabled(false);
     ui->lineEditBudgetAmount->setEnabled(false);
+    ui->pushButtonAddType->setEnabled(false);
+    ui->pushButtonUpdateType->setEnabled(false);
+    ui->pushButtonDeleteType->setEnabled(false);
 }

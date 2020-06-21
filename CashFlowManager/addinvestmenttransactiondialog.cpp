@@ -1,6 +1,5 @@
 #include "addinvestmenttransactiondialog.h"
 #include "addinvestmenttransactiondialogcontroller.h"
-#include "investmentinterface.h"
 #include <QMessageBox>
 #include "ui_addinvestmenttransactiondialog.h"
 
@@ -75,4 +74,5 @@ void AddInvestmentTransactionDialog::disableActions()
 {
     ui->lineEditTransactionAmount->setEnabled(false);
     ui->dateEditTransaction->setEnabled(false);
+    ui->pushButtonAddTransaction->setEnabled(false);
 }

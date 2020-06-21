@@ -328,6 +328,57 @@ std::vector<InvestmentType*> SystemDataSource::getInvestmentTypes() const
     return types;
 }
 
+void SystemDataSource::deleteInvestmentType(const std::string& investmentType)
+{
+    auto itr = findMatchingType(investmentTypes, investmentType);
+
+    if(itr != investmentTypes.end())
+    {
+        investmentTypes.erase(itr, itr + 1);
+
+        QJsonValue expTypes = obj.value("InvestmentTypes");
+        QJsonArray array = expTypes.toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == investmentType)
+            {
+                array.removeAt(i);
+            }
+        }
+        obj["InvestmentTypes"] = array;
+    }
+}
+
+void SystemDataSource::updateInvestmentType(const std::string& currentName, const std::string& updatedName, double monthlyTarget)
+{
+    auto itr = findMatchingType(investmentTypes, currentName);
+
+    if(itr != investmentTypes.end())
+    {
+        (*itr)->updateName(updatedName);
+        (*itr)->updateBudget(monthlyTarget);
+
+        QJsonValue invTypes = obj.value("InvestmentTypes");
+        QJsonArray array = invTypes.toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == currentName)
+            {
+                item.insert("MonthlyTarget", QJsonValue(monthlyTarget));
+                item.insert("Name", QJsonValue(QString::fromStdString(updatedName)));
+                array.removeAt(i);
+                array.insert(i,item);
+                break;
+            }
+        }
+        obj["InvestmentTypes"] = array;
+    }
+}
+
 std::vector<InvestmentTransaction*> SystemDataSource::getInvestmentTransactionsByTimePeriod(const std::string& investmentType,
                                                                                             const QDate& startingPeriod,
                                                                                             const QDate& endingPeriod) const

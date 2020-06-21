@@ -36,6 +36,8 @@ public slots:
     void onActionAddExpenseTypeTriggered();
     void onActionModifyExpenseTypeTriggered();
     void onActionAddInvestmentTransactionTriggered();
+    void onActionAddInvestmentTypeTriggered();
+    void onActionModifyInvestmentTypeTriggered();
 
 private:
     Ui::MainWindow *ui;

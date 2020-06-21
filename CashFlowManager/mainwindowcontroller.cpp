@@ -1,6 +1,7 @@
 #include "addexpensetransactiondialog.h"
 #include "addexpensetypedialog.h"
 #include "addinvestmenttransactiondialog.h"
+#include "addinvestmenttypedialog.h"
 #include "assetsummarydialog.h"
 #include "automaticmonthlypaymentsummarydialog.h"
 #include "currencyutilities.h"
@@ -306,6 +307,30 @@ void MainWindowController::showAddInvestmentTransactionDialog(QWidget *parent)
     addInvestmentTransactionDialog->show();
     addInvestmentTransactionDialog->raise();
     addInvestmentTransactionDialog->activateWindow();
+}
+
+void MainWindowController::showAddInvestmentTypeDialog(QWidget *parent)
+{
+    if(addInvestmentTypeDialog == nullptr)
+    {
+        addInvestmentTypeDialog = std::make_unique<AddInvestmentTypeDialog>(sds, false, parent);
+    }
+
+    addInvestmentTypeDialog->show();
+    addInvestmentTypeDialog->raise();
+    addInvestmentTypeDialog->activateWindow();
+}
+
+void MainWindowController::showModifyInvestmentTypeDialog(QWidget *parent)
+{
+    if(modifyInvestmentTypeDialog == nullptr)
+    {
+        modifyInvestmentTypeDialog = std::make_unique<AddInvestmentTypeDialog>(sds, true, parent);
+    }
+
+    modifyInvestmentTypeDialog->show();
+    modifyInvestmentTypeDialog->raise();
+    modifyInvestmentTypeDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

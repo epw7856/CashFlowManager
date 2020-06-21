@@ -12,6 +12,8 @@ class InvestmentType
 {
 public:
     InvestmentType(std::string inputName, double inputTarget);
+    void updateName(const std::string& updatedName);
+    void updateBudget(double updatedAmount);
     std::string getName() const;
     double getMonthlyTarget() const;
     void addInvestmentTransaction(const InvestmentTransaction& transaction);
@@ -22,6 +24,16 @@ private:
     double monthlyTarget = 0.00;
     std::multiset<std::unique_ptr<InvestmentTransaction>, TransactionComparison<InvestmentTransaction>> investmentTransactionList;
 };
+
+inline void InvestmentType::updateName(const std::string& updatedName)
+{
+    name = updatedName;
+}
+
+inline void InvestmentType::updateBudget(double updatedAmount)
+{
+    monthlyTarget = updatedAmount;
+}
 
 inline std::string InvestmentType::getName() const
 {

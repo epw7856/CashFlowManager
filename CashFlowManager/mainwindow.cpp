@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAddExpense_Type, &QAction::triggered, this, &MainWindow::onActionAddExpenseTypeTriggered);
     connect(ui->actionModifyExpense_Type, &QAction::triggered, this, &MainWindow::onActionModifyExpenseTypeTriggered);
     connect(ui->actionAddInvestment_Transaction, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTransactionTriggered);
+    connect(ui->actionAddInvestment_Type, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTypeTriggered);
+    connect(ui->actionModifyInvestment_Type, &QAction::triggered, this, &MainWindow::onActionModifyInvestmentTypeTriggered);
 
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
@@ -106,6 +108,16 @@ void MainWindow::onActionModifyExpenseTypeTriggered()
 void MainWindow::onActionAddInvestmentTransactionTriggered()
 {
     mainWindowController->showAddInvestmentTransactionDialog(this);
+}
+
+void MainWindow::onActionAddInvestmentTypeTriggered()
+{
+    mainWindowController->showAddInvestmentTypeDialog(this);
+}
+
+void MainWindow::onActionModifyInvestmentTypeTriggered()
+{
+    mainWindowController->showModifyInvestmentTypeDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()
