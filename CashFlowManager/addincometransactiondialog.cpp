@@ -55,6 +55,8 @@ void AddIncomeTransactionDialog::onPushButtonAddTransaction()
             controller->addSalaryIncomeTransaction(ui->dateEditTransaction->date(),
                                                    ui->lineEditAmount->text().toDouble(),
                                                    ui->lineEditOT->text().toInt());
+
+            QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added salary income transaction.</p>"), QMessageBox::Ok);
         }
     }
     else
@@ -69,9 +71,10 @@ void AddIncomeTransactionDialog::onPushButtonAddTransaction()
             controller->addSupplementalIncomeTransaction(ui->dateEditTransaction->date(),
                                                          ui->lineEditDescription->text(),
                                                          ui->lineEditAmount->text().toDouble());
+
+            QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added supplemental income transaction.</p>"), QMessageBox::Ok);
         }
     }
-
 }
 
 void AddIncomeTransactionDialog::onRadioButtonToggled()

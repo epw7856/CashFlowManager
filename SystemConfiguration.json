@@ -440,6 +440,11 @@
             "Amount": 1000,
             "Date": "03/10/2020",
             "Overtime": 0
+        },
+        {
+            "Amount": 1545.01,
+            "Date": "06/23/2020",
+            "Overtime": 2
         }
     ],
     "SupplementalIncome": [
@@ -452,6 +457,11 @@
             "Amount": 25.5,
             "Date": "04/17/2020",
             "Description": "Birthday"
+        },
+        {
+            "Amount": 43,
+            "Date": "06/23/2020",
+            "Description": "test transaction"
         }
     ]
 }
