@@ -29,7 +29,7 @@ MainWindowController::~MainWindowController() = default;
 
 std::string MainWindowController::getCurrentMonthAndYear() const
 {
-    return (QDate::currentDate().toString("MMM").toStdString()) + " " + (QDate::currentDate().toString("yyyy").toStdString());
+    return (QDate::currentDate().toString("MMMM").toStdString()) + " " + (QDate::currentDate().toString("yyyy").toStdString());
 }
 
 std::string MainWindowController::getBudgetStatusStatement() const
@@ -226,7 +226,7 @@ void MainWindowController::showAutomaticMonthlyPaymentSummaryDialog(QWidget *par
 {
     if(automaticMonthlyPaymentDialog == nullptr)
     {
-        automaticMonthlyPaymentDialog = std::make_unique<AutomaticMonthlyPaymentSummaryDialog>(sds, parent);
+        automaticMonthlyPaymentDialog = std::make_unique<AutomaticMonthlyPaymentSummaryDialog>(sds, false, parent);
     }
 
     automaticMonthlyPaymentDialog->show();

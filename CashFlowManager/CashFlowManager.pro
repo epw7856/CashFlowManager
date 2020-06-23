@@ -77,6 +77,7 @@ SOURCES += \
         monthlybudgetsummarydialog.cpp \
         mortgagesummarydialog.cpp \
         systemdatasource.cpp \
+        updateautomaticmonthlypaymentsdialog.cpp \
         validator.cpp \
         yearlybudgetsummarydialog.cpp \
         yearlyincomesummarydialog.cpp
@@ -131,6 +132,7 @@ HEADERS += \
         mortgagesummarydialog.h \
         systemdatasource.h \
         transactioncomparison.h \
+        updateautomaticmonthlypaymentsdialog.h \
         validator.h \
         yearlybudgetsummarydialog.h \
         yearlyincomesummarydialog.h
@@ -147,6 +149,7 @@ FORMS += \
         mainwindow.ui \
         monthlybudgetsummarydialog.ui \
         mortgagesummarydialog.ui \
+        updateautomaticmonthlypaymentsdialog.ui \
         yearlybudgetsummarydialog.ui \
         yearlyincomesummarydialog.ui
 

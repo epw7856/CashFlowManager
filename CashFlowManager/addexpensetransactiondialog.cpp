@@ -18,7 +18,6 @@ AddExpenseTransactionDialog::AddExpenseTransactionDialog
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
-
     ui->comboBoxExpenseType->addItems(controller->getExpenseTypes());
     if(ui->comboBoxExpenseType->count() == 0)
     {
