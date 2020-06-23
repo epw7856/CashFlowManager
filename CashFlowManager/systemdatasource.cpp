@@ -788,12 +788,6 @@ void SystemDataSource::parseExpenseTypes()
             expense->addExpenseTransaction(transaction);
         }
     }
-
-    qDebug() << "Expense Types: ";
-    for(const auto& i:expenseTypes)
-    {
-        qDebug() << QString::fromStdString(i->getName()) << " " << i->getMonthlyBudget();
-    }
 }
 
 void SystemDataSource::parseInvestmentTypes()
@@ -817,12 +811,6 @@ void SystemDataSource::parseInvestmentTypes()
             investment->addInvestmentTransaction(transaction);
         }
     }
-
-    qDebug() << "Investment Types: ";
-    for(const auto& i:investmentTypes)
-    {
-        qDebug() << QString::fromStdString(i->getName()) << " " << i->getMonthlyTarget();
-    }
 }
 
 void SystemDataSource::parseAutomaticMonthlyPayments()
@@ -836,12 +824,6 @@ void SystemDataSource::parseAutomaticMonthlyPayments()
         const double amount = item.toObject().value("Amount").toDouble();
 
         automaticMonthlyPaymentList.push_back(std::make_unique<AutomaticMonthlyPayment>(name, account, amount));
-    }
-
-    qDebug() << "Automatic Monthly Payments: ";
-    for(const auto& i:automaticMonthlyPaymentList)
-    {
-        qDebug() << QString::fromStdString(i->getName()) << " " << i->getAmount();
     }
 }
 
@@ -858,12 +840,6 @@ void SystemDataSource::parseSalaryIncome()
 
         salaryIncomeList.insert(std::make_unique<SalaryIncome>(date, amount, overtime));
     }
-
-    qDebug() << "Salary Income: ";
-    for(const auto& i:salaryIncomeList)
-    {
-        qDebug() << i->getDate().toString() << " " << i->getAmount();
-    }
 }
 
 void SystemDataSource::parseSupplementalIncome()
@@ -878,12 +854,6 @@ void SystemDataSource::parseSupplementalIncome()
         const std::string& description = QString(item.toObject().value("Description").toString()).toStdString();
 
         supplementalIncomeList.insert(std::make_unique<SupplementalIncome>(date, amount, description));
-    }
-
-    qDebug() << "Supplemental Income: ";
-    for(const auto& i:supplementalIncomeList)
-    {
-        qDebug() << i->getDate() << " " << i->getAmount();
     }
 }
 
@@ -907,16 +877,6 @@ void SystemDataSource::parseAssetList()
         }
 
         assetList.push_back(std::make_unique<AssetEntry>(type, name, values));
-    }
-
-    qDebug() << "Assets: ";
-    for(const auto& i:assetList)
-    {
-        qDebug() << QString::fromStdString(i->getName());
-        for(auto j:i->getValue())
-        {
-            qDebug() << j.first << "  " << j.second;
-        }
     }
 }
 
