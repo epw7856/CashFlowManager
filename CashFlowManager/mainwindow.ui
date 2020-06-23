@@ -862,7 +862,7 @@
   </action>
   <action name="actionAddIncome_Transaction">
    <property name="text">
-    <string>Income Transaction</string>
+    <string>Add Income Transaction</string>
    </property>
   </action>
   <action name="actionAddAutomatic_Monthly_Payment">

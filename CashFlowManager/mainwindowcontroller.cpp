@@ -1,5 +1,6 @@
 #include "addexpensetransactiondialog.h"
 #include "addexpensetypedialog.h"
+#include "addincometransactiondialog.h"
 #include "addinvestmenttransactiondialog.h"
 #include "addinvestmenttypedialog.h"
 #include "assetsummarydialog.h"
@@ -278,6 +279,8 @@ void MainWindowController::showAddExpenseTypeDialog(QWidget* parent)
         addExpenseTypeDialog = std::make_unique<AddExpenseTypeDialog>(sds, sds, false, parent);
     }
 
+    connect(addExpenseTypeDialog.get(), &AddExpenseTypeDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
     addExpenseTypeDialog->show();
     addExpenseTypeDialog->raise();
     addExpenseTypeDialog->activateWindow();
@@ -289,6 +292,8 @@ void MainWindowController::showModifyExpenseTypeDialog(QWidget *parent)
     {
         modifyExpenseTypeDialog = std::make_unique<AddExpenseTypeDialog>(sds, sds, true, parent);
     }
+
+    connect(modifyExpenseTypeDialog.get(), &AddExpenseTypeDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 
     modifyExpenseTypeDialog->show();
     modifyExpenseTypeDialog->raise();
@@ -316,6 +321,8 @@ void MainWindowController::showAddInvestmentTypeDialog(QWidget *parent)
         addInvestmentTypeDialog = std::make_unique<AddInvestmentTypeDialog>(sds, false, parent);
     }
 
+    connect(addInvestmentTypeDialog.get(), &AddInvestmentTypeDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
     addInvestmentTypeDialog->show();
     addInvestmentTypeDialog->raise();
     addInvestmentTypeDialog->activateWindow();
@@ -328,9 +335,25 @@ void MainWindowController::showModifyInvestmentTypeDialog(QWidget *parent)
         modifyInvestmentTypeDialog = std::make_unique<AddInvestmentTypeDialog>(sds, true, parent);
     }
 
+    connect(modifyInvestmentTypeDialog.get(), &AddInvestmentTypeDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
     modifyInvestmentTypeDialog->show();
     modifyInvestmentTypeDialog->raise();
     modifyInvestmentTypeDialog->activateWindow();
+}
+
+void MainWindowController::showAddIncomeTransactionDialog(QWidget *parent)
+{
+    if(addIncomeTransactionDialog == nullptr)
+    {
+        addIncomeTransactionDialog = std::make_unique<AddIncomeTransactionDialog>(sds, parent);
+    }
+
+    connect(addIncomeTransactionDialog.get(), &AddIncomeTransactionDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
+    addIncomeTransactionDialog->show();
+    addIncomeTransactionDialog->raise();
+    addIncomeTransactionDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

@@ -31,6 +31,9 @@ public slots:
 private:
     Ui::AddIncomeTransactionDialog *ui;
     std::unique_ptr<AddIncomeTransactionDialogController> controller;
+
+    void enableSalaryInfo();
+    void enableSupplementalInfo();
 };
 
 #endif // ADDINCOMETRANSACTIONDIALOG_H

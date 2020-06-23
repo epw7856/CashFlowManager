@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionAddInvestment_Transaction, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTransactionTriggered);
     connect(ui->actionAddInvestment_Type, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTypeTriggered);
     connect(ui->actionModifyInvestment_Type, &QAction::triggered, this, &MainWindow::onActionModifyInvestmentTypeTriggered);
+    connect(ui->actionAddIncome_Transaction, &QAction::triggered, this, &MainWindow::onActionAddIncomeTransactionTriggered);
 
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
@@ -118,6 +119,11 @@ void MainWindow::onActionAddInvestmentTypeTriggered()
 void MainWindow::onActionModifyInvestmentTypeTriggered()
 {
     mainWindowController->showModifyInvestmentTypeDialog(this);
+}
+
+void MainWindow::onActionAddIncomeTransactionTriggered()
+{
+    mainWindowController->showAddIncomeTransactionDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()

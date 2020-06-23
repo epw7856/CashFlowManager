@@ -28,7 +28,7 @@ bool AddInvestmentTransactionDialogController::verifyTransactionDate(QDate date)
 
 bool AddInvestmentTransactionDialogController::verifyTransactionAmount(QString amount) const
 {
-    return Validator::verifyAmount(amount, false);
+    return Validator::verifyDoubleAmount(amount, false);
 }
 
 void AddInvestmentTransactionDialogController::addInvestmentTransaction(const QDate& date, const QString& type, double transactionAmount)
