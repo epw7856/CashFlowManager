@@ -785,7 +785,7 @@
     <addaction name="separator"/>
     <addaction name="actionAddIncome_Transaction"/>
     <addaction name="separator"/>
-    <addaction name="actionAddAutomatic_Monthly_Payment"/>
+    <addaction name="actionUpdateAutomatic_Monthly_Payment"/>
     <addaction name="separator"/>
     <addaction name="actionAddAsset_Values"/>
     <addaction name="actionAddAsset_Type"/>
@@ -865,9 +865,9 @@
     <string>Add Income Transaction</string>
    </property>
   </action>
-  <action name="actionAddAutomatic_Monthly_Payment">
+  <action name="actionUpdateAutomatic_Monthly_Payment">
    <property name="text">
-    <string>Automatic Monthly Payment</string>
+    <string>Update Automatic Monthly Payments</string>
    </property>
   </action>
   <action name="actionAddAsset_Values">

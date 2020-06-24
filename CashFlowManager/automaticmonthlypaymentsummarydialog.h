@@ -13,7 +13,7 @@ class AutomaticMonthlyPaymentSummaryDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AutomaticMonthlyPaymentSummaryDialog(ExpenseInterface& localExpenseInterface, bool selectionEnabled, QWidget* parent = nullptr);
+    explicit AutomaticMonthlyPaymentSummaryDialog(ExpenseInterface& localExpenseInterface, QWidget* parent = nullptr);
     ~AutomaticMonthlyPaymentSummaryDialog();
 
 public slots:
@@ -23,7 +23,7 @@ private:
     Ui::AutomaticMonthlyPaymentSummaryDialog *ui;
     AutomaticMonthlyPaymentTableModel autoPaymentTableModel;
 
-    void configureAutoMonthlyPaymentTable(bool selectionEnabled);
+    void configureAutoMonthlyPaymentTable();
 };
 
 #endif // AUTOMATICMONTHLYPAYMENTSUMMARYDIALOG_H

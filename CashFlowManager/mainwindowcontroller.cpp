@@ -14,6 +14,7 @@
 #include "monthlybudgetsummarydialog.h"
 #include "mortgagesummarydialog.h"
 #include "systemdatasource.h"
+#include "updateautomaticmonthlypaymentsdialog.h"
 #include "yearlybudgetsummarydialog.h"
 #include "yearlyincomesummarydialog.h"
 
@@ -226,7 +227,7 @@ void MainWindowController::showAutomaticMonthlyPaymentSummaryDialog(QWidget *par
 {
     if(automaticMonthlyPaymentDialog == nullptr)
     {
-        automaticMonthlyPaymentDialog = std::make_unique<AutomaticMonthlyPaymentSummaryDialog>(sds, false, parent);
+        automaticMonthlyPaymentDialog = std::make_unique<AutomaticMonthlyPaymentSummaryDialog>(sds, parent);
     }
 
     automaticMonthlyPaymentDialog->show();
@@ -354,6 +355,18 @@ void MainWindowController::showAddIncomeTransactionDialog(QWidget *parent)
     addIncomeTransactionDialog->show();
     addIncomeTransactionDialog->raise();
     addIncomeTransactionDialog->activateWindow();
+}
+
+void MainWindowController::showUpdateAutomaticMonthlyPaymentDialog(QWidget *parent)
+{
+    if(updateAutomaticMonthlyPaymentsDialog == nullptr)
+    {
+        updateAutomaticMonthlyPaymentsDialog = std::make_unique<UpdateAutomaticMonthlyPaymentsDialog>(sds, parent);
+    }
+
+    updateAutomaticMonthlyPaymentsDialog->show();
+    updateAutomaticMonthlyPaymentsDialog->raise();
+    updateAutomaticMonthlyPaymentsDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

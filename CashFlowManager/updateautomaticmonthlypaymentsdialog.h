@@ -2,9 +2,11 @@
 #define UPDATEAUTOMATICMONTHLYPAYMENTSDIALOG_H
 
 #include "automaticmonthlypaymenttablemodel.h"
+#include <memory>
 #include <QDialog>
 
 class ExpenseInterface;
+class UpdateAutomaticMonthlyPaymentsDialogController;
 
 namespace Ui {
 class UpdateAutomaticMonthlyPaymentsDialog;
@@ -23,15 +25,16 @@ signals:
 
 public slots:
     void onPushButtonExitClicked();
-    void onPushButtonAddPayment();
-    void onPushButtonUpdatePayment();
-    void onPushButtonDeletePayment();
-    void radioButtonToggled();
+    void onPushButtonAddPaymentClicked();
+    void onPushButtonUpdatePaymentClicked();
+    void onPushButtonDeletePaymentClicked();
+    void onRadioButtonToggled();
     void closeEvent(QCloseEvent*) override;
 
 private:
     Ui::UpdateAutomaticMonthlyPaymentsDialog *ui;
     AutomaticMonthlyPaymentTableModel paymentTable;
+    std::unique_ptr<UpdateAutomaticMonthlyPaymentsDialogController> controller;
 
     void configurePaymentTable();
     void enableAddPayment();

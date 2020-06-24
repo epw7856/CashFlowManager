@@ -5,7 +5,6 @@
 AutomaticMonthlyPaymentSummaryDialog::AutomaticMonthlyPaymentSummaryDialog
 (
     ExpenseInterface& localExpenseInterface,
-    bool selectionEnabled,
     QWidget* parent
 )
 :
@@ -21,7 +20,7 @@ AutomaticMonthlyPaymentSummaryDialog::AutomaticMonthlyPaymentSummaryDialog
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &AutomaticMonthlyPaymentSummaryDialog::onPushButtonExitClicked);
 
-    configureAutoMonthlyPaymentTable(selectionEnabled);
+    configureAutoMonthlyPaymentTable();
 }
 
 AutomaticMonthlyPaymentSummaryDialog::~AutomaticMonthlyPaymentSummaryDialog()
@@ -34,7 +33,7 @@ void AutomaticMonthlyPaymentSummaryDialog::onPushButtonExitClicked()
     close();
 }
 
-void AutomaticMonthlyPaymentSummaryDialog::configureAutoMonthlyPaymentTable(bool selectionEnabled)
+void AutomaticMonthlyPaymentSummaryDialog::configureAutoMonthlyPaymentTable()
 {
     // Add table model data and disable selection
     ui->tableViewAutoPaymentSummary->setModel(&autoPaymentTableModel);
@@ -56,15 +55,7 @@ void AutomaticMonthlyPaymentSummaryDialog::configureAutoMonthlyPaymentTable(bool
     ui->tableViewAutoPaymentSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewAutoPaymentSummary->setFocusPolicy(Qt::NoFocus);
 
-    if(selectionEnabled)
-    {
-        ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::SingleSelection);
-        ui->tableViewAutoPaymentSummary->setSelectionBehavior(QAbstractItemView::SelectRows);
-    }
-    else
-    {
-        ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::NoSelection);
-    }
+    ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::NoSelection);
 
     // Add header frame
     //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);

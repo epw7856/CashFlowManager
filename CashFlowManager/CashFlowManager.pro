@@ -78,6 +78,7 @@ SOURCES += \
         mortgagesummarydialog.cpp \
         systemdatasource.cpp \
         updateautomaticmonthlypaymentsdialog.cpp \
+        updateautomaticmonthlypaymentsdialogcontroller.cpp \
         validator.cpp \
         yearlybudgetsummarydialog.cpp \
         yearlyincomesummarydialog.cpp
@@ -133,6 +134,7 @@ HEADERS += \
         systemdatasource.h \
         transactioncomparison.h \
         updateautomaticmonthlypaymentsdialog.h \
+        updateautomaticmonthlypaymentsdialogcontroller.h \
         validator.h \
         yearlybudgetsummarydialog.h \
         yearlyincomesummarydialog.h
