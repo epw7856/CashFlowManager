@@ -201,6 +201,7 @@ void AddExpenseTypeDialog::updateComboBox()
     {
         ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
     }
+    ui->comboBoxExpenseType->setCurrentIndex(0);
 }
 
 void AddExpenseTypeDialog::disableActions()
