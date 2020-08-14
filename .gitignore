@@ -1,2 +1,4 @@
 \build-CashFlowManager-Desktop_Qt_5_14_2_MinGW_32_bit-Debug
 *.pro.user
+\debug
+\release

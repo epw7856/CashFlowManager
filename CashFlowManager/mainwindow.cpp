@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    sds(std::make_unique<SystemDataSource>("../SystemConfiguration.json")),
+    sds(std::make_unique<SystemDataSource>("../../SystemConfiguration.json")),
     mainWindowController(std::make_unique<MainWindowController>(*sds)),
     expenseTableModel(*sds, QDate::currentDate().month(), false),
     investmentTableModel(*sds, QDate::currentDate().month(), false)
