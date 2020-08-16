@@ -13,6 +13,12 @@
     <height>861</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Monthly Budget Summary</string>
   </property>
@@ -39,6 +45,14 @@
        </item>
        <item>
         <widget class="QLabel" name="labelDialogTitle">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;MonthlyBudgetSummary&gt;</string>
          </property>
@@ -63,6 +77,19 @@
       </layout>
      </item>
      <item>
+      <spacer name="horizontalSpacer_21">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QScrollArea" name="scrollArea">
        <property name="widgetResizable">
         <bool>true</bool>
@@ -73,7 +100,7 @@
           <x>0</x>
           <y>0</y>
           <width>1019</width>
-          <height>754</height>
+          <height>727</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_15">
@@ -96,6 +123,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
               <widget class="QLabel" name="label">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>January</string>
                </property>
@@ -108,6 +142,7 @@
               <widget class="QTableView" name="tableViewJanuaryExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -142,6 +177,7 @@
               <widget class="QTableView" name="tableViewJanuaryInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -175,6 +211,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
               <widget class="QLabel" name="label_2">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>February</string>
                </property>
@@ -187,6 +230,7 @@
               <widget class="QTableView" name="tableViewFebruaryExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -227,6 +271,7 @@
               <widget class="QTableView" name="tableViewFebruaryInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -266,6 +311,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QLabel" name="label_3">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>March</string>
                </property>
@@ -278,6 +330,7 @@
               <widget class="QTableView" name="tableViewMarchExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -318,6 +371,7 @@
               <widget class="QTableView" name="tableViewMarchInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -357,6 +411,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <widget class="QLabel" name="label_4">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>April</string>
                </property>
@@ -369,6 +430,7 @@
               <widget class="QTableView" name="tableViewAprilExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -409,6 +471,7 @@
               <widget class="QTableView" name="tableViewAprilInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -510,6 +573,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
               <widget class="QLabel" name="label_5">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>May</string>
                </property>
@@ -522,6 +592,7 @@
               <widget class="QTableView" name="tableViewMayExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -556,6 +627,7 @@
               <widget class="QTableView" name="tableViewMayInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -589,6 +661,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_8">
              <item>
               <widget class="QLabel" name="label_6">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>June</string>
                </property>
@@ -601,6 +680,7 @@
               <widget class="QTableView" name="tableViewJuneExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -635,6 +715,7 @@
               <widget class="QTableView" name="tableViewJuneInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -668,6 +749,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_9">
              <item>
               <widget class="QLabel" name="label_7">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>July</string>
                </property>
@@ -680,6 +768,7 @@
               <widget class="QTableView" name="tableViewJulyExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -714,6 +803,7 @@
               <widget class="QTableView" name="tableViewJulyInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -747,6 +837,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_10">
              <item>
               <widget class="QLabel" name="label_8">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>August</string>
                </property>
@@ -759,6 +856,7 @@
               <widget class="QTableView" name="tableViewAugustExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -793,6 +891,7 @@
               <widget class="QTableView" name="tableViewAugustInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -888,6 +987,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_11">
              <item>
               <widget class="QLabel" name="label_9">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>September</string>
                </property>
@@ -900,6 +1006,7 @@
               <widget class="QTableView" name="tableViewSeptemberExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -934,6 +1041,7 @@
               <widget class="QTableView" name="tableViewSeptemberInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -967,6 +1075,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_12">
              <item>
               <widget class="QLabel" name="label_10">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>October</string>
                </property>
@@ -979,6 +1094,7 @@
               <widget class="QTableView" name="tableViewOctoberExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -1013,6 +1129,7 @@
               <widget class="QTableView" name="tableViewOctoberInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -1046,6 +1163,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_13">
              <item>
               <widget class="QLabel" name="label_11">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>November</string>
                </property>
@@ -1058,6 +1182,7 @@
               <widget class="QTableView" name="tableViewNovemberExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -1092,6 +1217,7 @@
               <widget class="QTableView" name="tableViewNovemberInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -1125,6 +1251,13 @@
             <layout class="QVBoxLayout" name="verticalLayout_14">
              <item>
               <widget class="QLabel" name="label_12">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <italic>true</italic>
+                </font>
+               </property>
                <property name="text">
                 <string>December</string>
                </property>
@@ -1137,6 +1270,7 @@
               <widget class="QTableView" name="tableViewDecemberExpenses">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>
@@ -1171,6 +1305,7 @@
               <widget class="QTableView" name="tableViewDecemberInvestments">
                <property name="font">
                 <font>
+                 <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
                </property>

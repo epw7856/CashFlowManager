@@ -7,13 +7,18 @@
     <x>0</x>
     <y>0</y>
     <width>953</width>
-    <height>752</height>
+    <height>791</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Cash Flow Manager</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QHBoxLayout" name="layoutTitle">
@@ -32,6 +37,14 @@
       </item>
       <item>
        <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>Budget Breakdown</string>
         </property>
@@ -121,6 +134,13 @@
       </item>
       <item>
        <widget class="QLabel" name="labelCurrentMonth">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>12</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
         <property name="text">
          <string>Current Month</string>
         </property>
@@ -179,8 +199,16 @@
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="title">
-           <string>  Expense Budget Status  </string>
+           <string>  Monthly Expense Budget Status  </string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -210,6 +238,14 @@
            </item>
            <item>
             <widget class="QLabel" name="labelBudgetStatus">
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>9</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
              <property name="text">
               <string>&lt;$XXXX.XX of $XXXX.XX&gt;</string>
              </property>
@@ -279,6 +315,14 @@
             <height>0</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="title">
            <string>  Monthly Breakdown  </string>
           </property>
@@ -318,6 +362,14 @@
                <property name="enabled">
                 <bool>true</bool>
                </property>
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Expenses:</string>
                </property>
@@ -328,6 +380,14 @@
              </item>
              <item row="0" column="1">
               <widget class="QLabel" name="labelMonthlyExpenses">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Expenses&gt;</string>
                </property>
@@ -335,6 +395,14 @@
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_3">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Investments:</string>
                </property>
@@ -345,6 +413,14 @@
              </item>
              <item row="1" column="1">
               <widget class="QLabel" name="labelMonthlyInvestments">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Investments&gt;</string>
                </property>
@@ -352,6 +428,14 @@
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_4">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Income:</string>
                </property>
@@ -359,6 +443,14 @@
              </item>
              <item row="2" column="1">
               <widget class="QLabel" name="labelMonthlyIncome">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Income&gt;</string>
                </property>
@@ -366,6 +458,14 @@
              </item>
              <item row="3" column="0">
               <widget class="QLabel" name="label_5">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Budget Surplus:</string>
                </property>
@@ -373,6 +473,14 @@
              </item>
              <item row="3" column="1">
               <widget class="QLabel" name="labelMonthlyBudgetSurplus">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;BudgetSurplus&gt;</string>
                </property>
@@ -380,6 +488,14 @@
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="label_6">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Cash Saved:</string>
                </property>
@@ -387,6 +503,14 @@
              </item>
              <item row="4" column="1">
               <widget class="QLabel" name="labelMonthlyCashSaved">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;CashSaved&gt;</string>
                </property>
@@ -394,6 +518,14 @@
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_16">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Additional Principal:</string>
                </property>
@@ -401,28 +533,36 @@
              </item>
              <item row="5" column="1">
               <widget class="QLabel" name="labelMonthlyPrincipal">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Principal&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
-              <spacer name="verticalSpacer_6">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>8</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
             </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>8</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -454,6 +594,14 @@
             <width>250</width>
             <height>0</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="title">
            <string>  Yearly Breakdown  </string>
@@ -491,6 +639,14 @@
              </property>
              <item row="0" column="0">
               <widget class="QLabel" name="label_8">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Expenses:</string>
                </property>
@@ -498,6 +654,14 @@
              </item>
              <item row="0" column="1">
               <widget class="QLabel" name="labelYearlyExpenses">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Expenses&gt;</string>
                </property>
@@ -505,6 +669,14 @@
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_13">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Investments:</string>
                </property>
@@ -512,6 +684,14 @@
              </item>
              <item row="1" column="1">
               <widget class="QLabel" name="labelYearlyInvestments">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Investments&gt;</string>
                </property>
@@ -519,6 +699,14 @@
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_10">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Income:</string>
                </property>
@@ -529,6 +717,14 @@
              </item>
              <item row="2" column="1">
               <widget class="QLabel" name="labelYearlyIncome">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Income&gt;</string>
                </property>
@@ -536,6 +732,14 @@
              </item>
              <item row="3" column="0">
               <widget class="QLabel" name="label_11">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Savings Ratio:</string>
                </property>
@@ -546,6 +750,14 @@
              </item>
              <item row="3" column="1">
               <widget class="QLabel" name="labelYearlySavingsRatio">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;SavingsRatio&gt;</string>
                </property>
@@ -553,6 +765,14 @@
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="label_9">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Cash Saved:</string>
                </property>
@@ -563,6 +783,14 @@
              </item>
              <item row="4" column="1">
               <widget class="QLabel" name="labelYearlyCashSaved">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;CashSaved&gt;</string>
                </property>
@@ -570,6 +798,14 @@
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_15">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>Additional Principal:</string>
                </property>
@@ -577,28 +813,36 @@
              </item>
              <item row="5" column="1">
               <widget class="QLabel" name="labelYearlyPrincipal">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="text">
                 <string>&lt;Principal&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
-              <spacer name="verticalSpacer_7">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>8</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
             </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>8</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -675,6 +919,8 @@
             </property>
             <property name="font">
              <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -715,6 +961,7 @@
           </property>
           <property name="font">
            <font>
+            <family>Segoe UI</family>
             <pointsize>8</pointsize>
            </font>
           </property>
@@ -774,8 +1021,16 @@
           </item>
           <item>
            <widget class="QLabel" name="label_18">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -816,6 +1071,7 @@
           </property>
           <property name="font">
            <font>
+            <family>Segoe UI</family>
             <pointsize>8</pointsize>
            </font>
           </property>
@@ -845,19 +1101,6 @@
           </attribute>
          </widget>
         </item>
-        <item>
-         <spacer name="verticalSpacer_8">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
        </layout>
       </item>
       <item>
@@ -879,8 +1122,16 @@
           </item>
           <item>
            <widget class="QLabel" name="label_17">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -892,8 +1143,16 @@
           </item>
           <item>
            <widget class="QLabel" name="labelExpenditurePercentage">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -1030,65 +1289,130 @@
    <property name="text">
     <string>Exit</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionYearly_Budget_Summary">
    <property name="text">
     <string>Yearly Budget Summary</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
   <action name="actionMonthly_Budget_Summary">
    <property name="text">
     <string>Monthly Budget Summary</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionFood_Expenses">
    <property name="text">
     <string>Food Expenses</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
   <action name="actionMisc_Expenses">
    <property name="text">
     <string>Misc Expenses</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionYearly_Income_Summary">
    <property name="text">
     <string>Yearly Income Summary</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
   <action name="actionAutomatic_Monthly_Payments">
    <property name="text">
     <string>Automatic Monthly Payments</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionMortgage_Information">
    <property name="text">
     <string>Mortgage Information</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
   <action name="actionAsset_and_Net_Worth_Tracking">
    <property name="text">
     <string>Asset and Net Worth Tracking</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionAddExpense_Transaction">
    <property name="text">
     <string>Add Expense Transaction</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
   <action name="actionModifyExpense_Type">
    <property name="text">
     <string>Update/Delete Expense Type</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionAddInvestment_Transaction">
    <property name="text">
     <string>Add Investment Transaction</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionAddInvestment_Type">
    <property name="text">
     <string>Add Investment Type</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
   <action name="actionAddIncome_Transaction">
@@ -1115,10 +1439,20 @@
    <property name="text">
     <string>Add Expense Type</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
+   </property>
   </action>
   <action name="actionModifyInvestment_Type">
    <property name="text">
     <string>Update/Delete Investment Type</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+    </font>
    </property>
   </action>
  </widget>
