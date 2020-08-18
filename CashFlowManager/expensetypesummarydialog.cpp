@@ -119,11 +119,13 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
         tableWidth += tableView->horizontalHeader()->sectionSize(i);
     }
 
-    if(tableView->verticalScrollBar()->width() < 100)
-    {
-        tableWidth += tableView->verticalScrollBar()->width();
-    }
+    // Add width for the vertical scrollbar
+    tableWidth += 17;
 
     tableView->setMinimumWidth(tableWidth);
     tableView->setMaximumWidth(tableWidth);
+//    tableView->setStyleSheet("QTableView {background-color: transparent;}"
+//                             "QHeaderView::section {background-color: transparent;}"
+//                             "QHeaderView {background-color: transparent;}"
+//                             "QTableCornerButton::section {background-color: transparent;}");
 }

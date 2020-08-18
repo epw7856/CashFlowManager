@@ -426,7 +426,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="3" column="0">
               <widget class="QLabel" name="label_4">
                <property name="font">
                 <font>
@@ -441,7 +441,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
+             <item row="3" column="1">
               <widget class="QLabel" name="labelMonthlyIncome">
                <property name="font">
                 <font>
@@ -456,7 +456,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
+             <item row="4" column="0">
               <widget class="QLabel" name="label_5">
                <property name="font">
                 <font>
@@ -471,7 +471,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
+             <item row="4" column="1">
               <widget class="QLabel" name="labelMonthlyBudgetSurplus">
                <property name="font">
                 <font>
@@ -486,7 +486,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="5" column="0">
               <widget class="QLabel" name="label_6">
                <property name="font">
                 <font>
@@ -501,7 +501,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
+             <item row="5" column="1">
               <widget class="QLabel" name="labelMonthlyCashSaved">
                <property name="font">
                 <font>
@@ -516,7 +516,7 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
+             <item row="2" column="0">
               <widget class="QLabel" name="label_16">
                <property name="font">
                 <font>
@@ -531,7 +531,7 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
+             <item row="2" column="1">
               <widget class="QLabel" name="labelMonthlyPrincipal">
                <property name="font">
                 <font>
@@ -697,7 +697,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="3" column="0">
               <widget class="QLabel" name="label_10">
                <property name="font">
                 <font>
@@ -715,7 +715,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
+             <item row="3" column="1">
               <widget class="QLabel" name="labelYearlyIncome">
                <property name="font">
                 <font>
@@ -730,7 +730,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
+             <item row="4" column="0">
               <widget class="QLabel" name="label_11">
                <property name="font">
                 <font>
@@ -748,7 +748,7 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
+             <item row="4" column="1">
               <widget class="QLabel" name="labelYearlySavingsRatio">
                <property name="font">
                 <font>
@@ -763,7 +763,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="5" column="0">
               <widget class="QLabel" name="label_9">
                <property name="font">
                 <font>
@@ -781,7 +781,7 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
+             <item row="5" column="1">
               <widget class="QLabel" name="labelYearlyCashSaved">
                <property name="font">
                 <font>
@@ -796,7 +796,7 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
+             <item row="2" column="0">
               <widget class="QLabel" name="label_15">
                <property name="font">
                 <font>
@@ -811,7 +811,7 @@
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
+             <item row="2" column="1">
               <widget class="QLabel" name="labelYearlyPrincipal">
                <property name="font">
                 <font>

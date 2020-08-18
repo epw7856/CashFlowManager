@@ -85,13 +85,20 @@ void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
     // Set TableView height
     int tableHeight = 0;
     ui->tableViewExpenseSummary->resizeRowsToContents();
-    for(int i = 0; i < expenseTableModel.rowCount(); ++i)
+    if(expenseTableModel.rowCount() < 15)
     {
-        tableHeight += ui->tableViewExpenseSummary->rowHeight(i);
+        for(int i = 0; i < expenseTableModel.rowCount(); ++i)
+        {
+            tableHeight += ui->tableViewExpenseSummary->rowHeight(i);
+        }
+    }
+    else
+    {
+        tableHeight = ui->tableViewExpenseSummary->rowHeight(0) * 15;
     }
 
     tableHeight += ui->tableViewExpenseSummary->horizontalHeader()->height();
-    ui->tableViewExpenseSummary->setMaximumHeight(tableHeight+5);
+    ui->tableViewExpenseSummary->setFixedHeight(tableHeight + 5);
 
     // Set TableView width
     int tableWidth = 0;
@@ -154,13 +161,20 @@ void YearlyBudgetSummaryDialog::configureInvestmentSummaryTable()
     // Set TableView height
     int tableHeight = 0;
     ui->tableViewInvestmentSummary->resizeRowsToContents();
-    for(int i = 0; i < investmentTableModel.rowCount(); ++i)
+    if(investmentTableModel.rowCount() < 15)
     {
-        tableHeight += ui->tableViewInvestmentSummary->rowHeight(i);
+        for(int i = 0; i < investmentTableModel.rowCount(); ++i)
+        {
+            tableHeight += ui->tableViewInvestmentSummary->rowHeight(i);
+        }
+    }
+    else
+    {
+        tableHeight = ui->tableViewInvestmentSummary->rowHeight(0) * 15;
     }
 
     tableHeight += ui->tableViewInvestmentSummary->horizontalHeader()->height();
-    ui->tableViewInvestmentSummary->setMaximumHeight(tableHeight+5);
+    ui->tableViewInvestmentSummary->setFixedHeight(tableHeight + 5);
 
     // Set TableView width
     int tableWidth = 0;

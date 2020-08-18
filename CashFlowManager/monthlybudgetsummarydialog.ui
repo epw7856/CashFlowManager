@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1041</width>
+    <width>1015</width>
     <height>861</height>
    </rect>
   </property>
@@ -99,7 +99,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1019</width>
+          <width>993</width>
           <height>727</height>
          </rect>
         </property>
@@ -126,7 +126,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -214,7 +214,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -233,6 +233,9 @@
                  <family>Segoe UI</family>
                  <pointsize>8</pointsize>
                 </font>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
                </property>
                <property name="frameShape">
                 <enum>QFrame::NoFrame</enum>
@@ -314,7 +317,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -414,7 +417,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -576,7 +579,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -664,7 +667,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -752,7 +755,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -840,7 +843,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -990,7 +993,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -1078,7 +1081,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -1166,7 +1169,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
@@ -1254,7 +1257,7 @@
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                  <italic>true</italic>
                 </font>
                </property>
