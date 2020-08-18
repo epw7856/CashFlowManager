@@ -95,9 +95,17 @@ QVariant MortgageTableModel::data(const QModelIndex& index, int role) const
     if(role == Qt::TextAlignmentRole)
     {
         int numRows = rowCount(index);
-        if((index.row() < numRows) && (index.column() < numCols))
+        if(index.row() < numRows)
         {
-            return Qt::AlignCenter;
+            if(index.column() == 1)
+            {
+                return Qt::AlignLeft;
+            }
+            else if(index.column() < numCols)
+            {
+                return Qt::AlignCenter;
+            }
+
         }
     }
 

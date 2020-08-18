@@ -25,6 +25,7 @@ MortgageSummaryDialog::MortgageSummaryDialog(MortgageInterface& localMortgageInt
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &MortgageSummaryDialog::onPushButtonExitClicked);
 
     configureMortgageSummaryTable();
+    ui->scrollArea->setMaximumWidth(ui->tableViewMortgageSummary->width() + 38);
 }
 
 MortgageSummaryDialog::~MortgageSummaryDialog()

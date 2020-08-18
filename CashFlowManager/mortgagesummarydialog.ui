@@ -9,9 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1026</width>
+    <width>767</width>
     <height>684</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Mortgage Summary</string>
@@ -37,6 +43,14 @@
      </item>
      <item>
       <widget class="QLabel" name="labelDialogTitle">
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Mortgage Information</string>
        </property>
@@ -74,14 +88,17 @@
     </widget>
    </item>
    <item>
-    <spacer name="horizontalSpacer_11">
+    <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>1005</width>
-       <height>20</height>
+       <width>20</width>
+       <height>8</height>
       </size>
      </property>
     </spacer>
@@ -108,6 +125,12 @@
        </property>
        <item row="0" column="0">
         <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Total Loan Amount:</string>
          </property>
@@ -118,6 +141,12 @@
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Market Value:</string>
          </property>
@@ -128,6 +157,12 @@
        </item>
        <item row="0" column="1">
         <widget class="QLabel" name="labelLoanAmount">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;Amount&gt;</string>
          </property>
@@ -138,6 +173,12 @@
        </item>
        <item row="2" column="1">
         <widget class="QLabel" name="labelMarketValue">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;MarketValue&gt;</string>
          </property>
@@ -148,6 +189,12 @@
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Interest Rate:</string>
          </property>
@@ -155,6 +202,12 @@
        </item>
        <item row="3" column="1">
         <widget class="QLabel" name="labelInterestRate">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;Rate&gt;</string>
          </property>
@@ -165,6 +218,12 @@
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Loan Term:</string>
          </property>
@@ -172,6 +231,12 @@
        </item>
        <item row="4" column="1">
         <widget class="QLabel" name="labelTerm">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;Term&gt;</string>
          </property>
@@ -182,6 +247,12 @@
        </item>
        <item row="5" column="0">
         <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Monthly Payment:</string>
          </property>
@@ -189,6 +260,12 @@
        </item>
        <item row="5" column="1">
         <widget class="QLabel" name="labelBasePayment">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;BasePayment&gt;</string>
          </property>
@@ -199,6 +276,12 @@
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Remaining Balance:</string>
          </property>
@@ -206,6 +289,12 @@
        </item>
        <item row="1" column="1">
         <widget class="QLabel" name="labelRemainingBalance">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>&lt;RemainingBalance&gt;</string>
          </property>
@@ -232,116 +321,145 @@
     </layout>
    </item>
    <item>
-    <spacer name="horizontalSpacer_4">
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>1005</width>
-       <height>20</height>
+       <width>20</width>
+       <height>8</height>
       </size>
      </property>
     </spacer>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="minimumSize">
+      <spacer name="horizontalSpacer_13">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>100</width>
-         <height>100</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>1004</width>
-          <height>398</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
+      </spacer>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAsNeeded</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>46</x>
+            <y>0</y>
+            <width>276</width>
+            <height>395</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QTableView" name="tableViewMortgageSummary">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>8</pointsize>
-              </font>
-             </property>
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="cornerButtonEnabled">
-              <bool>false</bool>
-             </property>
-             <attribute name="horizontalHeaderMinimumSectionSize">
-              <number>20</number>
-             </attribute>
-             <attribute name="verticalHeaderMinimumSectionSize">
-              <number>15</number>
-             </attribute>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>25</number>
-             </attribute>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QTableView" name="tableViewMortgageSummary">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>8</pointsize>
+                </font>
+               </property>
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="cornerButtonEnabled">
+                <bool>false</bool>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>20</number>
+               </attribute>
+               <attribute name="verticalHeaderMinimumSectionSize">
+                <number>15</number>
+               </attribute>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                <number>25</number>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_12">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
