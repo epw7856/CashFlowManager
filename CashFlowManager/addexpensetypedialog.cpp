@@ -74,7 +74,7 @@ void AddExpenseTypeDialog::onPushButtonAddTypeClicked()
     }
     else
     {
-        controller->addExpenseType(ui->lineEditName->text(), ui->lineEditBudgetAmount->text().toDouble());
+        controller->addExpenseType(ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble());
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added expense type.</p>"), QMessageBox::Ok);
     }
 }
@@ -95,7 +95,7 @@ void AddExpenseTypeDialog::onPushButtonUpdateTypeClicked()
         }
         else
         {
-            controller->updateExpenseType(ui->comboBoxExpenseType->currentText(), ui->lineEditName->text(), ui->lineEditBudgetAmount->text().toDouble());
+            controller->updateExpenseType(ui->comboBoxExpenseType->currentText(), ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble());
             QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated expense type.</p>"), QMessageBox::Ok);
         }
     }
@@ -152,7 +152,7 @@ void AddExpenseTypeDialog::onRadioButtonToggled()
 {
     if(ui->radioButtonFixed->isChecked())
     {
-        ui->lineEditBudgetAmount->setText(controller->getMonthlyBudgetAmount(ui->lineEditName->text()));
+        ui->lineEditBudgetAmount->setText(controller->getMonthlyBudgetAmount(ui->lineEditName->text()).remove(','));
         ui->lineEditBudgetAmount->setEnabled(true);
     }
     else
@@ -167,7 +167,7 @@ void AddExpenseTypeDialog::expenseTypeSelectionChanged(QString type)
     if(ui->comboBoxExpenseType->currentIndex() > 0)
     {
         ui->lineEditName->setText(type);
-        ui->lineEditBudgetAmount->setText(controller->getMonthlyBudgetAmount(type));
+        ui->lineEditBudgetAmount->setText(controller->getMonthlyBudgetAmount(type).remove(','));
         if(controller->getMonthlyBudgetAmount(type) != "0.00")
         {
             ui->radioButtonFixed->setChecked(true);

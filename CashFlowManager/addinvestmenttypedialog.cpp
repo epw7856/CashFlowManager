@@ -6,7 +6,7 @@
 AddInvestmentTypeDialog::AddInvestmentTypeDialog(InvestmentInterface& localInvestmentInterface,  bool modifyFlag, QWidget* parent) :
     QDialog(parent),
     ui(new Ui::AddInvestmentTypeDialog),
-    investmentInterface(localInvestmentInterface),
+    controller(std::make_unique<AddInvestmentTypeDialogController>(localInvestmentInterface)),
     dialogModify(modifyFlag)
 {
     ui->setupUi(this);
@@ -65,7 +65,7 @@ void AddInvestmentTypeDialog::onPushButtonAddTypeClicked()
     }
     else
     {
-        controller->addInvestmentType(ui->lineEditName->text(), ui->lineEditTargetAmount->text().toDouble());
+        controller->addInvestmentType(ui->lineEditName->text(), ui->lineEditTargetAmount->text().remove(',').toDouble());
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added investment type.</p>"), QMessageBox::Ok);
     }
 }
@@ -86,7 +86,7 @@ void AddInvestmentTypeDialog::onPushButtonUpdateTypeClicked()
         }
         else
         {
-            controller->updateInvestmentType(ui->comboBoxInvestmentType->currentText(), ui->lineEditName->text(), ui->lineEditTargetAmount->text().toDouble());
+            controller->updateInvestmentType(ui->comboBoxInvestmentType->currentText(), ui->lineEditName->text(), ui->lineEditTargetAmount->text().remove(',').toDouble());
             QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated investment type.</p>"), QMessageBox::Ok);
         }
     }
@@ -144,7 +144,7 @@ void AddInvestmentTypeDialog::investmentTypeSelectionChanged(QString type)
     if(ui->comboBoxInvestmentType->currentIndex() > 0)
     {
         ui->lineEditName->setText(type);
-        ui->lineEditTargetAmount->setText(controller->getMonthlyTargetAmount(type));
+        ui->lineEditTargetAmount->setText(controller->getMonthlyTargetAmount(type).remove(','));
     }
     else
     {

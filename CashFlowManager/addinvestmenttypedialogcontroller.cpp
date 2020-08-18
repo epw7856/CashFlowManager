@@ -16,7 +16,8 @@ AddInvestmentTypeDialogController::AddInvestmentTypeDialogController(InvestmentI
 QStringList AddInvestmentTypeDialogController::getInvestmentTypes() const
 {
     QStringList investmentTypes;
-    for(const auto& type : investmentInterface.getInvestmentTypes())
+    auto types = investmentInterface.getInvestmentTypes();
+    for(const auto& type : types)
     {
         investmentTypes << QString::fromStdString(type->getName());
     }

@@ -34,7 +34,6 @@ private:
     void disableActions();
 
     Ui::AddInvestmentTypeDialog *ui;
-    InvestmentInterface& investmentInterface;
     std::unique_ptr<AddInvestmentTypeDialogController> controller;
     bool dialogModify = false;
 };

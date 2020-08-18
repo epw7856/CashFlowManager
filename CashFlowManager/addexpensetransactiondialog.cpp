@@ -31,6 +31,7 @@ AddExpenseTransactionDialog::AddExpenseTransactionDialog
 
     ui->dateEditTransaction->setDate(QDate::currentDate());
 
+    ui->comboBoxExpenseType->setCurrentIndex(0);
     hideAdditionalPrincipal();
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &AddExpenseTransactionDialog::onPushButtonExitClicked);
@@ -79,8 +80,8 @@ void AddExpenseTransactionDialog::onPushButtonAddTransaction()
         controller->addExpenseTransaction(ui->dateEditTransaction->date(),
                                           ui->comboBoxExpenseType->currentText(),
                                           ui->lineEditDescription->text(),
-                                          ui->lineEditTransactionAmount->text().toDouble(),
-                                          ui->lineEditAdditionalPrincipalAmount->text().toDouble());
+                                          ui->lineEditTransactionAmount->text().remove(',').toDouble(),
+                                          ui->lineEditAdditionalPrincipalAmount->text().remove(',').toDouble());
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added expense transaction.</p>"), QMessageBox::Ok);
     }
@@ -111,7 +112,7 @@ void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 void AddExpenseTransactionDialog::showAdditionalPrincipal()
 {
     ui->lineEditDescription->clear();
-    ui->lineEditDescription->setText(QDate::currentDate().toString("MMMM") + " Mortgage Payment");
+    ui->lineEditDescription->setText(QDate::currentDate().toString("MMMM yyyy") + " Mortgage Payment");
     ui->labelAdditionalPrincipal->setVisible(true);
     ui->lineEditAdditionalPrincipalAmount->setVisible(true);
     ui->gridLayout->addLayout(ui->horizontalSpacer_7->layout(), ui->gridLayout->rowCount() - 1, 0);

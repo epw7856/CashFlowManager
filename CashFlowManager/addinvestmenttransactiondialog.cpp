@@ -24,6 +24,7 @@ AddInvestmentTransactionDialog::AddInvestmentTransactionDialog(InvestmentInterfa
         ui->comboBoxInvestmentType->insertItem(0, "<Investment Types>");
     }
 
+    ui->comboBoxInvestmentType->setCurrentIndex(0);
     ui->dateEditTransaction->setDate(QDate::currentDate());
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &AddInvestmentTransactionDialog::onPushButtonExitClicked);
@@ -58,7 +59,7 @@ void AddInvestmentTransactionDialog::onPushButtonAddTransaction()
     {
         controller->addInvestmentTransaction(ui->dateEditTransaction->date(),
                                              ui->comboBoxInvestmentType->currentText(),
-                                             ui->lineEditTransactionAmount->text().toDouble());
+                                             ui->lineEditTransactionAmount->text().remove(',').toDouble());
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added investment transaction.</p>"), QMessageBox::Ok);
     }
