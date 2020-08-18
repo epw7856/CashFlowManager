@@ -32,7 +32,7 @@ std::string AssetSummaryDialogController::getYearlyChange(bool netWorthFlag, Ass
                        assetInterface.getAssetTotalValueByType(AssetType::Illiquid, currentDate.year(), currentDate.month());
 
         previousValue = assetInterface.getAssetTotalValueByType(AssetType::Liquid, startDate.year(), startDate.month()) +
-                               assetInterface.getAssetTotalValueByType(AssetType::Illiquid, startDate.year(), startDate.month());
+                        assetInterface.getAssetTotalValueByType(AssetType::Illiquid, startDate.year(), startDate.month());
     }
 
     if((previousValue > 0) && (currentDate.month() != 1))

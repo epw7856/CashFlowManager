@@ -101,7 +101,7 @@ void AssetSummaryDialog::configureAssetListTable()
         tableHeight += ui->tableViewAssetSummary->horizontalScrollBar()->height();
     }
 
-    ui->tableViewAssetSummary->setMinimumHeight(tableHeight - 100);
+    ui->tableViewAssetSummary->setMinimumHeight(tableHeight - 200);
     ui->tableViewAssetSummary->setMaximumHeight(tableHeight);
 
     // Set TableView width
