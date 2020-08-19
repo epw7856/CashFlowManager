@@ -73,7 +73,7 @@ QVariant AutomaticMonthlyPaymentTableModel::data(const QModelIndex& index, int r
         int numRows = rowCount(index);
         if((index.row() < numRows) && (index.column() < numColumns))
         {
-            if(index.column()!= 0)
+            if(index.column() != 0)
             {
                 return Qt::AlignCenter;
             }

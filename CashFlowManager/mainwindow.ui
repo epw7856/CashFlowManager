@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>953</width>
-    <height>783</height>
+    <height>785</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -241,7 +241,7 @@
              <property name="font">
               <font>
                <family>Segoe UI</family>
-               <pointsize>9</pointsize>
+               <pointsize>10</pointsize>
                <weight>50</weight>
                <bold>false</bold>
               </font>

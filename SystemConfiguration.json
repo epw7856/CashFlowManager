@@ -468,7 +468,7 @@
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 32,
             "Name": "Natural Gas",
             "Transactions": [
                 {
@@ -484,7 +484,7 @@
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 42,
             "Name": "Sewage",
             "Transactions": [
                 {
@@ -500,7 +500,7 @@
             ]
         },
         {
-            "MonthlyBudget": 60,
+            "MonthlyBudget": 0,
             "Name": "Trash",
             "Transactions": [
                 {
@@ -537,55 +537,185 @@
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 39.95,
             "Name": "Internet",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 39.95,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Internet Bill"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 39.95,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "08/01/2020",
+                    "Description": "August 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "09/01/2020",
+                    "Description": "September 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "10/01/2020",
+                    "Description": "October 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "11/01/2020",
+                    "Description": "November 2020 Internet Bill"
+                },
+                {
+                    "Amount": 39.95,
+                    "Date": "12/01/2020",
+                    "Description": "December 2020 Internet Bill"
                 }
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 76.84,
             "Name": "Car Insurance",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 76.84,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Car Insurance Bill"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 76.84,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "08/01/2020",
+                    "Description": "August 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "09/01/2020",
+                    "Description": "September 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "10/01/2020",
+                    "Description": "October 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "11/01/2020",
+                    "Description": "November 2020 Car Insurance Bill"
+                },
+                {
+                    "Amount": 76.84,
+                    "Date": "12/01/2020",
+                    "Description": "December 2020 Car Insurance Bill"
                 }
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 50,
             "Name": "Phone",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 50,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Phone Bill"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 50,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Phone Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Phone Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Phone Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Phone Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Phone Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Phone Bill"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "08/01/2020",
+                    "Description": "August 2020 Phone Bill"
                 }
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 80,
             "Name": "Gas",
             "Transactions": [
                 {
@@ -627,18 +757,33 @@
             ]
         },
         {
-            "MonthlyBudget": 0,
+            "MonthlyBudget": 100,
             "Name": "Donations",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 100,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Donation"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 100,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Donation"
+                },
+                {
+                    "Amount": 100,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Donation"
+                },
+                {
+                    "Amount": 100,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Donation"
+                },
+                {
+                    "Amount": 100,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Donation"
                 }
             ]
         },
@@ -680,16 +825,28 @@
             "Name": "IRA",
             "Transactions": [
                 {
-                    "Amount": 500,
-                    "Date": "03/01/2020"
+                    "Amount": 1500,
+                    "Date": "02/01/2020"
                 },
                 {
-                    "Amount": 600,
+                    "Amount": 500,
                     "Date": "04/01/2020"
                 },
                 {
                     "Amount": 500,
-                    "Date": "06/21/2020"
+                    "Date": "05/01/2020"
+                },
+                {
+                    "Amount": 500,
+                    "Date": "06/01/2020"
+                },
+                {
+                    "Amount": 500,
+                    "Date": "07/01/2020"
+                },
+                {
+                    "Amount": 500,
+                    "Date": "08/01/2020"
                 }
             ]
         },
@@ -698,16 +855,32 @@
             "Name": "Brokerage",
             "Transactions": [
                 {
-                    "Amount": 700,
+                    "Amount": 4925,
+                    "Date": "02/01/2020"
+                },
+                {
+                    "Amount": 1500,
+                    "Date": "03/01/2020"
+                },
+                {
+                    "Amount": 1700,
                     "Date": "04/01/2020"
                 },
                 {
-                    "Amount": 800,
+                    "Amount": 500,
                     "Date": "05/01/2020"
                 },
                 {
-                    "Amount": 400,
-                    "Date": "06/21/2020"
+                    "Amount": 500,
+                    "Date": "06/01/2020"
+                },
+                {
+                    "Amount": 500,
+                    "Date": "07/01/2020"
+                },
+                {
+                    "Amount": 500,
+                    "Date": "08/01/2020"
                 }
             ]
         }
@@ -715,16 +888,12 @@
     "MortgageInformation": {
         "AdditionalPrincipalPayments": [
             {
-                "Amount": 1545,
-                "Date": "05/01/2020"
+                "Amount": 2078,
+                "Date": "12/01/2018"
             },
             {
-                "Amount": 1545,
-                "Date": "06/01/2020"
-            },
-            {
-                "Amount": 100,
-                "Date": "06/14/2020"
+                "Amount": 4124.26,
+                "Date": "12/01/2019"
             }
         ],
         "MarketValue": 250000,
@@ -736,39 +905,79 @@
     },
     "SalaryIncome": [
         {
-            "Amount": 1600,
-            "Date": "01/01/2020",
+            "Amount": 1765.75,
+            "Date": "01/15/2020",
             "Overtime": 0
         },
         {
-            "Amount": 1500,
-            "Date": "01/10/2020",
-            "Overtime": 2
-        },
-        {
-            "Amount": 1100,
-            "Date": "02/01/2020",
-            "Overtime": 5
-        },
-        {
-            "Amount": 1000.5,
-            "Date": "02/10/2020",
-            "Overtime": 2
-        },
-        {
-            "Amount": 976,
-            "Date": "03/01/2020",
+            "Amount": 1858.79,
+            "Date": "01/31/2020",
             "Overtime": 0
         },
         {
-            "Amount": 1000,
-            "Date": "03/10/2020",
+            "Amount": 1858.79,
+            "Date": "02/15/2020",
             "Overtime": 0
         },
         {
-            "Amount": 1545.01,
-            "Date": "06/23/2020",
-            "Overtime": 2
+            "Amount": 1858.8,
+            "Date": "02/28/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1967.03,
+            "Date": "03/15/2020",
+            "Overtime": 4
+        },
+        {
+            "Amount": 2102.34,
+            "Date": "03/31/2020",
+            "Overtime": 9
+        },
+        {
+            "Amount": 2170.46,
+            "Date": "04/15/2020",
+            "Overtime": 9
+        },
+        {
+            "Amount": 1975.85,
+            "Date": "04/30/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1927.31,
+            "Date": "05/15/2020",
+            "Overtime": 9
+        },
+        {
+            "Amount": 1930.81,
+            "Date": "05/31/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1927.29,
+            "Date": "06/15/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1927.32,
+            "Date": "06/30/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1927.31,
+            "Date": "07/15/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1927.31,
+            "Date": "07/31/2020",
+            "Overtime": 0
+        },
+        {
+            "Amount": 1927.31,
+            "Date": "08/15/2020",
+            "Overtime": 0
         }
     ],
     "SupplementalIncome": [

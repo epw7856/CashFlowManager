@@ -41,7 +41,7 @@ QVariant MortgageTableModel::data(const QModelIndex& index, int role) const
             else if(index.column() == 1)
             {
                 QDate date(mortgageInterface.getLoanStartDate().addMonths(rowUint));
-                return date.toString("MMM yy");
+                return date.toString("MMM yyyy");
             }
             // Principal column
             else if(index.column() == 2)
