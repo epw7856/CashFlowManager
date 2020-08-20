@@ -69,6 +69,7 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
                 {
                     remaining = 0.0;
                 }
+
                 return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
             }
         }
@@ -96,8 +97,14 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
                 // Remaining column
                 else if(index.column() == 3)
                 {
-                    return QString::fromStdString(CurrencyUtilities::formatCurrency(investmentInterface.getMonthlyInvestmentTargetTotal() -
-                                                                                    investmentInterface.getMonthlyInvestmentTotal(year, month)));
+                    double remaining = investmentInterface.getMonthlyInvestmentTargetTotal() -
+                                       investmentInterface.getMonthlyInvestmentTotal(year, month);
+                    if(remaining < 0.0)
+                    {
+                        remaining = 0.0;
+                    }
+
+                    return QString::fromStdString(CurrencyUtilities::formatCurrency(remaining));
                 }
             }
         }

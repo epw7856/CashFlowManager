@@ -99,7 +99,7 @@ QVariant MortgageTableModel::data(const QModelIndex& index, int role) const
         {
             if(index.column() == 1)
             {
-                return Qt::AlignLeft;
+                return int(Qt::AlignLeft | Qt::AlignVCenter);
             }
             else if(index.column() < numCols)
             {

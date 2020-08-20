@@ -55,7 +55,7 @@
      <item>
       <widget class="QRadioButton" name="radioButtonUpdate">
        <property name="text">
-        <string>Update Payment</string>
+        <string>Update or Delete Payment</string>
        </property>
       </widget>
      </item>

@@ -81,7 +81,7 @@ QVariant SupplementalIncomeTableModel::data(const QModelIndex& index, int role) 
         {
             if(index.column() == 1)
             {
-                return Qt::AlignLeft;
+                return int(Qt::AlignLeft | Qt::AlignVCenter);
             }
             else
             {

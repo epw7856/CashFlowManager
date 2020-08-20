@@ -64,26 +64,13 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonAddPaymentClicked()
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonUpdatePaymentClicked()
 {
 
+    configurePaymentTable();
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonDeletePaymentClicked()
 {
-    QModelIndexList index = ui->tableViewAutoPaymentSummary->selectionModel()->selection().indexes();
-    QString test = index.at(0).data().toString();
-    QString test2 = index.at(1).data().toString();
-    QString test3 = index.at(2).data().toString();
-    if(index.count() == 0)
-    {
-        int test = 1;
-    }
-    else if(index.count() == 1)
-    {
-        int test = 2;
-    }
-    else
-    {
-        int test = 3;
-    }
+
+    configurePaymentTable();
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onRadioButtonToggled()
@@ -191,11 +178,12 @@ void UpdateAutomaticMonthlyPaymentsDialog::fillFields()
     ui->lineEditDescription->clear();
     ui->lineEditAmount->clear();
 
-    if(!ui->radioButtonAdd->isChecked())
+    if((!ui->radioButtonAdd->isChecked()) &&
+       (ui->tableViewAutoPaymentSummary->currentIndex().row() < paymentTable.rowCount() - 2))
     {
-        QModelIndexList index = ui->tableViewAutoPaymentSummary->selectionModel()->selectedRows();
-        ui->lineEditAccount->setText(index.at(0).data().toString());
-        ui->lineEditDescription->setText(index.at(1).data().toString());
-        ui->lineEditAmount->setText(index.at(2).data().toString().remove('$'));
+        QModelIndexList indices = ui->tableViewAutoPaymentSummary->selectionModel()->selection().indexes();
+        ui->lineEditAccount->setText(indices.at(0).data().toString());
+        ui->lineEditDescription->setText(indices.at(1).data().toString());
+        ui->lineEditAmount->setText(indices.at(2).data().toString().remove('$'));
     }
 }
