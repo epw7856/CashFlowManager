@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include <QScrollBar>
 #include "updateautomaticmonthlypaymentsdialog.h"
 #include "updateautomaticmonthlypaymentsdialogcontroller.h"
@@ -18,8 +19,8 @@ UpdateAutomaticMonthlyPaymentsDialog::UpdateAutomaticMonthlyPaymentsDialog(Expen
     connect(ui->pushButtonUpdatePayment, &QPushButton::clicked, this, &UpdateAutomaticMonthlyPaymentsDialog::onPushButtonUpdatePaymentClicked);
     connect(ui->pushButtonDeletePayment, &QPushButton::clicked, this, &UpdateAutomaticMonthlyPaymentsDialog::onPushButtonDeletePaymentClicked);
     connect(ui->radioButtonAdd, &QRadioButton::toggled, this, &UpdateAutomaticMonthlyPaymentsDialog::onRadioButtonToggled);
+    connect(ui->tableViewAutoPaymentSummary, &QTableView::clicked, this, &UpdateAutomaticMonthlyPaymentsDialog::fillFields);
 
-    paymentTable.setAutomaticMonthlyPayments();
     enableAddPayment();
     configurePaymentTable();
 }
@@ -36,7 +37,28 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonExitClicked()
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonAddPaymentClicked()
 {
+    if(!controller->verifyAccountName(ui->lineEditAccount->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid account name entered.<br>Please enter a valid account.</p>"), QMessageBox::Ok);
+    }
+    else if(!controller->verifyPaymentDescription(ui->lineEditDescription->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid payment description entered.<br>Please enter a valid description.</p>"), QMessageBox::Ok);
+    }
+    else if(!controller->verifyTransactionAmount(ui->lineEditAmount->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid payment amount entered.<br>Please enter a valid non-zero amount.</p>"), QMessageBox::Ok);
+    }
+    else
+    {
+        controller->addAutomaticMonthlyPayment(ui->lineEditAccount->text(),
+                                               ui->lineEditDescription->text(),
+                                               ui->lineEditAmount->text().remove(',').toDouble());
 
+        QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added automatic monthly payment.</p>"), QMessageBox::Ok);
+    }
+
+    configurePaymentTable();
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonUpdatePaymentClicked()
@@ -46,7 +68,22 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonUpdatePaymentClicked()
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonDeletePaymentClicked()
 {
-
+    QModelIndexList index = ui->tableViewAutoPaymentSummary->selectionModel()->selection().indexes();
+    QString test = index.at(0).data().toString();
+    QString test2 = index.at(1).data().toString();
+    QString test3 = index.at(2).data().toString();
+    if(index.count() == 0)
+    {
+        int test = 1;
+    }
+    else if(index.count() == 1)
+    {
+        int test = 2;
+    }
+    else
+    {
+        int test = 3;
+    }
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onRadioButtonToggled()
@@ -62,6 +99,8 @@ void UpdateAutomaticMonthlyPaymentsDialog::closeEvent(QCloseEvent*)
 
 void UpdateAutomaticMonthlyPaymentsDialog::configurePaymentTable()
 {
+    paymentTable.setAutomaticMonthlyPayments();
+
     // Add table model data and disable selection
     ui->tableViewAutoPaymentSummary->setModel(&paymentTable);
     ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::NoSelection);
@@ -120,6 +159,7 @@ void UpdateAutomaticMonthlyPaymentsDialog::configurePaymentTable()
 
 void UpdateAutomaticMonthlyPaymentsDialog::enableAddPayment()
 {
+    ui->tableViewAutoPaymentSummary->clearSelection();
     ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::NoSelection);
     ui->pushButtonAddPayment->setEnabled(true);
     ui->pushButtonAddPayment->setFocus();
@@ -143,4 +183,19 @@ void UpdateAutomaticMonthlyPaymentsDialog::enableUpdatePayment()
     ui->lineEditDescription->clear();
     ui->lineEditAmount->clear();
     ui->lineEditAmount->setText("0.00");
+}
+
+void UpdateAutomaticMonthlyPaymentsDialog::fillFields()
+{
+    ui->lineEditAccount->clear();
+    ui->lineEditDescription->clear();
+    ui->lineEditAmount->clear();
+
+    if(!ui->radioButtonAdd->isChecked())
+    {
+        QModelIndexList index = ui->tableViewAutoPaymentSummary->selectionModel()->selectedRows();
+        ui->lineEditAccount->setText(index.at(0).data().toString());
+        ui->lineEditDescription->setText(index.at(1).data().toString());
+        ui->lineEditAmount->setText(index.at(2).data().toString().remove('$'));
+    }
 }

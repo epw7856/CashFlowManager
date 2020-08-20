@@ -8,8 +8,11 @@ class UpdateAutomaticMonthlyPaymentsDialogController
 {
 public:
     UpdateAutomaticMonthlyPaymentsDialogController(ExpenseInterface& localExpenseInterface);
+    bool verifyAccountName(QString description) const;
     bool verifyPaymentDescription(QString description) const;
     bool verifyTransactionAmount(QString amount) const;
+    void addAutomaticMonthlyPayment(const QString& account, const QString& description, double amount);
+    void deleteAutomaticMonthlyPayment(const QString& account, const QString& description, double amount);
 
 private:
     ExpenseInterface& expenseInterface;

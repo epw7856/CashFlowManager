@@ -1,3 +1,4 @@
+#include "automaticmonthlypayment.h"
 #include "expenseinterface.h"
 #include <QString>
 #include "updateautomaticmonthlypaymentsdialogcontroller.h"
@@ -10,6 +11,11 @@ UpdateAutomaticMonthlyPaymentsDialogController::UpdateAutomaticMonthlyPaymentsDi
 
 }
 
+bool UpdateAutomaticMonthlyPaymentsDialogController::verifyAccountName(QString description) const
+{
+    return Validator::verifyDescription(description);
+}
+
 bool UpdateAutomaticMonthlyPaymentsDialogController::verifyPaymentDescription(QString description) const
 {
     return Validator::verifyDescription(description);
@@ -18,4 +24,20 @@ bool UpdateAutomaticMonthlyPaymentsDialogController::verifyPaymentDescription(QS
 bool UpdateAutomaticMonthlyPaymentsDialogController::verifyTransactionAmount(QString amount) const
 {
     return Validator::verifyDoubleAmount(amount, false);
+}
+
+void UpdateAutomaticMonthlyPaymentsDialogController::addAutomaticMonthlyPayment(const QString& account,
+                                                                                const QString& description,
+                                                                                double amount)
+{
+    AutomaticMonthlyPayment payment(description.toStdString(), account.toStdString(), amount);
+    expenseInterface.addAutomaticMonthlyPayment(payment);
+}
+
+void UpdateAutomaticMonthlyPaymentsDialogController::deleteAutomaticMonthlyPayment(const QString& account,
+                                                                                   const QString& description,
+                                                                                   double amount)
+{
+    AutomaticMonthlyPayment payment(description.toStdString(), account.toStdString(), amount);
+    expenseInterface.deleteAutomaticMonthlyPayment(payment);
 }

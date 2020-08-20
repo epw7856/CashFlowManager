@@ -22,6 +22,8 @@ public:
 
 signals:
     void dialogClosed();
+private slots:
+        void fillFields();
 
 public slots:
     void onPushButtonExitClicked();

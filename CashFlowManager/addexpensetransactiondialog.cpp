@@ -55,7 +55,8 @@ void AddExpenseTransactionDialog::onPushButtonAddTransaction()
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Please select an expense type for the transaction.</p>"), QMessageBox::Ok);
     }
-    else if(!controller->verifyTransactionDescription(ui->lineEditDescription->text()))
+    else if(((ui->comboBoxExpenseType->currentText() == "Food")  || (ui->comboBoxExpenseType->currentText() == "Misc")) &&
+            (!controller->verifyTransactionDescription(ui->lineEditDescription->text())))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid expense transaction description entered.<br>Please enter a valid description.</p>"), QMessageBox::Ok);
     }

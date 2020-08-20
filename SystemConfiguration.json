@@ -427,6 +427,11 @@
             "Account": "Dollar Bank",
             "Amount": 500,
             "Name": "Brokerage Contribution"
+        },
+        {
+            "Account": "test payment",
+            "Amount": 100,
+            "Name": "test account"
         }
     ],
     "ExpenseTypes": [
@@ -456,14 +461,39 @@
             "Name": "Electric",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 45.57,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Electric Bill"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 44.97,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Electric Bill"
+                },
+                {
+                    "Amount": 40.56,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Electric Bill"
+                },
+                {
+                    "Amount": 41.08,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Electric Bill"
+                },
+                {
+                    "Amount": 44.54,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Electric Bill"
+                },
+                {
+                    "Amount": 39.08,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Electric Bill"
+                },
+                {
+                    "Amount": 41.44,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Electric Bill"
                 }
             ]
         },
@@ -472,14 +502,44 @@
             "Name": "Natural Gas",
             "Transactions": [
                 {
-                    "Amount": 100.2,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 46,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Natural Gas Bill"
                 },
                 {
-                    "Amount": 23.76,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 28.84,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Natural Gas Bill"
+                },
+                {
+                    "Amount": 46,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Natural Gas Bill"
+                },
+                {
+                    "Amount": 46,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Natural Gas Bill"
+                },
+                {
+                    "Amount": 32,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Natural Gas Bill"
+                },
+                {
+                    "Amount": 32,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Natural Gas Bill"
+                },
+                {
+                    "Amount": 32,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Natural Gas Bill"
+                },
+                {
+                    "Amount": 32,
+                    "Date": "08/01/2020",
+                    "Description": "August 2020 Natural Gas Bill"
                 }
             ]
         },
@@ -488,14 +548,34 @@
             "Name": "Sewage",
             "Transactions": [
                 {
-                    "Amount": 43.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 42,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Sewage Bill"
                 },
                 {
-                    "Amount": 43.28,
-                    "Date": "05/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 42,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Sewage Bill"
+                },
+                {
+                    "Amount": 42,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Sewage Bill"
+                },
+                {
+                    "Amount": 42,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Sewage Bill"
+                },
+                {
+                    "Amount": 42,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Sewage Bill"
+                },
+                {
+                    "Amount": 42,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Sewage Bill"
                 }
             ]
         },
@@ -504,19 +584,14 @@
             "Name": "Trash",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 59.76,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Trash Bill"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "05/17/2020",
-                    "Description": "April Electric Bill"
-                },
-                {
-                    "Amount": 50,
-                    "Date": "06/17/2020",
-                    "Description": "june bill"
+                    "Amount": 59.76,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Trash Bill"
                 }
             ]
         },
@@ -525,14 +600,39 @@
             "Name": "Water",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 28.9,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Water Bill"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 28.9,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Water Bill"
+                },
+                {
+                    "Amount": 30.07,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Water Bill"
+                },
+                {
+                    "Amount": 32.61,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Water Bill"
+                },
+                {
+                    "Amount": 30.23,
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Water Bill"
+                },
+                {
+                    "Amount": 37.35,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Water Bill"
+                },
+                {
+                    "Amount": 27.96,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Water Bill"
                 }
             ]
         },
@@ -719,14 +819,34 @@
             "Name": "Gas",
             "Transactions": [
                 {
-                    "Amount": 41.28,
-                    "Date": "03/17/2020",
-                    "Description": "March Electric Bill"
+                    "Amount": 36,
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Gas"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "04/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 79.7,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Gas"
+                },
+                {
+                    "Amount": 40.5,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Gas"
+                },
+                {
+                    "Amount": 51,
+                    "Date": "04/01/2020",
+                    "Description": "April 2020 Gas"
+                },
+                {
+                    "Amount": 30,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Gas"
+                },
+                {
+                    "Amount": 62.5,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Gas"
                 }
             ]
         },

@@ -264,6 +264,36 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
     obj["AutomaticMonthlyPayments"] = array;
 }
 
+void SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment)
+{
+    auto itr = std::find_if(automaticMonthlyPaymentList.begin(), automaticMonthlyPaymentList.end(), [=] (const std::unique_ptr<AutomaticMonthlyPayment>& item)
+    {
+        return (item->getName() == payment.getName() &&
+                item->getAccount() == payment.getAccount() &&
+                item->getAmount() == payment.getAmount());
+    });
+
+    if(itr != automaticMonthlyPaymentList.end())
+    {
+        automaticMonthlyPaymentList.erase(itr, itr + 1);
+
+        QJsonValue payments = obj.value("AutomaticMonthlyPayments");
+        QJsonArray array = payments.toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == payment.getName() &&
+               QString(item.value("Account").toString()).toStdString() == payment.getAccount() &&
+               item.value("Amount").toDouble() == payment.getAmount())
+            {
+                array.removeAt(i);
+            }
+        }
+        obj["AutomaticMonthlyPayments"] = array;
+    }
+}
+
 double SystemDataSource::getMonthlyExpenseTotal(int year, int month) const
 {
     double total = 0.0;
