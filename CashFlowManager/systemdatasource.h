@@ -37,7 +37,7 @@ public:
     void addExpenseType(const ExpenseType& type) override;
     void addExpenseTransactionByType(const std::string& expenseType, const ExpenseTransaction& transaction) override;
     void addAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
-    void deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
+    bool deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment) override;
     double getMonthlyExpenseTotal(int year, int month) const override;
     double getMonthlyBudgetTotal(int month) const override;
     double getYearlyExpenseTotal(int year) const override;

@@ -12,7 +12,7 @@ public:
     bool verifyPaymentDescription(QString description) const;
     bool verifyTransactionAmount(QString amount) const;
     void addAutomaticMonthlyPayment(const QString& account, const QString& description, double amount);
-    void deleteAutomaticMonthlyPayment(const QString& account, const QString& description, double amount);
+    bool deleteAutomaticMonthlyPayment(const QString& account, const QString& description, double amount);
 
 private:
     ExpenseInterface& expenseInterface;

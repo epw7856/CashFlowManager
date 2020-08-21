@@ -1,6 +1,7 @@
 #ifndef AUTOMATICMONTHLYPAYMENTTABLEMODEL_H
 #define AUTOMATICMONTHLYPAYMENTTABLEMODEL_H
 
+#include <memory>
 #include <QAbstractTableModel>
 #include <QDate>
 
@@ -13,6 +14,7 @@ class AutomaticMonthlyPaymentTableModel : public QAbstractTableModel
     Q_OBJECT
 public:
     AutomaticMonthlyPaymentTableModel(ExpenseInterface& localExpenseInterface);
+    ~AutomaticMonthlyPaymentTableModel();
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -21,7 +23,7 @@ public:
 
 private:
     ExpenseInterface& expenseInterface;
-    std::vector<AutomaticMonthlyPayment*> automaticMonthlyPayments = {};
+    std::vector<std::unique_ptr<AutomaticMonthlyPayment>> automaticMonthlyPayments;
     int numColumns = 0;
     QDate startDatePeriod;
     QDate endDatePeriod;

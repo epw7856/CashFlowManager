@@ -105,7 +105,7 @@ void SystemDataSource::deleteExpenseType(const std::string& expenseType)
 
     if(itr != expenseTypes.end())
     {
-        expenseTypes.erase(itr, itr + 1);
+        expenseTypes.erase(itr);
 
         QJsonValue expTypes = obj.value("ExpenseTypes");
         QJsonArray array = expTypes.toArray();
@@ -264,18 +264,18 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
     obj["AutomaticMonthlyPayments"] = array;
 }
 
-void SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment)
+bool SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment)
 {
     auto itr = std::find_if(automaticMonthlyPaymentList.begin(), automaticMonthlyPaymentList.end(), [=] (const std::unique_ptr<AutomaticMonthlyPayment>& item)
     {
-        return (item->getName() == payment.getName() &&
-                item->getAccount() == payment.getAccount() &&
-                item->getAmount() == payment.getAmount());
+        return ((item->getName() == payment.getName()) &&
+                (item->getAccount() == payment.getAccount()) &&
+                (item->getAmount() == payment.getAmount()));
     });
 
     if(itr != automaticMonthlyPaymentList.end())
     {
-        automaticMonthlyPaymentList.erase(itr, itr + 1);
+        automaticMonthlyPaymentList.erase(itr);
 
         QJsonValue payments = obj.value("AutomaticMonthlyPayments");
         QJsonArray array = payments.toArray();
@@ -291,6 +291,12 @@ void SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayme
             }
         }
         obj["AutomaticMonthlyPayments"] = array;
+
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -984,5 +990,5 @@ typename std::vector<std::unique_ptr<Type>>::const_iterator SystemDataSource::fi
     {
         return (type->getName() == name);
     });
-    return  itr;
+    return itr;
 }

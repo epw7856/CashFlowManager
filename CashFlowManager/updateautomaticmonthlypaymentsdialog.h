@@ -22,6 +22,7 @@ public:
 
 signals:
     void dialogClosed();
+
 private slots:
         void fillFields();
 

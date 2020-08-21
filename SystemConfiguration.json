@@ -427,11 +427,6 @@
             "Account": "Dollar Bank",
             "Amount": 500,
             "Name": "Brokerage Contribution"
-        },
-        {
-            "Account": "test payment",
-            "Amount": 100,
-            "Name": "test account"
         }
     ],
     "ExpenseTypes": [
@@ -494,6 +489,11 @@
                     "Amount": 41.44,
                     "Date": "07/01/2020",
                     "Description": "July 2020 Electric Bill"
+                },
+                {
+                    "Amount": 42.96,
+                    "Date": "08/20/2020",
+                    "Description": "August 2020 Electric Bill"
                 }
             ]
         },
@@ -633,6 +633,11 @@
                     "Amount": 27.96,
                     "Date": "07/01/2020",
                     "Description": "July 2020 Water Bill"
+                },
+                {
+                    "Amount": 27.96,
+                    "Date": "08/20/2020",
+                    "Description": "August 2020 Water Bill"
                 }
             ]
         },

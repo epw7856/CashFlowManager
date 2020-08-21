@@ -34,10 +34,10 @@ void UpdateAutomaticMonthlyPaymentsDialogController::addAutomaticMonthlyPayment(
     expenseInterface.addAutomaticMonthlyPayment(payment);
 }
 
-void UpdateAutomaticMonthlyPaymentsDialogController::deleteAutomaticMonthlyPayment(const QString& account,
+bool UpdateAutomaticMonthlyPaymentsDialogController::deleteAutomaticMonthlyPayment(const QString& account,
                                                                                    const QString& description,
                                                                                    double amount)
 {
     AutomaticMonthlyPayment payment(description.toStdString(), account.toStdString(), amount);
-    expenseInterface.deleteAutomaticMonthlyPayment(payment);
+    return expenseInterface.deleteAutomaticMonthlyPayment(payment);
 }

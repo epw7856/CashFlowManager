@@ -69,8 +69,23 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonUpdatePaymentClicked()
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonDeletePaymentClicked()
 {
+    if((!controller->verifyAccountName(ui->lineEditAccount->text())) ||
+       (!controller->verifyPaymentDescription(ui->lineEditDescription->text())) ||
+       (!controller->verifyTransactionAmount(ui->lineEditAmount->text())))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>No selection made.<br>Please please an automatic monthly payment from the table.</p>"), QMessageBox::Ok);
+        return;
+    }
+
+    bool status = controller->deleteAutomaticMonthlyPayment(ui->lineEditAccount->text(),
+                                                            ui->lineEditDescription->text(),
+                                                            ui->lineEditAmount->text().remove(',').toDouble());
+
+    (status) ? QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully deleted automatic monthly payment.</p>"), QMessageBox::Ok) :
+               QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Unable to delete selected automatic monthly payment.</p>"), QMessageBox::Ok);
 
     configurePaymentTable();
+    enableUpdatePayment();
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onRadioButtonToggled()
@@ -160,6 +175,7 @@ void UpdateAutomaticMonthlyPaymentsDialog::enableAddPayment()
 
 void UpdateAutomaticMonthlyPaymentsDialog::enableUpdatePayment()
 {
+    ui->tableViewAutoPaymentSummary->clearSelection();
     ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableViewAutoPaymentSummary->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->pushButtonAddPayment->setEnabled(false);
@@ -169,21 +185,22 @@ void UpdateAutomaticMonthlyPaymentsDialog::enableUpdatePayment()
     ui->lineEditAccount->clear();
     ui->lineEditDescription->clear();
     ui->lineEditAmount->clear();
-    ui->lineEditAmount->setText("0.00");
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::fillFields()
-{
-    ui->lineEditAccount->clear();
-    ui->lineEditDescription->clear();
-    ui->lineEditAmount->clear();
-
-    if((!ui->radioButtonAdd->isChecked()) &&
-       (ui->tableViewAutoPaymentSummary->currentIndex().row() < paymentTable.rowCount() - 2))
+{   
+    if(!ui->radioButtonAdd->isChecked())
     {
-        QModelIndexList indices = ui->tableViewAutoPaymentSummary->selectionModel()->selection().indexes();
-        ui->lineEditAccount->setText(indices.at(0).data().toString());
-        ui->lineEditDescription->setText(indices.at(1).data().toString());
-        ui->lineEditAmount->setText(indices.at(2).data().toString().remove('$'));
+        ui->lineEditAccount->clear();
+        ui->lineEditDescription->clear();
+        ui->lineEditAmount->clear();
+
+        if(ui->tableViewAutoPaymentSummary->currentIndex().row() < paymentTable.rowCount() - 2)
+        {
+            QModelIndexList indices = ui->tableViewAutoPaymentSummary->selectionModel()->selection().indexes();
+            ui->lineEditAccount->setText(indices.at(0).data().toString());
+            ui->lineEditDescription->setText(indices.at(1).data().toString());
+            ui->lineEditAmount->setText(indices.at(2).data().toString().remove('$'));
+        }
     }
 }

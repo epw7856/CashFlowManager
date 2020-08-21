@@ -12,6 +12,8 @@ AutomaticMonthlyPaymentTableModel::AutomaticMonthlyPaymentTableModel(ExpenseInte
 
 }
 
+AutomaticMonthlyPaymentTableModel::~AutomaticMonthlyPaymentTableModel() = default;
+
 int AutomaticMonthlyPaymentTableModel::rowCount(const QModelIndex&) const
 {
     return static_cast<int>(automaticMonthlyPayments.size()) + 2;
@@ -116,5 +118,10 @@ QVariant AutomaticMonthlyPaymentTableModel::headerData(int section, Qt::Orientat
 
 void AutomaticMonthlyPaymentTableModel::setAutomaticMonthlyPayments()
 {
-    automaticMonthlyPayments = expenseInterface.getAutomaticMonthlyPayments();
+    automaticMonthlyPayments.clear();
+
+    for(const auto& payment : expenseInterface.getAutomaticMonthlyPayments())
+    {
+       automaticMonthlyPayments.push_back(std::make_unique<AutomaticMonthlyPayment>(*payment));
+    }
 }
