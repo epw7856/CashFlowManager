@@ -28,7 +28,7 @@ public slots:
     void onPushButtonAddTypeClicked();
     void onPushButtonUpdateTypeClicked();
     void onPushButtonDeleteTypeClicked();
-    void onRadioButtonToggled();
+    void onRadioButtonMonthlyCharacteristicToggled();
     void expenseTypeSelectionChanged(QString type);
     void closeEvent(QCloseEvent*) override;
 

@@ -10,12 +10,13 @@ class QDate;
 class ExpenseType
 {
 public:
-    ExpenseType(std::string inputName, double inputBudget);
+    ExpenseType(std::string inputName, double inputBudget, bool isRequired = false);
     void updateName(const std::string& updatedName);
     void updateBudget(double updatedAmount);
     std::string getName() const;
     double getMonthlyBudget() const;
     bool getVariableExpenseFlag() const;
+    bool getRequiredExpenseFlag() const;
     void addExpenseTransaction(const ExpenseTransaction& transaction);
     const std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<ExpenseTransaction>>& getTransactionList() const;
 
@@ -23,6 +24,7 @@ private:
     std::string name = "";
     double monthlyBudget = 0.00;
     bool variableExpenseFlag = false;
+    bool requiredExpenseFlag = false;
     std::multiset<std::unique_ptr<ExpenseTransaction>, TransactionComparison<ExpenseTransaction>> expenseTransactionList;
 };
 
@@ -50,6 +52,11 @@ inline double ExpenseType::getMonthlyBudget() const
 inline bool ExpenseType::getVariableExpenseFlag() const
 {
     return variableExpenseFlag;
+}
+
+inline bool ExpenseType::getRequiredExpenseFlag() const
+{
+    return requiredExpenseFlag;
 }
 
 #endif // EXPENSETYPE_H

@@ -122,7 +122,10 @@ void SystemDataSource::deleteExpenseType(const std::string& expenseType)
     }
 }
 
-void SystemDataSource::updateExpenseType(const std::string& currentName, const std::string& updatedName, double monthlyBudget)
+void SystemDataSource::updateExpenseType(const std::string& currentName,
+                                         const std::string& updatedName,
+                                         double monthlyBudget,
+                                         bool isRequired)
 {
     auto itr = findMatchingType(expenseTypes, currentName);
 
@@ -141,6 +144,7 @@ void SystemDataSource::updateExpenseType(const std::string& currentName, const s
             {
                 item.insert("MonthlyBudget", QJsonValue(monthlyBudget));
                 item.insert("Name", QJsonValue(QString::fromStdString(updatedName)));
+                item.insert("RequiredMonthlyExpense", QJsonValue(isRequired));
                 array.removeAt(i);
                 array.insert(i,item);
                 break;
@@ -148,6 +152,18 @@ void SystemDataSource::updateExpenseType(const std::string& currentName, const s
         }
         obj["ExpenseTypes"] = array;
     }
+}
+
+bool SystemDataSource::getExpenseTypeRequiredFlag(const std::string& expenseType) const
+{
+    auto itr = findMatchingType(expenseTypes, expenseType);
+
+    if(itr != expenseTypes.end())
+    {
+        return (*itr)->getRequiredExpenseFlag();
+    }
+
+    return false;
 }
 
 std::vector<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(const std::string& expenseType,
@@ -208,6 +224,7 @@ void SystemDataSource::addExpenseType(const ExpenseType& type)
     QJsonObject item;
     item.insert("MonthlyBudget", QJsonValue(type.getMonthlyBudget()));
     item.insert("Name", QJsonValue(QString::fromStdString(type.getName())));
+    item.insert("RequiredMonthlyExpense", QJsonValue(type.getRequiredExpenseFlag()));
     item.insert("Transactions", QJsonArray());
     array.append(item);
     obj["ExpenseTypes"] = array;
@@ -840,8 +857,8 @@ void SystemDataSource::parseExpenseTypes()
     {
         const std::string& name = QString(item.toObject().value("Name").toString()).toStdString();
         const double budget = item.toObject().value("MonthlyBudget").toDouble();
-        ExpenseType type(name, budget);
-        expenseTypes.push_back(std::make_unique<ExpenseType>(name, budget));
+        bool isRequired = item.toObject().value("RequiredMonthlyExpense").toBool();
+        expenseTypes.push_back(std::make_unique<ExpenseType>(name, budget, isRequired));
 
         ExpenseType* expense = expenseTypes.back().get();
         QJsonArray transArray = item.toObject().value("Transactions").toArray();

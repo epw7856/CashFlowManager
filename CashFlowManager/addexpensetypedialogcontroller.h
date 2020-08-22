@@ -14,10 +14,16 @@ public:
     bool verifyTypeName(QString name) const;
     bool verifyBudgetAmount(QString amount, bool zeroAllowed) const;
     bool verifyUniqueTypeName(QString name);
-    void addExpenseType(const QString& name, double budgetAmount);
+    void addExpenseType(const QString& name,
+                        double budgetAmount,
+                        bool isRequired);
     void deleteExpenseType(const QString& name);
-    void updateExpenseType(const QString& currentName, const QString& updatedName, double updatedAmount);
+    void updateExpenseType(const QString& currentName,
+                           const QString& updatedName,
+                           double updatedAmount,
+                           bool isRequired);
     QString getMonthlyBudgetAmount(QString name) const;
+    bool getRequiredExpenseFlag(QString name) const;
     bool expenseTypeContainsYearlyTransactions(const QString& name);
 
 private:

@@ -16,7 +16,8 @@ public:
     virtual ~ExpenseInterface() = default;
     virtual std::vector<ExpenseType*> getExpenseTypes() const = 0;
     virtual void deleteExpenseType(const std::string& expenseType) = 0;
-    virtual void updateExpenseType(const std::string& currentName, const std::string& updatedName, double monthlyBudget) = 0;
+    virtual void updateExpenseType(const std::string& currentName, const std::string& updatedName, double monthlyBudget, bool isRequired) = 0;
+    virtual bool getExpenseTypeRequiredFlag(const std::string& expenseType) const = 0;
     virtual std::vector<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual double getExpenseTransactionsTotalByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const = 0;
     virtual std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const = 0;

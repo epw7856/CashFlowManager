@@ -433,6 +433,7 @@
         {
             "MonthlyBudget": 1545.01,
             "Name": "Mortgage",
+            "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
                     "Amount": 1545.01,
@@ -454,6 +455,7 @@
         {
             "MonthlyBudget": 0,
             "Name": "Electric",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 45.57,
@@ -500,6 +502,7 @@
         {
             "MonthlyBudget": 32,
             "Name": "Natural Gas",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 46,
@@ -546,6 +549,7 @@
         {
             "MonthlyBudget": 42,
             "Name": "Sewage",
+            "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
                     "Amount": 42,
@@ -582,6 +586,7 @@
         {
             "MonthlyBudget": 0,
             "Name": "Trash",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 59.76,
@@ -598,6 +603,7 @@
         {
             "MonthlyBudget": 0,
             "Name": "Water",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 28.9,
@@ -644,6 +650,7 @@
         {
             "MonthlyBudget": 39.95,
             "Name": "Internet",
+            "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
                     "Amount": 39.95,
@@ -710,6 +717,7 @@
         {
             "MonthlyBudget": 76.84,
             "Name": "Car Insurance",
+            "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
                     "Amount": 76.84,
@@ -776,6 +784,7 @@
         {
             "MonthlyBudget": 50,
             "Name": "Phone",
+            "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
                     "Amount": 50,
@@ -822,6 +831,7 @@
         {
             "MonthlyBudget": 80,
             "Name": "Gas",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 36,
@@ -858,6 +868,7 @@
         {
             "MonthlyBudget": 300,
             "Name": "Food",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 10,
@@ -884,6 +895,7 @@
         {
             "MonthlyBudget": 100,
             "Name": "Donations",
+            "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
                     "Amount": 100,
@@ -915,6 +927,7 @@
         {
             "MonthlyBudget": 300,
             "Name": "Misc",
+            "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
                     "Amount": 98.21,

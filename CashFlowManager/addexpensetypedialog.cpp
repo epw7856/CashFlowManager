@@ -15,6 +15,9 @@ AddExpenseTypeDialog::AddExpenseTypeDialog(ExpenseInterface& localExpenseInterfa
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
+    ui->groupBoxMonthlyCharacteristic->setStyleSheet("border: none");
+    ui->groupBoxRequiredExpense->setStyleSheet("border: none");
+
     if(modifyFlag)
     {
         setWindowTitle("Update/Delete Expense Type");
@@ -39,7 +42,9 @@ AddExpenseTypeDialog::AddExpenseTypeDialog(ExpenseInterface& localExpenseInterfa
     }
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &AddExpenseTypeDialog::onPushButtonExitClicked);
-    connect(ui->radioButtonFixed, &QRadioButton::toggled, this, &AddExpenseTypeDialog::onRadioButtonToggled);
+    connect(ui->radioButtonFixed, &QRadioButton::toggled, this, &AddExpenseTypeDialog::onRadioButtonMonthlyCharacteristicToggled);
+
+    resize(window()->width(), window()->minimumHeight());
 }
 
 AddExpenseTypeDialog::~AddExpenseTypeDialog()
@@ -74,7 +79,7 @@ void AddExpenseTypeDialog::onPushButtonAddTypeClicked()
     }
     else
     {
-        controller->addExpenseType(ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble());
+        controller->addExpenseType(ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble(), ui->radioButtonRequired->isChecked());
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added expense type.</p>"), QMessageBox::Ok);
     }
 }
@@ -95,7 +100,7 @@ void AddExpenseTypeDialog::onPushButtonUpdateTypeClicked()
         }
         else
         {
-            controller->updateExpenseType(ui->comboBoxExpenseType->currentText(), ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble());
+            controller->updateExpenseType(ui->comboBoxExpenseType->currentText(), ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble(), ui->radioButtonRequired->isChecked());
             QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated expense type.</p>"), QMessageBox::Ok);
         }
     }
@@ -148,7 +153,7 @@ void AddExpenseTypeDialog::onPushButtonDeleteTypeClicked()
     updateComboBox();
 }
 
-void AddExpenseTypeDialog::onRadioButtonToggled()
+void AddExpenseTypeDialog::onRadioButtonMonthlyCharacteristicToggled()
 {
     if(ui->radioButtonFixed->isChecked())
     {
@@ -168,6 +173,8 @@ void AddExpenseTypeDialog::expenseTypeSelectionChanged(QString type)
     {
         ui->lineEditName->setText(type);
         ui->lineEditBudgetAmount->setText(controller->getMonthlyBudgetAmount(type).remove(','));
+        ui->radioButtonRequired->setChecked(controller->getRequiredExpenseFlag(type));
+
         if(controller->getMonthlyBudgetAmount(type) != "0.00")
         {
             ui->radioButtonFixed->setChecked(true);
@@ -183,6 +190,7 @@ void AddExpenseTypeDialog::expenseTypeSelectionChanged(QString type)
     else
     {
         ui->radioButtonFixed->setChecked(true);
+        ui->radioButtonRequired->setChecked(true);
         ui->lineEditName->clear();
         ui->lineEditBudgetAmount->setText("0.00");
     }
@@ -208,6 +216,8 @@ void AddExpenseTypeDialog::disableActions()
 {
     ui->radioButtonFixed->setEnabled(false);
     ui->radioButtonVariable->setEnabled(false);
+    ui->radioButtonRequired->setEnabled(false);
+    ui->radioButtonNotRequired->setEnabled(false);
     ui->lineEditName->setEnabled(false);
     ui->lineEditBudgetAmount->setEnabled(false);
     ui->pushButtonAddType->setEnabled(false);

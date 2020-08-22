@@ -29,7 +29,8 @@ public:
     // Expense Interface
     std::vector<ExpenseType*> getExpenseTypes() const override;
     void deleteExpenseType(const std::string& expenseType) override;
-    void updateExpenseType(const std::string& currentName, const std::string& updatedName, double monthlyBudget) override;
+    void updateExpenseType(const std::string& currentName, const std::string& updatedName, double monthlyBudget, bool isRequired) override;
+    bool getExpenseTypeRequiredFlag(const std::string& expenseType) const override;
     std::vector<ExpenseTransaction*> getExpenseTransactionsByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     double getExpenseTransactionsTotalByTimePeriod(const std::string& expenseType, const QDate& startingPeriod, const QDate& endingPeriod) const override;
     std::vector<AutomaticMonthlyPayment*> getAutomaticMonthlyPayments() const override;

@@ -118,15 +118,13 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
         {
             double actual = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
             double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
-
-            // Required expense types
-            bool sewageExpense = index.sibling(index.row(), 0).data().toString() == "Sewage";
+            bool requiredExpense = expenseInterface.getExpenseTypeRequiredFlag(index.sibling(index.row(), 0).data().toString().toStdString());
 
             if((actual > 0) && (remaining == 0))
             {
                 return QVariant(QBrush(QColor(Qt::green)));
             }
-            else if((actual > 0) && (remaining >= 0) && (month < QDate::currentDate().month()) && !sewageExpense)
+            else if((actual >= 0) && (remaining >= 0) && (month < QDate::currentDate().month()) && !requiredExpense)
             {
                 return QVariant(QBrush(QColor(Qt::green)));
             }
@@ -137,7 +135,7 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
         }
     }
 
-    if(appendTotalFlag &&
+    if((appendTotalFlag) &&
        (role == Qt::FontRole) &&
        (index.row() == rowCount(index)-1))
     {

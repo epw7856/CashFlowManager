@@ -4,11 +4,13 @@
 ExpenseType::ExpenseType
 (
     std::string inputName,
-    double inputBudget
+    double inputBudget,
+    bool isRequired
 )
 :
     name(inputName),
-    monthlyBudget(inputBudget)
+    monthlyBudget(inputBudget),
+    requiredExpenseFlag(isRequired)
 {
     if(monthlyBudget == 0.00) variableExpenseFlag = true;
 }

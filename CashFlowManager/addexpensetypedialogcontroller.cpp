@@ -48,9 +48,11 @@ bool AddExpenseTypeDialogController::verifyUniqueTypeName(QString name)
     return (itr == types.end());
 }
 
-void AddExpenseTypeDialogController::addExpenseType(const QString& name, double budgetAmount)
+void AddExpenseTypeDialogController::addExpenseType(const QString& name,
+                                                    double budgetAmount,
+                                                    bool isRequired)
 {
-    ExpenseType type(name.toStdString(), budgetAmount);
+    ExpenseType type(name.toStdString(), budgetAmount, isRequired);
 
     expenseInterface.addExpenseType(type);
 }
@@ -60,9 +62,12 @@ void AddExpenseTypeDialogController::deleteExpenseType(const QString& name)
     expenseInterface.deleteExpenseType(name.toStdString());
 }
 
-void AddExpenseTypeDialogController::updateExpenseType(const QString& currentName, const QString& updatedName, double updatedAmount)
+void AddExpenseTypeDialogController::updateExpenseType(const QString& currentName,
+                                                       const QString& updatedName,
+                                                       double updatedAmount,
+                                                       bool isRequired)
 {
-    expenseInterface.updateExpenseType(currentName.toStdString(), updatedName.toStdString(), updatedAmount);
+    expenseInterface.updateExpenseType(currentName.toStdString(), updatedName.toStdString(), updatedAmount, isRequired);
 }
 
 QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) const
@@ -79,6 +84,11 @@ QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) con
         return QString::fromStdString(CurrencyUtilities::formatCurrency((*itr)->getMonthlyBudget())).remove(0, 1);
     }
     return "0.00";
+}
+
+bool AddExpenseTypeDialogController::getRequiredExpenseFlag(QString name) const
+{
+    return expenseInterface.getExpenseTypeRequiredFlag(name.toStdString());
 }
 
 bool AddExpenseTypeDialogController::expenseTypeContainsYearlyTransactions(const QString& name)
