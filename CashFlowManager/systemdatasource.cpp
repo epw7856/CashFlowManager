@@ -211,7 +211,6 @@ void SystemDataSource::addExpenseType(const ExpenseType& type)
     item.insert("Transactions", QJsonArray());
     array.append(item);
     obj["ExpenseTypes"] = array;
-
 }
 
 void SystemDataSource::addExpenseTransactionByType(const std::string& expenseType, const ExpenseTransaction& transaction)
@@ -264,7 +263,7 @@ void SystemDataSource::addAutomaticMonthlyPayment(const AutomaticMonthlyPayment&
     obj["AutomaticMonthlyPayments"] = array;
 }
 
-bool SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment)
+void SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayment& payment)
 {
     auto itr = std::find_if(automaticMonthlyPaymentList.begin(), automaticMonthlyPaymentList.end(), [=] (const std::unique_ptr<AutomaticMonthlyPayment>& item)
     {
@@ -291,12 +290,44 @@ bool SystemDataSource::deleteAutomaticMonthlyPayment(const AutomaticMonthlyPayme
             }
         }
         obj["AutomaticMonthlyPayments"] = array;
-
-        return true;
     }
-    else
+
+}
+
+void SystemDataSource::updateAutomaticMonthlyPayment(const AutomaticMonthlyPayment& existingPayment,
+                                                     const AutomaticMonthlyPayment& updatedPayment)
+{
+    auto itr = std::find_if(automaticMonthlyPaymentList.begin(), automaticMonthlyPaymentList.end(), [=] (const std::unique_ptr<AutomaticMonthlyPayment>& item)
     {
-        return false;
+        return ((item->getName() == existingPayment.getName()) &&
+                (item->getAccount() == existingPayment.getAccount()) &&
+                (item->getAmount() == existingPayment.getAmount()));
+    });
+
+    if(itr != automaticMonthlyPaymentList.end())
+    {
+        automaticMonthlyPaymentList.insert(itr + 1, std::make_unique<AutomaticMonthlyPayment>(updatedPayment));
+        automaticMonthlyPaymentList.erase(itr);
+
+        QJsonValue payments = obj.value("AutomaticMonthlyPayments");
+        QJsonArray array = payments.toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(item.value("Name").toString().toStdString() == existingPayment.getName() &&
+               item.value("Account").toString().toStdString() == existingPayment.getAccount() &&
+               item.value("Amount").toDouble() == existingPayment.getAmount())
+            {
+                item.insert("Name", QJsonValue(QString::fromStdString(updatedPayment.getName())));
+                item.insert("Account", QJsonValue(QString::fromStdString(updatedPayment.getAccount())));
+                item.insert("Amount", QJsonValue(updatedPayment.getAmount()));
+
+                array.removeAt(i);
+                array.insert(i,item);
+            }
+        }
+        obj["AutomaticMonthlyPayments"] = array;
     }
 }
 

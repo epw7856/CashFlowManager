@@ -38,6 +38,9 @@ private:
     Ui::UpdateAutomaticMonthlyPaymentsDialog *ui;
     AutomaticMonthlyPaymentTableModel paymentTable;
     std::unique_ptr<UpdateAutomaticMonthlyPaymentsDialogController> controller;
+    QString existingAccount = "";
+    QString existingDescription = "";
+    QString existingAmount = "";
 
     void configurePaymentTable();
     void enableAddPayment();

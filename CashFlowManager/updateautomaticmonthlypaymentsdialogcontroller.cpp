@@ -26,6 +26,18 @@ bool UpdateAutomaticMonthlyPaymentsDialogController::verifyTransactionAmount(QSt
     return Validator::verifyDoubleAmount(amount, false);
 }
 
+bool UpdateAutomaticMonthlyPaymentsDialogController::verifyUniquePaymentName(QString account, QString description) const
+{
+    std::vector<AutomaticMonthlyPayment*> payments = expenseInterface.getAutomaticMonthlyPayments();
+
+    auto itr = std::find_if(payments.begin(), payments.end(), [=] (const AutomaticMonthlyPayment* item)
+    {
+        return ((QString::fromStdString(item->getName()).toLower() == description.toLower()) &&
+                (QString::fromStdString(item->getAccount()).toLower() == account.toLower()));
+    });
+    return (itr == payments.end());
+}
+
 void UpdateAutomaticMonthlyPaymentsDialogController::addAutomaticMonthlyPayment(const QString& account,
                                                                                 const QString& description,
                                                                                 double amount)
@@ -34,10 +46,22 @@ void UpdateAutomaticMonthlyPaymentsDialogController::addAutomaticMonthlyPayment(
     expenseInterface.addAutomaticMonthlyPayment(payment);
 }
 
-bool UpdateAutomaticMonthlyPaymentsDialogController::deleteAutomaticMonthlyPayment(const QString& account,
+void UpdateAutomaticMonthlyPaymentsDialogController::deleteAutomaticMonthlyPayment(const QString& account,
                                                                                    const QString& description,
                                                                                    double amount)
 {
     AutomaticMonthlyPayment payment(description.toStdString(), account.toStdString(), amount);
-    return expenseInterface.deleteAutomaticMonthlyPayment(payment);
+    expenseInterface.deleteAutomaticMonthlyPayment(payment);
+}
+
+void UpdateAutomaticMonthlyPaymentsDialogController::updateAutomaticMonthlyPayment(const QString& existingAccount,
+                                                                                   const QString& existingDescription,
+                                                                                   double existingAmount,
+                                                                                   const QString& updatedAccount,
+                                                                                   const QString& updatedDescription,
+                                                                                   double updatedAmount)
+{
+    AutomaticMonthlyPayment existingPayment(existingDescription.toStdString(), existingAccount.toStdString(), existingAmount);
+    AutomaticMonthlyPayment updatedPayment(updatedDescription.toStdString(), updatedAccount.toStdString(), updatedAmount);
+    expenseInterface.updateAutomaticMonthlyPayment(existingPayment, updatedPayment);
 }

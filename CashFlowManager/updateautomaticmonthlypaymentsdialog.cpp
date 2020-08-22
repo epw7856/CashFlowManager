@@ -40,14 +40,22 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonAddPaymentClicked()
     if(!controller->verifyAccountName(ui->lineEditAccount->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid account name entered.<br>Please enter a valid account.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyPaymentDescription(ui->lineEditDescription->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid payment description entered.<br>Please enter a valid description.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyTransactionAmount(ui->lineEditAmount->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid payment amount entered.<br>Please enter a valid non-zero amount.</p>"), QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyUniquePaymentName(ui->lineEditAccount->text(), ui->lineEditDescription->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Unable to add automatic monthly payment. Payment already exists.</p>"), QMessageBox::Ok);
+        return;
     }
     else
     {
@@ -59,12 +67,54 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonAddPaymentClicked()
     }
 
     configurePaymentTable();
+    enableAddPayment();
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonUpdatePaymentClicked()
 {
+    bool changesPresent = (existingDescription != ui->lineEditDescription->text()) ||
+                          (existingAccount != ui->lineEditAccount->text()) ||
+                          (existingAmount != ui->lineEditAmount->text());
+
+    if(!controller->verifyAccountName(ui->lineEditAccount->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid account name entered.<br>Please enter a valid account.</p>"), QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyPaymentDescription(ui->lineEditDescription->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid payment description entered.<br>Please enter a valid description.</p>"), QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyTransactionAmount(ui->lineEditAmount->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid payment amount entered.<br>Please enter a valid non-zero amount.</p>"), QMessageBox::Ok);
+        return;
+    }
+    else if(!changesPresent)
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>No changes detected.</p>"), QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyUniquePaymentName(ui->lineEditAccount->text(), ui->lineEditDescription->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Unable to update automatic monthly payment. Another payment with the same information already exists.</p>"), QMessageBox::Ok);
+        return;
+    }
+    else
+    {
+        controller->updateAutomaticMonthlyPayment(existingAccount,
+                                                  existingDescription,
+                                                  existingAmount.remove(',').toDouble(),
+                                                  ui->lineEditAccount->text(),
+                                                  ui->lineEditDescription->text(),
+                                                  ui->lineEditAmount->text().remove(',').toDouble());
+
+        QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated automatic monthly payment.</p>"), QMessageBox::Ok);
+    }
 
     configurePaymentTable();
+    enableUpdatePayment();
 }
 
 void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonDeletePaymentClicked()
@@ -77,12 +127,11 @@ void UpdateAutomaticMonthlyPaymentsDialog::onPushButtonDeletePaymentClicked()
         return;
     }
 
-    bool status = controller->deleteAutomaticMonthlyPayment(ui->lineEditAccount->text(),
-                                                            ui->lineEditDescription->text(),
-                                                            ui->lineEditAmount->text().remove(',').toDouble());
+    controller->deleteAutomaticMonthlyPayment(ui->lineEditAccount->text(),
+                                              ui->lineEditDescription->text(),
+                                              ui->lineEditAmount->text().remove(',').toDouble());
 
-    (status) ? QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully deleted automatic monthly payment.</p>"), QMessageBox::Ok) :
-               QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Unable to delete selected automatic monthly payment.</p>"), QMessageBox::Ok);
+    QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully deleted automatic monthly payment.</p>"), QMessageBox::Ok);
 
     configurePaymentTable();
     enableUpdatePayment();
@@ -198,9 +247,14 @@ void UpdateAutomaticMonthlyPaymentsDialog::fillFields()
         if(ui->tableViewAutoPaymentSummary->currentIndex().row() < paymentTable.rowCount() - 2)
         {
             QModelIndexList indices = ui->tableViewAutoPaymentSummary->selectionModel()->selection().indexes();
-            ui->lineEditAccount->setText(indices.at(0).data().toString());
-            ui->lineEditDescription->setText(indices.at(1).data().toString());
-            ui->lineEditAmount->setText(indices.at(2).data().toString().remove('$'));
+
+            existingAccount = indices.at(0).data().toString();
+            existingDescription = indices.at(1).data().toString();
+            existingAmount = indices.at(2).data().toString().remove('$');
+
+            ui->lineEditAccount->setText(existingAccount);
+            ui->lineEditDescription->setText(existingDescription);
+            ui->lineEditAmount->setText(existingAmount);
         }
     }
 }
