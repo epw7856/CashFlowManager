@@ -32,6 +32,7 @@ public:
     // Supporting functions for Main Window information display
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
+    bool isCurrentMonthOverBudget() const;
     double getMonthlyExpenseTotal() const;
     double getMonthlyBudgetTotal() const;
     double getMonthlyInvestmentTotal() const;

@@ -159,10 +159,17 @@ void MainWindow::updateDisplayedInformation()
     ui->labelYearlyPrincipal->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyAdditionalPrincipal())));
     ui->labelExpenditurePercentage->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlyExpenditureRatio())));
 
-    QPalette sample_palette;
-    (mainWindowController->getYearlyExpenditureRatio() > 1.0) ? sample_palette.setColor(QPalette::WindowText, Qt::red) :
-                                                                sample_palette.setColor(QPalette::WindowText, Qt::green);
-    ui->labelExpenditurePercentage->setPalette(sample_palette);
+    QPalette expenditurePercentagePalette;
+    (mainWindowController->getYearlyExpenditureRatio() > 1.0) ? expenditurePercentagePalette.setColor(QPalette::WindowText, Qt::red) :
+                                                                expenditurePercentagePalette.setColor(QPalette::WindowText, Qt::green);
+
+    ui->labelExpenditurePercentage->setPalette(expenditurePercentagePalette);
+
+    if(mainWindowController->isCurrentMonthOverBudget())
+    {
+        QPalette budgetStatusPalette(QPalette::WindowText, Qt::red);
+        ui->labelBudgetStatus->setPalette(budgetStatusPalette);
+    }
 }
 
 void MainWindow::configureBudgetStatusBarChart()

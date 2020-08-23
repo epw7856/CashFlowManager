@@ -436,19 +436,164 @@
             "RequiredMonthlyExpense": true,
             "Transactions": [
                 {
+                    "Amount": 1540.48,
+                    "Date": "01/01/2018",
+                    "Description": "January 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "02/01/2018",
+                    "Description": "February 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "03/01/2018",
+                    "Description": "March 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "04/01/2018",
+                    "Description": "April 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "05/01/2018",
+                    "Description": "May 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "06/01/2018",
+                    "Description": "June 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "07/01/2018",
+                    "Description": "July 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "08/01/2018",
+                    "Description": "August 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "09/01/2018",
+                    "Description": "September 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "10/01/2018",
+                    "Description": "October 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "11/01/2018",
+                    "Description": "November 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1540.48,
+                    "Date": "12/01/2018",
+                    "Description": "December 2018 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "01/01/2019",
+                    "Description": "January 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "02/01/2019",
+                    "Description": "February 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "03/01/2019",
+                    "Description": "March 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "04/01/2019",
+                    "Description": "April 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "05/01/2019",
+                    "Description": "May 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "06/01/2019",
+                    "Description": "June 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "07/01/2019",
+                    "Description": "July 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "08/01/2019",
+                    "Description": "August 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "09/01/2019",
+                    "Description": "September 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "10/01/2019",
+                    "Description": "October 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1532.05,
+                    "Date": "11/01/2019",
+                    "Description": "November 2019 Mortgage Payment"
+                },
+                {
+                    "Amount": 1749.33,
+                    "Date": "12/01/2019",
+                    "Description": "December 2019 Mortgage Payment"
+                },
+                {
                     "Amount": 1545.01,
-                    "Date": "01/02/2020",
-                    "Description": "March Mortgage Payment"
+                    "Date": "01/01/2020",
+                    "Description": "January 2020 Mortgage Payment"
+                },
+                {
+                    "Amount": 1545.01,
+                    "Date": "02/01/2020",
+                    "Description": "February 2020 Mortgage Payment"
+                },
+                {
+                    "Amount": 1545.01,
+                    "Date": "03/01/2020",
+                    "Description": "March 2020 Mortgage Payment"
                 },
                 {
                     "Amount": 1545.01,
                     "Date": "04/01/2020",
-                    "Description": "April Mortgage Payment"
+                    "Description": "April 2020 Mortgage Payment"
                 },
                 {
                     "Amount": 1545.01,
-                    "Date": "06/14/2020",
-                    "Description": "June Mortgage Payment"
+                    "Date": "05/01/2020",
+                    "Description": "May 2020 Mortgage Payment"
+                },
+                {
+                    "Amount": 1545.01,
+                    "Date": "06/01/2020",
+                    "Description": "June 2020 Mortgage Payment"
+                },
+                {
+                    "Amount": 1545.01,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Mortgage Payment"
+                },
+                {
+                    "Amount": 1545.01,
+                    "Date": "08/01/2020",
+                    "Description": "August 2020 Mortgage Payment"
                 }
             ]
         },
@@ -871,24 +1016,224 @@
             "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
-                    "Amount": 10,
-                    "Date": "01/17/2020",
-                    "Description": "Test food"
+                    "Amount": 10.63,
+                    "Date": "01/08/2020",
+                    "Description": "Giant Eagle"
                 },
                 {
-                    "Amount": 50,
-                    "Date": "02/17/2020",
-                    "Description": "Test food 2"
+                    "Amount": 106.02,
+                    "Date": "01/10/2020",
+                    "Description": "Aldi"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "03/17/2020",
-                    "Description": "April Electric Bill"
+                    "Amount": 126.2,
+                    "Date": "01/24/2020",
+                    "Description": "Aldi"
                 },
                 {
-                    "Amount": 32.56,
-                    "Date": "06/14/2020",
-                    "Description": "Test"
+                    "Amount": 15.81,
+                    "Date": "01/26/2020",
+                    "Description": "Fresh Thyme"
+                },
+                {
+                    "Amount": 13,
+                    "Date": "01/31/2020",
+                    "Description": "Bar 48"
+                },
+                {
+                    "Amount": 7.35,
+                    "Date": "02/01/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 58.73,
+                    "Date": "02/06/2020",
+                    "Description": "Walmart"
+                },
+                {
+                    "Amount": 119.75,
+                    "Date": "02/11/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 113.78,
+                    "Date": "02/25/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 15.5,
+                    "Date": "02/28/2020",
+                    "Description": "Campus Deli"
+                },
+                {
+                    "Amount": 17.75,
+                    "Date": "01/02/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 95.82,
+                    "Date": "03/07/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 5.18,
+                    "Date": "03/15/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 106.29,
+                    "Date": "03/19/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 5.39,
+                    "Date": "03/30/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 113.25,
+                    "Date": "04/01/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 49.5,
+                    "Date": "04/11/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 110.1,
+                    "Date": "04/13/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 33.9,
+                    "Date": "04/21/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 33.73,
+                    "Date": "04/27/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 80.59,
+                    "Date": "04/28/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 18.57,
+                    "Date": "05/07/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 81.69,
+                    "Date": "05/08/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 83.2,
+                    "Date": "05/17/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 18.04,
+                    "Date": "05/23/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 30.22,
+                    "Date": "05/31/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 22.94,
+                    "Date": "06/04/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 102.15,
+                    "Date": "06/04/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 19.16,
+                    "Date": "06/13/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 13.78,
+                    "Date": "06/22/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 108.29,
+                    "Date": "06/23/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 7.57,
+                    "Date": "06/26/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 2.38,
+                    "Date": "07/03/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 101.82,
+                    "Date": "07/08/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 9.92,
+                    "Date": "07/14/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 44.99,
+                    "Date": "07/16/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 20.53,
+                    "Date": "07/19/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 121.92,
+                    "Date": "07/21/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 5.78,
+                    "Date": "07/31/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 96.35,
+                    "Date": "08/08/2020",
+                    "Description": "Aldi"
+                },
+                {
+                    "Amount": 46,
+                    "Date": "08/15/2020",
+                    "Description": "Firebirds"
+                },
+                {
+                    "Amount": 5,
+                    "Date": "08/16/2020",
+                    "Description": "Shannon"
+                },
+                {
+                    "Amount": 2.78,
+                    "Date": "08/17/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 11.67,
+                    "Date": "08/17/2020",
+                    "Description": "Aldi"
                 }
             ]
         },
@@ -930,29 +1275,179 @@
             "RequiredMonthlyExpense": false,
             "Transactions": [
                 {
-                    "Amount": 98.21,
-                    "Date": "03/31/2020",
-                    "Description": "Test misc expense 0"
+                    "Amount": 3.09,
+                    "Date": "01/01/2020",
+                    "Description": "Kohls"
                 },
                 {
-                    "Amount": 41.28,
+                    "Amount": 8.76,
+                    "Date": "01/12/2020",
+                    "Description": "Lowes"
+                },
+                {
+                    "Amount": 12.05,
+                    "Date": "01/12/2020",
+                    "Description": "Macys"
+                },
+                {
+                    "Amount": 10,
+                    "Date": "01/31/2020",
+                    "Description": "Bar 48"
+                },
+                {
+                    "Amount": 21.39,
+                    "Date": "02/07/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 21.19,
+                    "Date": "02/08/2020",
+                    "Description": "Spencers"
+                },
+                {
+                    "Amount": 24,
+                    "Date": "02/13/2020",
+                    "Description": "PA State Tax"
+                },
+                {
+                    "Amount": 42.03,
+                    "Date": "02/28/2020",
+                    "Description": "Uhaul"
+                },
+                {
+                    "Amount": 11,
+                    "Date": "03/03/2020",
+                    "Description": "Post Office"
+                },
+                {
+                    "Amount": 17,
+                    "Date": "03/05/2020",
+                    "Description": "Applebees"
+                },
+                {
+                    "Amount": 7.83,
+                    "Date": "03/08/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 43,
+                    "Date": "03/12/2020",
+                    "Description": "DMV"
+                },
+                {
+                    "Amount": 50,
+                    "Date": "03/15/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 72.83,
                     "Date": "04/01/2020",
-                    "Description": "Test misc expense 1"
+                    "Description": "Lowes"
                 },
                 {
-                    "Amount": 41.28,
-                    "Date": "04/17/2020",
-                    "Description": "Another Test misc expense"
+                    "Amount": 9.53,
+                    "Date": "04/01/2020",
+                    "Description": "Advanced Auto"
                 },
                 {
-                    "Amount": 475.21,
-                    "Date": "04/30/2020",
-                    "Description": "Test misc expense 2"
+                    "Amount": 4.27,
+                    "Date": "04/27/2020",
+                    "Description": "Autozone"
                 },
                 {
-                    "Amount": 87.32,
-                    "Date": "05/01/2020",
-                    "Description": "Test misc expense 3"
+                    "Amount": 23.26,
+                    "Date": "04/28/2020",
+                    "Description": "Lowes"
+                },
+                {
+                    "Amount": 33.02,
+                    "Date": "05/08/2020",
+                    "Description": "Lowes"
+                },
+                {
+                    "Amount": 45.75,
+                    "Date": "05/17/2020",
+                    "Description": "Lowes"
+                },
+                {
+                    "Amount": 22.46,
+                    "Date": "05/23/2020",
+                    "Description": "Giant Eagle"
+                },
+                {
+                    "Amount": 19.25,
+                    "Date": "05/23/2020",
+                    "Description": "Liquor Store"
+                },
+                {
+                    "Amount": 41,
+                    "Date": "05/28/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 64.19,
+                    "Date": "05/29/2020",
+                    "Description": "Target"
+                },
+                {
+                    "Amount": 128,
+                    "Date": "05/29/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 61,
+                    "Date": "06/04/2020",
+                    "Description": "Lowes"
+                },
+                {
+                    "Amount": 28.08,
+                    "Date": "06/04/2020",
+                    "Description": "Elizabeth Auto"
+                },
+                {
+                    "Amount": 118.75,
+                    "Date": "06/20/2020",
+                    "Description": "Advanced Auto"
+                },
+                {
+                    "Amount": 37.1,
+                    "Date": "06/21/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 3,
+                    "Date": "06/26/2020",
+                    "Description": "Dollar General"
+                },
+                {
+                    "Amount": 15.33,
+                    "Date": "07/19/2020",
+                    "Description": "Home Depot"
+                },
+                {
+                    "Amount": 17.97,
+                    "Date": "07/21/2020",
+                    "Description": "Advanced Auto"
+                },
+                {
+                    "Amount": 194.55,
+                    "Date": "07/31/2020",
+                    "Description": "Elizabeth Auto"
+                },
+                {
+                    "Amount": 5.08,
+                    "Date": "08/04/2020",
+                    "Description": "Dollar General"
+                },
+                {
+                    "Amount": 43.48,
+                    "Date": "08/04/2020",
+                    "Description": "Amazon"
+                },
+                {
+                    "Amount": 529.99,
+                    "Date": "08/05/2020",
+                    "Description": "Staples"
                 }
             ]
         }

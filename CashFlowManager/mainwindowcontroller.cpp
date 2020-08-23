@@ -87,6 +87,11 @@ double MainWindowController::getMonthlyBudgetSurplus() const
     return sds.getMonthlyBudgetTotal(currentMonth) - sds.getMonthlyExpenseTotal(currentYear, currentMonth);
 }
 
+bool MainWindowController::isCurrentMonthOverBudget() const
+{
+    return (sds.getMonthlyExpenseTotal(currentYear, currentMonth) > sds.getMonthlyBudgetTotal(currentMonth));
+}
+
 double MainWindowController::getMonthlyAdditionalPrincipal() const
 {
     std::pair<QDate, QDate> dates = DateUtilities::getCurrentMonthDates();
