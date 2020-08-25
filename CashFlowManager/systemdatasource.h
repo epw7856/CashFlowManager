@@ -22,7 +22,7 @@ class SystemDataSource
     public MortgageInterface
 {
 public:
-    SystemDataSource(const std::string& filePath);
+    SystemDataSource();
     ~SystemDataSource() override;
     bool saveSystemConfig();
 
@@ -104,7 +104,7 @@ private:
 
     // Helper functions for JSON data parsing
     bool loadSystemConfig();
-    void createSystemConfigurationTemplate();
+    bool createSystemConfigurationTemplate();
     void parseExpenseTypes();
     void parseInvestmentTypes();
     void parseAutomaticMonthlyPayments();

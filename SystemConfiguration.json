@@ -836,26 +836,6 @@
                     "Amount": 39.95,
                     "Date": "08/01/2020",
                     "Description": "August 2020 Internet Bill"
-                },
-                {
-                    "Amount": 39.95,
-                    "Date": "09/01/2020",
-                    "Description": "September 2020 Internet Bill"
-                },
-                {
-                    "Amount": 39.95,
-                    "Date": "10/01/2020",
-                    "Description": "October 2020 Internet Bill"
-                },
-                {
-                    "Amount": 39.95,
-                    "Date": "11/01/2020",
-                    "Description": "November 2020 Internet Bill"
-                },
-                {
-                    "Amount": 39.95,
-                    "Date": "12/01/2020",
-                    "Description": "December 2020 Internet Bill"
                 }
             ]
         },
@@ -1067,7 +1047,7 @@
                 },
                 {
                     "Amount": 17.75,
-                    "Date": "01/02/2020",
+                    "Date": "03/02/2020",
                     "Description": "Giant Eagle"
                 },
                 {
@@ -1234,6 +1214,11 @@
                     "Amount": 11.67,
                     "Date": "08/17/2020",
                     "Description": "Aldi"
+                },
+                {
+                    "Amount": 2.86,
+                    "Date": "08/24/2020",
+                    "Description": "Giant Eagle"
                 }
             ]
         },

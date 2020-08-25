@@ -8,16 +8,15 @@
 #include "mortgageinformation.h"
 #include "mortgageprincipalpayment.h"
 #include <QByteArray>
-#include <QDebug>
+#include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QStandardPaths>
 #include "salaryincome.h"
 #include "supplementalincome.h"
 #include "systemdatasource.h"
 
-SystemDataSource::SystemDataSource(const std::string& filePath)
-:
-    systemConfigFile(QString::fromStdString(filePath))
+SystemDataSource::SystemDataSource()
 {
     loadSystemConfig();
 }
@@ -26,34 +25,45 @@ SystemDataSource::~SystemDataSource() = default;
 
 bool SystemDataSource::loadSystemConfig()
 {
-    if(!systemConfigFile.open((QIODevice::ReadOnly | QIODevice::Text)))
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    systemConfigFile.setFileName(dir.path() + "/SystemConfiguration.json");
+
+    if(!dir.exists() || !systemConfigFile.exists())
     {
-        qWarning() << "Unable to load System Configuration.";
-        createSystemConfigurationTemplate();
-        return false;
+        return createSystemConfigurationTemplate();
+    }
+    else
+    {
+        if(!systemConfigFile.open((QIODevice::ReadOnly | QIODevice::Text)))
+        {
+            qWarning() << "Unable to load system configuration file!";
+            return false;
+        }
+
+        QByteArray rawData = systemConfigFile.readAll();
+        systemConfigFile.close();
+        QJsonDocument doc = QJsonDocument::fromJson(rawData);
+        obj = doc.object();
+
+        parseExpenseTypes();
+        parseInvestmentTypes();
+        parseAutomaticMonthlyPayments();
+        parseSalaryIncome();
+        parseSupplementalIncome();
+        parseAssetList();
+        parseMortgageInformation();
+
+        return true;
     }
 
-    QByteArray rawData = systemConfigFile.readAll();
-    systemConfigFile.close();
-    QJsonDocument doc = QJsonDocument::fromJson(rawData);
-    obj = doc.object();
-
-    parseExpenseTypes();
-    parseInvestmentTypes();
-    parseAutomaticMonthlyPayments();
-    parseSalaryIncome();
-    parseSupplementalIncome();
-    parseAssetList();
-    parseMortgageInformation();
-
-    return true;
+    return false;
 }
 
 bool SystemDataSource::saveSystemConfig()
 {
     if (!systemConfigFile.open(QIODevice::WriteOnly))
     {
-        qWarning("Unable to save System Configuration.");
+        qWarning("Unable to save system configuration file!");
         return false;
     }
 
@@ -64,13 +74,16 @@ bool SystemDataSource::saveSystemConfig()
     return true;
 }
 
-void SystemDataSource::createSystemConfigurationTemplate()
+bool SystemDataSource::createSystemConfigurationTemplate()
 {
-    systemConfigFile.setFileName("../SystemConfiguration.json");
+    QFileInfo info(systemConfigFile);
+    QDir dir;
+    dir.mkpath(info.absolutePath());
+
     if(!systemConfigFile.open(QIODevice::WriteOnly))
     {
-        qWarning() << "Unable to create new System Configuration.";
-        return;
+        qWarning() << "Unable to create new system configuration file!";
+        return false;
     }
     systemConfigFile.close();
 
@@ -84,6 +97,8 @@ void SystemDataSource::createSystemConfigurationTemplate()
     obj.insert("MortgageInformation", empty);
     obj.insert("SalaryIncome", empty);
     obj.insert("SupplementalIncome", empty);
+
+    return true;
 }
 
 std::vector<ExpenseType*> SystemDataSource::getExpenseTypes() const
@@ -794,7 +809,8 @@ double SystemDataSource::getPurchasePrice() const
 
 double SystemDataSource::getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const
 {
-    return getTransactionsTotalByTimePeriod(mortgageInfo->getPrincipalPayments(), startingPeriod, endingPeriod);
+    return (mortgageInfo != nullptr) ? getTransactionsTotalByTimePeriod(mortgageInfo->getPrincipalPayments(), startingPeriod, endingPeriod) :
+                                       0.0;
 }
 
 bool SystemDataSource::mortgagePaidForMonth(int year, int month) const
@@ -1018,10 +1034,11 @@ double SystemDataSource::getTransactionsTotalByTimePeriod(const std::multiset<st
 {
     std::multiset<Transaction*> matchingTransactions;
 
+    double total = 0.0;
+
     auto lowerItr = set.lower_bound(std::make_unique<Transaction>(startingPeriod));
     auto upperItr = set.upper_bound(std::make_unique<Transaction>(endingPeriod));
 
-    double total = 0.0;
     for(auto i = lowerItr; i != upperItr; ++i)
     {
         total += i->get()->getAmount();
