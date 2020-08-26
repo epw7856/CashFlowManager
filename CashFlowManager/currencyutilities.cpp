@@ -30,6 +30,11 @@ std::string CurrencyUtilities::formatRatio(double ratio, int precision)
     return QLocale(QLocale::English).toString(ratio * 100.0, 'f', precision).toStdString() + "%";
 }
 
+std::string CurrencyUtilities::formatDouble(double amount)
+{
+    return QLocale(QLocale::English).toString(amount, 'f', 2).toStdString();
+}
+
 double CurrencyUtilities::formatCurrencyToDouble(const std::string& amount)
 {
     double convertedValue = 0.0;

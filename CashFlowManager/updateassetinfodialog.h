@@ -34,9 +34,11 @@ private slots:
 private:
     Ui::UpdateAssetInfoDialog *ui;
     std::unique_ptr<UpdateAssetInfoDialogController> controller;
+    QString currentAsset = "";
 
     void setDateLabels();
     void updateComboBox();
+    void updateValues();
     void setEnabled(bool enabled);
 };
 

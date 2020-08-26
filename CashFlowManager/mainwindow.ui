@@ -1087,7 +1087,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Yearly Expenditures to Income Ratio:</string>
+             <string>Yearly Outflow to Income Ratio:</string>
             </property>
            </widget>
           </item>

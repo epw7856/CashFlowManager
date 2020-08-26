@@ -158,7 +158,7 @@ void AssetSummaryDialog::configureNetWorthTrackingChart()
     date = date.addMonths(-11);
     for(int i = 0; i < index; ++i)
     {
-        labelX->append(date.toString("MMM yy"), i);
+        labelX->append(date.toString("MMM yyyy"), i);
         date = date.addMonths(1);
     }
     labelX->setRange(0, index - 1);

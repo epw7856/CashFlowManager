@@ -1,4 +1,3 @@
-#include <QDate>
 #include "updateassetinfodialog.h"
 #include "updateassetinfodialogcontroller.h"
 #include "ui_updateassetinfodialog.h"
@@ -12,13 +11,14 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
+    updateComboBox();
+    setDateLabels();
+    setEnabled(false);
+
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonExitClicked);
     connect(ui->pushButtonUpdateAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked);
-    connect(ui->pushButtonDeleteAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked);
+    connect(ui->pushButtonDeleteAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked); 
     connect(ui->comboBoxAssets, SIGNAL(currentTextChanged(QString)), this, SLOT(assetTypeSelectionChanged(QString)));
-
-    setDateLabels();
-    updateComboBox();
 }
 
 UpdateAssetInfoDialog::~UpdateAssetInfoDialog()
@@ -36,12 +36,13 @@ void UpdateAssetInfoDialog::assetTypeSelectionChanged(QString type)
 {
     if(ui->comboBoxAssets->currentIndex() > 0)
     {
+        currentAsset = ui->comboBoxAssets->currentText();
         setEnabled(true);
-
         ui->lineEditAssetName->setText(type);
-        bool checked = controller->isAssetTypeLiquid(ui->lineEditAssetName->text());
+        bool checked = controller->isAssetTypeLiquid(currentAsset);
         ui->radioButtonLiquid->setChecked(checked);
         ui->radioButtonIlliquid->setChecked(!checked);
+        updateValues();
     }
     else
     {
@@ -66,20 +67,18 @@ void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
 
 void UpdateAssetInfoDialog::setDateLabels()
 {
-    QDate currentMonth(QDate::currentDate().year(), QDate::currentDate().month(), 1);
-
-    ui->labelMonth1->setText(currentMonth.addMonths(-11).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth2->setText(currentMonth.addMonths(-10).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth3->setText(currentMonth.addMonths(-9).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth4->setText(currentMonth.addMonths(-8).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth5->setText(currentMonth.addMonths(-7).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth6->setText(currentMonth.addMonths(-6).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth7->setText(currentMonth.addMonths(-5).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth8->setText(currentMonth.addMonths(-4).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth9->setText(currentMonth.addMonths(-3).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth10->setText(currentMonth.addMonths(-2).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth11->setText(currentMonth.addMonths(-1).toString("MMMM yyyy") + ":  $");
-    ui->labelMonth12->setText(currentMonth.toString("MMMM yyyy") + ":  $");
+    ui->labelMonth1->setText(controller->getMonthString(11));
+    ui->labelMonth2->setText(controller->getMonthString(10));
+    ui->labelMonth3->setText(controller->getMonthString(9));
+    ui->labelMonth4->setText(controller->getMonthString(8));
+    ui->labelMonth5->setText(controller->getMonthString(7));
+    ui->labelMonth6->setText(controller->getMonthString(6));
+    ui->labelMonth7->setText(controller->getMonthString(5));
+    ui->labelMonth8->setText(controller->getMonthString(4));
+    ui->labelMonth9->setText(controller->getMonthString(3));
+    ui->labelMonth10->setText(controller->getMonthString(2));
+    ui->labelMonth11->setText(controller->getMonthString(1));
+    ui->labelMonth12->setText(controller->getMonthString(0));
 }
 
 void UpdateAssetInfoDialog::updateComboBox()
@@ -97,6 +96,22 @@ void UpdateAssetInfoDialog::updateComboBox()
     }
 
     ui->comboBoxAssets->setCurrentIndex(0);
+}
+
+void UpdateAssetInfoDialog::updateValues()
+{
+    ui->lineEditMonth1->setText(controller->getAssetValue(currentAsset, 11));
+    ui->lineEditMonth2->setText(controller->getAssetValue(currentAsset, 10));
+    ui->lineEditMonth3->setText(controller->getAssetValue(currentAsset, 9));
+    ui->lineEditMonth4->setText(controller->getAssetValue(currentAsset, 8));
+    ui->lineEditMonth5->setText(controller->getAssetValue(currentAsset, 7));
+    ui->lineEditMonth6->setText(controller->getAssetValue(currentAsset, 6));
+    ui->lineEditMonth7->setText(controller->getAssetValue(currentAsset, 5));
+    ui->lineEditMonth8->setText(controller->getAssetValue(currentAsset, 4));
+    ui->lineEditMonth9->setText(controller->getAssetValue(currentAsset, 3));
+    ui->lineEditMonth10->setText(controller->getAssetValue(currentAsset, 2));
+    ui->lineEditMonth11->setText(controller->getAssetValue(currentAsset, 1));
+    ui->lineEditMonth12->setText(controller->getAssetValue(currentAsset, 0));
 }
 
 void UpdateAssetInfoDialog::setEnabled(bool enabled)
