@@ -77,6 +77,8 @@ SOURCES += \
         monthlybudgetsummarydialog.cpp \
         mortgagesummarydialog.cpp \
         systemdatasource.cpp \
+        updateassetinfodialog.cpp \
+        updateassetinfodialogcontroller.cpp \
         updateautomaticmonthlypaymentsdialog.cpp \
         updateautomaticmonthlypaymentsdialogcontroller.cpp \
         validator.cpp \
@@ -133,6 +135,8 @@ HEADERS += \
         mortgagesummarydialog.h \
         systemdatasource.h \
         transactioncomparison.h \
+        updateassetinfodialog.h \
+        updateassetinfodialogcontroller.h \
         updateautomaticmonthlypaymentsdialog.h \
         updateautomaticmonthlypaymentsdialogcontroller.h \
         validator.h \
@@ -151,6 +155,7 @@ FORMS += \
         mainwindow.ui \
         monthlybudgetsummarydialog.ui \
         mortgagesummarydialog.ui \
+        updateassetinfodialog.ui \
         updateautomaticmonthlypaymentsdialog.ui \
         yearlybudgetsummarydialog.ui \
         yearlyincomesummarydialog.ui

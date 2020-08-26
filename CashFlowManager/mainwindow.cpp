@@ -20,22 +20,24 @@ MainWindow::MainWindow(QWidget *parent)
     resize(window()->width(), window()->minimumSizeHint().rheight());
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
-    connect(ui->actionYearly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
-    connect(ui->actionMonthly_Budget_Summary, &QAction::triggered, this, &MainWindow::onActionMonthlyBudgetSummaryTriggered);
-    connect(ui->actionFood_Expenses, &QAction::triggered, this, &MainWindow::onActionFoodExpensesTriggered);
-    connect(ui->actionMisc_Expenses, &QAction::triggered, this, &MainWindow::onActionMiscExpensesTriggered);
-    connect(ui->actionYearly_Income_Summary, &QAction::triggered, this, &MainWindow::onActionYearlyIncomeSummaryTriggered);
-    connect(ui->actionAutomatic_Monthly_Payments, &QAction::triggered, this, &MainWindow::onActionAutomaticMonthlyPaymentSummaryTriggered);
-    connect(ui->actionAsset_and_Net_Worth_Tracking, &QAction::triggered, this, &MainWindow::onActionAssetAndNetWorthSummaryTriggered);
-    connect(ui->actionMortgage_Information, &QAction::triggered, this, &MainWindow::onActionMortgageInformationTriggered);
-    connect(ui->actionAddExpense_Transaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
-    connect(ui->actionAddExpense_Type, &QAction::triggered, this, &MainWindow::onActionAddExpenseTypeTriggered);
-    connect(ui->actionModifyExpense_Type, &QAction::triggered, this, &MainWindow::onActionModifyExpenseTypeTriggered);
-    connect(ui->actionAddInvestment_Transaction, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTransactionTriggered);
-    connect(ui->actionAddInvestment_Type, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTypeTriggered);
-    connect(ui->actionModifyInvestment_Type, &QAction::triggered, this, &MainWindow::onActionModifyInvestmentTypeTriggered);
-    connect(ui->actionAddIncome_Transaction, &QAction::triggered, this, &MainWindow::onActionAddIncomeTransactionTriggered);
-    connect(ui->actionUpdateAutomatic_Monthly_Payment, &QAction::triggered, this, &MainWindow::onActionUpdateAutomaticMonthlyPaymentTriggered);
+    connect(ui->actionYearlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
+    connect(ui->actionMonthlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionMonthlyBudgetSummaryTriggered);
+    connect(ui->actionFoodExpenses, &QAction::triggered, this, &MainWindow::onActionFoodExpensesTriggered);
+    connect(ui->actionMiscExpenses, &QAction::triggered, this, &MainWindow::onActionMiscExpensesTriggered);
+    connect(ui->actionYearlyIncomeSummary, &QAction::triggered, this, &MainWindow::onActionYearlyIncomeSummaryTriggered);
+    connect(ui->actionAutomaticMonthlyPayments, &QAction::triggered, this, &MainWindow::onActionAutomaticMonthlyPaymentSummaryTriggered);
+    connect(ui->actionAssetAndNetWorthTracking, &QAction::triggered, this, &MainWindow::onActionAssetAndNetWorthSummaryTriggered);
+    connect(ui->actionMortgageInformation, &QAction::triggered, this, &MainWindow::onActionMortgageInformationTriggered);
+    connect(ui->actionAddExpenseTransaction, &QAction::triggered, this, &MainWindow::onActionAddExpenseTransactionTriggered);
+    connect(ui->actionAddExpenseType, &QAction::triggered, this, &MainWindow::onActionAddExpenseTypeTriggered);
+    connect(ui->actionModifyExpenseType, &QAction::triggered, this, &MainWindow::onActionModifyExpenseTypeTriggered);
+    connect(ui->actionAddInvestmentTransaction, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTransactionTriggered);
+    connect(ui->actionAddInvestmentType, &QAction::triggered, this, &MainWindow::onActionAddInvestmentTypeTriggered);
+    connect(ui->actionModifyInvestmentType, &QAction::triggered, this, &MainWindow::onActionModifyInvestmentTypeTriggered);
+    connect(ui->actionAddIncomeTransaction, &QAction::triggered, this, &MainWindow::onActionAddIncomeTransactionTriggered);
+    connect(ui->actionModifyAutomaticMonthlyPayment, &QAction::triggered, this, &MainWindow::onActionModifyAutomaticMonthlyPaymentTriggered);
+    connect(ui->actionAddNewAsset, &QAction::triggered, this, &MainWindow::onActionAddNewAssetTriggered);
+    connect(ui->actionModifyAssetInfo, &QAction::triggered, this, &MainWindow::onActionModifyAssetInfoTriggered);
 
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
@@ -128,9 +130,19 @@ void MainWindow::onActionAddIncomeTransactionTriggered()
     mainWindowController->showAddIncomeTransactionDialog(this);
 }
 
-void MainWindow::onActionUpdateAutomaticMonthlyPaymentTriggered()
+void MainWindow::onActionModifyAutomaticMonthlyPaymentTriggered()
 {
     mainWindowController->showUpdateAutomaticMonthlyPaymentDialog(this);
+}
+
+void MainWindow::onActionAddNewAssetTriggered()
+{
+
+}
+
+void MainWindow::onActionModifyAssetInfoTriggered()
+{
+    mainWindowController->showUpdateAssetInfoDialog(this);
 }
 
 void MainWindow::updateDisplayedInformation()

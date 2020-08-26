@@ -1197,38 +1197,38 @@
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionYearly_Budget_Summary"/>
-    <addaction name="actionMonthly_Budget_Summary"/>
+    <addaction name="actionYearlyBudgetSummary"/>
+    <addaction name="actionMonthlyBudgetSummary"/>
     <addaction name="separator"/>
-    <addaction name="actionFood_Expenses"/>
-    <addaction name="actionMisc_Expenses"/>
+    <addaction name="actionFoodExpenses"/>
+    <addaction name="actionMiscExpenses"/>
     <addaction name="separator"/>
-    <addaction name="actionYearly_Income_Summary"/>
+    <addaction name="actionYearlyIncomeSummary"/>
     <addaction name="separator"/>
-    <addaction name="actionAutomatic_Monthly_Payments"/>
+    <addaction name="actionAutomaticMonthlyPayments"/>
     <addaction name="separator"/>
-    <addaction name="actionMortgage_Information"/>
+    <addaction name="actionMortgageInformation"/>
     <addaction name="separator"/>
-    <addaction name="actionAsset_and_Net_Worth_Tracking"/>
+    <addaction name="actionAssetAndNetWorthTracking"/>
    </widget>
    <widget class="QMenu" name="menuAdd">
     <property name="title">
      <string>Modify</string>
     </property>
-    <addaction name="actionAddExpense_Transaction"/>
-    <addaction name="actionAddExpense_Type"/>
-    <addaction name="actionModifyExpense_Type"/>
+    <addaction name="actionAddExpenseTransaction"/>
+    <addaction name="actionAddExpenseType"/>
+    <addaction name="actionModifyExpenseType"/>
     <addaction name="separator"/>
-    <addaction name="actionAddInvestment_Transaction"/>
-    <addaction name="actionAddInvestment_Type"/>
-    <addaction name="actionModifyInvestment_Type"/>
+    <addaction name="actionAddInvestmentTransaction"/>
+    <addaction name="actionAddInvestmentType"/>
+    <addaction name="actionModifyInvestmentType"/>
     <addaction name="separator"/>
-    <addaction name="actionAddIncome_Transaction"/>
+    <addaction name="actionAddIncomeTransaction"/>
     <addaction name="separator"/>
-    <addaction name="actionUpdateAutomatic_Monthly_Payment"/>
+    <addaction name="actionModifyAutomaticMonthlyPayment"/>
     <addaction name="separator"/>
-    <addaction name="actionAddAsset_Values"/>
-    <addaction name="actionAddAsset_Type"/>
+    <addaction name="actionAddNewAsset"/>
+    <addaction name="actionModifyAssetInfo"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -1245,7 +1245,7 @@
     </font>
    </property>
   </action>
-  <action name="actionYearly_Budget_Summary">
+  <action name="actionYearlyBudgetSummary">
    <property name="text">
     <string>Yearly Budget Summary</string>
    </property>
@@ -1255,7 +1255,7 @@
     </font>
    </property>
   </action>
-  <action name="actionMonthly_Budget_Summary">
+  <action name="actionMonthlyBudgetSummary">
    <property name="text">
     <string>Monthly Budget Summary</string>
    </property>
@@ -1265,7 +1265,7 @@
     </font>
    </property>
   </action>
-  <action name="actionFood_Expenses">
+  <action name="actionFoodExpenses">
    <property name="text">
     <string>Food Expenses</string>
    </property>
@@ -1275,7 +1275,7 @@
     </font>
    </property>
   </action>
-  <action name="actionMisc_Expenses">
+  <action name="actionMiscExpenses">
    <property name="text">
     <string>Misc Expenses</string>
    </property>
@@ -1285,7 +1285,7 @@
     </font>
    </property>
   </action>
-  <action name="actionYearly_Income_Summary">
+  <action name="actionYearlyIncomeSummary">
    <property name="text">
     <string>Yearly Income Summary</string>
    </property>
@@ -1295,7 +1295,7 @@
     </font>
    </property>
   </action>
-  <action name="actionAutomatic_Monthly_Payments">
+  <action name="actionAutomaticMonthlyPayments">
    <property name="text">
     <string>Automatic Monthly Payments</string>
    </property>
@@ -1305,7 +1305,7 @@
     </font>
    </property>
   </action>
-  <action name="actionMortgage_Information">
+  <action name="actionMortgageInformation">
    <property name="text">
     <string>Mortgage Information</string>
    </property>
@@ -1315,7 +1315,7 @@
     </font>
    </property>
   </action>
-  <action name="actionAsset_and_Net_Worth_Tracking">
+  <action name="actionAssetAndNetWorthTracking">
    <property name="text">
     <string>Asset and Net Worth Tracking</string>
    </property>
@@ -1325,7 +1325,7 @@
     </font>
    </property>
   </action>
-  <action name="actionAddExpense_Transaction">
+  <action name="actionAddExpenseTransaction">
    <property name="text">
     <string>Add Expense Transaction</string>
    </property>
@@ -1335,7 +1335,7 @@
     </font>
    </property>
   </action>
-  <action name="actionModifyExpense_Type">
+  <action name="actionModifyExpenseType">
    <property name="text">
     <string>Update/Delete Expense Type</string>
    </property>
@@ -1345,7 +1345,7 @@
     </font>
    </property>
   </action>
-  <action name="actionAddInvestment_Transaction">
+  <action name="actionAddInvestmentTransaction">
    <property name="text">
     <string>Add Investment Transaction</string>
    </property>
@@ -1355,7 +1355,7 @@
     </font>
    </property>
   </action>
-  <action name="actionAddInvestment_Type">
+  <action name="actionAddInvestmentType">
    <property name="text">
     <string>Add Investment Type</string>
    </property>
@@ -1365,27 +1365,27 @@
     </font>
    </property>
   </action>
-  <action name="actionAddIncome_Transaction">
+  <action name="actionAddIncomeTransaction">
    <property name="text">
     <string>Add Income Transaction</string>
    </property>
   </action>
-  <action name="actionUpdateAutomatic_Monthly_Payment">
+  <action name="actionModifyAutomaticMonthlyPayment">
    <property name="text">
     <string>Update Automatic Monthly Payments</string>
    </property>
   </action>
-  <action name="actionAddAsset_Values">
+  <action name="actionAddNewAsset">
    <property name="text">
-    <string>Asset Values</string>
+    <string>Add New Asset</string>
    </property>
   </action>
-  <action name="actionAddAsset_Type">
+  <action name="actionModifyAssetInfo">
    <property name="text">
-    <string>Asset Type</string>
+    <string>Update/Delete Asset Information</string>
    </property>
   </action>
-  <action name="actionAddExpense_Type">
+  <action name="actionAddExpenseType">
    <property name="text">
     <string>Add Expense Type</string>
    </property>
@@ -1395,7 +1395,7 @@
     </font>
    </property>
   </action>
-  <action name="actionModifyInvestment_Type">
+  <action name="actionModifyInvestmentType">
    <property name="text">
     <string>Update/Delete Investment Type</string>
    </property>

@@ -39,7 +39,9 @@ public slots:
     void onActionAddInvestmentTypeTriggered();
     void onActionModifyInvestmentTypeTriggered();
     void onActionAddIncomeTransactionTriggered();
-    void onActionUpdateAutomaticMonthlyPaymentTriggered();
+    void onActionModifyAutomaticMonthlyPaymentTriggered();
+    void onActionAddNewAssetTriggered();
+    void onActionModifyAssetInfoTriggered();
 
 private:
     Ui::MainWindow *ui;

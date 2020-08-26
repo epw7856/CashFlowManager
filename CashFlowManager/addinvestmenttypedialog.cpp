@@ -172,6 +172,8 @@ void AddInvestmentTypeDialog::updateComboBox()
     {
         ui->comboBoxInvestmentType->insertItem(0, "<Investment Types>");
     }
+
+    ui->comboBoxInvestmentType->setCurrentIndex(0);
 }
 
 void AddInvestmentTypeDialog::disableActions()
