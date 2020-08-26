@@ -12,8 +12,12 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
+    connect(ui->pushButtonExit, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonExitClicked);
+    connect(ui->pushButtonUpdateAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked);
+    connect(ui->pushButtonDeleteAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked);
     connect(ui->comboBoxAssets, SIGNAL(currentTextChanged(QString)), this, SLOT(assetTypeSelectionChanged(QString)));
 
+    setDateLabels();
     updateComboBox();
 }
 
@@ -29,6 +33,33 @@ void UpdateAssetInfoDialog::closeEvent(QCloseEvent *)
 }
 
 void UpdateAssetInfoDialog::assetTypeSelectionChanged(QString type)
+{
+    if(ui->comboBoxAssets->currentIndex() > 0)
+    {
+        setEnabled(true);
+
+        ui->lineEditAssetName->setText(type);
+        bool checked = controller->isAssetTypeLiquid(ui->lineEditAssetName->text());
+        ui->radioButtonLiquid->setChecked(checked);
+        ui->radioButtonIlliquid->setChecked(!checked);
+    }
+    else
+    {
+        setEnabled(false);
+    }
+}
+
+void UpdateAssetInfoDialog::onPushButtonExitClicked()
+{
+    close();
+}
+
+void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
+{
+
+}
+
+void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
 {
 
 }
@@ -58,7 +89,7 @@ void UpdateAssetInfoDialog::updateComboBox()
     if(ui->comboBoxAssets->count() == 0)
     {
         ui->comboBoxAssets->insertItem(0, "No Assets Found");
-        disableActions();
+        setEnabled(false);
     }
     else
     {
@@ -68,21 +99,39 @@ void UpdateAssetInfoDialog::updateComboBox()
     ui->comboBoxAssets->setCurrentIndex(0);
 }
 
-void UpdateAssetInfoDialog::disableActions()
+void UpdateAssetInfoDialog::setEnabled(bool enabled)
 {
-    ui->pushButtonUpdateAsset->setEnabled(false);
-    ui->pushButtonDeleteAsset->setEnabled(false);
-    ui->lineEditAssetName->setEnabled(false);
-    ui->lineEditMonth1->setEnabled(false);
-    ui->lineEditMonth2->setEnabled(false);
-    ui->lineEditMonth3->setEnabled(false);
-    ui->lineEditMonth4->setEnabled(false);
-    ui->lineEditMonth5->setEnabled(false);
-    ui->lineEditMonth6->setEnabled(false);
-    ui->lineEditMonth7->setEnabled(false);
-    ui->lineEditMonth8->setEnabled(false);
-    ui->lineEditMonth9->setEnabled(false);
-    ui->lineEditMonth10->setEnabled(false);
-    ui->lineEditMonth11->setEnabled(false);
-    ui->lineEditMonth12->setEnabled(false);
+    ui->lineEditAssetName->clear();
+    ui->pushButtonUpdateAsset->setEnabled(enabled);
+    ui->pushButtonDeleteAsset->setEnabled(enabled);
+    ui->lineEditAssetName->setEnabled(enabled);
+    ui->radioButtonLiquid->setEnabled(enabled);
+    ui->radioButtonIlliquid->setEnabled(enabled);
+    ui->radioButtonLiquid->setChecked(true);
+
+    ui->lineEditMonth1->setText("0.00");
+    ui->lineEditMonth2->setText("0.00");
+    ui->lineEditMonth3->setText("0.00");
+    ui->lineEditMonth4->setText("0.00");
+    ui->lineEditMonth5->setText("0.00");
+    ui->lineEditMonth6->setText("0.00");
+    ui->lineEditMonth7->setText("0.00");
+    ui->lineEditMonth8->setText("0.00");
+    ui->lineEditMonth9->setText("0.00");
+    ui->lineEditMonth10->setText("0.00");
+    ui->lineEditMonth11->setText("0.00");
+    ui->lineEditMonth12->setText("0.00");
+
+    ui->lineEditMonth1->setEnabled(enabled);
+    ui->lineEditMonth2->setEnabled(enabled);
+    ui->lineEditMonth3->setEnabled(enabled);
+    ui->lineEditMonth4->setEnabled(enabled);
+    ui->lineEditMonth5->setEnabled(enabled);
+    ui->lineEditMonth6->setEnabled(enabled);
+    ui->lineEditMonth7->setEnabled(enabled);
+    ui->lineEditMonth8->setEnabled(enabled);
+    ui->lineEditMonth9->setEnabled(enabled);
+    ui->lineEditMonth10->setEnabled(enabled);
+    ui->lineEditMonth11->setEnabled(enabled);
+    ui->lineEditMonth12->setEnabled(enabled);
 }

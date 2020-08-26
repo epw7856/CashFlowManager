@@ -20,3 +20,8 @@ QStringList UpdateAssetInfoDialogController::getAssetTypes() const
 
     return assetList;
 }
+
+bool UpdateAssetInfoDialogController::isAssetTypeLiquid(const QString& assetName) const
+{
+    return (assetInterface.getAssetByName(assetName.toStdString())->getType() == AssetType::Liquid);
+}

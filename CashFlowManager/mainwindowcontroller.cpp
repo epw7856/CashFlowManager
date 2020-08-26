@@ -370,6 +370,8 @@ void MainWindowController::showUpdateAutomaticMonthlyPaymentDialog(QWidget *pare
         updateAutomaticMonthlyPaymentsDialog = std::make_unique<UpdateAutomaticMonthlyPaymentsDialog>(sds, parent);
     }
 
+    connect(updateAutomaticMonthlyPaymentsDialog.get(), &UpdateAutomaticMonthlyPaymentsDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
     updateAutomaticMonthlyPaymentsDialog->show();
     updateAutomaticMonthlyPaymentsDialog->raise();
     updateAutomaticMonthlyPaymentsDialog->activateWindow();
@@ -381,6 +383,8 @@ void MainWindowController::showUpdateAssetInfoDialog(QWidget *parent)
     {
         updateAssetInfoDialog = std::make_unique<UpdateAssetInfoDialog>(sds, parent);
     }
+
+    connect(updateAssetInfoDialog.get(), &UpdateAssetInfoDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 
     updateAssetInfoDialog->show();
     updateAssetInfoDialog->raise();

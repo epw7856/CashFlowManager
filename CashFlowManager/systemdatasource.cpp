@@ -662,6 +662,16 @@ int SystemDataSource::getYearlyOvertimeTotal() const
     return total;
 }
 
+AssetEntry* SystemDataSource::getAssetByName(const std::string& assetName) const
+{
+    auto iterator = find_if(assetList.begin(), assetList.end(), [&] (const std::unique_ptr<AssetEntry>& asset)
+    {
+        return (asset->getName() == assetName);
+    });
+
+    return (iterator != assetList.end()) ? (*iterator).get() : nullptr;
+}
+
 std::vector<AssetEntry*> SystemDataSource::getAssetList() const
 {
     std::vector<AssetEntry*> entries;

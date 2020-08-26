@@ -10,6 +10,7 @@ class UpdateAssetInfoDialogController
 public:
     UpdateAssetInfoDialogController(AssetInterface& localAssetInterface);
     QStringList getAssetTypes() const;
+    bool isAssetTypeLiquid(const QString& assetName) const;
 
 private:
     AssetInterface& assetInterface;

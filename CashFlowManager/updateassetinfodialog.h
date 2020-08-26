@@ -27,6 +27,9 @@ public slots:
 
 private slots:
     void assetTypeSelectionChanged(QString type);
+    void onPushButtonExitClicked();
+    void onPushButtonUpdateAssetClicked();
+    void onPushButtonDeleteAssetClicked();
 
 private:
     Ui::UpdateAssetInfoDialog *ui;
@@ -34,7 +37,7 @@ private:
 
     void setDateLabels();
     void updateComboBox();
-    void disableActions();
+    void setEnabled(bool enabled);
 };
 
 #endif // UPDATEASSETINFODIALOG_H

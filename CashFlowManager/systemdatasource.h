@@ -70,6 +70,7 @@ public:
     int getYearlyOvertimeTotal() const override;
 
     // Asset Interface
+    AssetEntry* getAssetByName(const std::string& assetName) const override;
     std::vector<AssetEntry*> getAssetList() const override;
     std::vector<AssetEntry*> getAssetListByType(AssetType type) const override;
     void addAsset(const AssetEntry& entry) override;
