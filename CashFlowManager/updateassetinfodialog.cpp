@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include "updateassetinfodialog.h"
 #include "updateassetinfodialogcontroller.h"
 #include "ui_updateassetinfodialog.h"
@@ -62,7 +63,34 @@ void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
 
 void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
 {
+    if(ui->comboBoxAssets->currentIndex() > 0)
+    {
+        int returnValue = QMessageBox::warning(this, tr("Confirm Selection"), "Are you sure you want to delete asset type '" + currentAsset + "'?", QMessageBox::Yes | QMessageBox::No);
 
+        switch (returnValue)
+        {
+          case QMessageBox::Yes:
+
+              controller->deleteAsset(currentAsset);
+              QMessageBox::information(this, tr("Success"), "<p align='center'>Successfully deleted asset '" + currentAsset + "'.</p>", QMessageBox::Ok);
+
+            break;
+
+          case QMessageBox::No:
+              return;
+
+          default:
+              return;
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>No asset type has been selected.<br>Please select an asset type to be deleted.</p>", QMessageBox::Ok);
+        return;
+    }
+
+    ui->comboBoxAssets->setCurrentIndex(0);
+    updateComboBox();
 }
 
 void UpdateAssetInfoDialog::setDateLabels()

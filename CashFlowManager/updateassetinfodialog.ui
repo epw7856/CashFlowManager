@@ -302,7 +302,7 @@
       </widget>
      </item>
      <item row="5" column="2">
-      <widget class="QLabel" name="labelMonth5">
+      <widget class="QLabel" name="labelMonth8">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -312,7 +312,7 @@
       </widget>
      </item>
      <item row="0" column="5">
-      <widget class="QLabel" name="labelMonth7">
+      <widget class="QLabel" name="labelMonth6">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -322,7 +322,7 @@
       </widget>
      </item>
      <item row="6" column="5">
-      <widget class="QLabel" name="labelMonth12">
+      <widget class="QLabel" name="labelMonth1">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -389,7 +389,7 @@
       </widget>
      </item>
      <item row="2" column="5">
-      <widget class="QLabel" name="labelMonth9">
+      <widget class="QLabel" name="labelMonth4">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -501,7 +501,7 @@
       </widget>
      </item>
      <item row="4" column="2">
-      <widget class="QLabel" name="labelMonth4">
+      <widget class="QLabel" name="labelMonth9">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -527,7 +527,7 @@
       </spacer>
      </item>
      <item row="6" column="2">
-      <widget class="QLabel" name="labelMonth6">
+      <widget class="QLabel" name="labelMonth7">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -537,7 +537,7 @@
       </widget>
      </item>
      <item row="1" column="5">
-      <widget class="QLabel" name="labelMonth8">
+      <widget class="QLabel" name="labelMonth5">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -566,16 +566,6 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLabel" name="labelMonth2">
-       <property name="text">
-        <string>Month 1:  $</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="5">
       <widget class="QLabel" name="labelMonth11">
        <property name="text">
         <string>Month 1:  $</string>
@@ -585,8 +575,18 @@
        </property>
       </widget>
      </item>
+     <item row="5" column="5">
+      <widget class="QLabel" name="labelMonth2">
+       <property name="text">
+        <string>Month 1:  $</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="labelMonth1">
+      <widget class="QLabel" name="labelMonth12">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -615,7 +615,7 @@
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QLabel" name="labelMonth3">
+      <widget class="QLabel" name="labelMonth10">
        <property name="text">
         <string>Month 1:  $</string>
        </property>
@@ -625,7 +625,7 @@
       </widget>
      </item>
      <item row="4" column="5">
-      <widget class="QLabel" name="labelMonth10">
+      <widget class="QLabel" name="labelMonth3">
        <property name="text">
         <string>Month 1:  $</string>
        </property>

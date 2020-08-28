@@ -39,3 +39,8 @@ bool UpdateAssetInfoDialogController::isAssetTypeLiquid(const QString& assetName
 {
     return (assetInterface.getAssetByName(assetName.toStdString())->getType() == AssetType::Liquid);
 }
+
+void UpdateAssetInfoDialogController::deleteAsset(const QString& assetName)
+{
+    assetInterface.deleteAsset(assetName.toStdString());
+}

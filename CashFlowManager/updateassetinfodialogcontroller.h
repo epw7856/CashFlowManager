@@ -14,6 +14,7 @@ public:
     QString getAssetValue(const QString& assetName, int previousMonth) const;
     QStringList getAssetTypes() const;
     bool isAssetTypeLiquid(const QString& assetName) const;
+    void deleteAsset(const QString& assetName);
 
 private:
     AssetInterface& assetInterface;

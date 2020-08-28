@@ -747,6 +747,31 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
     }
 }
 
+void SystemDataSource::deleteAsset(const std::string& assetName)
+{
+    auto itr = find_if(assetList.begin(), assetList.end(), [=] (std::unique_ptr<AssetEntry>& asset)
+    {
+        return (asset->getName() == assetName);
+    });
+
+    if(itr != assetList.end())
+    {
+        assetList.erase(itr);
+
+        QJsonArray array = obj.value("Assets").toArray();
+
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == assetName)
+            {
+                array.removeAt(i);
+            }
+        }
+        obj["Assets"] = array;
+    }
+}
+
 double SystemDataSource::getAssetTotalValueByType(AssetType type, int year, int month) const
 {
     std::vector<AssetEntry*> list;
