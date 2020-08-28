@@ -42,7 +42,7 @@ bool AddExpenseTransactionDialogController::verifyTransactionDate(QDate date) co
 
 bool AddExpenseTransactionDialogController::verifyTransactionAmount(QString amount, bool zeroAllowed) const
 {
-    return Validator::verifyDoubleAmount(amount, zeroAllowed);
+    return Validator::verifyDoubleAmount(amount, 100000.00, zeroAllowed);
 }
 
 void AddExpenseTransactionDialogController::addExpenseTransaction(const QDate& date, const QString& type, const QString& description, double transactionAmount, double additionalPrincipal)

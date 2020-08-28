@@ -12,6 +12,8 @@ public:
     void addValueEntry(const std::pair<QDate, double>& entry);
     AssetType getType() const;
     std::string getName() const;
+    void updateName(const std::string& updatedName);
+    void updateType(AssetType updatedType);
     std::map<QDate, double> getValue() const;
     static std::string assetTypeToString(AssetType type);
     static AssetType stringToAssetType(std::string type);
@@ -30,6 +32,16 @@ inline AssetType AssetEntry::getType() const
 inline std::string AssetEntry::getName() const
 {
     return name;
+}
+
+inline void AssetEntry::updateName(const std::string& updatedName)
+{
+    name = updatedName;
+}
+
+inline void AssetEntry::updateType(AssetType updatedType)
+{
+    type = updatedType;
 }
 
 inline std::map<QDate, double> AssetEntry::getValue() const

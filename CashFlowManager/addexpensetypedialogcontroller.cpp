@@ -34,7 +34,7 @@ bool AddExpenseTypeDialogController::verifyTypeName(QString name) const
 
 bool AddExpenseTypeDialogController::verifyBudgetAmount(QString amount, bool zeroAllowed) const
 {
-    return Validator::verifyDoubleAmount(amount, zeroAllowed);
+    return Validator::verifyDoubleAmount(amount, 100000.00, zeroAllowed);
 }
 
 bool AddExpenseTypeDialogController::verifyUniqueTypeName(QString name)

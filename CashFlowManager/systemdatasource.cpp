@@ -747,6 +747,35 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
     }
 }
 
+void SystemDataSource::updateAssetInfo(const std::string& currentAssetName, const std::string& updatedAssetName, AssetType type)
+{
+    auto itr = find_if(assetList.begin(), assetList.end(), [=] (std::unique_ptr<AssetEntry>& asset)
+    {
+        return (asset->getName() == currentAssetName);
+    });
+
+    if(itr != assetList.end())
+    {
+        (*itr)->updateName(updatedAssetName);
+        (*itr)->updateType(type);
+
+        QJsonArray array = obj.value("Assets").toArray();
+        for(int i = 0; i < array.size(); ++i)
+        {
+            QJsonObject item = array.at(i).toObject();
+            if(QString(item.value("Name").toString()).toStdString() == currentAssetName)
+            {
+                item.insert("Name", QJsonValue(QString::fromStdString(updatedAssetName)));
+                item.insert("Type", QJsonValue(QString::fromStdString(AssetEntry::assetTypeToString(type))));
+
+                array.removeAt(i);
+                array.insert(i,item);
+            }
+        }
+        obj["Assets"] = array;
+    }
+}
+
 void SystemDataSource::deleteAsset(const std::string& assetName)
 {
     auto itr = find_if(assetList.begin(), assetList.end(), [=] (std::unique_ptr<AssetEntry>& asset)

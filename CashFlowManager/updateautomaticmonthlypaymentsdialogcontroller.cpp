@@ -23,7 +23,7 @@ bool UpdateAutomaticMonthlyPaymentsDialogController::verifyPaymentDescription(QS
 
 bool UpdateAutomaticMonthlyPaymentsDialogController::verifyTransactionAmount(QString amount) const
 {
-    return Validator::verifyDoubleAmount(amount, false);
+    return Validator::verifyDoubleAmount(amount, 100000.00, false);
 }
 
 bool UpdateAutomaticMonthlyPaymentsDialogController::verifyUniquePaymentName(QString account, QString description) const

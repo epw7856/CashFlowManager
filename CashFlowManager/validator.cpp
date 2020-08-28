@@ -15,12 +15,12 @@ bool Validator::verifyDate(QDate& date)
             date.year() >= QDate::currentDate().addYears(-1).year());
 }
 
-bool Validator::verifyDoubleAmount(QString& amount, bool zeroAllowed)
+bool Validator::verifyDoubleAmount(QString& amount, double upperLimit, bool zeroAllowed)
 {
     QDoubleValidator validator;
     int pos = 0;
 
-    (zeroAllowed) ? validator.setRange(0.00, 100000.00, 2) : validator.setRange(0.01, 100000.00, 2);
+    (zeroAllowed) ? validator.setRange(0.00, upperLimit, 2) : validator.setRange(0.01, upperLimit, 2);
 
     return (validator.validate(amount, pos) == QValidator::Acceptable);
 }

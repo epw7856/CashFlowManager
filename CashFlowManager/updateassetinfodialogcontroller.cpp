@@ -2,6 +2,7 @@
 #include "assetinterface.h"
 #include "currencyutilities.h"
 #include "updateassetinfodialogcontroller.h"
+#include "validator.h"
 
 UpdateAssetInfoDialogController::UpdateAssetInfoDialogController(AssetInterface& localAssetInterface)
 :
@@ -43,4 +44,24 @@ bool UpdateAssetInfoDialogController::isAssetTypeLiquid(const QString& assetName
 void UpdateAssetInfoDialogController::deleteAsset(const QString& assetName)
 {
     assetInterface.deleteAsset(assetName.toStdString());
+}
+
+bool UpdateAssetInfoDialogController::verifyAssetValue(QString value) const
+{
+    return Validator::verifyDoubleAmount(value, 10000000.00, true);
+}
+
+bool UpdateAssetInfoDialogController::verifyAssetName(const QString& assetName) const
+{
+    return !assetName.isEmpty();
+}
+
+void UpdateAssetInfoDialogController::updateAsset(const QString& currentAssetName,
+                                                  const QString& updatedAssetName,
+                                                  AssetType type,
+                                                  std::vector<QString>& values)
+{
+    assetInterface.updateAssetInfo(currentAssetName.toStdString(), updatedAssetName.toStdString(), type);
+
+
 }

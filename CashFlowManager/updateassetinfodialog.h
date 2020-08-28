@@ -37,7 +37,7 @@ private:
     QString currentAsset = "";
 
     void setDateLabels();
-    void updateComboBox();
+    void updateComboBox(bool setIndexToZero);
     void updateValues();
     void setEnabled(bool enabled);
 };

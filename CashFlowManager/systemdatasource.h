@@ -75,6 +75,7 @@ public:
     std::vector<AssetEntry*> getAssetListByType(AssetType type) const override;
     void addAsset(const AssetEntry& entry) override;
     void addAssetValue(const std::string& assetName, const std::pair<QDate, double>& valueEntry) override;
+    void updateAssetInfo(const std::string& currentAssetName, const std::string& updatedAssetName, AssetType type) override;
     void deleteAsset(const std::string& assetName) override;
     double getAssetValue(const std::string assetName, int year, int month) const override;
     double getAssetTotalValueByType(AssetType type, int year, int month) const override;

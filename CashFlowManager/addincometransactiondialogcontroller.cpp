@@ -23,7 +23,7 @@ bool AddIncomeTransactionDialogController::verifyTransactionDate(QDate date) con
 
 bool AddIncomeTransactionDialogController::verifyTransactionAmount(QString amount) const
 {
-    return Validator::verifyDoubleAmount(amount, false);
+    return Validator::verifyDoubleAmount(amount, 100000.00, false);
 }
 
 bool AddIncomeTransactionDialogController::verifyOTAmount(QString amount) const

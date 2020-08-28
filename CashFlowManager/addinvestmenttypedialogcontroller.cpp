@@ -31,7 +31,7 @@ bool AddInvestmentTypeDialogController::verifyTypeName(QString name) const
 
 bool AddInvestmentTypeDialogController::verifyTargetAmount(QString amount) const
 {
-    return Validator::verifyDoubleAmount(amount, false);
+    return Validator::verifyDoubleAmount(amount, 100000.00, false);
 }
 
 bool AddInvestmentTypeDialogController::verifyUniqueTypeName(QString name)

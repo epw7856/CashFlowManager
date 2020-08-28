@@ -2,6 +2,7 @@
 #include "updateassetinfodialog.h"
 #include "updateassetinfodialogcontroller.h"
 #include "ui_updateassetinfodialog.h"
+#include <vector>
 
 UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace, QWidget *parent) :
     QDialog(parent),
@@ -12,7 +13,7 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
-    updateComboBox();
+    updateComboBox(true);
     setDateLabels();
     setEnabled(false);
 
@@ -58,7 +59,48 @@ void UpdateAssetInfoDialog::onPushButtonExitClicked()
 
 void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
 {
+    if(!controller->verifyAssetValue(ui->labelMonth1->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth2->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth3->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth4->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth5->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth6->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth7->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth8->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth9->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth10->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth11->text()) ||
+       !controller->verifyAssetValue(ui->labelMonth12->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>Invalid asset values have been entered.<br>Please enter valid values for the asset type.</p>", QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyAssetName(ui->lineEditAssetName->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>Invalid asset name.<br>Please enter a valid name for the asset type.</p>", QMessageBox::Ok);
+        return;
+    }
+    else
+    {
+        std::vector<QString> values(12);
+        values.push_back(ui->labelMonth1->text());
+        values.push_back(ui->labelMonth2->text());
+        values.push_back(ui->labelMonth3->text());
+        values.push_back(ui->labelMonth4->text());
+        values.push_back(ui->labelMonth5->text());
+        values.push_back(ui->labelMonth6->text());
+        values.push_back(ui->labelMonth7->text());
+        values.push_back(ui->labelMonth8->text());
+        values.push_back(ui->labelMonth9->text());
+        values.push_back(ui->labelMonth10->text());
+        values.push_back(ui->labelMonth11->text());
+        values.push_back(ui->labelMonth12->text());
 
+
+        QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated asset type.</p>"), QMessageBox::Ok);
+    }
+
+    updateComboBox(false);
 }
 
 void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
@@ -89,8 +131,7 @@ void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
         return;
     }
 
-    ui->comboBoxAssets->setCurrentIndex(0);
-    updateComboBox();
+    updateComboBox(true);
 }
 
 void UpdateAssetInfoDialog::setDateLabels()
@@ -109,7 +150,7 @@ void UpdateAssetInfoDialog::setDateLabels()
     ui->labelMonth12->setText(controller->getMonthString(0));
 }
 
-void UpdateAssetInfoDialog::updateComboBox()
+void UpdateAssetInfoDialog::updateComboBox(bool setIndexToZero)
 {
     ui->comboBoxAssets->clear();
     ui->comboBoxAssets->addItems(controller->getAssetTypes());
@@ -123,7 +164,10 @@ void UpdateAssetInfoDialog::updateComboBox()
         ui->comboBoxAssets->insertItem(0, "<Asset Types>");
     }
 
-    ui->comboBoxAssets->setCurrentIndex(0);
+    if(setIndexToZero)
+    {
+        ui->comboBoxAssets->setCurrentIndex(0);
+    }
 }
 
 void UpdateAssetInfoDialog::updateValues()
