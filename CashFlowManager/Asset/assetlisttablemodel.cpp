@@ -92,7 +92,7 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
                 if((QDate::currentDate().month() - 1) >= static_cast<int>(rowUint))
                 {
                     if(static_cast<int>(rowUint) == (QDate::currentDate().month() - 1) &&
-                       !assetInterface.currentMonthValuesEntered())
+                       !assetInterface.currentMonthValuesEnteredForAllAssets())
                     {
                         return "";
                     }
@@ -112,7 +112,7 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
     if(role == Qt::BackgroundRole)
     {
         int stopIndex;
-        (assetInterface.currentMonthValuesEntered()) ? stopIndex = QDate::currentDate().month() : stopIndex = QDate::currentDate().month() - 1;
+        (assetInterface.currentMonthValuesEnteredForAllAssets()) ? stopIndex = QDate::currentDate().month() : stopIndex = QDate::currentDate().month() - 1;
 
         if(index.row() < stopIndex)
         {
@@ -264,7 +264,7 @@ void AssetListTableModel::setAssetEntries()
 
     for(int i = 1; i <= QDate::currentDate().month(); ++i)
     {
-        if(i == QDate::currentDate().month() && !assetInterface.currentMonthValuesEntered())
+        if(i == QDate::currentDate().month() && !assetInterface.currentMonthValuesEnteredForAllAssets())
         {
             break;
         }

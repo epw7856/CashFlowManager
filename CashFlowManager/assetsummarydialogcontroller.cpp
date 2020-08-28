@@ -62,7 +62,7 @@ std::vector<double> AssetSummaryDialogController::getPastYearNetWorthTotals() co
     std::vector<double> totals;
     QDate date(QDate::currentDate());
 
-    if(!assetInterface.currentMonthValuesEntered())
+    if(!assetInterface.currentMonthValuesEnteredForAllAssets())
     {
         date = date.addMonths(-1);
     }
@@ -79,7 +79,7 @@ std::vector<double> AssetSummaryDialogController::getPastYearNetWorthTotals() co
 
 bool AssetSummaryDialogController::getCurrentMonthValuesEntered() const
 {
-    return assetInterface.currentMonthValuesEntered();
+    return assetInterface.currentMonthValuesEnteredForAllAssets();
 }
 
 std::pair<double, double> AssetSummaryDialogController::getPastYearMinandMaxNetWorth() const

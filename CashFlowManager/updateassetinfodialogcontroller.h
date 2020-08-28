@@ -1,7 +1,6 @@
 #ifndef UPDATEASSETINFODIALOGCONTROLLER_H
 #define UPDATEASSETINFODIALOGCONTROLLER_H
 
-#include "assettype.h"
 #include <QDate>
 #include <QStringList>
 #include <vector>
@@ -21,7 +20,7 @@ public:
     bool verifyAssetName(const QString& assetName) const;
     void updateAsset(const QString& currentAssetName,
                      const QString& updatedAssetName,
-                     AssetType type,
+                     bool isLiquid,
                      std::vector<QString>& values);
 
 private:

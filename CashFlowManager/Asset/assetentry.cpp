@@ -16,7 +16,14 @@ AssetEntry::AssetEntry
 
 void AssetEntry::addValueEntry(const std::pair<QDate, double>& entry)
 {
-    value.insert(entry);
+    if(value.find(entry.first) != value.end())
+    {
+        value[entry.first] = entry.second;
+    }
+    else
+    {
+        value.insert(entry);
+    }
 }
 
 std::string AssetEntry::assetTypeToString(AssetType type)

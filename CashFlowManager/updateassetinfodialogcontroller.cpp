@@ -1,6 +1,7 @@
 #include "assetentry.h"
 #include "assetinterface.h"
 #include "currencyutilities.h"
+#include <QDate>
 #include "updateassetinfodialogcontroller.h"
 #include "validator.h"
 
@@ -18,9 +19,15 @@ QString UpdateAssetInfoDialogController::getMonthString(int previousMonth) const
 
 QString UpdateAssetInfoDialogController::getAssetValue(const QString& assetName, int previousMonth) const
 {
+    if(previousMonth == 0 && !assetInterface.currentMonthValueEnteredForAsset(assetName.toStdString()))
+    {
+        return QString::fromStdString(CurrencyUtilities::formatDouble(0.0));
+    }
+
     double amount = assetInterface.getAssetValue(assetName.toStdString(),
                                                  date.addMonths(-1 * previousMonth).year(),
                                                  date.addMonths(-1 * previousMonth).month());
+
     return QString::fromStdString(CurrencyUtilities::formatDouble(amount));
 }
 
@@ -58,10 +65,18 @@ bool UpdateAssetInfoDialogController::verifyAssetName(const QString& assetName) 
 
 void UpdateAssetInfoDialogController::updateAsset(const QString& currentAssetName,
                                                   const QString& updatedAssetName,
-                                                  AssetType type,
+                                                  bool isLiquid,
                                                   std::vector<QString>& values)
 {
+    AssetType type;
+    (isLiquid) ? type = AssetType::Liquid :
+                 type = AssetType::Illiquid;
+
     assetInterface.updateAssetInfo(currentAssetName.toStdString(), updatedAssetName.toStdString(), type);
 
-
+    for(quint32 i = 0; i < values.size(); ++i)
+    {
+        QDate date(QDate::currentDate().year(), QDate::currentDate().month(), 1);
+        assetInterface.addAssetValue(updatedAssetName.toStdString(), {date.addMonths(-1 * i), values[i].remove(',').toDouble()});
+    }
 }

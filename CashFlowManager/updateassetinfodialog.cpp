@@ -13,7 +13,7 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
-    updateComboBox(true);
+    updateComboBox();
     setDateLabels();
     setEnabled(false);
 
@@ -59,18 +59,18 @@ void UpdateAssetInfoDialog::onPushButtonExitClicked()
 
 void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
 {
-    if(!controller->verifyAssetValue(ui->labelMonth1->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth2->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth3->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth4->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth5->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth6->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth7->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth8->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth9->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth10->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth11->text()) ||
-       !controller->verifyAssetValue(ui->labelMonth12->text()))
+    if(!controller->verifyAssetValue(ui->lineEditMonth1->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth2->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth3->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth4->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth5->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth6->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth7->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth8->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth9->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth10->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth11->text()) ||
+       !controller->verifyAssetValue(ui->lineEditMonth12->text()))
     {
         QMessageBox::critical(this, tr("Error"), "<p align='center'>Invalid asset values have been entered.<br>Please enter valid values for the asset type.</p>", QMessageBox::Ok);
         return;
@@ -82,25 +82,28 @@ void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
     }
     else
     {
-        std::vector<QString> values(12);
-        values.push_back(ui->labelMonth1->text());
-        values.push_back(ui->labelMonth2->text());
-        values.push_back(ui->labelMonth3->text());
-        values.push_back(ui->labelMonth4->text());
-        values.push_back(ui->labelMonth5->text());
-        values.push_back(ui->labelMonth6->text());
-        values.push_back(ui->labelMonth7->text());
-        values.push_back(ui->labelMonth8->text());
-        values.push_back(ui->labelMonth9->text());
-        values.push_back(ui->labelMonth10->text());
-        values.push_back(ui->labelMonth11->text());
-        values.push_back(ui->labelMonth12->text());
+        std::vector<QString> values;
+        values.reserve(12);
+        values.push_back(ui->lineEditMonth1->text());
+        values.push_back(ui->lineEditMonth2->text());
+        values.push_back(ui->lineEditMonth3->text());
+        values.push_back(ui->lineEditMonth4->text());
+        values.push_back(ui->lineEditMonth5->text());
+        values.push_back(ui->lineEditMonth6->text());
+        values.push_back(ui->lineEditMonth7->text());
+        values.push_back(ui->lineEditMonth8->text());
+        values.push_back(ui->lineEditMonth9->text());
+        values.push_back(ui->lineEditMonth10->text());
+        values.push_back(ui->lineEditMonth11->text());
+        values.push_back(ui->lineEditMonth12->text());
 
+        controller->updateAsset(currentAsset, ui->lineEditAssetName->text(), ui->radioButtonLiquid->isChecked(), values);
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully updated asset type.</p>"), QMessageBox::Ok);
     }
 
-    updateComboBox(false);
+    updateValues();
+    updateComboBox(ui->comboBoxAssets->currentIndex());
 }
 
 void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
@@ -131,26 +134,26 @@ void UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked()
         return;
     }
 
-    updateComboBox(true);
+    updateComboBox();
 }
 
 void UpdateAssetInfoDialog::setDateLabels()
 {
-    ui->labelMonth1->setText(controller->getMonthString(11));
-    ui->labelMonth2->setText(controller->getMonthString(10));
-    ui->labelMonth3->setText(controller->getMonthString(9));
-    ui->labelMonth4->setText(controller->getMonthString(8));
-    ui->labelMonth5->setText(controller->getMonthString(7));
-    ui->labelMonth6->setText(controller->getMonthString(6));
-    ui->labelMonth7->setText(controller->getMonthString(5));
-    ui->labelMonth8->setText(controller->getMonthString(4));
-    ui->labelMonth9->setText(controller->getMonthString(3));
-    ui->labelMonth10->setText(controller->getMonthString(2));
-    ui->labelMonth11->setText(controller->getMonthString(1));
-    ui->labelMonth12->setText(controller->getMonthString(0));
+    ui->labelMonth1->setText(controller->getMonthString(0));
+    ui->labelMonth2->setText(controller->getMonthString(1));
+    ui->labelMonth3->setText(controller->getMonthString(2));
+    ui->labelMonth4->setText(controller->getMonthString(3));
+    ui->labelMonth5->setText(controller->getMonthString(4));
+    ui->labelMonth6->setText(controller->getMonthString(5));
+    ui->labelMonth7->setText(controller->getMonthString(6));
+    ui->labelMonth8->setText(controller->getMonthString(7));
+    ui->labelMonth9->setText(controller->getMonthString(8));
+    ui->labelMonth10->setText(controller->getMonthString(9));
+    ui->labelMonth11->setText(controller->getMonthString(10));
+    ui->labelMonth12->setText(controller->getMonthString(11));
 }
 
-void UpdateAssetInfoDialog::updateComboBox(bool setIndexToZero)
+void UpdateAssetInfoDialog::updateComboBox(quint32 currentIndex)
 {
     ui->comboBoxAssets->clear();
     ui->comboBoxAssets->addItems(controller->getAssetTypes());
@@ -164,26 +167,23 @@ void UpdateAssetInfoDialog::updateComboBox(bool setIndexToZero)
         ui->comboBoxAssets->insertItem(0, "<Asset Types>");
     }
 
-    if(setIndexToZero)
-    {
-        ui->comboBoxAssets->setCurrentIndex(0);
-    }
+    ui->comboBoxAssets->setCurrentIndex(currentIndex);
 }
 
 void UpdateAssetInfoDialog::updateValues()
 {
-    ui->lineEditMonth1->setText(controller->getAssetValue(currentAsset, 11));
-    ui->lineEditMonth2->setText(controller->getAssetValue(currentAsset, 10));
-    ui->lineEditMonth3->setText(controller->getAssetValue(currentAsset, 9));
-    ui->lineEditMonth4->setText(controller->getAssetValue(currentAsset, 8));
-    ui->lineEditMonth5->setText(controller->getAssetValue(currentAsset, 7));
-    ui->lineEditMonth6->setText(controller->getAssetValue(currentAsset, 6));
-    ui->lineEditMonth7->setText(controller->getAssetValue(currentAsset, 5));
-    ui->lineEditMonth8->setText(controller->getAssetValue(currentAsset, 4));
-    ui->lineEditMonth9->setText(controller->getAssetValue(currentAsset, 3));
-    ui->lineEditMonth10->setText(controller->getAssetValue(currentAsset, 2));
-    ui->lineEditMonth11->setText(controller->getAssetValue(currentAsset, 1));
-    ui->lineEditMonth12->setText(controller->getAssetValue(currentAsset, 0));
+    ui->lineEditMonth1->setText(controller->getAssetValue(currentAsset, 0));
+    ui->lineEditMonth2->setText(controller->getAssetValue(currentAsset, 1));
+    ui->lineEditMonth3->setText(controller->getAssetValue(currentAsset, 2));
+    ui->lineEditMonth4->setText(controller->getAssetValue(currentAsset, 3));
+    ui->lineEditMonth5->setText(controller->getAssetValue(currentAsset, 4));
+    ui->lineEditMonth6->setText(controller->getAssetValue(currentAsset, 5));
+    ui->lineEditMonth7->setText(controller->getAssetValue(currentAsset, 6));
+    ui->lineEditMonth8->setText(controller->getAssetValue(currentAsset, 7));
+    ui->lineEditMonth9->setText(controller->getAssetValue(currentAsset, 8));
+    ui->lineEditMonth10->setText(controller->getAssetValue(currentAsset, 9));
+    ui->lineEditMonth11->setText(controller->getAssetValue(currentAsset, 10));
+    ui->lineEditMonth12->setText(controller->getAssetValue(currentAsset, 11));
 }
 
 void UpdateAssetInfoDialog::setEnabled(bool enabled)

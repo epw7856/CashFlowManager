@@ -21,7 +21,8 @@ public:
     virtual void deleteAsset(const std::string& assetName) = 0;
     virtual double getAssetValue(const std::string assetName, int year, int month) const = 0;
     virtual double getAssetTotalValueByType(AssetType type, int year, int month) const = 0;
-    virtual bool currentMonthValuesEntered() const = 0;
+    virtual bool currentMonthValuesEnteredForAllAssets() const = 0;
+    virtual bool currentMonthValueEnteredForAsset(const std::string& assetName) const = 0;
 };
 
 #endif // ASSETINTERFACE_H

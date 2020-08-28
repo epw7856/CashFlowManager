@@ -79,7 +79,8 @@ public:
     void deleteAsset(const std::string& assetName) override;
     double getAssetValue(const std::string assetName, int year, int month) const override;
     double getAssetTotalValueByType(AssetType type, int year, int month) const override;
-    bool currentMonthValuesEntered() const override;
+    bool currentMonthValuesEnteredForAllAssets() const override;
+    bool currentMonthValueEnteredForAsset(const std::string& assetName) const override;
 
     // Mortgage Interface
     double getTotalLoanAmount() const override;

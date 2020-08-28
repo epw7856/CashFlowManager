@@ -264,7 +264,7 @@
    <item>
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="1" column="6">
-      <widget class="QLineEdit" name="lineEditMonth8">
+      <widget class="QLineEdit" name="lineEditMonth5">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -283,7 +283,7 @@
       </widget>
      </item>
      <item row="5" column="6">
-      <widget class="QLineEdit" name="lineEditMonth11">
+      <widget class="QLineEdit" name="lineEditMonth2">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -332,7 +332,7 @@
       </widget>
      </item>
      <item row="6" column="3">
-      <widget class="QLineEdit" name="lineEditMonth6">
+      <widget class="QLineEdit" name="lineEditMonth7">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -351,7 +351,7 @@
       </widget>
      </item>
      <item row="5" column="3">
-      <widget class="QLineEdit" name="lineEditMonth5">
+      <widget class="QLineEdit" name="lineEditMonth8">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -370,7 +370,7 @@
       </widget>
      </item>
      <item row="2" column="6">
-      <widget class="QLineEdit" name="lineEditMonth9">
+      <widget class="QLineEdit" name="lineEditMonth4">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -399,7 +399,7 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEditMonth1">
+      <widget class="QLineEdit" name="lineEditMonth12">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -431,7 +431,7 @@
       </spacer>
      </item>
      <item row="2" column="3">
-      <widget class="QLineEdit" name="lineEditMonth3">
+      <widget class="QLineEdit" name="lineEditMonth10">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -450,7 +450,7 @@
       </widget>
      </item>
      <item row="4" column="6">
-      <widget class="QLineEdit" name="lineEditMonth10">
+      <widget class="QLineEdit" name="lineEditMonth3">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -482,7 +482,7 @@
       </spacer>
      </item>
      <item row="4" column="3">
-      <widget class="QLineEdit" name="lineEditMonth4">
+      <widget class="QLineEdit" name="lineEditMonth9">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -547,7 +547,7 @@
       </widget>
      </item>
      <item row="6" column="6">
-      <widget class="QLineEdit" name="lineEditMonth12">
+      <widget class="QLineEdit" name="lineEditMonth1">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -596,7 +596,7 @@
       </widget>
      </item>
      <item row="0" column="6">
-      <widget class="QLineEdit" name="lineEditMonth7">
+      <widget class="QLineEdit" name="lineEditMonth6">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -635,7 +635,7 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QLineEdit" name="lineEditMonth2">
+      <widget class="QLineEdit" name="lineEditMonth11">
        <property name="minimumSize">
         <size>
          <width>100</width>

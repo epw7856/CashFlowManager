@@ -727,20 +727,34 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
         QJsonArray array = obj.value("Assets").toArray();
         for(int i = 0; i < array.size(); ++i)
         {
-            QJsonObject item = array.at(i).toObject();
-            if(QString(item.value("Name").toString()).toStdString() == assetName)
+            QJsonObject asset = array.at(i).toObject();
+            if(asset.value("Name").toString().toStdString() == assetName)
             {
+                QJsonArray values = asset.value("Values").toArray();
+                for(int j = 0; j < values.size(); ++j)
+                {
+                    QJsonObject entry = values.at(j).toObject();
 
-                QJsonArray values = item.value("Values").toArray();
-
-                QJsonObject newValueItem;
-                newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/yyyy")));
-                newValueItem.insert("Value", QJsonValue(valueEntry.second));
-                values.append(newValueItem);
-                item.remove("Values");
-                item.insert("Values", values);
+                    if(entry.value("Date").toString() == valueEntry.first.toString("MM/yyyy"))
+                    {
+                        entry.insert("Value", QJsonValue(valueEntry.second));
+                        values.removeAt(j);
+                        values.insert(j, entry);
+                        break;
+                    }
+                    else if(j == values.size() - 1)
+                    {
+                        QJsonObject newValueItem;
+                        newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/yyyy")));
+                        newValueItem.insert("Value", QJsonValue(valueEntry.second));
+                        values.append(newValueItem);
+                    }
+                }
+                asset.remove("Values");
+                asset.insert("Values", values);
                 array.removeAt(i);
-                array.insert(i,item);
+                array.insert(i, asset);
+                break;
             }
         }
         obj["Assets"] = array;
@@ -765,11 +779,11 @@ void SystemDataSource::updateAssetInfo(const std::string& currentAssetName, cons
             QJsonObject item = array.at(i).toObject();
             if(QString(item.value("Name").toString()).toStdString() == currentAssetName)
             {
-                item.insert("Name", QJsonValue(QString::fromStdString(updatedAssetName)));
-                item.insert("Type", QJsonValue(QString::fromStdString(AssetEntry::assetTypeToString(type))));
+                item["Name"] = QJsonValue(QString::fromStdString(updatedAssetName));
+                item["Type"] = QJsonValue(QString::fromStdString(AssetEntry::assetTypeToString(type)));
 
                 array.removeAt(i);
-                array.insert(i,item);
+                array.insert(i, item);
             }
         }
         obj["Assets"] = array;
@@ -820,7 +834,7 @@ double SystemDataSource::getAssetTotalValueByType(AssetType type, int year, int 
     return value;
 }
 
-bool SystemDataSource::currentMonthValuesEntered() const
+bool SystemDataSource::currentMonthValuesEnteredForAllAssets() const
 {
     QDate date(QDate::currentDate().year(), QDate::currentDate().month(), 1);
 
@@ -834,6 +848,27 @@ bool SystemDataSource::currentMonthValuesEntered() const
         }
     }
     return true;
+}
+
+bool SystemDataSource::currentMonthValueEnteredForAsset(const std::string& assetName) const
+{
+    auto itr = find_if(assetList.begin(), assetList.end(), [=] (const std::unique_ptr<AssetEntry>& asset)
+    {
+        return (asset->getName() == assetName);
+    });
+
+    if(itr != assetList.end())
+    {
+        QDate date(QDate::currentDate().year(), QDate::currentDate().month(), 1);
+        std::map<QDate, double> values = (*itr)->getValue();
+        auto entry = values.find(date);
+        if(entry == values.end())
+        {
+            return false;
+        }
+        return true;
+    }
+    return false;
 }
 
 double SystemDataSource::getTotalLoanAmount() const
