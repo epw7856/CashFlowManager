@@ -32,8 +32,8 @@ bool UpdateAutomaticMonthlyPaymentsDialogController::verifyUniquePaymentName(QSt
 
     auto itr = std::find_if(payments.begin(), payments.end(), [=] (const AutomaticMonthlyPayment* item)
     {
-        return ((QString::fromStdString(item->getName()).toLower() == description.toLower()) &&
-                (QString::fromStdString(item->getAccount()).toLower() == account.toLower()));
+        return ((QString::fromStdString(item->getName()).toLower() == description.trimmed().toLower()) &&
+                (QString::fromStdString(item->getAccount()).toLower() == account.trimmed().toLower()));
     });
     return (itr == payments.end());
 }
@@ -42,7 +42,7 @@ void UpdateAutomaticMonthlyPaymentsDialogController::addAutomaticMonthlyPayment(
                                                                                 const QString& description,
                                                                                 double amount)
 {
-    AutomaticMonthlyPayment payment(description.toStdString(), account.toStdString(), amount);
+    AutomaticMonthlyPayment payment(description.trimmed().toStdString(), account.trimmed().toStdString(), amount);
     expenseInterface.addAutomaticMonthlyPayment(payment);
 }
 
@@ -62,6 +62,6 @@ void UpdateAutomaticMonthlyPaymentsDialogController::updateAutomaticMonthlyPayme
                                                                                    double updatedAmount)
 {
     AutomaticMonthlyPayment existingPayment(existingDescription.toStdString(), existingAccount.toStdString(), existingAmount);
-    AutomaticMonthlyPayment updatedPayment(updatedDescription.toStdString(), updatedAccount.toStdString(), updatedAmount);
+    AutomaticMonthlyPayment updatedPayment(updatedDescription.trimmed().toStdString(), updatedAccount.trimmed().toStdString(), updatedAmount);
     expenseInterface.updateAutomaticMonthlyPayment(existingPayment, updatedPayment);
 }

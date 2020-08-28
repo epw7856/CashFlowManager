@@ -40,14 +40,14 @@ bool AddInvestmentTypeDialogController::verifyUniqueTypeName(QString name)
 
     auto itr = std::find_if(types.begin(), types.end(), [=] (const InvestmentType* type)
     {
-        return (QString::fromStdString(type->getName()).toLower() == name.toLower());
+        return (QString::fromStdString(type->getName()).toLower() == name.trimmed().toLower());
     });
     return (itr == types.end());
 }
 
 void AddInvestmentTypeDialogController::addInvestmentType(const QString& name, double targetAmount)
 {
-    InvestmentType type(name.toStdString(), targetAmount);
+    InvestmentType type(name.trimmed().toStdString(), targetAmount);
 
     investmentInterface.addInvestmentType(type);
 }
@@ -59,7 +59,7 @@ void AddInvestmentTypeDialogController::deleteInvestmentType(const QString& name
 
 void AddInvestmentTypeDialogController::updateInvestmentType(const QString& currentName, const QString& updatedName, double updatedAmount)
 {
-    investmentInterface.updateInvestmentType(currentName.toStdString(), updatedName.toStdString(), updatedAmount);
+    investmentInterface.updateInvestmentType(currentName.toStdString(), updatedName.trimmed().toStdString(), updatedAmount);
 }
 
 QString AddInvestmentTypeDialogController::getMonthlyTargetAmount(QString name) const

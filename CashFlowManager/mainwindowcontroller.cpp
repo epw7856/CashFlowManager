@@ -381,7 +381,7 @@ void MainWindowController::showUpdateAssetInfoDialog(QWidget *parent)
 {
     if(updateAssetInfoDialog == nullptr)
     {
-        updateAssetInfoDialog = std::make_unique<UpdateAssetInfoDialog>(sds, parent);
+        updateAssetInfoDialog = std::make_unique<UpdateAssetInfoDialog>(sds, false, parent);
     }
 
     connect(updateAssetInfoDialog.get(), &UpdateAssetInfoDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
@@ -389,6 +389,20 @@ void MainWindowController::showUpdateAssetInfoDialog(QWidget *parent)
     updateAssetInfoDialog->show();
     updateAssetInfoDialog->raise();
     updateAssetInfoDialog->activateWindow();
+}
+
+void MainWindowController::showAddAssetDialog(QWidget *parent)
+{
+    if(addAssetInfoDialog == nullptr)
+    {
+        addAssetInfoDialog = std::make_unique<UpdateAssetInfoDialog>(sds, true, parent);
+    }
+
+    connect(addAssetInfoDialog.get(), &UpdateAssetInfoDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
+    addAssetInfoDialog->show();
+    addAssetInfoDialog->raise();
+    addAssetInfoDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

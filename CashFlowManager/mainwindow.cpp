@@ -137,7 +137,7 @@ void MainWindow::onActionModifyAutomaticMonthlyPaymentTriggered()
 
 void MainWindow::onActionAddNewAssetTriggered()
 {
-
+    mainWindowController->showAddAssetDialog(this);
 }
 
 void MainWindow::onActionModifyAssetInfoTriggered()

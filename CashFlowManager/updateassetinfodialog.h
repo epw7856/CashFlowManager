@@ -16,7 +16,7 @@ class UpdateAssetInfoDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit UpdateAssetInfoDialog(AssetInterface& localAssetInterace, QWidget *parent = nullptr);
+    explicit UpdateAssetInfoDialog(AssetInterface& localAssetInterace, bool addNewAsset, QWidget *parent = nullptr);
     ~UpdateAssetInfoDialog();
 
 signals:
@@ -28,6 +28,7 @@ public slots:
 private slots:
     void assetTypeSelectionChanged(QString type);
     void onPushButtonExitClicked();
+    void onPushButtonAddAssetClicked();
     void onPushButtonUpdateAssetClicked();
     void onPushButtonDeleteAssetClicked();
 
@@ -40,6 +41,8 @@ private:
     void updateComboBox(quint32 currentIndex = 0);
     void updateValues();
     void setEnabled(bool enabled);
+    bool verifyAmounts();
+    void populateVectorWithValues(std::vector<QString>& values);
 };
 
 #endif // UPDATEASSETINFODIALOG_H

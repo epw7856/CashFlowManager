@@ -43,7 +43,7 @@ bool AddExpenseTypeDialogController::verifyUniqueTypeName(QString name)
 
     auto itr = std::find_if(types.begin(), types.end(), [=] (const ExpenseType* type)
     {
-        return (QString::fromStdString(type->getName()).toLower() == name.toLower());
+        return (QString::fromStdString(type->getName()).toLower() == name.trimmed().toLower());
     });
     return (itr == types.end());
 }
@@ -52,7 +52,7 @@ void AddExpenseTypeDialogController::addExpenseType(const QString& name,
                                                     double budgetAmount,
                                                     bool isRequired)
 {
-    ExpenseType type(name.toStdString(), budgetAmount, isRequired);
+    ExpenseType type(name.trimmed().toStdString(), budgetAmount, isRequired);
 
     expenseInterface.addExpenseType(type);
 }
@@ -67,7 +67,7 @@ void AddExpenseTypeDialogController::updateExpenseType(const QString& currentNam
                                                        double updatedAmount,
                                                        bool isRequired)
 {
-    expenseInterface.updateExpenseType(currentName.toStdString(), updatedName.toStdString(), updatedAmount, isRequired);
+    expenseInterface.updateExpenseType(currentName.toStdString(), updatedName.trimmed().toStdString(), updatedAmount, isRequired);
 }
 
 QString AddExpenseTypeDialogController::getMonthlyBudgetAmount(QString name) const

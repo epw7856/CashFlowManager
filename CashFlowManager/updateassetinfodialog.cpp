@@ -4,7 +4,7 @@
 #include "ui_updateassetinfodialog.h"
 #include <vector>
 
-UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace, QWidget *parent) :
+UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace, bool addNewAsset, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::UpdateAssetInfoDialog),
     controller(std::make_unique<UpdateAssetInfoDialogController>(localAssetInterace))
@@ -13,14 +13,30 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
-    updateComboBox();
+    if(addNewAsset)
+    {
+        ui->pushButtonUpdateAsset->setVisible(false);
+        ui->pushButtonDeleteAsset->setVisible(false);
+        ui->comboBoxAssets->setVisible(false);
+        ui->labelAssets->setVisible(false);
+        setEnabled(true);
+    }
+    else
+    {
+        ui->pushButtonAddAsset->setVisible(false);
+        setEnabled(false);
+        updateComboBox();
+    }
+
     setDateLabels();
-    setEnabled(false);
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonExitClicked);
+    connect(ui->pushButtonAddAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonAddAssetClicked);
     connect(ui->pushButtonUpdateAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked);
     connect(ui->pushButtonDeleteAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked); 
     connect(ui->comboBoxAssets, SIGNAL(currentTextChanged(QString)), this, SLOT(assetTypeSelectionChanged(QString)));
+
+    resize(window()->width(), window()->minimumHeight());
 }
 
 UpdateAssetInfoDialog::~UpdateAssetInfoDialog()
@@ -57,20 +73,38 @@ void UpdateAssetInfoDialog::onPushButtonExitClicked()
     close();
 }
 
+void UpdateAssetInfoDialog::onPushButtonAddAssetClicked()
+{
+    if(!verifyAmounts())
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>Invalid asset values have been entered.<br>Please enter valid values for the asset type.</p>", QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyAssetName(ui->lineEditAssetName->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>Invalid asset name.<br>Please enter a valid name for the asset type.</p>", QMessageBox::Ok);
+        return;
+    }
+    else if(!controller->verifyUniqueAssetName(ui->lineEditAssetName->text()))
+    {
+        QMessageBox::critical(this, tr("Error"), "<p align='center'>Asset name already exists.<br>Please enter a valid, unique name for the new asset type.</p>", QMessageBox::Ok);
+        return;
+    }
+    else
+    {
+        std::vector<QString> values;
+        values.reserve(12);
+        populateVectorWithValues(values);
+
+        //controller->updateAsset(currentAsset, ui->lineEditAssetName->text(), ui->radioButtonLiquid->isChecked(), values);
+
+        QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added asset type.</p>"), QMessageBox::Ok);
+    }
+}
+
 void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
 {
-    if(!controller->verifyAssetValue(ui->lineEditMonth1->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth2->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth3->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth4->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth5->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth6->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth7->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth8->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth9->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth10->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth11->text()) ||
-       !controller->verifyAssetValue(ui->lineEditMonth12->text()))
+    if(!verifyAmounts())
     {
         QMessageBox::critical(this, tr("Error"), "<p align='center'>Invalid asset values have been entered.<br>Please enter valid values for the asset type.</p>", QMessageBox::Ok);
         return;
@@ -84,18 +118,7 @@ void UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked()
     {
         std::vector<QString> values;
         values.reserve(12);
-        values.push_back(ui->lineEditMonth1->text());
-        values.push_back(ui->lineEditMonth2->text());
-        values.push_back(ui->lineEditMonth3->text());
-        values.push_back(ui->lineEditMonth4->text());
-        values.push_back(ui->lineEditMonth5->text());
-        values.push_back(ui->lineEditMonth6->text());
-        values.push_back(ui->lineEditMonth7->text());
-        values.push_back(ui->lineEditMonth8->text());
-        values.push_back(ui->lineEditMonth9->text());
-        values.push_back(ui->lineEditMonth10->text());
-        values.push_back(ui->lineEditMonth11->text());
-        values.push_back(ui->lineEditMonth12->text());
+        populateVectorWithValues(values);
 
         controller->updateAsset(currentAsset, ui->lineEditAssetName->text(), ui->radioButtonLiquid->isChecked(), values);
 
@@ -221,4 +244,36 @@ void UpdateAssetInfoDialog::setEnabled(bool enabled)
     ui->lineEditMonth10->setEnabled(enabled);
     ui->lineEditMonth11->setEnabled(enabled);
     ui->lineEditMonth12->setEnabled(enabled);
+}
+
+bool UpdateAssetInfoDialog::verifyAmounts()
+{
+    return (controller->verifyAssetValue(ui->lineEditMonth1->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth2->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth3->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth4->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth5->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth6->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth7->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth8->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth9->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth10->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth11->text()) ||
+            controller->verifyAssetValue(ui->lineEditMonth12->text()));
+}
+
+void UpdateAssetInfoDialog::populateVectorWithValues(std::vector<QString>& values)
+{
+    values.push_back(ui->lineEditMonth1->text());
+    values.push_back(ui->lineEditMonth2->text());
+    values.push_back(ui->lineEditMonth3->text());
+    values.push_back(ui->lineEditMonth4->text());
+    values.push_back(ui->lineEditMonth5->text());
+    values.push_back(ui->lineEditMonth6->text());
+    values.push_back(ui->lineEditMonth7->text());
+    values.push_back(ui->lineEditMonth8->text());
+    values.push_back(ui->lineEditMonth9->text());
+    values.push_back(ui->lineEditMonth10->text());
+    values.push_back(ui->lineEditMonth11->text());
+    values.push_back(ui->lineEditMonth12->text());
 }

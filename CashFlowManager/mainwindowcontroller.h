@@ -71,6 +71,7 @@ public:
     void showAddIncomeTransactionDialog(QWidget* parent);
     void showUpdateAutomaticMonthlyPaymentDialog(QWidget* parent);
     void showUpdateAssetInfoDialog(QWidget* parent);
+    void showAddAssetDialog(QWidget* parent);
 
 signals:
     void requestMainWindowUpdate();
@@ -98,6 +99,7 @@ private:
     std::unique_ptr<AddIncomeTransactionDialog> addIncomeTransactionDialog;
     std::unique_ptr<UpdateAutomaticMonthlyPaymentsDialog> updateAutomaticMonthlyPaymentsDialog;
     std::unique_ptr<UpdateAssetInfoDialog> updateAssetInfoDialog;
+    std::unique_ptr<UpdateAssetInfoDialog> addAssetInfoDialog;
 
     int currentYear = 0;
     int currentMonth = 0;

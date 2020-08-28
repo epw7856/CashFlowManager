@@ -63,6 +63,31 @@ bool UpdateAssetInfoDialogController::verifyAssetName(const QString& assetName) 
     return !assetName.isEmpty();
 }
 
+bool UpdateAssetInfoDialogController::verifyUniqueAssetName(const QString& assetName) const
+{
+    std::vector<AssetEntry*> assets = assetInterface.getAssetList();
+
+    auto itr = std::find_if(assets.begin(), assets.end(), [=] (const AssetEntry* asset)
+    {
+        return (QString::fromStdString(asset->getName()).toLower() == assetName.trimmed().toLower());
+    });
+    return (itr == assets.end());
+}
+
+void UpdateAssetInfoDialogController::addAsset(const QString& assetName,
+                                               bool isLiquid,
+                                               std::vector<QString>& values)
+{
+    AssetType type;
+    (isLiquid) ? type = AssetType::Liquid :
+                 type = AssetType::Illiquid;
+
+    AssetEntry entry(type, assetName.trimmed().toStdString(), {});
+    assetInterface.addAsset(entry);
+
+    addAssetValues(assetName, values);
+}
+
 void UpdateAssetInfoDialogController::updateAsset(const QString& currentAssetName,
                                                   const QString& updatedAssetName,
                                                   bool isLiquid,
@@ -72,11 +97,16 @@ void UpdateAssetInfoDialogController::updateAsset(const QString& currentAssetNam
     (isLiquid) ? type = AssetType::Liquid :
                  type = AssetType::Illiquid;
 
-    assetInterface.updateAssetInfo(currentAssetName.toStdString(), updatedAssetName.toStdString(), type);
+    assetInterface.updateAssetInfo(currentAssetName.toStdString(), updatedAssetName.trimmed().toStdString(), type);
 
+    addAssetValues(updatedAssetName, values);
+}
+
+void UpdateAssetInfoDialogController::addAssetValues(const QString& assetName, std::vector<QString>& values)
+{
     for(quint32 i = 0; i < values.size(); ++i)
     {
         QDate date(QDate::currentDate().year(), QDate::currentDate().month(), 1);
-        assetInterface.addAssetValue(updatedAssetName.toStdString(), {date.addMonths(-1 * i), values[i].remove(',').toDouble()});
+        assetInterface.addAssetValue(assetName.toStdString(), {date.addMonths(-1 * i), values[i].remove(',').toDouble()});
     }
 }
