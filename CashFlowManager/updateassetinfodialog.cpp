@@ -96,7 +96,7 @@ void UpdateAssetInfoDialog::onPushButtonAddAssetClicked()
         values.reserve(12);
         populateVectorWithValues(values);
 
-        //controller->updateAsset(currentAsset, ui->lineEditAssetName->text(), ui->radioButtonLiquid->isChecked(), values);
+        controller->addAsset(ui->lineEditAssetName->text(), ui->radioButtonLiquid->isChecked(), values);
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added asset type.</p>"), QMessageBox::Ok);
     }

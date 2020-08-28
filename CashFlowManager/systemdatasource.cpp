@@ -708,7 +708,7 @@ void SystemDataSource::addAsset(const AssetEntry& entry)
     QJsonObject item;
     item.insert("Type", QJsonValue(QString::fromStdString(AssetEntry::assetTypeToString(entry.getType()))));
     item.insert("Name", QJsonValue(QString::fromStdString(entry.getName())));
-    item.insert("Value", QJsonArray());
+    item.insert("Values", QJsonArray());
     array.append(item);
     obj["Assets"] = array;
 }
@@ -731,6 +731,7 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
             if(asset.value("Name").toString().toStdString() == assetName)
             {
                 QJsonArray values = asset.value("Values").toArray();
+                bool entryFound = false;
                 for(int j = 0; j < values.size(); ++j)
                 {
                     QJsonObject entry = values.at(j).toObject();
@@ -740,16 +741,19 @@ void SystemDataSource::addAssetValue(const std::string& assetName, const std::pa
                         entry.insert("Value", QJsonValue(valueEntry.second));
                         values.removeAt(j);
                         values.insert(j, entry);
+                        entryFound = true;
                         break;
                     }
-                    else if(j == values.size() - 1)
-                    {
-                        QJsonObject newValueItem;
-                        newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/yyyy")));
-                        newValueItem.insert("Value", QJsonValue(valueEntry.second));
-                        values.append(newValueItem);
-                    }
                 }
+
+                if(!entryFound)
+                {
+                    QJsonObject newValueItem;
+                    newValueItem.insert("Date", QJsonValue(valueEntry.first.toString("MM/yyyy")));
+                    newValueItem.insert("Value", QJsonValue(valueEntry.second));
+                    values.append(newValueItem);
+                }
+
                 asset.remove("Values");
                 asset.insert("Values", values);
                 array.removeAt(i);
