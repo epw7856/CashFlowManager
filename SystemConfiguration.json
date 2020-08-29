@@ -725,6 +725,11 @@
                     "Amount": 42,
                     "Date": "06/01/2020",
                     "Description": "June 2020 Sewage Bill"
+                },
+                {
+                    "Amount": 42,
+                    "Date": "07/01/2020",
+                    "Description": "July 2020 Sewage Bill"
                 }
             ]
         },

@@ -99,6 +99,7 @@ void UpdateAssetInfoDialog::onPushButtonAddAssetClicked()
         controller->addAsset(ui->lineEditAssetName->text(), ui->radioButtonLiquid->isChecked(), values);
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added asset type.</p>"), QMessageBox::Ok);
+        close();
     }
 }
 
