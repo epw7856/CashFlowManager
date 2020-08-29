@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionModifyAutomaticMonthlyPayment, &QAction::triggered, this, &MainWindow::onActionModifyAutomaticMonthlyPaymentTriggered);
     connect(ui->actionAddNewAsset, &QAction::triggered, this, &MainWindow::onActionAddNewAssetTriggered);
     connect(ui->actionModifyAssetInfo, &QAction::triggered, this, &MainWindow::onActionModifyAssetInfoTriggered);
+    connect(ui->actionUpdateCurrentAssetValues, &QAction::triggered, this, &MainWindow::onActionUpdateCurrentAssetValuesTriggered);
 
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
@@ -133,6 +134,11 @@ void MainWindow::onActionAddIncomeTransactionTriggered()
 void MainWindow::onActionModifyAutomaticMonthlyPaymentTriggered()
 {
     mainWindowController->showUpdateAutomaticMonthlyPaymentDialog(this);
+}
+
+void MainWindow::onActionUpdateCurrentAssetValuesTriggered()
+{
+
 }
 
 void MainWindow::onActionAddNewAssetTriggered()

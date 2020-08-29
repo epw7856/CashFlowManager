@@ -16,6 +16,7 @@
 #include "systemdatasource.h"
 #include "updateassetinfodialog.h"
 #include "updateautomaticmonthlypaymentsdialog.h"
+#include "updatecurrentassetvaluesdialog.h"
 #include "yearlybudgetsummarydialog.h"
 #include "yearlyincomesummarydialog.h"
 
@@ -293,7 +294,7 @@ void MainWindowController::showAddExpenseTypeDialog(QWidget* parent)
     addExpenseTypeDialog->activateWindow();
 }
 
-void MainWindowController::showModifyExpenseTypeDialog(QWidget *parent)
+void MainWindowController::showModifyExpenseTypeDialog(QWidget* parent)
 {
     if(modifyExpenseTypeDialog == nullptr)
     {
@@ -307,7 +308,7 @@ void MainWindowController::showModifyExpenseTypeDialog(QWidget *parent)
     modifyExpenseTypeDialog->activateWindow();
 }
 
-void MainWindowController::showAddInvestmentTransactionDialog(QWidget *parent)
+void MainWindowController::showAddInvestmentTransactionDialog(QWidget* parent)
 {
     if(addInvestmentTransactionDialog == nullptr)
     {
@@ -321,7 +322,7 @@ void MainWindowController::showAddInvestmentTransactionDialog(QWidget *parent)
     addInvestmentTransactionDialog->activateWindow();
 }
 
-void MainWindowController::showAddInvestmentTypeDialog(QWidget *parent)
+void MainWindowController::showAddInvestmentTypeDialog(QWidget* parent)
 {
     if(addInvestmentTypeDialog == nullptr)
     {
@@ -335,7 +336,7 @@ void MainWindowController::showAddInvestmentTypeDialog(QWidget *parent)
     addInvestmentTypeDialog->activateWindow();
 }
 
-void MainWindowController::showModifyInvestmentTypeDialog(QWidget *parent)
+void MainWindowController::showModifyInvestmentTypeDialog(QWidget* parent)
 {
     if(modifyInvestmentTypeDialog == nullptr)
     {
@@ -349,7 +350,7 @@ void MainWindowController::showModifyInvestmentTypeDialog(QWidget *parent)
     modifyInvestmentTypeDialog->activateWindow();
 }
 
-void MainWindowController::showAddIncomeTransactionDialog(QWidget *parent)
+void MainWindowController::showAddIncomeTransactionDialog(QWidget* parent)
 {
     if(addIncomeTransactionDialog == nullptr)
     {
@@ -363,7 +364,7 @@ void MainWindowController::showAddIncomeTransactionDialog(QWidget *parent)
     addIncomeTransactionDialog->activateWindow();
 }
 
-void MainWindowController::showUpdateAutomaticMonthlyPaymentDialog(QWidget *parent)
+void MainWindowController::showUpdateAutomaticMonthlyPaymentDialog(QWidget* parent)
 {
     if(updateAutomaticMonthlyPaymentsDialog == nullptr)
     {
@@ -377,7 +378,7 @@ void MainWindowController::showUpdateAutomaticMonthlyPaymentDialog(QWidget *pare
     updateAutomaticMonthlyPaymentsDialog->activateWindow();
 }
 
-void MainWindowController::showUpdateAssetInfoDialog(QWidget *parent)
+void MainWindowController::showUpdateAssetInfoDialog(QWidget* parent)
 {
     if(updateAssetInfoDialog == nullptr)
     {
@@ -391,7 +392,7 @@ void MainWindowController::showUpdateAssetInfoDialog(QWidget *parent)
     updateAssetInfoDialog->activateWindow();
 }
 
-void MainWindowController::showAddAssetDialog(QWidget *parent)
+void MainWindowController::showAddAssetDialog(QWidget* parent)
 {
     if(addAssetInfoDialog == nullptr)
     {
@@ -403,6 +404,20 @@ void MainWindowController::showAddAssetDialog(QWidget *parent)
     addAssetInfoDialog->show();
     addAssetInfoDialog->raise();
     addAssetInfoDialog->activateWindow();
+}
+
+void MainWindowController::showUpdateCurrentAssetValuesDialog(QWidget* parent)
+{
+    if(updateCurrentAssetValuesDialog == nullptr)
+    {
+        updateCurrentAssetValuesDialog = std::make_unique<UpdateCurrentAssetValuesDialog>(sds, parent);
+    }
+
+    connect(updateCurrentAssetValuesDialog.get(), &UpdateCurrentAssetValuesDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+
+    updateCurrentAssetValuesDialog->show();
+    updateCurrentAssetValuesDialog->raise();
+    updateCurrentAssetValuesDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

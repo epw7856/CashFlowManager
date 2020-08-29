@@ -1227,8 +1227,9 @@
     <addaction name="separator"/>
     <addaction name="actionModifyAutomaticMonthlyPayment"/>
     <addaction name="separator"/>
-    <addaction name="actionAddNewAsset"/>
+    <addaction name="actionUpdateCurrentAssetValues"/>
     <addaction name="actionModifyAssetInfo"/>
+    <addaction name="actionAddNewAsset"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -1403,6 +1404,11 @@
     <font>
      <family>Segoe UI</family>
     </font>
+   </property>
+  </action>
+  <action name="actionUpdateCurrentAssetValues">
+   <property name="text">
+    <string>Update Current Values For All Assets</string>
    </property>
   </action>
  </widget>

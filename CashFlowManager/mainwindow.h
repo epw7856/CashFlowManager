@@ -40,6 +40,7 @@ public slots:
     void onActionModifyInvestmentTypeTriggered();
     void onActionAddIncomeTransactionTriggered();
     void onActionModifyAutomaticMonthlyPaymentTriggered();
+    void onActionUpdateCurrentAssetValuesTriggered();
     void onActionAddNewAssetTriggered();
     void onActionModifyAssetInfoTriggered();
 
