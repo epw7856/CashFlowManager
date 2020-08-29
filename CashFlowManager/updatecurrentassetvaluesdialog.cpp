@@ -12,6 +12,7 @@ UpdateCurrentAssetValuesDialog::UpdateCurrentAssetValuesDialog(AssetInterface& l
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
     ui->labelDialogTitle->setText(controller->getDialogTitle());
+    populateAssetNamesAndValues();
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &UpdateCurrentAssetValuesDialog::onPushButtonExitClicked);
     connect(ui->pushButtonUpdate, &QPushButton::clicked, this, &UpdateCurrentAssetValuesDialog::onPushButtonUpdateClicked);
@@ -36,4 +37,9 @@ void UpdateCurrentAssetValuesDialog::closeEvent(QCloseEvent*)
 {
     emit dialogClosed();
     accept();
+}
+
+void UpdateCurrentAssetValuesDialog::populateAssetNamesAndValues()
+{
+
 }

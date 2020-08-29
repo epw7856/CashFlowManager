@@ -32,6 +32,8 @@ public slots:
 private:
     Ui::UpdateCurrentAssetValuesDialog *ui;
     std::unique_ptr<UpdateCurrentAssetValuesDialogController> controller;
+
+    void populateAssetNamesAndValues();
 };
 
 #endif // UPDATECURRENTASSETVALUESDIALOG_H
