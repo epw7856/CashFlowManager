@@ -179,8 +179,7 @@ void MainWindow::updateDisplayedInformation()
 
     if(mainWindowController->isCurrentMonthOverBudget())
     {
-        QPalette budgetStatusPalette(QPalette::WindowText, Qt::red);
-        ui->labelBudgetStatus->setPalette(budgetStatusPalette);
+        ui->labelBudgetStatus->setStyleSheet("font-weight: bold; color: red");
     }
 }
 
@@ -304,6 +303,8 @@ void MainWindow::configureExpenseTableView()
     tableHeight += ui->tableViewMonthlyExpenses->horizontalHeader()->height();
     ui->tableViewMonthlyExpenses->setMaximumHeight(tableHeight+5);
 
+    ui->groupBoxExpenseBudget->setMaximumHeight(ui->tableViewMonthlyExpenses->maximumHeight() + 50);
+
     // Set TableView width
     int tableWidth = 0;
     for(int i = 0; i < ui->tableViewMonthlyExpenses->horizontalHeader()->count(); ++i)
@@ -373,6 +374,8 @@ void MainWindow::configureInvestmentTableView()
 
     tableHeight += ui->tableViewMonthlyInvestments->horizontalHeader()->height();
     ui->tableViewMonthlyInvestments->setMaximumHeight(tableHeight+5);
+
+    ui->groupBoxInvestmentBudget->setMaximumHeight(ui->tableViewMonthlyInvestments->maximumHeight() + 50);
 
     // Set TableView width
     int tableWidth = 0;
