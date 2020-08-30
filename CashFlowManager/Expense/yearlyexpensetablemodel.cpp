@@ -28,30 +28,45 @@ int YearlyExpenseTableModel::columnCount(const QModelIndex&) const
 
 QVariant YearlyExpenseTableModel::data(const QModelIndex& index, int role) const
 {
-    if(role == Qt::DisplayRole)
+    int numRows = rowCount(index);
+    if((index.row() < numRows) && (index.column() < numColumns))
     {
-        int numRows = rowCount(index);
-        if((index.row() < numRows) && (index.column() < numColumns))
-        {
-            auto rowUint = static_cast<quint32>(index.row());
+        auto rowUint = static_cast<quint32>(index.row());
 
-            // Expense Type column
-            if(index.column() == 0)
+        // Expense Type column
+        if(index.column() == 0)
+        {
+            if(role == Qt::DisplayRole || role == Qt::EditRole)
             {
                 return QString::fromStdString(expenseTypes[rowUint]->getName());
             }
-            // Spent column
-            else if(index.column() == 1)
+        }
+        // Spent column
+        else if(index.column() == 1)
+        {
+            double amount = expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(),
+                                                                                     startDatePeriod,
+                                                                                     endDatePeriod);
+            if(role == Qt::DisplayRole)
             {
-                return QString::fromStdString(CurrencyUtilities::formatCurrency(expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(),
-                                                                                                                                         startDatePeriod,
-                                                                                                                                         endDatePeriod)));
+                return QString::fromStdString(CurrencyUtilities::formatCurrency(amount));
             }
-            // Percentage column
-            else if(index.column() == 2)
+            else if(role == Qt::EditRole)
             {
-                double percentage = 100.0 * (expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(), startDatePeriod, endDatePeriod) / expenseInterface.getYearlyExpenseTotal(QDate::currentDate().year()));
+                return amount;
+            }
+        }
+        // Percentage column
+        else if(index.column() == 2)
+        {
+            double percentage = 100.0 * (expenseInterface.getExpenseTransactionsTotalByTimePeriod(expenseTypes[rowUint]->getName(), startDatePeriod, endDatePeriod) / expenseInterface.getYearlyExpenseTotal(QDate::currentDate().year()));
+            if(role == Qt::DisplayRole)
+            {
                 return QString::number(percentage, 'f', 2);
+            }
+            else if(role == Qt::EditRole)
+            {
+                return percentage;
             }
         }
     }

@@ -1,6 +1,7 @@
 #include "expenseinterface.h"
 #include "investmentinterface.h"
 #include <QScrollBar>
+#include <QSortFilterProxyModel>
 #include "ui_yearlybudgetsummarydialog.h"
 #include "yearlybudgetsummarydialog.h"
 
@@ -42,9 +43,15 @@ void YearlyBudgetSummaryDialog::onPushButtonExitClicked()
 
 void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
 {
+    QSortFilterProxyModel* expenseProxyModel = new QSortFilterProxyModel;
+    expenseProxyModel->setSourceModel(&expenseTableModel);
+    expenseProxyModel->setSortRole(Qt::EditRole);
+
     // Add table model data and disable selection
-    ui->tableViewExpenseSummary->setModel(&expenseTableModel);
+    ui->tableViewExpenseSummary->setModel(expenseProxyModel);
     ui->tableViewExpenseSummary->setSelectionMode(QAbstractItemView::NoSelection);
+    ui->tableViewExpenseSummary->sortByColumn(2, Qt::DescendingOrder);
+    ui->tableViewExpenseSummary->setSortingEnabled(true);
 
     // Set bold font for the header
     QFont font(ui->tableViewExpenseSummary->font());
@@ -113,9 +120,15 @@ void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
 
 void YearlyBudgetSummaryDialog::configureInvestmentSummaryTable()
 {
+    QSortFilterProxyModel* investmentProxyModel = new QSortFilterProxyModel;
+    investmentProxyModel->setSourceModel(&investmentTableModel);
+    investmentProxyModel->setSortRole(Qt::EditRole);
+
     // Add table model data and disable selection
-    ui->tableViewInvestmentSummary->setModel(&investmentTableModel);
+    ui->tableViewInvestmentSummary->setModel(investmentProxyModel);
     ui->tableViewInvestmentSummary->setSelectionMode(QAbstractItemView::NoSelection);
+    ui->tableViewInvestmentSummary->sortByColumn(2, Qt::DescendingOrder);
+    ui->tableViewInvestmentSummary->setSortingEnabled(true);
 
     // Set bold font for the header
     QFont font(ui->tableViewInvestmentSummary->font());
