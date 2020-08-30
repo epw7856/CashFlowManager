@@ -30,6 +30,7 @@ INCLUDEPATH += Expense/
 INCLUDEPATH += Income/
 INCLUDEPATH += Investment/
 INCLUDEPATH += Mortgage/
+INCLUDEPATH += Utilities/
 
 RC_ICONS = app_icon.ico
 
@@ -54,36 +55,36 @@ SOURCES += \
         Mortgage/mortgageinformation.cpp \
         Mortgage/mortgageprincipalpayment.cpp \
         Mortgage/mortgagetablemodel.cpp \
-        addexpensetransactiondialog.cpp \
-        addexpensetransactiondialogcontroller.cpp \
-        addexpensetypedialog.cpp \
-        addexpensetypedialogcontroller.cpp \
-        addincometransactiondialog.cpp \
-        addincometransactiondialogcontroller.cpp \
-        addinvestmenttransactiondialog.cpp \
-        addinvestmenttransactiondialogcontroller.cpp \
-        addinvestmenttypedialog.cpp \
-        addinvestmenttypedialogcontroller.cpp \
-        assetsummarydialog.cpp \
-        assetsummarydialogcontroller.cpp \
-        automaticmonthlypaymentsummarydialog.cpp \
-        basetransaction.cpp \
-        currencyutilities.cpp \
-        dateutilities.cpp \
-        expensetypesummarydialog.cpp \
+        Expense/addexpensetransactiondialog.cpp \
+        Expense/addexpensetransactiondialogcontroller.cpp \
+        Expense/addexpensetypedialog.cpp \
+        Expense/addexpensetypedialogcontroller.cpp \
+        Income/addincometransactiondialog.cpp \
+        Income/addincometransactiondialogcontroller.cpp \
+        Investment/addinvestmenttransactiondialog.cpp \
+        Investment/addinvestmenttransactiondialogcontroller.cpp \
+        Investment/addinvestmenttypedialog.cpp \
+        Investment/addinvestmenttypedialogcontroller.cpp \
+        Asset/assetsummarydialog.cpp \
+        Asset/assetsummarydialogcontroller.cpp \
+        Expense/automaticmonthlypaymentsummarydialog.cpp \
+        Utilities/basetransaction.cpp \
+        Utilities/currencyutilities.cpp \
+        Utilities/dateutilities.cpp \
+        Expense/expensetypesummarydialog.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
         monthlybudgetsummarydialog.cpp \
-        mortgagesummarydialog.cpp \
+        Mortgage/mortgagesummarydialog.cpp \
         systemdatasource.cpp \
-        updateassetinfodialog.cpp \
-        updateassetinfodialogcontroller.cpp \
-        updateautomaticmonthlypaymentsdialog.cpp \
-        updateautomaticmonthlypaymentsdialogcontroller.cpp \
-        validator.cpp \
+        Asset/updateassetinfodialog.cpp \
+        Asset/updateassetinfodialogcontroller.cpp \
+        Expense/updateautomaticmonthlypaymentsdialog.cpp \
+        Expense/updateautomaticmonthlypaymentsdialogcontroller.cpp \
+        Utilities/validator.cpp \
         yearlybudgetsummarydialog.cpp \
-        yearlyincomesummarydialog.cpp
+        Income/yearlyincomesummarydialog.cpp
 
 HEADERS += \
         Asset/assetentry.h \
@@ -112,36 +113,36 @@ HEADERS += \
         Mortgage/mortgageinterface.h \
         Mortgage/mortgageprincipalpayment.h \
         Mortgage/mortgagetablemodel.h \
-        addexpensetransactiondialog.h \
-        addexpensetransactiondialogcontroller.h \
-        addexpensetypedialog.h \
-        addexpensetypedialogcontroller.h \
-        addincometransactiondialog.h \
-        addincometransactiondialogcontroller.h \
-        addinvestmenttransactiondialog.h \
-        addinvestmenttransactiondialogcontroller.h \
-        addinvestmenttypedialog.h \
-        addinvestmenttypedialogcontroller.h \
-        assetsummarydialog.h \
-        assetsummarydialogcontroller.h \
-        automaticmonthlypaymentsummarydialog.h \
-        basetransaction.h \
-        currencyutilities.h \
-        dateutilities.h \
-        expensetypesummarydialog.h \
+        Expense/addexpensetransactiondialog.h \
+        Expense/addexpensetransactiondialogcontroller.h \
+        Expense/addexpensetypedialog.h \
+        Expense/addexpensetypedialogcontroller.h \
+        Income/addincometransactiondialog.h \
+        Income/addincometransactiondialogcontroller.h \
+        Investment/addinvestmenttransactiondialog.h \
+        Investment/addinvestmenttransactiondialogcontroller.h \
+        Investment/addinvestmenttypedialog.h \
+        Investment/addinvestmenttypedialogcontroller.h \
+        Asset/assetsummarydialog.h \
+        Asset/assetsummarydialogcontroller.h \
+        Expense/automaticmonthlypaymentsummarydialog.h \
+        Utilities/basetransaction.h \
+        Utilities/currencyutilities.h \
+        Utilities/dateutilities.h \
+        Expense/expensetypesummarydialog.h \
         mainwindow.h \
         mainwindowcontroller.h \
         monthlybudgetsummarydialog.h \
-        mortgagesummarydialog.h \
+        Mortgage/mortgagesummarydialog.h \
         systemdatasource.h \
-        transactioncomparison.h \
-        updateassetinfodialog.h \
-        updateassetinfodialogcontroller.h \
-        updateautomaticmonthlypaymentsdialog.h \
-        updateautomaticmonthlypaymentsdialogcontroller.h \
-        validator.h \
+        Utilities/transactioncomparison.h \
+        Asset/updateassetinfodialog.h \
+        Asset/updateassetinfodialogcontroller.h \
+        Expense/updateautomaticmonthlypaymentsdialog.h \
+        Expense/updateautomaticmonthlypaymentsdialogcontroller.h \
+        Utilities/validator.h \
         yearlybudgetsummarydialog.h \
-        yearlyincomesummarydialog.h
+        Income/yearlyincomesummarydialog.h
 
 FORMS += \
         addexpensetransactiondialog.ui \
