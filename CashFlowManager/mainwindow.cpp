@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->verticalLayout_8->setAlignment(Qt::AlignTop);
     ui->verticalLayout_10->setAlignment(Qt::AlignTop);
-    resize(window()->width(), window()->minimumSizeHint().rheight());
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
@@ -42,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
     updateDisplayedInformation();
+    resize(window()->minimumSizeHint().rwidth(), window()->minimumSizeHint().rheight());
 }
 
 MainWindow::~MainWindow()
