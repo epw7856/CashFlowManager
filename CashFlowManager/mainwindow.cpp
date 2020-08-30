@@ -46,7 +46,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    sds->saveSystemConfig();
     delete ui;
 }
 
@@ -143,6 +142,12 @@ void MainWindow::onActionAddNewAssetTriggered()
 void MainWindow::onActionModifyAssetInfoTriggered()
 {
     mainWindowController->showUpdateAssetInfoDialog(this);
+}
+
+void MainWindow::closeEvent(QCloseEvent* event)
+{
+    sds->saveSystemConfig();
+    event->accept();
 }
 
 void MainWindow::updateDisplayedInformation()

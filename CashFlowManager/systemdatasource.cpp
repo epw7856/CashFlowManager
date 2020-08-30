@@ -1,3 +1,4 @@
+#include "appexception.h"
 #include "assetentry.h"
 #include "automaticmonthlypayment.h"
 #include "dateutilities.h"
@@ -23,21 +24,20 @@ SystemDataSource::SystemDataSource()
 
 SystemDataSource::~SystemDataSource() = default;
 
-bool SystemDataSource::loadSystemConfig()
+void SystemDataSource::loadSystemConfig()
 {
     QDir dir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
     systemConfigFile.setFileName(dir.path() + "/SystemConfiguration.json");
 
     if(!dir.exists() || !systemConfigFile.exists())
     {
-        return createSystemConfigurationTemplate();
+        createSystemConfigurationTemplate();
     }
     else
     {
         if(!systemConfigFile.open((QIODevice::ReadOnly | QIODevice::Text)))
         {
-            qWarning() << "Unable to load system configuration file!";
-            return false;
+            throw AppException(ErrorCode::UnableToLoadConfig);
         }
 
         QByteArray rawData = systemConfigFile.readAll();
@@ -52,29 +52,22 @@ bool SystemDataSource::loadSystemConfig()
         parseSupplementalIncome();
         parseAssetList();
         parseMortgageInformation();
-
-        return true;
     }
-
-    return false;
 }
 
-bool SystemDataSource::saveSystemConfig()
+void SystemDataSource::saveSystemConfig()
 {
     if (!systemConfigFile.open(QIODevice::WriteOnly))
     {
-        qWarning("Unable to save system configuration file!");
-        return false;
+        throw AppException(ErrorCode::UnableToSaveConfig);
     }
 
     QJsonDocument doc(obj);
     systemConfigFile.write(doc.toJson());
     systemConfigFile.close();
-
-    return true;
 }
 
-bool SystemDataSource::createSystemConfigurationTemplate()
+void SystemDataSource::createSystemConfigurationTemplate()
 {
     QFileInfo info(systemConfigFile);
     QDir dir;
@@ -82,8 +75,7 @@ bool SystemDataSource::createSystemConfigurationTemplate()
 
     if(!systemConfigFile.open(QIODevice::WriteOnly))
     {
-        qWarning() << "Unable to create new system configuration file!";
-        return false;
+        throw AppException(ErrorCode::UnableToCreateNewConfig);
     }
     systemConfigFile.close();
 
@@ -97,8 +89,6 @@ bool SystemDataSource::createSystemConfigurationTemplate()
     obj.insert("MortgageInformation", empty);
     obj.insert("SalaryIncome", empty);
     obj.insert("SupplementalIncome", empty);
-
-    return true;
 }
 
 std::vector<ExpenseType*> SystemDataSource::getExpenseTypes() const

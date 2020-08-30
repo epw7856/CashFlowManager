@@ -24,7 +24,7 @@ class SystemDataSource
 public:
     SystemDataSource();
     ~SystemDataSource() override;
-    bool saveSystemConfig();
+    void saveSystemConfig();
 
     // Expense Interface
     std::vector<ExpenseType*> getExpenseTypes() const override;
@@ -107,8 +107,8 @@ private:
     std::unique_ptr<MortgageInformation> mortgageInfo;
 
     // Helper functions for JSON data parsing
-    bool loadSystemConfig();
-    bool createSystemConfigurationTemplate();
+    void loadSystemConfig();
+    void createSystemConfigurationTemplate();
     void parseExpenseTypes();
     void parseInvestmentTypes();
     void parseAutomaticMonthlyPayments();

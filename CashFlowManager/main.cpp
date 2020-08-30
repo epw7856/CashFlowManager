@@ -1,3 +1,4 @@
+#include "cashflowmanagerapplication.h"
 #include "mainwindow.h"
 #include <QApplication>
 #include <QDesktopWidget>
@@ -5,17 +6,8 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-
-    try
-    {
-        MainWindow w;
-        w.show();
-        return a.exec();
-    }
-    catch (const std::exception& ex)
-    {
-        QMessageBox::critical(nullptr, "Error", "Exception: " + QString::fromStdString(ex.what()), QMessageBox::Ok);
-        exit(1);
-    }
+    CashFlowManagerApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }

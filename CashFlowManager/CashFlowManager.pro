@@ -73,6 +73,7 @@ SOURCES += \
         Utilities/dateutilities.cpp \
         Expense/expensetypesummarydialog.cpp \
         appexception.cpp \
+        cashflowmanagerapplication.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
@@ -132,6 +133,7 @@ HEADERS += \
         Utilities/dateutilities.h \
         Expense/expensetypesummarydialog.h \
         appexception.h \
+        cashflowmanagerapplication.h \
         errorcode.h \
         mainwindow.h \
         mainwindowcontroller.h \
