@@ -84,21 +84,16 @@ void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
 
     // Set TableView height
     int tableHeight = 0;
-    ui->tableViewExpenseSummary->resizeRowsToContents();
-    if(expenseTableModel.rowCount() < 15)
+    ui->tableViewInvestmentSummary->resizeRowsToContents();
+    for(int i = 0; i < expenseTableModel.rowCount(); ++i)
     {
-        for(int i = 0; i < expenseTableModel.rowCount(); ++i)
-        {
-            tableHeight += ui->tableViewExpenseSummary->rowHeight(i);
-        }
-    }
-    else
-    {
-        tableHeight = ui->tableViewExpenseSummary->rowHeight(0) * 15;
+        tableHeight += ui->tableViewExpenseSummary->rowHeight(i);
     }
 
     tableHeight += ui->tableViewExpenseSummary->horizontalHeader()->height();
-    ui->tableViewExpenseSummary->setFixedHeight(tableHeight + 5);
+    tableHeight += 5;
+    ui->tableViewExpenseSummary->setMaximumHeight(tableHeight);
+    ui->groupBoxExpenseBudget->setMaximumHeight(tableHeight + 40);
 
     // Set TableView width
     int tableWidth = 0;
@@ -161,20 +156,15 @@ void YearlyBudgetSummaryDialog::configureInvestmentSummaryTable()
     // Set TableView height
     int tableHeight = 0;
     ui->tableViewInvestmentSummary->resizeRowsToContents();
-    if(investmentTableModel.rowCount() < 15)
+    for(int i = 0; i < investmentTableModel.rowCount(); ++i)
     {
-        for(int i = 0; i < investmentTableModel.rowCount(); ++i)
-        {
-            tableHeight += ui->tableViewInvestmentSummary->rowHeight(i);
-        }
-    }
-    else
-    {
-        tableHeight = ui->tableViewInvestmentSummary->rowHeight(0) * 15;
+        tableHeight += ui->tableViewInvestmentSummary->rowHeight(i);
     }
 
     tableHeight += ui->tableViewInvestmentSummary->horizontalHeader()->height();
-    ui->tableViewInvestmentSummary->setFixedHeight(tableHeight + 5);
+    tableHeight += 5;
+    ui->tableViewInvestmentSummary->setMaximumHeight(tableHeight);
+    ui->groupBoxInvestmentBudget->setMaximumHeight(tableHeight + 40);
 
     // Set TableView width
     int tableWidth = 0;
