@@ -46,7 +46,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Budget Breakdown</string>
+         <string>Budget Dashboard</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
