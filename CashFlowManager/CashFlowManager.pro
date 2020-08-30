@@ -81,8 +81,6 @@ SOURCES += \
         updateassetinfodialogcontroller.cpp \
         updateautomaticmonthlypaymentsdialog.cpp \
         updateautomaticmonthlypaymentsdialogcontroller.cpp \
-        updatecurrentassetvaluesdialog.cpp \
-        updatecurrentassetvaluesdialogcontroller.cpp \
         validator.cpp \
         yearlybudgetsummarydialog.cpp \
         yearlyincomesummarydialog.cpp
@@ -141,8 +139,6 @@ HEADERS += \
         updateassetinfodialogcontroller.h \
         updateautomaticmonthlypaymentsdialog.h \
         updateautomaticmonthlypaymentsdialogcontroller.h \
-        updatecurrentassetvaluesdialog.h \
-        updatecurrentassetvaluesdialogcontroller.h \
         validator.h \
         yearlybudgetsummarydialog.h \
         yearlyincomesummarydialog.h

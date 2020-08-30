@@ -16,7 +16,6 @@
 #include "systemdatasource.h"
 #include "updateassetinfodialog.h"
 #include "updateautomaticmonthlypaymentsdialog.h"
-#include "updatecurrentassetvaluesdialog.h"
 #include "yearlybudgetsummarydialog.h"
 #include "yearlyincomesummarydialog.h"
 
@@ -404,20 +403,6 @@ void MainWindowController::showAddAssetDialog(QWidget* parent)
     addAssetInfoDialog->show();
     addAssetInfoDialog->raise();
     addAssetInfoDialog->activateWindow();
-}
-
-void MainWindowController::showUpdateCurrentAssetValuesDialog(QWidget* parent)
-{
-    if(updateCurrentAssetValuesDialog == nullptr)
-    {
-        updateCurrentAssetValuesDialog = std::make_unique<UpdateCurrentAssetValuesDialog>(sds, parent);
-    }
-
-    connect(updateCurrentAssetValuesDialog.get(), &UpdateCurrentAssetValuesDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
-
-    updateCurrentAssetValuesDialog->show();
-    updateCurrentAssetValuesDialog->raise();
-    updateCurrentAssetValuesDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

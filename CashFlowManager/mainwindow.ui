@@ -1227,7 +1227,6 @@
     <addaction name="separator"/>
     <addaction name="actionModifyAutomaticMonthlyPayment"/>
     <addaction name="separator"/>
-    <addaction name="actionUpdateCurrentAssetValues"/>
     <addaction name="actionModifyAssetInfo"/>
     <addaction name="actionAddNewAsset"/>
    </widget>

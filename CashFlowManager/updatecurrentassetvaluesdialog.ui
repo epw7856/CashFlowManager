@@ -146,9 +146,6 @@
       </spacer>
      </item>
      <item>
-      <layout class="QFormLayout" name="formLayoutAssets"/>
-     </item>
-     <item>
       <spacer name="horizontalSpacer_5">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
