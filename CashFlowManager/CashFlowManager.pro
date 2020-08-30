@@ -72,6 +72,7 @@ SOURCES += \
         Utilities/currencyutilities.cpp \
         Utilities/dateutilities.cpp \
         Expense/expensetypesummarydialog.cpp \
+        appexception.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
@@ -130,6 +131,8 @@ HEADERS += \
         Utilities/currencyutilities.h \
         Utilities/dateutilities.h \
         Expense/expensetypesummarydialog.h \
+        appexception.h \
+        errorcode.h \
         mainwindow.h \
         mainwindowcontroller.h \
         monthlybudgetsummarydialog.h \
