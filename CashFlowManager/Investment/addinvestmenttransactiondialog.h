@@ -29,6 +29,7 @@ public slots:
 
 private:
     void disableActions();
+    void resetDialog();
 
     Ui::AddInvestmentTransactionDialog *ui;
     std::unique_ptr<AddInvestmentTransactionDialogController> controller;

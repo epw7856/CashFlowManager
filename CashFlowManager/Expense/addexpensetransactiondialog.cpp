@@ -85,6 +85,7 @@ void AddExpenseTransactionDialog::onPushButtonAddTransaction()
                                           ui->lineEditAdditionalPrincipalAmount->text().remove(',').toDouble());
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added expense transaction.</p>"), QMessageBox::Ok);
+        resetDialog();
     }
 }
 
@@ -129,4 +130,13 @@ void AddExpenseTransactionDialog::disableActions()
     ui->lineEditTransactionAmount->setEnabled(false);
     ui->lineEditAdditionalPrincipalAmount->setEnabled(false);
     ui->pushButtonAddTransaction->setEnabled(false);
+}
+
+void AddExpenseTransactionDialog::resetDialog()
+{
+    ui->comboBoxExpenseType->setCurrentIndex(0);
+    ui->lineEditDescription->clear();
+    ui->dateEditTransaction->setDate(QDate::currentDate());
+    ui->lineEditAdditionalPrincipalAmount->setText("0.00");
+    ui->lineEditTransactionAmount->setText("0.00");
 }

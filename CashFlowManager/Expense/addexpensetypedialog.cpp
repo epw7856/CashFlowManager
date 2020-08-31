@@ -68,20 +68,25 @@ void AddExpenseTypeDialog::onPushButtonAddTypeClicked()
     if(!controller->verifyTypeName(ui->lineEditName->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid expense type name entered.<br>Please enter a valid name.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(ui->radioButtonFixed->isChecked() && !controller->verifyBudgetAmount(ui->lineEditBudgetAmount->text(), false))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid monthly budget amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyUniqueTypeName(ui->lineEditName->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Expense type already exists.<br>Please enter a valid, unique expense type name.</p>"), QMessageBox::Ok);
+        return;
     }
     else
     {
         controller->addExpenseType(ui->lineEditName->text(), ui->lineEditBudgetAmount->text().remove(',').toDouble(), ui->radioButtonRequired->isChecked());
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added expense type.</p>"), QMessageBox::Ok);
     }
+
+    updateComboBox();
 }
 
 void AddExpenseTypeDialog::onPushButtonUpdateTypeClicked()
@@ -149,7 +154,6 @@ void AddExpenseTypeDialog::onPushButtonDeleteTypeClicked()
         return;
     }
 
-    ui->comboBoxExpenseType->setCurrentIndex(0);
     updateComboBox();
 }
 

@@ -34,6 +34,7 @@ private:
 
     void enableSalaryInfo();
     void enableSupplementalInfo();
+    void resetDialog();
 };
 
 #endif // ADDINCOMETRANSACTIONDIALOG_H

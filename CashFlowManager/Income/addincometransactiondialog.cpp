@@ -75,6 +75,7 @@ void AddIncomeTransactionDialog::onPushButtonAddTransaction()
             QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added supplemental income transaction.</p>"), QMessageBox::Ok);
         }
     }
+    resetDialog();
 }
 
 void AddIncomeTransactionDialog::onRadioButtonToggled()
@@ -105,4 +106,13 @@ void AddIncomeTransactionDialog::enableSupplementalInfo()
 
     ui->lineEditOT->clear();
     ui->lineEditOT->setEnabled(false);
+}
+
+void AddIncomeTransactionDialog::resetDialog()
+{
+    ui->radioButtonSalary->setChecked(true);
+    ui->dateEditTransaction->setDate(QDate::currentDate());
+    ui->lineEditDescription->clear();
+    ui->lineEditAmount->setText("0.00");
+    ui->lineEditOT->setText("0");
 }

@@ -46,14 +46,17 @@ void AddInvestmentTransactionDialog::onPushButtonAddTransaction()
     if(ui->comboBoxInvestmentType->currentIndex() == 0)
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Please select an investment type for the transaction.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyTransactionDate(ui->dateEditTransaction->date()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid transaction date selected.<br>Please enter a valid date within +/- 1 year of today's date.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyTransactionAmount(ui->lineEditTransactionAmount->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid transaction amount entered.<br>Please enter a valid non-zero amount.</p>"), QMessageBox::Ok);
+        return;
     }
     else
     {
@@ -63,6 +66,7 @@ void AddInvestmentTransactionDialog::onPushButtonAddTransaction()
 
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added investment transaction.</p>"), QMessageBox::Ok);
     }
+    resetDialog();
 }
 
 void AddInvestmentTransactionDialog::closeEvent(QCloseEvent*)
@@ -76,4 +80,11 @@ void AddInvestmentTransactionDialog::disableActions()
     ui->lineEditTransactionAmount->setEnabled(false);
     ui->dateEditTransaction->setEnabled(false);
     ui->pushButtonAddTransaction->setEnabled(false);
+}
+
+void AddInvestmentTransactionDialog::resetDialog()
+{
+    ui->comboBoxInvestmentType->setCurrentIndex(0);
+    ui->dateEditTransaction->setDate(QDate::currentDate());
+    ui->lineEditTransactionAmount->setText("0.00");
 }

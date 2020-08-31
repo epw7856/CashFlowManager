@@ -54,20 +54,25 @@ void AddInvestmentTypeDialog::onPushButtonAddTypeClicked()
     if(!controller->verifyTypeName(ui->lineEditName->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid investment type name entered.<br>Please enter a valid name.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyTargetAmount(ui->lineEditTargetAmount->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Invalid monthly target amount entered for fixed expense type.<br>Please enter a valid, non-zero amount.</p>"), QMessageBox::Ok);
+        return;
     }
     else if(!controller->verifyUniqueTypeName(ui->lineEditName->text()))
     {
         QMessageBox::critical(this, tr("Error"), tr("<p align='center'>Investment type already exists.<br>Please enter a valid, unique investment type name.</p>"), QMessageBox::Ok);
+        return;
     }
     else
     {
         controller->addInvestmentType(ui->lineEditName->text(), ui->lineEditTargetAmount->text().remove(',').toDouble());
         QMessageBox::information(this, tr("Success"), tr("<p align='center'>Successfully added investment type.</p>"), QMessageBox::Ok);
     }
+
+    updateComboBox();
 }
 
 void AddInvestmentTypeDialog::onPushButtonUpdateTypeClicked()
@@ -135,7 +140,6 @@ void AddInvestmentTypeDialog::onPushButtonDeleteTypeClicked()
         return;
     }
 
-    ui->comboBoxInvestmentType->setCurrentIndex(0);
     updateComboBox();
 }
 

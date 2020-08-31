@@ -163,7 +163,6 @@ FORMS += \
         mortgagesummarydialog.ui \
         updateassetinfodialog.ui \
         updateautomaticmonthlypaymentsdialog.ui \
-        updatecurrentassetvaluesdialog.ui \
         yearlybudgetsummarydialog.ui \
         yearlyincomesummarydialog.ui
 
