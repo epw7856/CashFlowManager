@@ -864,7 +864,7 @@
            </font>
           </property>
           <property name="title">
-           <string>  Expense Budget  </string>
+           <string>  Monthly Expense Budget  </string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -951,7 +951,7 @@
            </font>
           </property>
           <property name="title">
-           <string>  Investment Budget  </string>
+           <string>  Monthly Investment Budget  </string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1035,7 +1035,7 @@
            </font>
           </property>
           <property name="title">
-           <string>  Budget Ratios  </string>
+           <string>  Yearly Income Distribution  </string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
