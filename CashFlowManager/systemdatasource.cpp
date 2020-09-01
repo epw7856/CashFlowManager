@@ -865,45 +865,90 @@ bool SystemDataSource::currentMonthValueEnteredForAsset(const std::string& asset
     return false;
 }
 
+bool SystemDataSource::mortgageExists() const
+{
+    return (mortgageInfo != nullptr);
+}
+
 double SystemDataSource::getTotalLoanAmount() const
 {
-    return mortgageInfo->getTotalLoanAmount();
+    return ((mortgageExists()) ? mortgageInfo->getTotalLoanAmount() : 0.0);
+}
+
+void SystemDataSource::updateTotalLoanAmount(double amount)
+{
+    if(mortgageExists())
+    {
+        mortgageInfo->setTotalLoanAmount(amount);
+    }
 }
 
 double SystemDataSource::getMarketValue() const
 {
-    return mortgageInfo->getMarketValue();
+    return ((mortgageExists()) ? mortgageInfo->getMarketValue() : 0.0);
+}
+
+void SystemDataSource::updateMarketValue(double amount)
+{
+    if(mortgageExists())
+    {
+        mortgageInfo->setMarketValue(amount);
+    }
 }
 
 double SystemDataSource::getInterestRate() const
 {
-    return mortgageInfo->getInterestRate();
+    return ((mortgageExists()) ? mortgageInfo->getInterestRate() : 0.0);
+}
+
+void SystemDataSource::updateInterestRate(double rate)
+{
+    if(mortgageExists())
+    {
+        mortgageInfo->setInterestRate(rate);
+    }
 }
 
 int SystemDataSource::getLoanTerm() const
 {
-    return mortgageInfo->getLoanTerm();
+    return ((mortgageExists()) ? mortgageInfo->getLoanTerm() : 0.0);
+}
+
+void SystemDataSource::updateLoanTerm(int term)
+{
+    if(mortgageExists())
+    {
+        mortgageInfo->setLoanTerm(term);
+    }
 }
 
 double SystemDataSource::getBasePayment() const
 {
-    return mortgageInfo->getMonthlyPayment();
+    return ((mortgageExists()) ? mortgageInfo->getMonthlyPayment() : 0.0);
 }
 
 QDate SystemDataSource::getLoanStartDate() const
 {
-    return mortgageInfo->getLoanStartDate();
+    return ((mortgageExists()) ? mortgageInfo->getLoanStartDate() : QDate());
+}
+
+void SystemDataSource::updateLoanStartDate(QDate date)
+{
+    if(mortgageExists())
+    {
+        mortgageInfo->setLoanStartDate(date);
+    }
 }
 
 double SystemDataSource::getPurchasePrice() const
 {
-    return mortgageInfo->getPurchasePrice();
+    return ((mortgageExists()) ? mortgageInfo->getPurchasePrice() : 0.0);
 }
 
 double SystemDataSource::getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const
 {
-    return (mortgageInfo != nullptr) ? getTransactionsTotalByTimePeriod(mortgageInfo->getPrincipalPayments(), startingPeriod, endingPeriod) :
-                                       0.0;
+    return ((mortgageExists()) ?  getTransactionsTotalByTimePeriod(mortgageInfo->getPrincipalPayments(), startingPeriod, endingPeriod) :
+                                  0.0);
 }
 
 bool SystemDataSource::mortgagePaidForMonth(int year, int month) const
@@ -914,17 +959,20 @@ bool SystemDataSource::mortgagePaidForMonth(int year, int month) const
 
 void SystemDataSource::addAdditionalPrincipalPayment(const MortgagePrincipalPayment& payment)
 {
-    mortgageInfo->addPrincipalPayment(payment);
+    if(mortgageExists())
+    {
+        mortgageInfo->addPrincipalPayment(payment);
 
-    QJsonObject mortgage = obj.value("MortgageInformation").toObject();
-    QJsonArray values = mortgage.value("AdditionalPrincipalPayments").toArray();
-    QJsonObject newValueItem;
-    newValueItem.insert("Date", QJsonValue(payment.getDate().toString("MM/dd/yyyy")));
-    newValueItem.insert("Amount", QJsonValue(payment.getAmount()));
-    values.append(newValueItem);
-    mortgage.remove("AdditionalPrincipalPayments");
-    mortgage.insert("AdditionalPrincipalPayments", values);
-    obj["MortgageInformation"] = mortgage;
+        QJsonObject mortgage = obj.value("MortgageInformation").toObject();
+        QJsonArray values = mortgage.value("AdditionalPrincipalPayments").toArray();
+        QJsonObject newValueItem;
+        newValueItem.insert("Date", QJsonValue(payment.getDate().toString("MM/dd/yyyy")));
+        newValueItem.insert("Amount", QJsonValue(payment.getAmount()));
+        values.append(newValueItem);
+        mortgage.remove("AdditionalPrincipalPayments");
+        mortgage.insert("AdditionalPrincipalPayments", values);
+        obj["MortgageInformation"] = mortgage;
+    }
 }
 
 double SystemDataSource::getAssetValue(const std::string assetName, int year, int month) const

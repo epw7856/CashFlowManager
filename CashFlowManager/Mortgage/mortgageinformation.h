@@ -23,15 +23,18 @@ public:
     ~MortgageInformation();
 
     double getTotalLoanAmount() const;
+    void setTotalLoanAmount(double amount);
     double getPurchasePrice() const;
     double getMarketValue() const;
+    void setMarketValue(double value);
     double getInterestRate() const;
+    void setInterestRate(double rate);
     int getLoanTerm() const;
+    void setLoanTerm(int term);
     double getMonthlyPayment() const;
     QDate getLoanStartDate() const;
+    void setLoanStartDate(QDate date);
     const std::multiset<std::unique_ptr<MortgagePrincipalPayment>, TransactionComparison<MortgagePrincipalPayment>>& getPrincipalPayments() const;
-    void updateMarketValue(double value);
-    void updateRemainingBalance(double amount);
     void addPrincipalPayment(const MortgagePrincipalPayment& payment);
 
 private:
@@ -44,6 +47,8 @@ private:
     double monthlyInterestRate = 0.0;
     QDate loanStartDate;
     std::multiset<std::unique_ptr<MortgagePrincipalPayment>, TransactionComparison<MortgagePrincipalPayment>> principalPayments;
+
+    void updateMonthlyPayment();
 };
 
 inline double MortgageInformation::getTotalLoanAmount() const
@@ -61,6 +66,11 @@ inline double MortgageInformation::getMarketValue() const
     return marketValue;
 }
 
+inline void MortgageInformation::setMarketValue(double value)
+{
+    marketValue = value;
+}
+
 inline double MortgageInformation::getInterestRate() const
 {
     return interestRate;
@@ -71,11 +81,6 @@ inline int MortgageInformation::getLoanTerm() const
     return loanTerm;
 }
 
-inline void MortgageInformation::updateMarketValue(double value)
-{
-    marketValue = value;
-}
-
 inline const std::multiset<std::unique_ptr<MortgagePrincipalPayment>, TransactionComparison<MortgagePrincipalPayment>>& MortgageInformation::getPrincipalPayments() const
 {
     return principalPayments;
@@ -84,6 +89,11 @@ inline const std::multiset<std::unique_ptr<MortgagePrincipalPayment>, Transactio
 inline QDate MortgageInformation::getLoanStartDate() const
 {
     return loanStartDate;
+}
+
+inline void MortgageInformation::setLoanStartDate(QDate date)
+{
+    loanStartDate.setDate(date.year(), date.month(), date.day());
 }
 
 #endif // MORTGAGEINFORMATION_H

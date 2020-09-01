@@ -20,6 +20,7 @@ class QDate;
 class SystemDataSource;
 class UpdateAssetInfoDialog;
 class UpdateAutomaticMonthlyPaymentsDialog;
+class UpdateMortgageInfoDialog;
 class YearlyBudgetSummaryDialog;
 class YearlyIncomeSummaryDialog;
 
@@ -72,6 +73,7 @@ public:
     void showUpdateAutomaticMonthlyPaymentDialog(QWidget* parent);
     void showUpdateAssetInfoDialog(QWidget* parent);
     void showAddAssetDialog(QWidget* parent);
+    void showUpdateMortgageInfoDialog(QWidget* parent);
 
 signals:
     void requestMainWindowUpdate();
@@ -100,6 +102,7 @@ private:
     std::unique_ptr<UpdateAutomaticMonthlyPaymentsDialog> updateAutomaticMonthlyPaymentsDialog;
     std::unique_ptr<UpdateAssetInfoDialog> updateAssetInfoDialog;
     std::unique_ptr<UpdateAssetInfoDialog> addAssetInfoDialog;
+    std::unique_ptr<UpdateMortgageInfoDialog> updateMortgageInfoDialog;
 
     int currentYear = 0;
     int currentMonth = 0;

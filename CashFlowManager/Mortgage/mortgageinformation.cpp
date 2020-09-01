@@ -20,7 +20,7 @@ MortgageInformation::MortgageInformation
     monthlyInterestRate(interestRate / 12.0),
     loanStartDate(startDate)
 {
-    monthlyPayment = totalLoanAmount * (monthlyInterestRate * pow((1 + monthlyInterestRate), (loanTerm * 12.0))) / (pow((1 + monthlyInterestRate), (loanTerm * 12.0)) - 1);
+    updateMonthlyPayment();
 }
 
 double MortgageInformation::getMonthlyPayment() const
@@ -34,3 +34,28 @@ void MortgageInformation::addPrincipalPayment(const MortgagePrincipalPayment& pa
 {
     principalPayments.insert(std::make_unique<MortgagePrincipalPayment>(payment));
 }
+
+void MortgageInformation::updateMonthlyPayment()
+{
+    monthlyPayment = totalLoanAmount * (monthlyInterestRate * pow((1.0 + monthlyInterestRate), (loanTerm * 12.0))) / (pow((1.0 + monthlyInterestRate), (loanTerm * 12.0)) - 1.0);
+}
+
+void MortgageInformation::setTotalLoanAmount(double amount)
+{
+    totalLoanAmount = amount;
+    updateMonthlyPayment();
+}
+
+void MortgageInformation::setInterestRate(double rate)
+{
+    interestRate = rate;
+    monthlyInterestRate = interestRate / 12.0;
+    updateMonthlyPayment();
+}
+
+void MortgageInformation::setLoanTerm(int term)
+{
+    loanTerm = term;
+    updateMonthlyPayment();
+}
+

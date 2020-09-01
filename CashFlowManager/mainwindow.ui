@@ -1228,6 +1228,8 @@
     <addaction name="separator"/>
     <addaction name="actionModifyAutomaticMonthlyPayment"/>
     <addaction name="separator"/>
+    <addaction name="actionModifyMortgageInformation"/>
+    <addaction name="separator"/>
     <addaction name="actionModifyAssetInfo"/>
     <addaction name="actionAddNewAsset"/>
    </widget>
@@ -1409,6 +1411,11 @@
   <action name="actionUpdateCurrentAssetValues">
    <property name="text">
     <string>Update Current Values For All Assets</string>
+   </property>
+  </action>
+  <action name="actionModifyMortgageInformation">
+   <property name="text">
+    <string>Update Mortgage Information</string>
    </property>
   </action>
  </widget>

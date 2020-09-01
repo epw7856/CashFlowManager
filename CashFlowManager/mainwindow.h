@@ -42,6 +42,7 @@ public slots:
     void onActionModifyAutomaticMonthlyPaymentTriggered();
     void onActionAddNewAssetTriggered();
     void onActionModifyAssetInfoTriggered();
+    void onActionModifyMortgageInfoTriggered();
     void closeEvent(QCloseEvent* event) override;
 
 private:

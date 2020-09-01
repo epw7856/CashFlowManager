@@ -85,6 +85,7 @@ SOURCES += \
         Expense/updateautomaticmonthlypaymentsdialog.cpp \
         Expense/updateautomaticmonthlypaymentsdialogcontroller.cpp \
         Utilities/validator.cpp \
+        Mortgage/updatemortgageinfodialog.cpp \
         yearlybudgetsummarydialog.cpp \
         Income/yearlyincomesummarydialog.cpp
 
@@ -146,6 +147,7 @@ HEADERS += \
         Expense/updateautomaticmonthlypaymentsdialog.h \
         Expense/updateautomaticmonthlypaymentsdialogcontroller.h \
         Utilities/validator.h \
+        Mortgage/updatemortgageinfodialog.h \
         yearlybudgetsummarydialog.h \
         Income/yearlyincomesummarydialog.h
 
@@ -163,6 +165,7 @@ FORMS += \
         mortgagesummarydialog.ui \
         updateassetinfodialog.ui \
         updateautomaticmonthlypaymentsdialog.ui \
+        updatemortgageinfodialog.ui \
         yearlybudgetsummarydialog.ui \
         yearlyincomesummarydialog.ui
 

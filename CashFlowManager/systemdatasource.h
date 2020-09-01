@@ -83,12 +83,18 @@ public:
     bool currentMonthValueEnteredForAsset(const std::string& assetName) const override;
 
     // Mortgage Interface
+    bool mortgageExists() const override;
     double getTotalLoanAmount() const override;
+    void updateTotalLoanAmount(double amount) override;
     double getMarketValue() const override;
+    void updateMarketValue(double amount) override;
     double getInterestRate() const override;
+    void updateInterestRate(double rate) override;
     int getLoanTerm() const override;
+    void updateLoanTerm(int term) override;
     double getBasePayment() const override;
     QDate getLoanStartDate() const override;
+    void updateLoanStartDate(QDate date) override;
     double getPurchasePrice() const override;
     double getAdditionalPrincipalPaymentTotalByDate(const QDate& startingPeriod, const QDate& endingPeriod) const override;
     bool mortgagePaidForMonth(int year, int month) const override;
