@@ -68,6 +68,7 @@ SOURCES += \
         Asset/assetsummarydialog.cpp \
         Asset/assetsummarydialogcontroller.cpp \
         Expense/automaticmonthlypaymentsummarydialog.cpp \
+        Mortgage/updatemortgageinfodialogcontroller.cpp \
         Utilities/basetransaction.cpp \
         Utilities/currencyutilities.cpp \
         Utilities/dateutilities.cpp \
@@ -129,6 +130,7 @@ HEADERS += \
         Asset/assetsummarydialog.h \
         Asset/assetsummarydialogcontroller.h \
         Expense/automaticmonthlypaymentsummarydialog.h \
+        Mortgage/updatemortgageinfodialogcontroller.h \
         Utilities/basetransaction.h \
         Utilities/currencyutilities.h \
         Utilities/dateutilities.h \

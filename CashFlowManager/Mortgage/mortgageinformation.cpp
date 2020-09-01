@@ -48,7 +48,7 @@ void MortgageInformation::setTotalLoanAmount(double amount)
 
 void MortgageInformation::setInterestRate(double rate)
 {
-    interestRate = rate;
+    interestRate = rate / 100.0;
     monthlyInterestRate = interestRate / 12.0;
     updateMonthlyPayment();
 }

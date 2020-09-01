@@ -413,7 +413,7 @@ void MainWindowController::showUpdateMortgageInfoDialog(QWidget *parent)
         updateMortgageInfoDialog = std::make_unique<UpdateMortgageInfoDialog>(sds, parent);
     }
 
-    //connect(updateMortgageInfoDialog.get(), &UpdateMortgageInfoDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
+    connect(updateMortgageInfoDialog.get(), &UpdateMortgageInfoDialog::dialogClosed, this, &MainWindowController::dialogCloseEvent);
 
     updateMortgageInfoDialog->show();
     updateMortgageInfoDialog->raise();

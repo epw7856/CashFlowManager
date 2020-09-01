@@ -24,12 +24,12 @@ bool Validator::verifyDoubleAmount(QString& amount, double upperLimit, bool zero
     return (validator.validate(amount, pos) == QValidator::Acceptable);
 }
 
-bool Validator::verifyIntAmount(QString &amount, bool zeroAllowed)
+bool Validator::verifyIntAmount(QString &amount, int upperLimit, bool zeroAllowed)
 {
     QIntValidator validator;
     int pos = 0;
 
-    (zeroAllowed) ? validator.setRange(0, 1000) : validator.setRange(1, 1000);
+    (zeroAllowed) ? validator.setRange(0, upperLimit) : validator.setRange(1, upperLimit);
 
     return (validator.validate(amount, pos) == QValidator::Acceptable);
 }
