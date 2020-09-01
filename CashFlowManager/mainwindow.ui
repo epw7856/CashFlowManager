@@ -830,7 +830,7 @@
     <item>
      <layout class="QHBoxLayout" name="layoutTables">
       <item>
-       <spacer name="horizontalSpacer_5">
+       <spacer name="horizontalSpacer_7">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -846,7 +846,7 @@
        </spacer>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_10">
+       <layout class="QVBoxLayout" name="verticalLayoutMonthlyExpenseBudget">
         <item>
          <widget class="QGroupBox" name="groupBoxExpenseBudget">
           <property name="sizePolicy">
@@ -933,7 +933,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
+       <layout class="QVBoxLayout" name="verticalLayoutMonthlyInvestmentBudget">
         <item>
          <widget class="QGroupBox" name="groupBoxInvestmentBudget">
           <property name="sizePolicy">
@@ -1115,6 +1115,12 @@
            </item>
            <item>
             <widget class="QChartView" name="graphicsViewBreakdownPieChart">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>300</width>
@@ -1126,6 +1132,9 @@
                <width>16777215</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
              </property>
              <property name="interactive">
               <bool>false</bool>
@@ -1151,7 +1160,7 @@
        </layout>
       </item>
       <item>
-       <spacer name="horizontalSpacer_6">
+       <spacer name="horizontalSpacer_8">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>

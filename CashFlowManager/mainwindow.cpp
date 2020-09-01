@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     investmentTableModel(*sds, QDate::currentDate().month(), false)
 {
     ui->setupUi(this);
-    ui->verticalLayout_8->setAlignment(Qt::AlignTop);
-    ui->verticalLayout_10->setAlignment(Qt::AlignTop);
+    ui->verticalLayoutMonthlyExpenseBudget->setAlignment(Qt::AlignTop);
+    ui->verticalLayoutMonthlyInvestmentBudget->setAlignment(Qt::AlignTop);
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
