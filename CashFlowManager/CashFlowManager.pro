@@ -75,6 +75,7 @@ SOURCES += \
         Expense/expensetypesummarydialog.cpp \
         appexception.cpp \
         cashflowmanagerapplication.cpp \
+        Expense/expensetypeselectdialog.cpp \
         main.cpp \
         mainwindow.cpp \
         mainwindowcontroller.cpp \
@@ -138,6 +139,7 @@ HEADERS += \
         appexception.h \
         cashflowmanagerapplication.h \
         errorcode.h \
+        Expense/expensetypeselectdialog.h \
         mainwindow.h \
         mainwindowcontroller.h \
         monthlybudgetsummarydialog.h \
@@ -161,6 +163,7 @@ FORMS += \
         addinvestmenttypedialog.ui \
         assetsummarydialog.ui \
         automaticmonthlypaymentsummarydialog.ui \
+        expensetypeselectdialog.ui \
         expensetypesummarydialog.ui \
         mainwindow.ui \
         monthlybudgetsummarydialog.ui \
