@@ -25,9 +25,8 @@ public slots:
     void updateDisplayedInformation();
     void onActionExitTriggered();
     void onActionYearlyBudgetSummaryTriggered();
+    void onActionMonthlyBudgetExpenseTypeSummaryTriggered();
     void onActionMonthlyBudgetSummaryTriggered();
-    void onActionFoodExpensesTriggered();
-    void onActionMiscExpensesTriggered();
     void onActionYearlyIncomeSummaryTriggered();
     void onActionAutomaticMonthlyPaymentSummaryTriggered();
     void onActionAssetAndNetWorthSummaryTriggered();

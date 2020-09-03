@@ -12,6 +12,7 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
+    ui->pushButtonExit->setAutoDefault(false);
 
     if(addNewAsset)
     {
@@ -35,6 +36,19 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     connect(ui->pushButtonUpdateAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonUpdateAssetClicked);
     connect(ui->pushButtonDeleteAsset, &QPushButton::clicked, this, &UpdateAssetInfoDialog::onPushButtonDeleteAssetClicked); 
     connect(ui->comboBoxAssets, SIGNAL(currentTextChanged(QString)), this, SLOT(assetTypeSelectionChanged(QString)));
+
+    connect(ui->lineEditMonth1, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth2, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth3, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth4, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth5, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth6, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth7, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth8, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth9, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth10, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth11, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
+    connect(ui->lineEditMonth12, SIGNAL(returnPressed()), this, SLOT(onPushButtonUpdateAssetClicked()));
 
     resize(window()->width(), window()->minimumHeight());
 }

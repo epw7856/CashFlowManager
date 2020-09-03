@@ -9,6 +9,7 @@
 #include "dateutilities.h"
 #include "expensetype.h"
 #include "expensetypesummarydialog.h"
+#include "expensetypeselectdialog.h"
 #include "investmenttype.h"
 #include "mainwindowcontroller.h"
 #include "monthlybudgetsummarydialog.h"
@@ -182,6 +183,26 @@ void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
     yearlyBudgetDialog->activateWindow();
 }
 
+void MainWindowController::showExpenseTypeSelectionDialog(QWidget* parent)
+{
+    QStringList types;
+    for(const auto& type : sds.getExpenseTypes())
+    {
+        types.push_back(QString::fromStdString(type->getName()));
+    }
+
+    if(expenseTypeSelectDialog == nullptr)
+    {
+        expenseTypeSelectDialog = std::make_unique<ExpenseTypeSelectDialog>(types, parent);
+
+        connect(expenseTypeSelectDialog.get(), &ExpenseTypeSelectDialog::expenseTypeSelected, this, &MainWindowController::showMonthlyBudgetExpenseTypeSummaryDialog);
+    }
+
+    expenseTypeSelectDialog->show();
+    expenseTypeSelectDialog->raise();
+    expenseTypeSelectDialog->activateWindow();
+}
+
 void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget* parent)
 {
     if(monthlyBudgetDialog == nullptr)
@@ -192,30 +213,6 @@ void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget* parent)
     monthlyBudgetDialog->show();
     monthlyBudgetDialog->raise();
     monthlyBudgetDialog->activateWindow();
-}
-
-void MainWindowController::showFoodExpensesDialog(QWidget* parent)
-{
-    if(foodExpensesDialog == nullptr)
-    {
-        foodExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, "Food", parent);
-    }
-
-    foodExpensesDialog->show();
-    foodExpensesDialog->raise();
-    foodExpensesDialog->activateWindow();
-}
-
-void MainWindowController::showMiscExpensesDialog(QWidget* parent)
-{
-    if(miscExpensesDialog == nullptr)
-    {
-        miscExpensesDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, "Misc", parent);
-    }
-
-    miscExpensesDialog->show();
-    miscExpensesDialog->raise();
-    miscExpensesDialog->activateWindow();
 }
 
 void MainWindowController::showYearlyIncomeSummaryDialog(QWidget* parent)
@@ -418,6 +415,18 @@ void MainWindowController::showUpdateMortgageInfoDialog(QWidget *parent)
     updateMortgageInfoDialog->show();
     updateMortgageInfoDialog->raise();
     updateMortgageInfoDialog->activateWindow();
+}
+
+void MainWindowController::showMonthlyBudgetExpenseTypeSummaryDialog(QString type, QWidget* parent)
+{
+    if(expenseTypeSummaryDialog == nullptr)
+    {
+        expenseTypeSummaryDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, type.toStdString(), parent);
+    }
+
+    expenseTypeSummaryDialog->show();
+    expenseTypeSummaryDialog->raise();
+    expenseTypeSummaryDialog->activateWindow();
 }
 
 void MainWindowController::dialogCloseEvent()

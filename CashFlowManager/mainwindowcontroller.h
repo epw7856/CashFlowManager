@@ -14,6 +14,7 @@ class AddInvestmentTypeDialog;
 class AssetSummaryDialog;
 class AutomaticMonthlyPaymentSummaryDialog;
 class ExpenseTypeSummaryDialog;
+class ExpenseTypeSelectDialog;
 class MonthlyBudgetSummaryDialog;
 class MortgageSummaryDialog;
 class QDate;
@@ -56,9 +57,8 @@ public:
 
     // Supporting functions for Main Window auxilary actions
     void showYearlyBudgetSummaryDialog(QWidget* parent);
+    void showExpenseTypeSelectionDialog(QWidget* parent);
     void showMonthlyBudgetSummaryDialog(QWidget* parent);
-    void showFoodExpensesDialog(QWidget* parent);
-    void showMiscExpensesDialog(QWidget* parent);
     void showYearlyIncomeSummaryDialog(QWidget* parent);
     void showAutomaticMonthlyPaymentSummaryDialog(QWidget* parent);
     void showAssetSummaryDialog(QWidget* parent);
@@ -79,6 +79,7 @@ signals:
     void requestMainWindowUpdate();
 
 public slots:
+    void showMonthlyBudgetExpenseTypeSummaryDialog(QString type, QWidget* parent);
     void dialogCloseEvent();
 
 private:
@@ -86,8 +87,8 @@ private:
 
     std::unique_ptr<YearlyBudgetSummaryDialog> yearlyBudgetDialog;
     std::unique_ptr<MonthlyBudgetSummaryDialog> monthlyBudgetDialog;
-    std::unique_ptr<ExpenseTypeSummaryDialog> foodExpensesDialog;
-    std::unique_ptr<ExpenseTypeSummaryDialog> miscExpensesDialog;
+    std::unique_ptr<ExpenseTypeSelectDialog> expenseTypeSelectDialog;
+    std::unique_ptr<ExpenseTypeSummaryDialog> expenseTypeSummaryDialog;
     std::unique_ptr<YearlyIncomeSummaryDialog> yearlyIncomeDialog;
     std::unique_ptr<AutomaticMonthlyPaymentSummaryDialog> automaticMonthlyPaymentDialog;
     std::unique_ptr<AssetSummaryDialog> assetSummaryDialog;

@@ -2,9 +2,10 @@
 #include <QMessageBox>
 #include "ui_expensetypeselectdialog.h"
 
-ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(const QStringList& expenseTypes, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ExpenseTypeSelectDialog)
+ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(const QStringList& expenseTypes, QWidget* localParent) :
+    QDialog(localParent),
+    ui(new Ui::ExpenseTypeSelectDialog),
+    parent(localParent)
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -23,6 +24,8 @@ ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(const QStringList& expenseTypes
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &ExpenseTypeSelectDialog::onPushButtonExitClicked);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &ExpenseTypeSelectDialog::onPushButtonOkClicked);
+
+    setFixedSize(window()->width(), window()->minimumHeight());
 }
 
 ExpenseTypeSelectDialog::~ExpenseTypeSelectDialog()
@@ -39,7 +42,7 @@ void ExpenseTypeSelectDialog::onPushButtonOkClicked()
 {
     if(ui->comboBoxExpenseType->currentIndex() > 0)
     {
-        emit expenseTypeSelected(ui->comboBoxExpenseType->currentText());
+        emit expenseTypeSelected(ui->comboBoxExpenseType->currentText(), parent);
         close();
     }
     else

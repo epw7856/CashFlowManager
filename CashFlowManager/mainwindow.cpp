@@ -20,9 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
+    connect(ui->actionMonthlyBudgetSummaryExpenseType, &QAction::triggered, this, &MainWindow::onActionMonthlyBudgetExpenseTypeSummaryTriggered);
     connect(ui->actionMonthlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionMonthlyBudgetSummaryTriggered);
-    connect(ui->actionFoodExpenses, &QAction::triggered, this, &MainWindow::onActionFoodExpensesTriggered);
-    connect(ui->actionMiscExpenses, &QAction::triggered, this, &MainWindow::onActionMiscExpensesTriggered);
     connect(ui->actionYearlyIncomeSummary, &QAction::triggered, this, &MainWindow::onActionYearlyIncomeSummaryTriggered);
     connect(ui->actionAutomaticMonthlyPayments, &QAction::triggered, this, &MainWindow::onActionAutomaticMonthlyPaymentSummaryTriggered);
     connect(ui->actionAssetAndNetWorthTracking, &QAction::triggered, this, &MainWindow::onActionAssetAndNetWorthSummaryTriggered);
@@ -60,19 +59,14 @@ void MainWindow::onActionYearlyBudgetSummaryTriggered()
     mainWindowController->showYearlyBudgetSummaryDialog(this);
 }
 
+void MainWindow::onActionMonthlyBudgetExpenseTypeSummaryTriggered()
+{
+    mainWindowController->showExpenseTypeSelectionDialog(this);
+}
+
 void MainWindow::onActionMonthlyBudgetSummaryTriggered()
 {
     mainWindowController->showMonthlyBudgetSummaryDialog(this);
-}
-
-void MainWindow::onActionFoodExpensesTriggered()
-{
-    mainWindowController->showFoodExpensesDialog(this);
-}
-
-void MainWindow::onActionMiscExpensesTriggered()
-{
-    mainWindowController->showMiscExpensesDialog(this);
 }
 
 void MainWindow::onActionYearlyIncomeSummaryTriggered()
