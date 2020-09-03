@@ -15,8 +15,14 @@ MainWindow::MainWindow(QWidget *parent)
     investmentTableModel(*sds, QDate::currentDate().month(), false)
 {
     ui->setupUi(this);
+    ui->verticalLayoutMonthlyBreakdown->setAlignment(Qt::AlignTop);
     ui->verticalLayoutMonthlyExpenseBudget->setAlignment(Qt::AlignTop);
     ui->verticalLayoutMonthlyInvestmentBudget->setAlignment(Qt::AlignTop);
+    ui->verticalLayoutYearlyBreakdown->setAlignment(Qt::AlignTop);
+    ui->verticalLayoutYearlyIncomeDistribution->setAlignment(Qt::AlignTop);
+    ui->tabWidget->setAutoFillBackground(true);
+    ui->tabWidget->setStyleSheet("background-color: rgb(240, 240, 240);");
+    ui->tabWidget->setCurrentIndex(0);
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::onActionExitTriggered);
     connect(ui->actionYearlyBudgetSummary, &QAction::triggered, this, &MainWindow::onActionYearlyBudgetSummaryTriggered);
@@ -264,6 +270,7 @@ void MainWindow::configureExpenseTableView()
     QFont font(ui->tableViewMonthlyExpenses->font());
     font.setBold(true);
     ui->tableViewMonthlyExpenses->horizontalHeader()->setFont(font);
+    ui->tableViewMonthlyExpenses->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewMonthlyExpenses->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -336,6 +343,7 @@ void MainWindow::configureInvestmentTableView()
     QFont font(ui->tableViewMonthlyInvestments->font());
     font.setBold(true);
     ui->tableViewMonthlyInvestments->horizontalHeader()->setFont(font);
+    ui->tableViewMonthlyInvestments->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewMonthlyInvestments->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
