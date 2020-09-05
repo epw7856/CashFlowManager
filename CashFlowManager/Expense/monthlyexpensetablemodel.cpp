@@ -132,6 +132,10 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
             {
                 return QVariant(QBrush(QColor(Qt::red)));
             }
+            else
+            {
+                return QVariant(QBrush(QColor(Qt::white)));
+            }
         }
     }
 

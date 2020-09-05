@@ -228,7 +228,7 @@
              </font>
             </property>
             <property name="title">
-             <string>  Budget Status  </string>
+             <string>  Expense Budget Status  </string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>

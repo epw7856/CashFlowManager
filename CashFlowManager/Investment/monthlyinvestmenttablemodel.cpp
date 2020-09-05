@@ -142,6 +142,10 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
             {
                 return QVariant(QBrush(QColor(Qt::red)));
             }
+            else
+            {
+                return QVariant(QBrush(QColor(Qt::white)));
+            }
         }
     }
 
