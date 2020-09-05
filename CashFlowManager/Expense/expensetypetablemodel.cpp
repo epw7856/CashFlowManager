@@ -7,10 +7,9 @@
 #include <QColor>
 #include <QFont>
 
-ExpenseTypeTableModel::ExpenseTypeTableModel(ExpenseInterface& localExpenseInterface, std::string localExpenseType, int localMonth)
+ExpenseTypeTableModel::ExpenseTypeTableModel(ExpenseInterface& localExpenseInterface, int localMonth)
 :
     expenseInterface(localExpenseInterface),
-    expenseType(localExpenseType),
     numColumns(4),
     month(localMonth)
 {
@@ -116,6 +115,10 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
             {
                 return QVariant(QBrush(QColor(Qt::green)));
             }
+            else if((remaining == 0.0) && (expenseInterface.getExpenseTypeFixedFlag(expenseType)))
+            {
+                return QVariant(QBrush(QColor(Qt::green)));
+            }
             else if(remaining < 0.00)
             {
                 return QVariant(QBrush(QColor(Qt::red)));
@@ -173,7 +176,8 @@ QVariant ExpenseTypeTableModel::headerData(int section, Qt::Orientation orientat
     return {};
 }
 
-void ExpenseTypeTableModel::setExpenseTransactions()
+void ExpenseTypeTableModel::setExpenseTransactions(std::string localExpenseType)
 {
+    expenseType = localExpenseType;
     expenseTransactions = expenseInterface.getExpenseTransactionsByTimePeriod(expenseType, startDatePeriod, endDatePeriod);
 }

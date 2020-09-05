@@ -15,17 +15,17 @@ class ExpenseTypeSummaryDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ExpenseTypeSummaryDialog(ExpenseInterface& localExpenseInterface,
-                                      std::string localExpenseType,
-                                      QWidget *parent = nullptr);
+    explicit ExpenseTypeSummaryDialog(ExpenseInterface& localExpenseInterface, QWidget *parent = nullptr);
+    void updateExpenseType(std::string type);
     ~ExpenseTypeSummaryDialog();
 
 public slots:
     void onPushButtonExitClicked();
 
 private:
+    void configureAllTables();
     void configureExpenseTable(QTableView* tableView, QAbstractTableModel& tableModel);
-    void setTableData();
+    void setTableData(std::string type);
 
     Ui::ExpenseTypeSummaryDialog *ui;
     std::string expenseType = "";

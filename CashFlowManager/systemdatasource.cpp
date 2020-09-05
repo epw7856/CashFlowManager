@@ -171,6 +171,18 @@ bool SystemDataSource::getExpenseTypeRequiredFlag(const std::string& expenseType
     return false;
 }
 
+bool SystemDataSource::getExpenseTypeFixedFlag(const std::string& expenseType) const
+{
+    auto itr = findMatchingType(expenseTypes, expenseType);
+
+    if(itr != expenseTypes.end())
+    {
+        return !(*itr)->getVariableExpenseFlag();
+    }
+
+    return false;
+}
+
 std::vector<ExpenseTransaction*> SystemDataSource::getExpenseTransactionsByTimePeriod(const std::string& expenseType,
                                                                                       const QDate& startingPeriod,
                                                                                       const QDate& endingPeriod) const

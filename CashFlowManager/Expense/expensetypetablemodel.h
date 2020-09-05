@@ -11,12 +11,12 @@ class ExpenseTransaction;
 class ExpenseTypeTableModel : public QAbstractTableModel
 {
 public:
-    ExpenseTypeTableModel(ExpenseInterface& localExpenseInterface, std::string localExpenseType, int localMonth);
+    ExpenseTypeTableModel(ExpenseInterface& localExpenseInterface, int localMonth);
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-    void setExpenseTransactions();
+    void setExpenseTransactions(std::string localExpenseType);
 
 private:
     ExpenseInterface& expenseInterface;

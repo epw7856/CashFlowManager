@@ -128,6 +128,7 @@ void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstract
     QFont font(tableView->font());
     font.setBold(true);
     tableView->horizontalHeader()->setFont(font);
+    tableView->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

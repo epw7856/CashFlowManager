@@ -3,41 +3,54 @@
 #include <QScrollBar>
 #include "ui_expensetypesummarydialog.h"
 
-ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog
-(
-    ExpenseInterface& localExpenseInterface,
-    std::string localExpenseType,
-    QWidget* parent
-)
+ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog(ExpenseInterface& localExpenseInterface, QWidget* parent)
 :
     QDialog(parent),
     ui(new Ui::ExpenseTypeSummaryDialog),
-    expenseType(localExpenseType),
-    januaryExpenseTable(localExpenseInterface, expenseType, 1),
-    februaryExpenseTable(localExpenseInterface, expenseType, 2),
-    marchExpenseTable(localExpenseInterface, expenseType, 3),
-    aprilExpenseTable(localExpenseInterface, expenseType, 4),
-    mayExpenseTable(localExpenseInterface, expenseType, 5),
-    juneExpenseTable(localExpenseInterface, expenseType, 6),
-    julyExpenseTable(localExpenseInterface, expenseType, 7),
-    augustExpenseTable(localExpenseInterface, expenseType, 8),
-    septemberExpenseTable(localExpenseInterface, expenseType, 9),
-    octoberExpenseTable(localExpenseInterface, expenseType, 10),
-    novemberExpenseTable(localExpenseInterface, expenseType, 11),
-    decemberExpenseTable(localExpenseInterface, expenseType, 12)
+    januaryExpenseTable(localExpenseInterface, 1),
+    februaryExpenseTable(localExpenseInterface, 2),
+    marchExpenseTable(localExpenseInterface, 3),
+    aprilExpenseTable(localExpenseInterface, 4),
+    mayExpenseTable(localExpenseInterface, 5),
+    juneExpenseTable(localExpenseInterface, 6),
+    julyExpenseTable(localExpenseInterface, 7),
+    augustExpenseTable(localExpenseInterface, 8),
+    septemberExpenseTable(localExpenseInterface, 9),
+    octoberExpenseTable(localExpenseInterface, 10),
+    novemberExpenseTable(localExpenseInterface, 11),
+    decemberExpenseTable(localExpenseInterface, 12)
 {
     ui->setupUi(this);
-    setWindowTitle(QString("%1").arg(QString::fromStdString(expenseType) + " Expense Summary"));
-    ui->labelDialogTitle->setText(QString::number(QDate::currentDate().year()) + " " + QString::fromStdString(expenseType) + " Expense Summary");
+    setWindowTitle("");
+    ui->labelDialogTitle->setText("");
     showMaximized();
-    ui->verticalLayout_3->setAlignment(Qt::AlignTop);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &ExpenseTypeSummaryDialog::onPushButtonExitClicked);
+}
 
-    setTableData();
+ExpenseTypeSummaryDialog::~ExpenseTypeSummaryDialog()
+{
+    delete ui;
+}
 
+void ExpenseTypeSummaryDialog::onPushButtonExitClicked()
+{
+    close();
+}
+
+void ExpenseTypeSummaryDialog::updateExpenseType(std::string type)
+{
+    setWindowTitle(QString("%1").arg(QString::fromStdString(type) + " Expense Summary"));
+    ui->labelDialogTitle->setText(QString::number(QDate::currentDate().year()) + " " + QString::fromStdString(type) + " Expense Summary");
+
+    setTableData(type);
+    configureAllTables();
+}
+
+void ExpenseTypeSummaryDialog::configureAllTables()
+{
     configureExpenseTable(ui->tableViewJanuaryExpenses, januaryExpenseTable);
     configureExpenseTable(ui->tableViewFebruaryExpenses, februaryExpenseTable);
     configureExpenseTable(ui->tableViewMarchExpenses, marchExpenseTable);
@@ -52,30 +65,20 @@ ExpenseTypeSummaryDialog::ExpenseTypeSummaryDialog
     configureExpenseTable(ui->tableViewDecemberExpenses, decemberExpenseTable);
 }
 
-ExpenseTypeSummaryDialog::~ExpenseTypeSummaryDialog()
+void ExpenseTypeSummaryDialog::setTableData(std::string type)
 {
-    delete ui;
-}
-
-void ExpenseTypeSummaryDialog::onPushButtonExitClicked()
-{
-    close();
-}
-
-void ExpenseTypeSummaryDialog::setTableData()
-{
-    januaryExpenseTable.setExpenseTransactions();
-    februaryExpenseTable.setExpenseTransactions();
-    marchExpenseTable.setExpenseTransactions();
-    aprilExpenseTable.setExpenseTransactions();
-    mayExpenseTable.setExpenseTransactions();
-    juneExpenseTable.setExpenseTransactions();
-    julyExpenseTable.setExpenseTransactions();
-    augustExpenseTable.setExpenseTransactions();
-    septemberExpenseTable.setExpenseTransactions();
-    octoberExpenseTable.setExpenseTransactions();
-    novemberExpenseTable.setExpenseTransactions();
-    decemberExpenseTable.setExpenseTransactions();
+    januaryExpenseTable.setExpenseTransactions(type);
+    februaryExpenseTable.setExpenseTransactions(type);
+    marchExpenseTable.setExpenseTransactions(type);
+    aprilExpenseTable.setExpenseTransactions(type);
+    mayExpenseTable.setExpenseTransactions(type);
+    juneExpenseTable.setExpenseTransactions(type);
+    julyExpenseTable.setExpenseTransactions(type);
+    augustExpenseTable.setExpenseTransactions(type);
+    septemberExpenseTable.setExpenseTransactions(type);
+    octoberExpenseTable.setExpenseTransactions(type);
+    novemberExpenseTable.setExpenseTransactions(type);
+    decemberExpenseTable.setExpenseTransactions(type);
 }
 
 void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbstractTableModel& tableModel)
@@ -88,6 +91,7 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
     QFont font(tableView->font());
     font.setBold(true);
     tableView->horizontalHeader()->setFont(font);
+    tableView->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -110,7 +114,16 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
 
     // Set TableView height
     tableView->resizeRowsToContents();
-    tableView->setMaximumHeight(tableView->rowHeight(0) * 12);
+    //tableView->setMaximumHeight(tableView->rowHeight(0) * 12);
+
+    int tableHeight = 0;
+    for(int i = 0; i < tableModel.rowCount(); ++i)
+    {
+        tableHeight += tableView->rowHeight(i);
+    }
+
+    tableHeight += tableView->horizontalHeader()->height();
+    tableView->setFixedHeight(tableHeight);
 
     // Set TableView width
     int tableWidth = 0;
@@ -120,7 +133,7 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
     }
 
     // Add width for the vertical scrollbar
-    tableWidth += 17;
+    //tableWidth += 17;
 
     tableView->setMinimumWidth(tableWidth);
     tableView->setMaximumWidth(tableWidth);

@@ -421,9 +421,10 @@ void MainWindowController::showMonthlyBudgetExpenseTypeSummaryDialog(QString typ
 {
     if(expenseTypeSummaryDialog == nullptr)
     {
-        expenseTypeSummaryDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, type.toStdString(), parent);
+        expenseTypeSummaryDialog = std::make_unique<ExpenseTypeSummaryDialog>(sds, parent);
     }
 
+    expenseTypeSummaryDialog->updateExpenseType(type.toStdString());
     expenseTypeSummaryDialog->show();
     expenseTypeSummaryDialog->raise();
     expenseTypeSummaryDialog->activateWindow();
