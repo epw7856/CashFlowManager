@@ -93,8 +93,9 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
     tableView->horizontalHeader()->setFont(font);
     tableView->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
-    // Disable horizontal scroll bar
+    // Disable scroll bars
     tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Disable cell resizing and selections
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
@@ -104,17 +105,11 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
     tableView->setFocusPolicy(Qt::NoFocus);
     tableView->setSelectionMode(QAbstractItemView::NoSelection);
 
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
-
     // Resize columns to be uniform
     tableView->resizeColumnsToContents();
 
     // Set TableView height
     tableView->resizeRowsToContents();
-    //tableView->setMaximumHeight(tableView->rowHeight(0) * 12);
 
     int tableHeight = 0;
     for(int i = 0; i < tableModel.rowCount(); ++i)
@@ -132,13 +127,6 @@ void ExpenseTypeSummaryDialog::configureExpenseTable(QTableView* tableView, QAbs
         tableWidth += tableView->horizontalHeader()->sectionSize(i);
     }
 
-    // Add width for the vertical scrollbar
-    //tableWidth += 17;
-
     tableView->setMinimumWidth(tableWidth);
     tableView->setMaximumWidth(tableWidth);
-//    tableView->setStyleSheet("QTableView {background-color: transparent;}"
-//                             "QHeaderView::section {background-color: transparent;}"
-//                             "QHeaderView {background-color: transparent;}"
-//                             "QTableCornerButton::section {background-color: transparent;}");
 }

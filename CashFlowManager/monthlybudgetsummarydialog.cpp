@@ -130,7 +130,7 @@ void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstract
     tableView->horizontalHeader()->setFont(font);
     tableView->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
-    // Disable horizontal scroll bar
+    // Disable scroll bars
     tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     tableView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -141,11 +141,6 @@ void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstract
     tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tableView->setFocusPolicy(Qt::NoFocus);
     tableView->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     if(maxColumnWidth == 0)

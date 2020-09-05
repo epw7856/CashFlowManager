@@ -50,6 +50,7 @@ void YearlyIncomeSummaryDialog::configureSalaryTable()
     QFont font(ui->tableViewSalarySummary->font());
     font.setBold(true);
     ui->tableViewSalarySummary->horizontalHeader()->setFont(font);
+    ui->tableViewSalarySummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewSalarySummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -61,11 +62,6 @@ void YearlyIncomeSummaryDialog::configureSalaryTable()
     ui->tableViewSalarySummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewSalarySummary->setFocusPolicy(Qt::NoFocus);
     ui->tableViewSalarySummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     ui->tableViewSalarySummary->resizeColumnsToContents();
@@ -81,7 +77,7 @@ void YearlyIncomeSummaryDialog::configureSalaryTable()
     tableHeight += ui->tableViewSalarySummary->horizontalHeader()->height();
     tableHeight += 5;
     ui->tableViewSalarySummary->setMaximumHeight(tableHeight);
-    ui->groupBoxSalaryIncome->setMaximumHeight(tableHeight + 40);
+    ui->groupBoxSalaryIncome->setMaximumHeight(tableHeight + 50);
 
     // Set TableView width
     int tableWidth = 0;
@@ -109,6 +105,7 @@ void YearlyIncomeSummaryDialog::configureSupplementalTable()
     QFont font(ui->tableViewSupplementalSummary->font());
     font.setBold(true);
     ui->tableViewSupplementalSummary->horizontalHeader()->setFont(font);
+    ui->tableViewSupplementalSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewSupplementalSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -120,11 +117,6 @@ void YearlyIncomeSummaryDialog::configureSupplementalTable()
     ui->tableViewSupplementalSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewSupplementalSummary->setFocusPolicy(Qt::NoFocus);
     ui->tableViewSupplementalSummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     ui->tableViewSupplementalSummary->resizeColumnsToContents();
@@ -140,7 +132,7 @@ void YearlyIncomeSummaryDialog::configureSupplementalTable()
     tableHeight += ui->tableViewSupplementalSummary->horizontalHeader()->height();
     tableHeight += 5;
     ui->tableViewSupplementalSummary->setMaximumHeight(tableHeight);
-    ui->groupBoxSupplementalIncome->setMaximumHeight(tableHeight + 40);
+    ui->groupBoxSupplementalIncome->setMaximumHeight(tableHeight + 50);
 
     // Set TableView width
     int tableWidth = 0;

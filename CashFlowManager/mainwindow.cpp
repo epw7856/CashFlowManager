@@ -272,6 +272,7 @@ void MainWindow::configureExpenseTableView()
     ui->tableViewMonthlyExpenses->horizontalHeader()->setFont(font);
     ui->tableViewMonthlyExpenses->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
+
     // Disable horizontal scroll bar
     ui->tableViewMonthlyExpenses->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -282,11 +283,6 @@ void MainWindow::configureExpenseTableView()
     ui->tableViewMonthlyExpenses->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewMonthlyExpenses->setFocusPolicy(Qt::NoFocus);
     ui->tableViewMonthlyExpenses->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewMonthlyExpenses->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     int maxColumnWidth = 0;
@@ -355,11 +351,6 @@ void MainWindow::configureInvestmentTableView()
     ui->tableViewMonthlyInvestments->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewMonthlyInvestments->setFocusPolicy(Qt::NoFocus);
     ui->tableViewMonthlyInvestments->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewMonthlyExpenses->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewMonthlyExpenses->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     int maxColumnWidth = 0;

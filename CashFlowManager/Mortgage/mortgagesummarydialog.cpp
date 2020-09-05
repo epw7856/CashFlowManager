@@ -48,6 +48,7 @@ void MortgageSummaryDialog::configureMortgageSummaryTable()
     QFont font(ui->tableViewMortgageSummary->font());
     font.setBold(true);
     ui->tableViewMortgageSummary->horizontalHeader()->setFont(font);
+    ui->tableViewMortgageSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewMortgageSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -60,11 +61,6 @@ void MortgageSummaryDialog::configureMortgageSummaryTable()
     ui->tableViewMortgageSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewMortgageSummary->setFocusPolicy(Qt::NoFocus);
     ui->tableViewMortgageSummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     ui->tableViewMortgageSummary->resizeColumnsToContents();

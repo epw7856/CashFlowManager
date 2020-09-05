@@ -264,6 +264,12 @@
               <bold>false</bold>
              </font>
             </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
             <property name="cornerButtonEnabled">
              <bool>false</bool>
             </property>
@@ -333,6 +339,12 @@
               <weight>50</weight>
               <bold>false</bold>
              </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
             </property>
             <property name="cornerButtonEnabled">
              <bool>false</bool>

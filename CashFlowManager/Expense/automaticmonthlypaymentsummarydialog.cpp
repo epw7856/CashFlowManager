@@ -43,6 +43,7 @@ void AutomaticMonthlyPaymentSummaryDialog::configureAutoMonthlyPaymentTable()
     QFont font(ui->tableViewAutoPaymentSummary->font());
     font.setBold(true);
     ui->tableViewAutoPaymentSummary->horizontalHeader()->setFont(font);
+    ui->tableViewAutoPaymentSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable scroll bars
     ui->tableViewAutoPaymentSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -54,13 +55,7 @@ void AutomaticMonthlyPaymentSummaryDialog::configureAutoMonthlyPaymentTable()
     ui->tableViewAutoPaymentSummary->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->tableViewAutoPaymentSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewAutoPaymentSummary->setFocusPolicy(Qt::NoFocus);
-
     ui->tableViewAutoPaymentSummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     ui->tableViewAutoPaymentSummary->resizeColumnsToContents();
@@ -84,11 +79,6 @@ void AutomaticMonthlyPaymentSummaryDialog::configureAutoMonthlyPaymentTable()
         tableWidth += ui->tableViewAutoPaymentSummary->horizontalHeader()->sectionSize(i);
     }
 
-    if(ui->tableViewAutoPaymentSummary->verticalScrollBar()->width() < 100)
-    {
-        tableWidth += ui->tableViewAutoPaymentSummary->verticalScrollBar()->width();
-    }
-
-    ui->tableViewAutoPaymentSummary->setMinimumWidth(tableWidth);
-    ui->tableViewAutoPaymentSummary->setMaximumWidth(tableWidth);
+    ui->tableViewAutoPaymentSummary->setMinimumWidth(tableWidth + 6);
+    ui->tableViewAutoPaymentSummary->setMaximumWidth(tableWidth + 6);
 }

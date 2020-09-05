@@ -51,6 +51,7 @@ void AssetSummaryDialog::configureAssetListTable()
     QFont font(ui->tableViewAssetSummary->font());
     font.setBold(true);
     ui->tableViewAssetSummary->horizontalHeader()->setFont(font);
+    ui->tableViewAssetSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Set scrollbar policies
     ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -63,11 +64,6 @@ void AssetSummaryDialog::configureAssetListTable()
     ui->tableViewAssetSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewAssetSummary->setFocusPolicy(Qt::NoFocus);
     ui->tableViewAssetSummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     ui->tableViewAssetSummary->resizeColumnsToContents();
@@ -116,8 +112,8 @@ void AssetSummaryDialog::configureAssetListTable()
         tableWidth += ui->tableViewAssetSummary->verticalScrollBar()->width();
     }
 
-    ui->tableViewAssetSummary->setMinimumWidth(tableWidth);
-    ui->tableViewAssetSummary->setMaximumWidth(tableWidth);
+    ui->tableViewAssetSummary->setMinimumWidth(tableWidth + 6);
+    ui->tableViewAssetSummary->setMaximumWidth(tableWidth + 6);
 }
 
 void AssetSummaryDialog::configureNetWorthTrackingChart()

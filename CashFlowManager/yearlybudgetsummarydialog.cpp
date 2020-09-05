@@ -57,6 +57,7 @@ void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
     QFont font(ui->tableViewExpenseSummary->font());
     font.setBold(true);
     ui->tableViewExpenseSummary->horizontalHeader()->setFont(font);
+    ui->tableViewExpenseSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewExpenseSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -68,11 +69,6 @@ void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
     ui->tableViewExpenseSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewExpenseSummary->setFocusPolicy(Qt::NoFocus);
     ui->tableViewExpenseSummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewExpenseSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     int maxColumnWidth = 0;
@@ -100,7 +96,7 @@ void YearlyBudgetSummaryDialog::configureExpenseSummaryTable()
     tableHeight += ui->tableViewExpenseSummary->horizontalHeader()->height();
     tableHeight += 5;
     ui->tableViewExpenseSummary->setMaximumHeight(tableHeight);
-    ui->groupBoxExpenseBudget->setMaximumHeight(tableHeight + 40);
+    ui->groupBoxExpenseBudget->setMaximumHeight(tableHeight + 50);
 
     // Set TableView width
     int tableWidth = 0;
@@ -134,6 +130,7 @@ void YearlyBudgetSummaryDialog::configureInvestmentSummaryTable()
     QFont font(ui->tableViewInvestmentSummary->font());
     font.setBold(true);
     ui->tableViewInvestmentSummary->horizontalHeader()->setFont(font);
+    ui->tableViewInvestmentSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Disable horizontal scroll bar
     ui->tableViewInvestmentSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -145,11 +142,6 @@ void YearlyBudgetSummaryDialog::configureInvestmentSummaryTable()
     ui->tableViewInvestmentSummary->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableViewInvestmentSummary->setFocusPolicy(Qt::NoFocus);
     ui->tableViewInvestmentSummary->setSelectionMode(QAbstractItemView::NoSelection);
-
-    // Add header frame
-    //ui->tableViewInvestmentSummary->horizontalHeader()->setFrameStyle(QFrame::HLine);
-    //ui->tableViewInvestmentSummary->horizontalHeader()->setFrameShadow(QFrame::Plain);
-    //ui->tableViewInvestmentSummary->horizontalHeader()->setLineWidth(1);
 
     // Resize columns to be uniform
     int maxColumnWidth = 0;
@@ -177,7 +169,7 @@ void YearlyBudgetSummaryDialog::configureInvestmentSummaryTable()
     tableHeight += ui->tableViewInvestmentSummary->horizontalHeader()->height();
     tableHeight += 5;
     ui->tableViewInvestmentSummary->setMaximumHeight(tableHeight);
-    ui->groupBoxInvestmentBudget->setMaximumHeight(tableHeight + 40);
+    ui->groupBoxInvestmentBudget->setMaximumHeight(tableHeight + 50);
 
     // Set TableView width
     int tableWidth = 0;
