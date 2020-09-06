@@ -180,13 +180,6 @@ void MainWindow::updateDisplayedInformation()
     ui->labelYearlyCashSaved->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyCashSavedTotal())));
     ui->labelYearlySavingsRatio->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlySavingsRatio())));
     ui->labelYearlyPrincipal->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(mainWindowController->getYearlyAdditionalPrincipal())));
-    ui->labelExpenditurePercentage->setText(QString::fromStdString(CurrencyUtilities::formatRatio(mainWindowController->getYearlyExpenditureRatio())));
-
-    QPalette expenditurePercentagePalette;
-    (mainWindowController->getYearlyExpenditureRatio() > 1.0) ? expenditurePercentagePalette.setColor(QPalette::WindowText, Qt::red) :
-                                                                expenditurePercentagePalette.setColor(QPalette::WindowText, Qt::green);
-
-    ui->labelExpenditurePercentage->setPalette(expenditurePercentagePalette);
 
     if(mainWindowController->isCurrentMonthOverBudget())
     {

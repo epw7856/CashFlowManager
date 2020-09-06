@@ -161,16 +161,6 @@ std::string MainWindowController::getRatioForPieChart(double amount) const
     return CurrencyUtilities::formatRatio(amount / getYearlyIncomeTotal());
 }
 
-double MainWindowController::getYearlyExpenditureRatio() const
-{
-    std::pair<QDate, QDate> dates = DateUtilities::getCurrentYearDates();
-    double totalExpenditures = sds.getYearlyExpenseTotal(currentYear) +
-                               sds.getYearlyInvestmentTotal(currentYear) +
-                               sds.getAdditionalPrincipalPaymentTotalByDate(dates.first, dates.second);
-
-    return totalExpenditures / getYearlyIncomeTotal();
-}
-
 void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
 {
     if(yearlyBudgetDialog == nullptr)

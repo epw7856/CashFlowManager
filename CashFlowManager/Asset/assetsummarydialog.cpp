@@ -14,6 +14,8 @@ AssetSummaryDialog::AssetSummaryDialog(AssetInterface& localAssetInterface, QWid
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
+    showMaximized();
+
     ui->labelDialogTitle->setText(QString("%1%2").arg(QString::number(QDate::currentDate().year())).arg(" Asset and Net Worth Summary"));
     ui->labelYearlyNetWorthTracker->setText("Net Worth Tracking");
     ui->labelLiquidAssetAmount->setText(QString::fromStdString(controller->getCurrentLiquidAssetAmount()));
@@ -54,7 +56,7 @@ void AssetSummaryDialog::configureAssetListTable()
     ui->tableViewAssetSummary->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
 
     // Set scrollbar policies
-    ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->tableViewAssetSummary->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     ui->tableViewAssetSummary->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     // Disable cell resizing and selections
@@ -112,7 +114,6 @@ void AssetSummaryDialog::configureAssetListTable()
         tableWidth += ui->tableViewAssetSummary->verticalScrollBar()->width();
     }
 
-    ui->tableViewAssetSummary->setMinimumWidth(tableWidth + 6);
     ui->tableViewAssetSummary->setMaximumWidth(tableWidth + 6);
 }
 
