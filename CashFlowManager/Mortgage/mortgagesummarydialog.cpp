@@ -13,6 +13,7 @@ MortgageSummaryDialog::MortgageSummaryDialog(MortgageInterface& localMortgageInt
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
     showMaximized();
+    ui->horizontalLayoutMortgageTable->setAlignment(Qt::AlignTop);
     mortgageTableModel.setMortgageInformation();
 
     ui->labelLoanAmount->setText(QString::fromStdString(CurrencyUtilities::formatCurrency(localMortgageInterface.getTotalLoanAmount())));

@@ -19,7 +19,7 @@ AddInvestmentTypeDialog::AddInvestmentTypeDialog(InvestmentInterface& localInves
         ui->pushButtonAddType->setVisible(false);
         updateComboBox();
 
-        connect(ui->comboBoxInvestmentType, SIGNAL(currentTextChanged(QString)), this, SLOT(expenseTypeSelectionChanged(QString)));
+        connect(ui->comboBoxInvestmentType, SIGNAL(currentTextChanged(QString)), this, SLOT(investmentTypeSelectionChanged(QString)));
         connect(ui->pushButtonUpdateType, &QPushButton::clicked, this, &AddInvestmentTypeDialog::onPushButtonUpdateTypeClicked);
         connect(ui->pushButtonDeleteType, &QPushButton::clicked, this, &AddInvestmentTypeDialog::onPushButtonDeleteTypeClicked);
     }

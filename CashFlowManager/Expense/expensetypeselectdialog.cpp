@@ -2,7 +2,7 @@
 #include <QMessageBox>
 #include "ui_expensetypeselectdialog.h"
 
-ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(const QStringList& expenseTypes, QWidget* localParent) :
+ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(QWidget* localParent) :
     QDialog(localParent),
     ui(new Ui::ExpenseTypeSelectDialog),
     parent(localParent)
@@ -10,17 +10,6 @@ ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(const QStringList& expenseTypes
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowFlag(Qt::WindowMinMaxButtonsHint);
-
-    ui->comboBoxExpenseType->clear();
-    if(expenseTypes.isEmpty())
-    {
-        ui->comboBoxExpenseType->insertItem(0, "No Expense Types Found");
-    }
-    else
-    {
-        ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
-        ui->comboBoxExpenseType->addItems(expenseTypes);
-    }
 
     connect(ui->pushButtonExit, &QPushButton::clicked, this, &ExpenseTypeSelectDialog::onPushButtonExitClicked);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &ExpenseTypeSelectDialog::onPushButtonOkClicked);
@@ -31,6 +20,22 @@ ExpenseTypeSelectDialog::ExpenseTypeSelectDialog(const QStringList& expenseTypes
 ExpenseTypeSelectDialog::~ExpenseTypeSelectDialog()
 {
     delete ui;
+}
+
+void ExpenseTypeSelectDialog::updateExpenseTypes(const QStringList& localExpenseTypes)
+{
+    ui->comboBoxExpenseType->clear();
+    if(localExpenseTypes.isEmpty())
+    {
+        ui->comboBoxExpenseType->insertItem(0, "No Expense Types Found");
+        ui->pushButtonOk->setEnabled(false);
+    }
+    else
+    {
+        ui->comboBoxExpenseType->insertItem(0, "<Expense Types>");
+        ui->comboBoxExpenseType->addItems(localExpenseTypes);
+        ui->pushButtonOk->setEnabled(true);
+    }
 }
 
 void ExpenseTypeSelectDialog::onPushButtonExitClicked()

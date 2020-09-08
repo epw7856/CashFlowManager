@@ -413,7 +413,7 @@
           <bool>true</bool>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
          </property>
          <widget class="QWidget" name="scrollAreaWidgetContents">
           <property name="geometry">
@@ -438,7 +438,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <layout class="QHBoxLayout" name="horizontalLayoutMortgageTable">
              <item>
               <widget class="QTableView" name="tableViewMortgageSummary">
                <property name="minimumSize">

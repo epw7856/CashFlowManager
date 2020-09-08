@@ -13,8 +13,9 @@ class ExpenseTypeSelectDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ExpenseTypeSelectDialog(const QStringList& expenseTypes, QWidget* localParent = nullptr);
+    explicit ExpenseTypeSelectDialog(QWidget* localParent = nullptr);
     ~ExpenseTypeSelectDialog();
+    void updateExpenseTypes(const QStringList& localExpenseTypes);
 
 signals:
     void expenseTypeSelected(QString type, QWidget* parent);

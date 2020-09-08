@@ -41,6 +41,21 @@ std::string MainWindowController::getBudgetStatusStatement() const
     return CurrencyUtilities::formatCurrency(sds.getMonthlyExpenseTotal(currentYear, currentMonth)) + "  of  " + CurrencyUtilities::formatCurrency(sds.getMonthlyBudgetTotal(currentMonth));
 }
 
+bool MainWindowController::monthlyBudgetExists() const
+{
+    return (sds.getMonthlyBudgetTotal(currentMonth) > 0.0);
+}
+
+bool MainWindowController::expenseTypesExist() const
+{
+    return (!sds.getExpenseTypes().empty());
+}
+
+bool MainWindowController::investmentTypesExist() const
+{
+    return (!sds.getInvestmentTypes().empty());
+}
+
 double MainWindowController::getMonthlyExpenseTotal() const
 {
     return sds.getMonthlyExpenseTotal(currentYear, currentMonth);
@@ -158,7 +173,8 @@ std::vector<std::pair<std::string, double>> MainWindowController::getInvestmentT
 
 std::string MainWindowController::getRatioForPieChart(double amount) const
 {
-    return CurrencyUtilities::formatRatio(amount / getYearlyIncomeTotal());
+    return (getYearlyIncomeTotal() > 0.0) ? CurrencyUtilities::formatRatio(amount / getYearlyIncomeTotal()) :
+                                            CurrencyUtilities::formatRatio(0.0);
 }
 
 void MainWindowController::showYearlyBudgetSummaryDialog(QWidget* parent)
@@ -183,11 +199,12 @@ void MainWindowController::showExpenseTypeSelectionDialog(QWidget* parent)
 
     if(expenseTypeSelectDialog == nullptr)
     {
-        expenseTypeSelectDialog = std::make_unique<ExpenseTypeSelectDialog>(types, parent);
+        expenseTypeSelectDialog = std::make_unique<ExpenseTypeSelectDialog>(parent);
 
         connect(expenseTypeSelectDialog.get(), &ExpenseTypeSelectDialog::expenseTypeSelected, this, &MainWindowController::showMonthlyBudgetExpenseTypeSummaryDialog);
     }
 
+    expenseTypeSelectDialog->updateExpenseTypes(types);
     expenseTypeSelectDialog->show();
     expenseTypeSelectDialog->raise();
     expenseTypeSelectDialog->activateWindow();

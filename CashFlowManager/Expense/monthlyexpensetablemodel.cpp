@@ -120,6 +120,14 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
             double remaining = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 3).data().toString().toStdString());
             bool requiredExpense = expenseInterface.getExpenseTypeRequiredFlag(index.sibling(index.row(), 0).data().toString().toStdString());
 
+            if(index.row() == numRows - 1)
+            {
+                if((actual == 0) && (remaining == 0) && (month < QDate::currentDate().month()))
+                {
+                    return QVariant(QBrush(QColor(Qt::white)));
+                }
+            }
+
             if((actual > 0) && (remaining == 0))
             {
                 return QVariant(QBrush(QColor(Qt::green)));

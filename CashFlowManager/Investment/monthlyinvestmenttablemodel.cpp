@@ -130,6 +130,14 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
             double target = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 1).data().toString().toStdString());
             double actual = CurrencyUtilities::formatCurrencyToDouble(index.sibling(index.row(), 2).data().toString().toStdString());
 
+            if(index.row() == numRows - 1)
+            {
+                if((actual == 0) && (target == 0) && (month < QDate::currentDate().month()))
+                {
+                    return QVariant(QBrush(QColor(Qt::white)));
+                }
+            }
+
             if((actual > 0) && (actual >= target))
             {
                 return QVariant(QBrush(QColor(Qt::green)));

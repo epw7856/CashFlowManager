@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
     updateDisplayedInformation();
-    resize(window()->minimumSizeHint().rwidth(), window()->minimumSizeHint().rheight());
+    resize(window()->width(), window()->minimumHeight());
 }
 
 MainWindow::~MainWindow()
@@ -158,6 +158,12 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
 void MainWindow::updateDisplayedInformation()
 {
+    ui->groupBoxExpenseBudget->setVisible(mainWindowController->expenseTypesExist());
+    ui->groupBoxInvestmentBudget->setVisible(mainWindowController->investmentTypesExist());
+    ui->groupBoxIncomeDistribution->setVisible((mainWindowController->getYearlyInvestmentTotal() > 0.0) ||
+                                               (mainWindowController->getYearlyExpenseTotal() > 0.0) ||
+                                               (mainWindowController->getYearlyAdditionalPrincipal() > 0.0));
+
     expenseTableModel.setExpenseTypes();
     investmentTableModel.setInvestmentTypes();
 
@@ -189,10 +195,12 @@ void MainWindow::updateDisplayedInformation()
 
 void MainWindow::configureBudgetStatusBarChart()
 {
+    double expenseTotal = mainWindowController->getMonthlyExpenseTotal();
+    double remainingAmount = mainWindowController->getMonthlyRemainingBudget();
     QBarSet* expenses = new QBarSet("Expenses");
     QBarSet* remainingBudget = new QBarSet("Remaining Budget");
-    *expenses << mainWindowController->getMonthlyExpenseTotal();
-    *remainingBudget << mainWindowController->getMonthlyRemainingBudget();
+    *expenses << expenseTotal;
+    *remainingBudget << remainingAmount;
     expenses->setColor(QColorConstants::Red);
     remainingBudget->setColor(QColorConstants::Green);
 
@@ -208,6 +216,12 @@ void MainWindow::configureBudgetStatusBarChart()
     barChart->setMargins(QMargins(0,0,0,0));
 
     ui->graphicsViewExpenseBarChart->setChart(barChart);
+
+    if((expenseTotal == 0.0) &&
+       (remainingAmount == 0.0))
+    {
+        ui->graphicsViewExpenseBarChart->setVisible(false);
+    }
 }
 
 void MainWindow::configureBreakdownPieChart()
@@ -216,9 +230,10 @@ void MainWindow::configureBreakdownPieChart()
                                             mainWindowController->getYearlyExpenseTotal());
     expenseSlice->setBrush(Qt::red);
 
-
-    QPieSlice* cashSlice = new QPieSlice("Cash, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyCashSavedTotal())),
-                                                                           mainWindowController->getYearlyCashSavedTotal());
+    double cashSaved = mainWindowController->getYearlyCashSavedTotal();
+    (cashSaved < 0.0) ? cashSaved = 0.0 : mainWindowController->getYearlyCashSavedTotal();
+    QPieSlice* cashSlice = new QPieSlice("Cash, " + QString::fromStdString(mainWindowController->getRatioForPieChart(cashSaved)),
+                                                                           cashSaved);
     cashSlice->setBrush(Qt::green);
 
     QPieSlice* mortgagePrincipalSlice = new QPieSlice("Principal, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyAdditionalPrincipal())),
@@ -264,7 +279,6 @@ void MainWindow::configureExpenseTableView()
     font.setBold(true);
     ui->tableViewMonthlyExpenses->horizontalHeader()->setFont(font);
     ui->tableViewMonthlyExpenses->setStyleSheet("QHeaderView::section { background-color: rgb(240, 240, 240) }");
-
 
     // Disable horizontal scroll bar
     ui->tableViewMonthlyExpenses->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
