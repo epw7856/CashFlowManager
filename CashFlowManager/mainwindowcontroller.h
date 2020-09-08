@@ -35,6 +35,7 @@ public:
     // Supporting functions for Main Window information display
     std::string getCurrentMonthAndYear() const;
     std::string getBudgetStatusStatement() const;
+    bool mortgageExists() const;
     bool monthlyBudgetExists() const;
     bool expenseTypesExist() const;
     bool investmentTypesExist() const;

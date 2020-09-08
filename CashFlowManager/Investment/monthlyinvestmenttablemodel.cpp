@@ -140,11 +140,11 @@ QVariant MonthlyInvestmentTableModel::data(const QModelIndex& index, int role) c
 
             if((actual > 0) && (actual >= target))
             {
-                return QVariant(QBrush(QColor(Qt::green)));
+                return QVariant(QBrush(QColor(Qt::darkGreen)));
             }
             else if((actual == target) && (month < QDate::currentDate().month()))
             {
-                return QVariant(QBrush(QColor(Qt::green)));
+                return QVariant(QBrush(QColor(Qt::darkGreen)));
             }
             else if((actual >= 0) && (target > 0) && (actual < target) && (month < QDate::currentDate().month()))
             {

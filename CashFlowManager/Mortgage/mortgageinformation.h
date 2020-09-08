@@ -22,6 +22,7 @@ public:
     );
     ~MortgageInformation();
 
+    bool getMortgageInitialized() const;
     double getTotalLoanAmount() const;
     void setTotalLoanAmount(double amount);
     double getPurchasePrice() const;
@@ -38,6 +39,7 @@ public:
     void addPrincipalPayment(const MortgagePrincipalPayment& payment);
 
 private:
+    bool mortgageInitialized = false;
     double totalLoanAmount = 0.0;
     double purchasePrice = 0.0;
     double marketValue = 0.0;
@@ -49,7 +51,13 @@ private:
     std::multiset<std::unique_ptr<MortgagePrincipalPayment>, TransactionComparison<MortgagePrincipalPayment>> principalPayments;
 
     void updateMonthlyPayment();
+    void updateMortgageInitialized();
 };
+
+inline bool MortgageInformation::getMortgageInitialized() const
+{
+    return mortgageInitialized;
+}
 
 inline double MortgageInformation::getTotalLoanAmount() const
 {
@@ -69,6 +77,7 @@ inline double MortgageInformation::getMarketValue() const
 inline void MortgageInformation::setMarketValue(double value)
 {
     marketValue = value;
+    updateMortgageInitialized();
 }
 
 inline double MortgageInformation::getInterestRate() const
@@ -94,6 +103,12 @@ inline QDate MortgageInformation::getLoanStartDate() const
 inline void MortgageInformation::setLoanStartDate(QDate date)
 {
     loanStartDate.setDate(date.year(), date.month(), date.day());
+    updateMortgageInitialized();
+}
+
+inline double MortgageInformation::getMonthlyPayment() const
+{
+    return monthlyPayment;
 }
 
 #endif // MORTGAGEINFORMATION_H

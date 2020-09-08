@@ -21,11 +21,7 @@ MortgageInformation::MortgageInformation
     loanStartDate(startDate)
 {
     updateMonthlyPayment();
-}
-
-double MortgageInformation::getMonthlyPayment() const
-{
-    return monthlyPayment;
+    updateMortgageInitialized();
 }
 
 MortgageInformation::~MortgageInformation() = default;
@@ -37,13 +33,32 @@ void MortgageInformation::addPrincipalPayment(const MortgagePrincipalPayment& pa
 
 void MortgageInformation::updateMonthlyPayment()
 {
-    monthlyPayment = totalLoanAmount * (monthlyInterestRate * pow((1.0 + monthlyInterestRate), (loanTerm * 12.0))) / (pow((1.0 + monthlyInterestRate), (loanTerm * 12.0)) - 1.0);
+    if(mortgageInitialized)
+    {
+        monthlyPayment = totalLoanAmount * (monthlyInterestRate * pow((1.0 + monthlyInterestRate), (loanTerm * 12.0))) / (pow((1.0 + monthlyInterestRate), (loanTerm * 12.0)) - 1.0);
+
+    }
+    else
+    {
+        monthlyPayment = 0.0;
+    }
+}
+
+void MortgageInformation::updateMortgageInitialized()
+{
+    mortgageInitialized = (totalLoanAmount > 0.0) &&
+                          (purchasePrice > 0.0) &&
+                          (marketValue > 0.0) &&
+                          (interestRate > 0.0) &&
+                          (loanTerm > 0) &&
+                          (loanStartDate <= QDate::currentDate());
 }
 
 void MortgageInformation::setTotalLoanAmount(double amount)
 {
     totalLoanAmount = amount;
     updateMonthlyPayment();
+    updateMortgageInitialized();
 }
 
 void MortgageInformation::setInterestRate(double rate)
@@ -51,11 +66,13 @@ void MortgageInformation::setInterestRate(double rate)
     interestRate = rate / 100.0;
     monthlyInterestRate = interestRate / 12.0;
     updateMonthlyPayment();
+    updateMortgageInitialized();
 }
 
 void MortgageInformation::setLoanTerm(int term)
 {
     loanTerm = term;
     updateMonthlyPayment();
+    updateMortgageInitialized();
 }
 

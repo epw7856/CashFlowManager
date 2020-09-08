@@ -41,6 +41,11 @@ std::string MainWindowController::getBudgetStatusStatement() const
     return CurrencyUtilities::formatCurrency(sds.getMonthlyExpenseTotal(currentYear, currentMonth)) + "  of  " + CurrencyUtilities::formatCurrency(sds.getMonthlyBudgetTotal(currentMonth));
 }
 
+bool MainWindowController::mortgageExists() const
+{
+    return sds.mortgageExists();
+}
+
 bool MainWindowController::monthlyBudgetExists() const
 {
     return (sds.getMonthlyBudgetTotal(currentMonth) > 0.0);

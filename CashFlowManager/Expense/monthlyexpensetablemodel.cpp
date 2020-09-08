@@ -130,11 +130,11 @@ QVariant MonthlyExpenseTableModel::data(const QModelIndex& index, int role) cons
 
             if((actual > 0) && (remaining == 0))
             {
-                return QVariant(QBrush(QColor(Qt::green)));
+                return QVariant(QBrush(QColor(Qt::darkGreen)));
             }
             else if((actual >= 0) && (remaining >= 0) && (month < QDate::currentDate().month()) && !requiredExpense)
             {
-                return QVariant(QBrush(QColor(Qt::green)));
+                return QVariant(QBrush(QColor(Qt::darkGreen)));
             }
             else if((actual > 0) && (remaining < 0))
             {

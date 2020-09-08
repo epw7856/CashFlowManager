@@ -126,7 +126,7 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
                 double liquidPercentage = CurrencyUtilities::formatRatioToDouble(index.sibling(index.row(), getLiquidAssetChangeColumnIndex()).data().toString().toStdString());
                 if(liquidPercentage > 0.0)
                 {
-                    return QVariant(QBrush(QColor(Qt::green)));
+                    return QVariant(QBrush(QColor(Qt::darkGreen)));
                 }
                 else
                 {
@@ -143,7 +143,7 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
                 double illiquidPercentage = CurrencyUtilities::formatRatioToDouble(index.sibling(index.row(), getIlliquidAssetChangeColumnIndex()).data().toString().toStdString());
                 if(illiquidPercentage > 0.0)
                 {
-                    return QVariant(QBrush(QColor(Qt::green)));
+                    return QVariant(QBrush(QColor(Qt::darkGreen)));
                 }
                 else
                 {
@@ -160,7 +160,7 @@ QVariant AssetListTableModel::data(const QModelIndex& index, int role) const
                 double netWorthPercentage = CurrencyUtilities::formatRatioToDouble(index.sibling(index.row(), getNetWorthChangeColumnIndex()).data().toString().toStdString());
                 if(netWorthPercentage > 0.0)
                 {
-                    return QVariant(QBrush(QColor(Qt::green)));
+                    return QVariant(QBrush(QColor(Qt::darkGreen)));
                 }
                 else
                 {

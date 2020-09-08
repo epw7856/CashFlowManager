@@ -113,11 +113,11 @@ QVariant ExpenseTypeTableModel::data(const QModelIndex& index, int role) const
 
             if((remaining >= 0.00) && (month < QDate::currentDate().month()))
             {
-                return QVariant(QBrush(QColor(Qt::green)));
+                return QVariant(QBrush(QColor(Qt::darkGreen)));
             }
             else if((remaining == 0.0) && (expenseInterface.getExpenseTypeFixedFlag(expenseType)))
             {
-                return QVariant(QBrush(QColor(Qt::green)));
+                return QVariant(QBrush(QColor(Qt::darkGreen)));
             }
             else if(remaining < 0.00)
             {

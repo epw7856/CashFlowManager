@@ -158,6 +158,25 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
 void MainWindow::updateDisplayedInformation()
 {
+    bool mortgageExists = mainWindowController->mortgageExists();
+    ui->labelAdditionalPrincipalMonthly->setVisible(mortgageExists);
+    ui->labelMonthlyPrincipal->setVisible(mortgageExists);
+    ui->labelAdditionalPrincipalYearly->setVisible(mortgageExists);
+    ui->labelYearlyPrincipal->setVisible(mortgageExists);
+
+    if(mortgageExists)
+    {
+        ui->formMonthlySummary->insertRow(2, ui->labelAdditionalPrincipalMonthly, ui->labelMonthlyPrincipal);
+        ui->formYearlySummary->insertRow(2, ui->labelAdditionalPrincipalYearly, ui->labelYearlyPrincipal);
+    }
+    else
+    {
+        ui->formMonthlySummary->removeWidget(ui->labelAdditionalPrincipalMonthly);
+        ui->formMonthlySummary->removeWidget(ui->labelMonthlyPrincipal);
+        ui->formYearlySummary->removeWidget(ui->labelAdditionalPrincipalYearly);
+        ui->formYearlySummary->removeWidget(ui->labelYearlyPrincipal);
+    }
+
     ui->groupBoxExpenseBudget->setVisible(mainWindowController->expenseTypesExist());
     ui->groupBoxInvestmentBudget->setVisible(mainWindowController->investmentTypesExist());
     ui->groupBoxIncomeDistribution->setVisible((mainWindowController->getYearlyInvestmentTotal() > 0.0) ||
@@ -202,7 +221,7 @@ void MainWindow::configureBudgetStatusBarChart()
     *expenses << expenseTotal;
     *remainingBudget << remainingAmount;
     expenses->setColor(QColorConstants::Red);
-    remainingBudget->setColor(QColorConstants::Green);
+    remainingBudget->setColor(QColorConstants::DarkGreen);
 
     QHorizontalStackedBarSeries* stackedBarSeries = new QHorizontalStackedBarSeries();
     stackedBarSeries->append(expenses);
@@ -226,29 +245,26 @@ void MainWindow::configureBudgetStatusBarChart()
 
 void MainWindow::configureBreakdownPieChart()
 {
+    QPieSeries* series = new QPieSeries();
+
     QPieSlice* expenseSlice = new QPieSlice("Expenses, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyExpenseTotal())),
                                             mainWindowController->getYearlyExpenseTotal());
     expenseSlice->setBrush(Qt::red);
+    series->append(expenseSlice);
 
     double cashSaved = mainWindowController->getYearlyCashSavedTotal();
     (cashSaved < 0.0) ? cashSaved = 0.0 : mainWindowController->getYearlyCashSavedTotal();
     QPieSlice* cashSlice = new QPieSlice("Cash, " + QString::fromStdString(mainWindowController->getRatioForPieChart(cashSaved)),
                                                                            cashSaved);
-    cashSlice->setBrush(Qt::green);
+    cashSlice->setBrush(Qt::darkGreen);
+    series->append(cashSlice);
 
-    QPieSlice* mortgagePrincipalSlice = new QPieSlice("Principal, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyAdditionalPrincipal())),
-                                                      mainWindowController->getYearlyAdditionalPrincipal());
-    mortgagePrincipalSlice->setBrush(Qt::yellow);
-
-    QPieSeries* series = new QPieSeries();
-    series->append(expenseSlice);
-    series->append(mortgagePrincipalSlice);
-
-    series->setHoleSize(0.35);
-
-    if(mainWindowController->getYearlyCashSavedTotal() >= 0.0)
+    if(mainWindowController->mortgageExists())
     {
-        series->append(cashSlice);
+        QPieSlice* mortgagePrincipalSlice = new QPieSlice("Principal, " + QString::fromStdString(mainWindowController->getRatioForPieChart(mainWindowController->getYearlyAdditionalPrincipal())),
+                                                          mainWindowController->getYearlyAdditionalPrincipal());
+        mortgagePrincipalSlice->setBrush(Qt::yellow);
+        series->append(mortgagePrincipalSlice);
     }
 
     for(const auto& i : mainWindowController->getInvestmentTypesAndYearlyTotals())
@@ -256,6 +272,8 @@ void MainWindow::configureBreakdownPieChart()
         series->append(QString::fromStdString(i.first) + ", " + QString::fromStdString(mainWindowController->getRatioForPieChart(i.second)),
                        i.second);
     }
+
+    series->setHoleSize(0.35);
 
     QChart* pieChart = new QChart();
     pieChart->addSeries(series);
