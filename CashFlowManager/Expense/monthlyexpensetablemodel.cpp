@@ -189,5 +189,6 @@ QVariant MonthlyExpenseTableModel::headerData(int section, Qt::Orientation orien
 
 void MonthlyExpenseTableModel::setExpenseTypes()
 {
+    expenseTypes.clear();
     expenseTypes = expenseInterface.getExpenseTypes();
 }

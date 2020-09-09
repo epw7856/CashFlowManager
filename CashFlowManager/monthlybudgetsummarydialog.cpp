@@ -1,18 +1,23 @@
-#include "expenseinterface.h"
-#include "investmentinterface.h"
 #include "monthlybudgetsummarydialog.h"
+#include "monthlybudgetsummarydialogcontroller.h"
 #include <QScrollBar>
 #include "ui_monthlybudgetsummarydialog.h"
 
 MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
 (
     ExpenseInterface& localExpenseInterface,
+    IncomeInterface& localIncomeInterface,
     InvestmentInterface& localInvestmentInterface,
+    MortgageInterface& localMortgageInterface,
     QWidget* parent
 )
 :
     QDialog(parent),
     ui(new Ui::MonthlyBudgetSummaryDialog),
+    controller(std::make_unique<MonthlyBudgetSummaryDialogController>(localExpenseInterface,
+                                                                      localIncomeInterface,
+                                                                      localInvestmentInterface,
+                                                                      localMortgageInterface)),
     januaryExpenseTableModel(localExpenseInterface, 1, true),
     februaryExpenseTableModel(localExpenseInterface, 2, true),
     marchExpenseTableModel(localExpenseInterface, 3, true),
@@ -116,6 +121,11 @@ void MonthlyBudgetSummaryDialog::setTableData()
     octoberInvestmentTableModel.setInvestmentTypes();
     novemberInvestmentTableModel.setInvestmentTypes();
     decemberInvestmentTableModel.setInvestmentTypes();
+}
+
+void MonthlyBudgetSummaryDialog::setCashSavedLabels()
+{
+
 }
 
 void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable)

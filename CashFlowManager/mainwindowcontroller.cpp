@@ -219,7 +219,7 @@ void MainWindowController::showMonthlyBudgetSummaryDialog(QWidget* parent)
 {
     if(monthlyBudgetDialog == nullptr)
     {
-        monthlyBudgetDialog = std::make_unique<MonthlyBudgetSummaryDialog>(sds, sds, parent);
+        monthlyBudgetDialog = std::make_unique<MonthlyBudgetSummaryDialog>(sds, sds, sds, sds, parent);
     }
 
     monthlyBudgetDialog->show();

@@ -1,11 +1,15 @@
 #ifndef MONTHLYBUDGETSUMMARYDIALOG_H
 #define MONTHLYBUDGETSUMMARYDIALOG_H
 
+#include <memory>
 #include "monthlyexpensetablemodel.h"
 #include "monthlyinvestmenttablemodel.h"
 #include <QAbstractTableModel>
 #include <QDialog>
 
+class IncomeInterface;
+class MonthlyBudgetSummaryDialogController;
+class MortgageInterface;
 class QTableView;
 
 namespace Ui {
@@ -18,7 +22,9 @@ class MonthlyBudgetSummaryDialog : public QDialog
 
 public:
     explicit MonthlyBudgetSummaryDialog(ExpenseInterface& localExpenseInterface,
+                                        IncomeInterface& localIncomeInterface,
                                         InvestmentInterface& localInvestmentInterface,
+                                        MortgageInterface& localMortgageInterface,
                                         QWidget* parent = nullptr);
     ~MonthlyBudgetSummaryDialog();
 
@@ -27,6 +33,7 @@ public slots:
 
 private:
     Ui::MonthlyBudgetSummaryDialog *ui;
+    std::unique_ptr<MonthlyBudgetSummaryDialogController> controller;
 
     MonthlyExpenseTableModel januaryExpenseTableModel;
     MonthlyExpenseTableModel februaryExpenseTableModel;
@@ -60,6 +67,7 @@ private:
     int investmentTableHeight = 0;
 
     void setTableData();
+    void setCashSavedLabels();
     void configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable);
 };
 

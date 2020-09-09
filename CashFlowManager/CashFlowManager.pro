@@ -81,6 +81,7 @@ SOURCES += \
         mainwindowcontroller.cpp \
         monthlybudgetsummarydialog.cpp \
         Mortgage/mortgagesummarydialog.cpp \
+        monthlybudgetsummarydialogcontroller.cpp \
         systemdatasource.cpp \
         Asset/updateassetinfodialog.cpp \
         Asset/updateassetinfodialogcontroller.cpp \
@@ -144,6 +145,7 @@ HEADERS += \
         mainwindowcontroller.h \
         monthlybudgetsummarydialog.h \
         Mortgage/mortgagesummarydialog.h \
+        monthlybudgetsummarydialogcontroller.h \
         systemdatasource.h \
         Utilities/transactioncomparison.h \
         Asset/updateassetinfodialog.h \
