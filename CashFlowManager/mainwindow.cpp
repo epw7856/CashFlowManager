@@ -47,7 +47,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mainWindowController.get(), &MainWindowController::requestMainWindowUpdate, this, &MainWindow::updateDisplayedInformation);
 
     updateDisplayedInformation();
-    resize(window()->width(), window()->minimumHeight());
 }
 
 MainWindow::~MainWindow()

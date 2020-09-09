@@ -10,6 +10,7 @@
 class IncomeInterface;
 class MonthlyBudgetSummaryDialogController;
 class MortgageInterface;
+class QLabel;
 class QTableView;
 
 namespace Ui {
@@ -27,6 +28,7 @@ public:
                                         MortgageInterface& localMortgageInterface,
                                         QWidget* parent = nullptr);
     ~MonthlyBudgetSummaryDialog();
+    void showEvent(QShowEvent*event);
 
 public slots:
     void onPushButtonExitClicked();
@@ -69,6 +71,7 @@ private:
     void setTableData();
     void setCashSavedLabels();
     void configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable);
+    void setLabelColor(QLabel* label);
 };
 
 #endif // MONTHLYBUDGETSUMMARYDIALOG_H

@@ -1,6 +1,8 @@
 #include "monthlybudgetsummarydialog.h"
 #include "monthlybudgetsummarydialogcontroller.h"
+#include <QLabel>
 #include <QScrollBar>
+#include <QShowEvent>
 #include "ui_monthlybudgetsummarydialog.h"
 
 MonthlyBudgetSummaryDialog::MonthlyBudgetSummaryDialog
@@ -89,6 +91,12 @@ MonthlyBudgetSummaryDialog::~MonthlyBudgetSummaryDialog()
     delete ui;
 }
 
+void MonthlyBudgetSummaryDialog::showEvent(QShowEvent* event)
+{
+    setCashSavedLabels();
+    event->accept();
+}
+
 void MonthlyBudgetSummaryDialog::onPushButtonExitClicked()
 {
     close();
@@ -125,7 +133,41 @@ void MonthlyBudgetSummaryDialog::setTableData()
 
 void MonthlyBudgetSummaryDialog::setCashSavedLabels()
 {
+    ui->labelJanuaryCashSaved->setText(controller->getMonthlyCashSaved(1));
+    setLabelColor(ui->labelJanuaryCashSaved);
 
+    ui->labelFebruaryCashSaved->setText(controller->getMonthlyCashSaved(2));
+    setLabelColor(ui->labelFebruaryCashSaved);
+
+    ui->labelMarchCashSaved->setText(controller->getMonthlyCashSaved(3));
+    setLabelColor(ui->labelMarchCashSaved);
+
+    ui->labelAprilCashSaved->setText(controller->getMonthlyCashSaved(4));
+    setLabelColor(ui->labelAprilCashSaved);
+
+    ui->labelMayCashSaved->setText(controller->getMonthlyCashSaved(5));
+    setLabelColor(ui->labelMayCashSaved);
+
+    ui->labelJuneCashSaved->setText(controller->getMonthlyCashSaved(6));
+    setLabelColor(ui->labelJuneCashSaved);
+
+    ui->labelJulyCashSaved->setText(controller->getMonthlyCashSaved(7));
+    setLabelColor(ui->labelJulyCashSaved);
+
+    ui->labelAugustCashSaved->setText(controller->getMonthlyCashSaved(8));
+    setLabelColor(ui->labelAugustCashSaved);
+
+    ui->labelSeptemberCashSaved->setText(controller->getMonthlyCashSaved(9));
+    setLabelColor(ui->labelSeptemberCashSaved);
+
+    ui->labelOctoberCashSaved->setText(controller->getMonthlyCashSaved(10));
+    setLabelColor(ui->labelOctoberCashSaved);
+
+    ui->labelNovemberCashSaved->setText(controller->getMonthlyCashSaved(11));
+    setLabelColor(ui->labelNovemberCashSaved);
+
+    ui->labelDecemberCashSaved->setText(controller->getMonthlyCashSaved(12));
+    setLabelColor(ui->labelDecemberCashSaved);
 }
 
 void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstractTableModel& tableModel, bool isExpenseTable)
@@ -217,4 +259,10 @@ void MonthlyBudgetSummaryDialog::configureTable(QTableView* tableView, QAbstract
         tableView->setMinimumWidth(tableWidth);
         tableView->setMaximumWidth(tableWidth);
     }
+}
+
+void MonthlyBudgetSummaryDialog::setLabelColor(QLabel* label)
+{
+    (label->text().contains("-")) ? label->setStyleSheet("font-weight: bold; color: red") :
+                                    label->setStyleSheet("font-weight: bold; color: ForestGreen");
 }
