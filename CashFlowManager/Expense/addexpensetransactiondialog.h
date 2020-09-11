@@ -30,6 +30,7 @@ public slots:
     void onPushButtonAddTransaction();
     void expenseTypeSelectionChanged(QString type);
     void closeEvent(QCloseEvent*) override;
+    void showEvent(QShowEvent* event) override;
 
 private:
     Ui::AddExpenseTransactionDialog *ui;

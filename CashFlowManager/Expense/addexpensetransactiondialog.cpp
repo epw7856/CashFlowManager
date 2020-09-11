@@ -1,6 +1,7 @@
 #include "addexpensetransactiondialog.h"
 #include "addexpensetransactiondialogcontroller.h"
 #include <QMessageBox>
+#include <QShowEvent>
 #include "ui_addexpensetransactiondialog.h"
 
 AddExpenseTransactionDialog::AddExpenseTransactionDialog
@@ -100,9 +101,14 @@ void AddExpenseTransactionDialog::closeEvent(QCloseEvent*)
     accept();
 }
 
+void AddExpenseTransactionDialog::showEvent(QShowEvent* event)
+{
+    resetDialog();
+    event->accept();
+}
+
 void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 {
-    ui->lineEditDescription->clear();
     ui->labelAdditionalPrincipal->setVisible(false);
     ui->lineEditAdditionalPrincipalAmount->setVisible(false);
     ui->gridLayout->removeItem(ui->horizontalSpacer_7);
@@ -113,7 +119,6 @@ void AddExpenseTransactionDialog::hideAdditionalPrincipal()
 
 void AddExpenseTransactionDialog::showAdditionalPrincipal()
 {
-    ui->lineEditDescription->clear();
     ui->lineEditDescription->setText(QDate::currentDate().toString("MMMM yyyy") + " Mortgage Payment");
     ui->labelAdditionalPrincipal->setVisible(true);
     ui->lineEditAdditionalPrincipalAmount->setVisible(true);
