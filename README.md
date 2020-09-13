@@ -1,3 +1,7 @@
+# The Cash Flow Manager App is currently under construction! 
+Check back frequently for updates.
+- - - -
+
 Cash Flow Manager
 =========
 
