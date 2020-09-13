@@ -1,10 +1,35 @@
-# Cash Flow Manager
+Cash Flow Manager
+=========
+
 The Cash Flow Manager desktop app is a complete personal expense, income, and investment manager built with C++14 in Qt. The app also provides mortgage, asset, and net worth tracking and analysis.
 
-## Stay Tuned - The Cash Flow Manager App is currently under construction!
-<br>
 
-### Budget Dashboard
+Table of contents
+=================
+
+<!--ts-->
+   * [Cash Flow Manager](#cash-flow-manager)
+   * [Table of contents](#table-of-contents)
+   * [Installation](#installation)
+   * [Usage](#usage)
+      * [Budget Dashboard](#budget-dashboard)
+      * [Monthly Budget Summary View](#monthly-budget-summary-view)
+<!--te-->
+
+
+Installation
+============
+
+Installation instructions coming soon!
+
+
+Usage
+=====
+
+
+Budget Dashboard
+-----
+
 The Budget Dashboard provides an all-inclusive, simplified look at your financial health via two tabs: Monthly and Yearly Breakdown. 
 
 <p align="center">
@@ -21,6 +46,29 @@ Similar to spending habits, you should also establish and track monthly investme
   <i>Figure 2 - Budget Dashboard Yearly Breakdown Tab View</i>
 </p>
 
-Both the monthly and yearly *Breakdown* tables give you a holistic view of your financial situation. It shows total expenses, investments, income, cash saved, budget surplus, savings ratio, and additional principal paid if you have a mortgage. The savings ratio is simply yearly expenses divided by yearly income multiplied by 100 to get a percentage. Budget surplus is the amount remaining in the budget for the month. The cash saved amount is the result of subtracting expenses and investments from income, which should be positive. A negative cash saved value is undesirable because it signifies that you are investing too much, spending too much, or both.
+Both the monthly and yearly *Breakdown* tables give you a holistic view of your financial situation. It shows the following information:
+
+* Expenses
+* Investments
+* Income
+* Cash saved
+* Budget surplus
+* Savings ratio
+* Additional principal paid, if a mortgage is configured 
+
+The savings ratio is simply yearly expenses divided by yearly income multiplied by 100 to get a percentage. Budget surplus is the amount remaining in the budget for the month. The cash saved amount is the result of subtracting expenses and investments from income, which should be positive. A negative cash saved value is undesirable because it signifies that you are investing too much, spending too much, or both.
 
 The *Income Distribution* pie chart within the Yearly Breakdown tab displays a different type of visualization of where your money is going. Just like with the *Expense Budget Status* bar chart, keep the red expense section as small as possible by spending less.
+
+
+Monthly Budget Summary View
+-----------
+
+The Monthly Budget Summary shows categorized expenses and investments for each month of the current year. This dialog is beneficial because it allows you to see which expense categories 
+were over-budget, or under-budget, throughout the year so that spending can be adjusted accordingly. Additionally, it shows investment amounts in relation to their defined targets. Any category amount that is over-budget or less than the investment target, is shaded in red. 
+For each month, the view displays the final cash saved. As discussed previously, this value is what remains after subtracting expenses and investments from income for the month.
+
+<p align="center">
+  <img src="/screenshots/Monthly_Budget_Summary.jpg" width="750" height="571"/><br>
+  <i>Figure 3 - Monthly Budget Summary View</i>
+</p>
