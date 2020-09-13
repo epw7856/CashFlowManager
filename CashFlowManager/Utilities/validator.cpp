@@ -11,7 +11,7 @@ bool Validator::verifyDescription(QString& description)
 
 bool Validator::verifyDate(QDate& date)
 {
-    return (date.year() <= QDate::currentDate().year());
+    return (date.isValid());
 }
 
 bool Validator::verifyDoubleAmount(QString& amount, double upperLimit, bool zeroAllowed)

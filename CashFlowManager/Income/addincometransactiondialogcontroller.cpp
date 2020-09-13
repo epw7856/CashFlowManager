@@ -28,7 +28,7 @@ bool AddIncomeTransactionDialogController::verifyTransactionAmount(QString amoun
 
 bool AddIncomeTransactionDialogController::verifyOTAmount(QString amount) const
 {
-    return Validator::verifyIntAmount(amount, 100, false);
+    return Validator::verifyIntAmount(amount, 100, true);
 }
 
 void AddIncomeTransactionDialogController::addSalaryIncomeTransaction(const QDate& date, const double amount, const int overtime)
