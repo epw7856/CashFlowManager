@@ -20,6 +20,8 @@ Table of contents
       * [Monthly Budget Summary View](#monthly-budget-summary-view)
 	  * [Monthly Expense Type Summary View](#monthly-expense-type-summary-view)
 	  * [Yearly Budget Summary View](#yearly-budget-summary-view)
+	  * [Yearly Income Summary View](#yearly-income-summary-view)
+	  * [Automatic Monthly Payments Summary View](#automatic-monthly-payments-summary-view)
 <!--te-->
 
 
@@ -36,7 +38,7 @@ Usage
 Budget Dashboard
 -----
 
-The Budget Dashboard provides an all-inclusive, simplified look at your financial health via two tabs: Monthly and Yearly Breakdown. 
+The Budget Dashboard provides an all-inclusive, simplified look at your financial health via two tabs in the main window: Monthly and Yearly Breakdown. 
 
 <p align="center">
   <img src="/screenshots/Budget_Dashboard_Monthly_Breakdown.jpg" width="650" height="523"/><br>
@@ -109,3 +111,30 @@ The two tables that show expenses and investments are sortable by amount, relati
 </p>
 <br>
 
+
+Yearly Income Summary View
+-----------
+
+For most individuals, cash inflow is obtained through salary or supplemental income, such as investment income or dividends that aren't reinvested, rental income, credit card cash-back rewards, 
+expense reimbursements, or payments from friends and family. The salary table allows you to track steady income and overtime, if applicable, from a job while the supplemental income table shows all miscellaneous 
+income sources throughout the year.
+
+<p align="center">
+  <img src="/screenshots/Yearly_Income_Summary.jpg" width="500" height="469"/><br>
+  <i>Figure 6 - Yearly Income Summary View</i>
+</p>
+<br>
+
+
+Automatic Monthly Payments Summary View
+-----------
+
+Many types of bills or expenses can be paid automatically via ACH transfer, such utilities, wireless charges, mortgages, and investment contributions. Although this adds convenience, it can be difficult to remember exactly 
+how much is scheduled to be drafted from your bank accounts. The Automatic Monthly Payments Summary View displays all of the fixed expense monthly payments along with the account 
+from which each one is paid.
+
+<p align="center">
+  <img src="/screenshots/Automatic_Monthly_Payments_Summary.jpg" width="500" height="300"/><br>
+  <i>Figure 7 - Automatic Monthly Payments Summary View</i>
+</p>
+<br>
