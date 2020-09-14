@@ -18,6 +18,8 @@ Table of contents
    * [Usage](#usage)
       * [Budget Dashboard](#budget-dashboard)
       * [Monthly Budget Summary View](#monthly-budget-summary-view)
+	  * [Monthly Expense Type Summary View](#monthly-expense-type-summary-view)
+	  * [Yearly Budget Summary View](#yearly-budget-summary-view)
 <!--te-->
 
 
@@ -63,12 +65,13 @@ Both the monthly and yearly *Breakdown* tables give you a holistic view of your 
 The savings ratio is simply yearly expenses divided by yearly income multiplied by 100 to get a percentage. Budget surplus is the amount remaining in the budget for the month. The cash saved amount is the result of subtracting expenses and investments from income, which should be positive. A negative cash saved value is undesirable because it signifies that you are investing too much, spending too much, or both.
 
 The *Income Distribution* pie chart within the Yearly Breakdown tab displays a different type of visualization of where your money is going. Just like with the *Expense Budget Status* bar chart, keep the red expense section as small as possible by spending less.
+<br>
 
 
 Monthly Budget Summary View
 -----------
 
-The Monthly Budget Summary shows categorized expenses and investments for each month of the current year. This dialog is beneficial because it allows you to see which expense categories 
+The Monthly Budget Summary View shows categorized expenses and investments for each month of the current year. This dialog is beneficial because it allows you to see which expense categories 
 were over-budget, or under-budget, throughout the year so that spending can be adjusted accordingly. Additionally, it shows investment amounts in relation to their defined targets. Any category amount that is over-budget or less than the investment target, is shaded in red. 
 For each month, the view displays the final cash saved. As discussed previously, this value is what remains after subtracting expenses and investments from income for the month.
 
@@ -76,3 +79,33 @@ For each month, the view displays the final cash saved. As discussed previously,
   <img src="/screenshots/Monthly_Budget_Summary.jpg" width="750" height="571"/><br>
   <i>Figure 3 - Monthly Budget Summary View</i>
 </p>
+<br>
+
+
+Monthly Expense Type Summary View
+-----------
+
+The capability to view the individual transactions for an expense category is a key feature. When an expense category runs over-budget for a particular month, it is beneficial to see which transaction(s) 
+contributed to the increased spending. When launching the Monthly Expense Type Summary View, a prompt will ask you which expense type to display. After selecting the category, all of the 
+associated transactions will be displayed in a table for each month of the year. Some types may have none or just a single transaction per month, such as utility expenses. Others will have a 
+variable number of transactions, such as food or miscellaneous expenses. Each monthly table displays the amount spent and also the budget.
+
+<p align="center">
+  <img src="/screenshots/Monthly_Expense_Type_Summary.jpg" width="750" height="571"/><br>
+  <i>Figure 4 - Monthly Expense Type Summary View for Food Expenses</i>
+</p>
+<br>
+
+
+Yearly Budget Summary View
+-----------
+
+For a more granular perspective into how your yearly income is being distributed to expenses and investments, the Yearly Budget Summary View shows the dollar amounts spent or invested by category.
+The two tables that show expenses and investments are sortable by amount, relative percentage, or name.
+
+<p align="center">
+  <img src="/screenshots/Yearly_Budget_Summary.jpg" width="500" height="469"/><br>
+  <i>Figure 5 - Yearly Budget Summary View</i>
+</p>
+<br>
+
