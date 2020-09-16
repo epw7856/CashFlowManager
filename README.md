@@ -174,7 +174,7 @@ tracks the growth or decline of net worth and asset values over time. The asset 
 graph displays a visualization of total net worth progression, which is equal to liquid plus illiquid asset values, over the past 12 months.
 
 <p align="center">
-  <img src="/screenshots/Asset_Net_Worth_Summary.jpg" width="900" height="487"/><br>
+  <img src="/screenshots/Asset_And_Net_Worth_Summary.jpg" width="900" height="487"/><br>
   <i>Figure 9 - Asset and Net Worth Summary View</i>
 </p>
 <br>
