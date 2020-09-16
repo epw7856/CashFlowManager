@@ -23,6 +23,7 @@ Table of contents
 	  * [Yearly Income Summary View](#yearly-income-summary-view)
 	  * [Automatic Monthly Payments Summary View](#automatic-monthly-payments-summary-view)
 	  * [Mortgage Summary View](#mortgage-summary-view)
+	  * [Asset and Net Worth Summary View](#asset-and-net-worth-summary-view)
 	  * [Add Expense Transaction](#add-expense-transaction)
 	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
@@ -158,5 +159,22 @@ such as for a refinance, all information in the view will be re-calculated autom
 <p align="center">
   <img src="/screenshots/Mortgage_Summary.jpg" width="700" height="651"/><br>
   <i>Figure 8 - Mortgage Summary View</i>
+</p>
+<br>
+
+
+Asset and Net Worth Summary View
+-----------
+
+There is no better indicator of your financial wellbeing than net worth. Personal net worth is the cumulative total of assets minus liabilities. Cash, bank accounts, investment accounts, property equity, 
+business equity, annuities, bonds, vehicles, and certificates of deposit are all examples of assets. Liabilities include student loans, credit card debt, personal loans, and unpaid medical bills. To calculate 
+equity for vehicles, property, or any other asset that was financed, it is important to subtract the remaining loan amount from the market value. Assets that can be immediately 
+converted to cash are considered to be liquid while those that can't are illiquid. Illiquid assets are most retirement investment accounts, property, and vehicles. The Asset and Net Worth Summary View 
+tracks the growth or decline of net worth and asset values over time. The asset table shows the dollar amount of assets throughout the year and the percentage of change month-to-month. The net worth tracking 
+graph displays a visualization of total net worth progression, which is equal to liquid plus illiquid asset values, over the past 12 months.
+
+<p align="center">
+  <img src="/screenshots/Asset_Net_Worth_Summary.jpg" width="900" height="487"/><br>
+  <i>Figure 9 - Asset and Net Worth Summary View</i>
 </p>
 <br>
