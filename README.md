@@ -90,7 +90,7 @@ Monthly Expense Type Summary View
 The capability to view the individual transactions for an expense category is a key feature. When an expense category runs over-budget for a particular month, it is beneficial to see which transaction(s) 
 contributed to the increased spending. When launching the Monthly Expense Type Summary View, a prompt will ask you which expense type to display. After selecting the category, all of the 
 associated transactions will be displayed in a table for each month of the year. Some types may have none or just a single transaction per month, such as utility expenses. Others will have a 
-variable number of transactions, such as food or miscellaneous expenses. Each monthly table displays the amount spent and also the budget.
+variable number of transactions, such as food or miscellaneous expenses. Each monthly table displays the amount spent and also the remaining budget as transactions are added.
 
 <p align="center">
   <img src="/screenshots/Monthly_Expense_Type_Summary.jpg" width="750" height="571"/><br>
