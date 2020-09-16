@@ -22,6 +22,9 @@ Table of contents
 	  * [Yearly Budget Summary View](#yearly-budget-summary-view)
 	  * [Yearly Income Summary View](#yearly-income-summary-view)
 	  * [Automatic Monthly Payments Summary View](#automatic-monthly-payments-summary-view)
+	  * [Mortgage Summary View](#mortgage-summary-view)
+	  * [Add Expense Transaction](#add-expense-transaction)
+	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
 
 
@@ -136,5 +139,24 @@ from which each one is paid.
 <p align="center">
   <img src="/screenshots/Automatic_Monthly_Payments_Summary.jpg" width="500" height="300"/><br>
   <i>Figure 7 - Automatic Monthly Payments Summary View</i>
+</p>
+<br>
+
+
+Mortgage Summary View
+-----------
+
+If you bought a home, condo, or apartment to serve as your primary residence, you probably have a mortgage loan. Understanding how a mortgage works can be a difficult task but the Mortgage 
+Summary View breaks down all the important information into a simple table. First, the parameters for the mortgage, such as the total loan amount, yearly interest rate, term, and 
+date of the first payment must be configured. The [Update Mortgage Information](#update-mortgage-information) section provides more details on this. The table then automatically calculates the base monthly payment, which <b>does not</b> include taxes, insurance, or fees, and displays 
+a payment schedule for the life of the mortgage. It is assumed that the mortgage follows a traditional monthly payment requirement. Each row shows the exact dollar amount for principal and interest, 
+as well as any additional principal. As more payments are made, the remaining loan balance will decrease 
+as the principal amount increases. Mortgage payments, including additional principal payments, are added as normal expense transactions. See the [Add Expense Transaction](#add-expense-transaction) section 
+for more information. Rows within the table are shaded yellow to indicate payments that were made for the associated month. If the mortgage terms were to change at any point, 
+such as for a refinance, all information in the view will be re-calculated automatically.
+
+<p align="center">
+  <img src="/screenshots/Mortgage_Summary.jpg" width="700" height="651"/><br>
+  <i>Figure 8 - Mortgage Summary View</i>
 </p>
 <br>

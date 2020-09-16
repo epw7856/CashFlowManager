@@ -290,7 +290,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Monthly Payment:</string>
+          <string>Base Monthly Payment:</string>
          </property>
         </widget>
        </item>
