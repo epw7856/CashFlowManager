@@ -26,6 +26,7 @@ Table of contents
 	  * [Asset and Net Worth Summary View](#asset-and-net-worth-summary-view)
 	  * [Add Expense Transaction](#add-expense-transaction)
 	  * [Add Expense Type](#add-expense-type)
+	  * [Update Expense Type](#update-expense-type)
 	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
 
@@ -208,6 +209,19 @@ budget can always be adjusted at any time.
 <p align="center">
   <img src="/screenshots/Add_Expense_Type.jpg" width="450" height="209"/><br>
   <i>Figure 11 - Add Expense Type Window</i>
+</p>
+<br>
+
+
+Update Expense Type
+-----------
+
+Expense types and their associated budgets will rarely stay the same over time. The Update/Delete Expense Type Window allows you to make changes to or delete any existing expense type. This is 
+most useful for quickly adjusting monthly budgets.
+
+<p align="center">
+  <img src="/screenshots/Update_Expense_Type.jpg" width="450" height="231"/><br>
+  <i>Figure 12 - Update/Delete Expense Type Window</i>
 </p>
 <br>
 
