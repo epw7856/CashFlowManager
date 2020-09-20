@@ -25,6 +25,7 @@ Table of contents
 	  * [Mortgage Summary View](#mortgage-summary-view)
 	  * [Asset and Net Worth Summary View](#asset-and-net-worth-summary-view)
 	  * [Add Expense Transaction](#add-expense-transaction)
+	  * [Add Expense Type](#add-expense-type)
 	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
 
@@ -178,3 +179,35 @@ graph displays a visualization of total net worth progression, which is equal to
   <i>Figure 9 - Asset and Net Worth Summary View</i>
 </p>
 <br>
+
+
+Add Expense Transaction
+-----------
+
+To add an expense transaction, simply use the dropbox to select the applicable expense type, add an optional description, set the transaction date, and set the dollar amount. If the expense 
+type is a mortgage, an edit box for additional principal will appear. The additional principal payment will be $0.00 by default.
+
+<p align="center">
+  <img src="/screenshots/Add_Expense_Transaction.jpg" width="450" height="236"/><br>
+  <i>Figure 10 - Add Expense Transaction Window</i>
+</p>
+<br>
+
+
+Add Expense Type
+-----------
+
+Before any transactions can be added, you must create expense types. A fixed expense type has a cost that does not change from month to month. In this case, the budget amount will exactly 
+match the amount paid each month. Variable expense types are those that have an unknown total cost for the month. The budget amount for these types is the maximum amount that you can spend 
+for related items or services. Fixed cost expenses include fixed-rate loan payments, certain utility bills, and insurance payments. Examples of variable expense types are food, miscellaneous, 
+and gas. An expense type is considered a "required monthly expense" if payment must be made at least once per month. This includes mortgage or loan payments and most utility bills. Types that 
+are not required monthly expenses are food, miscellaneous, and gas. Setting which expense types are required allows the Cash Flow Manager to show if bills are unpaid for the current or previous 
+months in the Monthly Budget Summary View. When choosing a budget for the new expense type, set a realistic amount that challenges you to be conscious of spending but not too restrictive. The 
+budget can always be adjusted at any time. 
+
+<p align="center">
+  <img src="/screenshots/Add_Expense_Type.jpg" width="450" height="209"/><br>
+  <i>Figure 11 - Add Expense Type Window</i>
+</p>
+<br>
+
