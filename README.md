@@ -27,6 +27,9 @@ Table of contents
 	  * [Add Expense Transaction](#add-expense-transaction)
 	  * [Add Expense Type](#add-expense-type)
 	  * [Update Expense Type](#update-expense-type)
+	  * [Add Investment Transaction](#add-investment-transaction)
+	  * [Add Investment Type](#add-investment-type)
+	  * [Update Investment Type](#update-investment-type)
 	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
 
@@ -225,3 +228,40 @@ most useful for quickly adjusting monthly budgets.
 </p>
 <br>
 
+
+Add Investment Transaction
+-----------
+
+Adding an investment transaction is simple. Just select the investment type from the dropdown box, set the transaction date, and enter the dollar amount. Again, these types of investments are 
+intended to be funded through net income, not from pre-tax, roth, or after-tax employer-withholdings.
+
+<p align="center">
+  <img src="/screenshots/Add_Investment_Transaction.jpg" width="450" height="180"/><br>
+  <i>Figure 13 - Add Investment Transaction Window</i>
+</p>
+<br>
+
+
+Add Investment Type
+-----------
+
+To add an investment type, choose a unique name and a target amount that you wish to invest each month. If you want to track an investment but do not want to create a monthly goal, 
+you can just set the target to $0.00.
+
+<p align="center">
+  <img src="/screenshots/Add_Investment_Type.jpg" width="450" height="181"/><br>
+  <i>Figure 14 - Add Investment Type Window</i>
+</p>
+<br>
+
+
+Update Investment Type
+-----------
+
+Just as existing expense types can be updated or deleted, the same can be done with investment types.
+
+<p align="center">
+  <img src="/screenshots/Update_Investment_Type.jpg" width="450" height="181"/><br>
+  <i>Figure 15 - Update/Delete Investment Type Window</i>
+</p>
+<br>
