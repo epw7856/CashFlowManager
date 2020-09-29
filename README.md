@@ -31,6 +31,7 @@ Table of contents
 	  * [Add Investment Types](#add-investment-types)
 	  * [Update Investment Types](#update-investment-types)
 	  * [Add Income Transaction](#add-income-transaction)
+	  * [Update Automatic Monthly Payments](#update-automatic-monthly-payments)
 	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
 
@@ -277,6 +278,37 @@ supplemental income, add a description to document the source of the cash. For e
 <p align="center">
   <img src="/screenshots/Add_Income_Transaction.jpg" width="450" height="224"/><br>
   <i>Figure 16 - Add Income Transaction Window</i>
+</p>
+<br>
+
+
+Update Automatic Monthly Payments
+-----------
+
+Adding, deleting, and updating automatic monthly payment information can be performed within the same window. If the "Add Payment" radio button 
+is selected, enter the bank account name from which the payment will be drafted each month, a description, and the amount. When the "Update 
+or Delete Payment" radio button is selected, click an existing row entry for a monthly payment within the table to update or 
+delete it.
+
+<p align="center">
+  <img src="/screenshots/Add_Update_Automatic_Monthly_Payments.jpg" width="500" height="400"/><br>
+  <i>Figure 17 - Add/Update Automatic Monthly Payment Window</i>
+</p>
+<br>
+
+
+Update Mortgage Information
+-----------
+
+To initially setup or update the mortgage information, enter the total loan amount, a conservative estimate for the current market value of 
+the property, the yearly interest rate, the loan term in years, and the date that the first payment was due. The total loan amount is 
+the original dollar amount that was borrowed, not the remaining loan balance. The market value is used to calculate asset value and net worth and 
+should be updated periodically as the property value rises or falls over time. Given this information, the monthly base payment for the mortgage will be 
+calculated automatically.
+
+<p align="center">
+  <img src="/screenshots/Update_Mortgage_Information.jpg" width="450" height="279"/><br>
+  <i>Figure 18 - Update Mortgage Information Window</i>
 </p>
 <br>
 
