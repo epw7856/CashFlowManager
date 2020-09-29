@@ -338,7 +338,7 @@ the past year so entering the value for the current month may be the only option
 
 <p align="center">
   <img src="/screenshots/Add_New_Asset.jpg" width="500" height="417"/><br>
-  <i>Figure 20 - Add Asset Window</i>
+  <i>Figure 20 - Add New Asset Window</i>
 </p>
 <br>
 
