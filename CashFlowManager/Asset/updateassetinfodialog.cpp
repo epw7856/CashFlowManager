@@ -16,6 +16,7 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
 
     if(addNewAsset)
     {
+        setWindowTitle("Add New Asset");
         ui->pushButtonUpdateAsset->setVisible(false);
         ui->pushButtonDeleteAsset->setVisible(false);
         ui->comboBoxAssets->setVisible(false);
@@ -24,6 +25,7 @@ UpdateAssetInfoDialog::UpdateAssetInfoDialog(AssetInterface& localAssetInterace,
     }
     else
     {
+        setWindowTitle("Update Asset Information");
         ui->pushButtonAddAsset->setVisible(false);
         setEnabled(false);
         updateComboBox();

@@ -8,12 +8,12 @@ Cash Flow Manager
 The Cash Flow Manager desktop app is a complete personal expense, income, and investment manager built with C++14 in Qt. The app also provides mortgage, asset, and net worth tracking and analysis.
 
 
-Table of contents
+Table of Contents
 =================
 
 <!--ts-->
    * [Cash Flow Manager](#cash-flow-manager)
-   * [Table of contents](#table-of-contents)
+   * [Table of Contents](#table-of-contents)
    * [Installation](#installation)
    * [Usage](#usage)
       * [Budget Dashboard](#budget-dashboard)
@@ -25,7 +25,16 @@ Table of contents
 	  * [Mortgage Summary View](#mortgage-summary-view)
 	  * [Asset and Net Worth Summary View](#asset-and-net-worth-summary-view)
 	  * [Add Expense Transaction](#add-expense-transaction)
+	  * [Add Expense Types](#add-expense-types)
+	  * [Update Expense Types](#update-expense-types)
+	  * [Add Investment Transaction](#add-investment-transaction)
+	  * [Add Investment Types](#add-investment-types)
+	  * [Update Investment Types](#update-investment-types)
+	  * [Add Income Transaction](#add-income-transaction)
+	  * [Update Automatic Monthly Payments](#update-automatic-monthly-payments)
 	  * [Update Mortgage Information](#update-mortgage-information)
+	  * [Update Asset Information](#update-asset-information)
+	  * [Add Assets](#add-assets)
 <!--te-->
 
 
@@ -178,3 +187,158 @@ graph displays a visualization of total net worth progression, which is equal to
   <i>Figure 9 - Asset and Net Worth Summary View</i>
 </p>
 <br>
+
+
+Add Expense Transaction
+-----------
+
+To add an expense transaction, simply use the dropbox to select the applicable expense type, add an optional description, set the transaction date, and set the dollar amount. If the expense 
+type is a mortgage, an edit box for additional principal will appear. The additional principal payment will be $0.00 by default.
+
+<p align="center">
+  <img src="/screenshots/Add_Expense_Transaction.jpg" width="450" height="236"/><br>
+  <i>Figure 10 - Add Expense Transaction Window</i>
+</p>
+<br>
+
+
+Add Expense Types
+-----------
+
+Before any transactions can be added, you must create expense types. A fixed expense type has a cost that does not change from month to month. In this case, the budget amount will exactly 
+match the amount paid each month. Variable expense types are those that have an unknown total cost for the month. The budget amount for these types is the maximum amount that you can spend 
+for related items or services. Fixed cost expenses include fixed-rate loan payments, certain utility bills, and insurance payments. Examples of variable expense types are food, miscellaneous, 
+and gas. An expense type is considered a "required monthly expense" if payment must be made at least once per month. This includes mortgage or loan payments and most utility bills. Types that 
+are not required monthly expenses are food, miscellaneous, and gas. Setting which expense types are required allows the Cash Flow Manager to show if bills are unpaid for the current or previous 
+months in the Monthly Budget Summary View. When choosing a budget for the new expense type, set a realistic amount that challenges you to be conscious of spending but not too restrictive. The 
+budget can always be adjusted at any time. 
+
+<p align="center">
+  <img src="/screenshots/Add_Expense_Type.jpg" width="450" height="209"/><br>
+  <i>Figure 11 - Add Expense Type Window</i>
+</p>
+<br>
+
+
+Update Expense Types
+-----------
+
+Expense types and their associated budgets will rarely stay the same over time. The Update/Delete Expense Type Window allows you to make changes to or delete any existing expense type. This is 
+most useful for quickly adjusting monthly budgets.
+
+<p align="center">
+  <img src="/screenshots/Update_Expense_Type.jpg" width="450" height="231"/><br>
+  <i>Figure 12 - Update/Delete Expense Type Window</i>
+</p>
+<br>
+
+
+Add Investment Transaction
+-----------
+
+Adding an investment transaction is simple. Just select the investment type from the dropdown box, set the transaction date, and enter the dollar amount. Again, these types of investments are 
+intended to be funded through net income, not from pre-tax, roth, or after-tax employer-withholdings.
+
+<p align="center">
+  <img src="/screenshots/Add_Investment_Transaction.jpg" width="450" height="180"/><br>
+  <i>Figure 13 - Add Investment Transaction Window</i>
+</p>
+<br>
+
+
+Add Investment Types
+-----------
+
+To add an investment type, choose a unique name and a target amount that you wish to invest each month. If you want to track an investment but do not want to create a monthly goal, 
+you can just set the target to $0.00.
+
+<p align="center">
+  <img src="/screenshots/Add_Investment_Type.jpg" width="450" height="181"/><br>
+  <i>Figure 14 - Add Investment Type Window</i>
+</p>
+<br>
+
+
+Update Investment Types
+-----------
+
+Just as existing expense types can be updated or deleted, the same can be done with investment types.
+
+<p align="center">
+  <img src="/screenshots/Update_Investment_Type.jpg" width="450" height="181"/><br>
+  <i>Figure 15 - Update/Delete Investment Type Window</i>
+</p>
+<br>
+
+
+Add Income Transaction
+-----------
+
+Any net cash inflow from salary or supplemental sources is considered an income transaction. When entering a salary income transaction, enter any overtime hours, if applicable. For 
+supplemental income, add a description to document the source of the cash. For example, a supplemental income description may be "2020 Federal Income Tax Return".
+
+<p align="center">
+  <img src="/screenshots/Add_Income_Transaction.jpg" width="450" height="224"/><br>
+  <i>Figure 16 - Add Income Transaction Window</i>
+</p>
+<br>
+
+
+Update Automatic Monthly Payments
+-----------
+
+Adding, deleting, and updating automatic monthly payment information can be performed within the same window. If the "Add Payment" radio button 
+is selected, enter the bank account name from which the payment will be drafted each month, a description, and the amount. When the "Update 
+or Delete Payment" radio button is selected, click an existing row entry for a monthly payment within the table to update or 
+delete it.
+
+<p align="center">
+  <img src="/screenshots/Add_Update_Automatic_Monthly_Payments.jpg" width="500" height="400"/><br>
+  <i>Figure 17 - Add/Update Automatic Monthly Payment Window</i>
+</p>
+<br>
+
+
+Update Mortgage Information
+-----------
+
+To initially setup or update the mortgage information, enter the total loan amount, a conservative estimate for the current market value of 
+the property, the yearly interest rate, the loan term in years, and the date that the first payment was due. The total loan amount is 
+the original dollar amount that was borrowed, not the remaining loan balance. The market value is used to calculate asset value and net worth and 
+should be updated periodically as the property value rises or falls over time. Given this information, the monthly base payment for the mortgage will be 
+calculated automatically.
+
+<p align="center">
+  <img src="/screenshots/Update_Mortgage_Information.jpg" width="450" height="279"/><br>
+  <i>Figure 18 - Update Mortgage Information Window</i>
+</p>
+<br>
+
+
+Update Asset Information
+-----------
+
+As mentioned previously, personal financial health is best measured by net worth. In order for net worth to be accurately calculated and tracked, it is vital to keep the 
+value of assets up to date. Within the Update Asset Information Window, the value of existing assets can be added for the current month. It is recomended 
+to set the current month's values for all assets on the same day each month. Historical values dating back to the past year can also be added or adjusted. Information 
+for a specific asset, such as liquidity and name, can be updated from this window. Assets can be deleted entirely as well.
+
+<p align="center">
+  <img src="/screenshots/Update_Asset_Information.jpg" width="500" height="441"/><br>
+  <i>Figure 19 - Update Asset Information Window</i>
+</p>
+<br>
+
+
+Add Assets
+-----------
+
+When adding a new asset, you can enter all values for the previous year if available or just leave each entry blank. It may be difficult to determine or obtain the asset's value over 
+the past year so entering the value for the current month may be the only option. Values can be adjusted at any point after the asset is created.
+
+<p align="center">
+  <img src="/screenshots/Add_New_Asset.jpg" width="500" height="417"/><br>
+  <i>Figure 20 - Add Asset Window</i>
+</p>
+<br>
+
