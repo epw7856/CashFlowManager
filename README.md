@@ -25,11 +25,12 @@ Table of contents
 	  * [Mortgage Summary View](#mortgage-summary-view)
 	  * [Asset and Net Worth Summary View](#asset-and-net-worth-summary-view)
 	  * [Add Expense Transaction](#add-expense-transaction)
-	  * [Add Expense Type](#add-expense-type)
-	  * [Update Expense Type](#update-expense-type)
+	  * [Add Expense Types](#add-expense-types)
+	  * [Update Expense Types](#update-expense-types)
 	  * [Add Investment Transaction](#add-investment-transaction)
-	  * [Add Investment Type](#add-investment-type)
-	  * [Update Investment Type](#update-investment-type)
+	  * [Add Investment Types](#add-investment-types)
+	  * [Update Investment Types](#update-investment-types)
+	  * [Add Income Transaction](#add-income-transaction)
 	  * [Update Mortgage Information](#update-mortgage-information)
 <!--te-->
 
@@ -198,7 +199,7 @@ type is a mortgage, an edit box for additional principal will appear. The additi
 <br>
 
 
-Add Expense Type
+Add Expense Types
 -----------
 
 Before any transactions can be added, you must create expense types. A fixed expense type has a cost that does not change from month to month. In this case, the budget amount will exactly 
@@ -216,7 +217,7 @@ budget can always be adjusted at any time.
 <br>
 
 
-Update Expense Type
+Update Expense Types
 -----------
 
 Expense types and their associated budgets will rarely stay the same over time. The Update/Delete Expense Type Window allows you to make changes to or delete any existing expense type. This is 
@@ -242,7 +243,7 @@ intended to be funded through net income, not from pre-tax, roth, or after-tax e
 <br>
 
 
-Add Investment Type
+Add Investment Types
 -----------
 
 To add an investment type, choose a unique name and a target amount that you wish to invest each month. If you want to track an investment but do not want to create a monthly goal, 
@@ -255,7 +256,7 @@ you can just set the target to $0.00.
 <br>
 
 
-Update Investment Type
+Update Investment Types
 -----------
 
 Just as existing expense types can be updated or deleted, the same can be done with investment types.
@@ -265,3 +266,17 @@ Just as existing expense types can be updated or deleted, the same can be done w
   <i>Figure 15 - Update/Delete Investment Type Window</i>
 </p>
 <br>
+
+
+Add Income Transaction
+-----------
+
+Any net cash inflow from salary or supplemental sources is considered an income transaction. When entering a salary income transaction, enter any overtime hours, if applicable. For 
+supplemental income, add a description to document the source of the cash. For example, a supplemental income description may be "2020 Federal Income Tax Return".
+
+<p align="center">
+  <img src="/screenshots/Add_Income_Transaction.jpg" width="450" height="224"/><br>
+  <i>Figure 16 - Add Income Transaction Window</i>
+</p>
+<br>
+
