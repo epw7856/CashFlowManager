@@ -1,7 +1,3 @@
-# The Cash Flow Manager App is currently under construction! 
-Check back frequently for updates.
-- - - -
-
 Cash Flow Manager
 =========
 
@@ -41,7 +37,13 @@ Table of Contents
 Installation
 ============
 
-Installation instructions coming soon!
+Windows
+-----
+To install the Cash Flow Manager app on Windows, download and run the <i>CashFlowManagerSetup.exe</i> installer application from the latest release.
+
+macOS
+-----
+Installation instructions for macOS coming soon!
 
 
 Usage
