@@ -32,7 +32,7 @@ INCLUDEPATH += Investment/
 INCLUDEPATH += Mortgage/
 INCLUDEPATH += Utilities/
 
-RC_ICONS = app_icon.ico
+win32:RC_ICONS += app_icon.ico
 
 SOURCES += \
         Asset/assetentry.cpp \
